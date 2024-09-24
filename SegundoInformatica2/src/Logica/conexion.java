@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class conexion {
-	
-	//BORRAR ESTE COMENTARIO
 
 	public Connection conect() {
 		
