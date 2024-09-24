@@ -13,6 +13,7 @@ public class productos {
 	private String descripcion; //Declaro el String de descripcion
 	private String precio; //Declaro el String de precio
 	private String foto; //Declaro el String de foto
+	//BORRAR ESTE COMENTARIO
 	
 	/*
 	 *		CONSTRUCTOR DE PRODUCTOS 
