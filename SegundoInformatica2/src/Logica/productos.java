@@ -27,14 +27,9 @@ public class productos {
 		this.setDescripcion(DESCRIPCION);
 		this.setPrecio(PRECIO);
 		this.setFoto(FOTO);
-		
 	}
 	
-	productos() {
-		
-		
-		
-	}
+	productos() {}
 	
 	/*
 	 * 		GETS Y SETS DE LOS ATRIBUTOS
@@ -107,7 +102,6 @@ public class productos {
 				
 			} catch (SQLException ex) {
 				
-//				ex.printStackTrace();
 				System.out.println("ERROR, el producto ya existe");
 			
 			}
@@ -215,27 +209,28 @@ public class productos {
 				
 				while (resultSet.next()) {
 				
-				int id = resultSet.getInt("idproductos");
+					int id = resultSet.getInt("idproductos");
+					
+					String nombre = resultSet.getString("nombre");
+					
+					String descripcion = resultSet.getString("descripcion");
+					
+					String precio = resultSet.getString("precio");
+					
+					String foto = resultSet.getString("foto");
+					
+					tempProducto.setId(id);
+					tempProducto.setDescripcion(descripcion);
+					tempProducto.setFoto(foto);
+					tempProducto.setNombre(nombre);
+					tempProducto.setPrecio(precio);
+					
+					System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
+					
+					return tempProducto;
 				
-				String nombre = resultSet.getString("nombre");
+				}
 				
-				String descripcion = resultSet.getString("descripcion");
-				
-				String precio = resultSet.getString("precio");
-				
-				String foto = resultSet.getString("foto");
-				
-				tempProducto.setId(id);
-				tempProducto.setDescripcion(descripcion);
-				tempProducto.setFoto(foto);
-				tempProducto.setNombre(nombre);
-				tempProducto.setPrecio(precio);
-				
-				System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
-				
-				return tempProducto;
-				
-			}
 			} catch (SQLException e) {
 			
 				e.printStackTrace();
@@ -253,29 +248,29 @@ public class productos {
 					
 					while (resultSet.next()) {
 					
-					int id = resultSet.getInt("idproductos");
-					
-					String nombre = resultSet.getString("nombre");
-					
-					String descripcion = resultSet.getString("descripcion");
-					
-					String precio = resultSet.getString("precio");
-					
-					String foto = resultSet.getString("foto");
-					
-					tempProducto.setId(id);
-					tempProducto.setDescripcion(descripcion);
-					tempProducto.setFoto(foto);
-					tempProducto.setNombre(nombre);
-					tempProducto.setPrecio(precio);
-					
-					NumeroDeProducto++;
-					
-					System.out.println(NumeroDeProducto + ". " + "ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
-					System.out.println(" ");
+						int id = resultSet.getInt("idproductos");
+						
+						String nombre = resultSet.getString("nombre");
+						
+						String descripcion = resultSet.getString("descripcion");
+						
+						String precio = resultSet.getString("precio");
+						
+						String foto = resultSet.getString("foto");
+						
+						tempProducto.setId(id);
+						tempProducto.setDescripcion(descripcion);
+						tempProducto.setFoto(foto);
+						tempProducto.setNombre(nombre);
+						tempProducto.setPrecio(precio);
+						
+						NumeroDeProducto++;
+						
+						System.out.println(NumeroDeProducto + ". " + "ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
+						System.out.println(" ");
 		    	
-			}
-		    } catch (SQLException e) {
+					}
+				} catch (SQLException e) {
 			
 				e.printStackTrace();
 			
