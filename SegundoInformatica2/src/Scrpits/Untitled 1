@@ -9,7 +9,7 @@ CREATE TABLE productos (
 	idproductos int NOT NULL AUTO_INCREMENT,
     nombre varchar(45) NOT NULL,
     descripcion LONGTEXT,
-    precio varchar(45) NOT NULL,
+    precio int NOT NULL,
     foto LONGTEXT NOT NULL,
     PRIMARY KEY (idproductos)
 );
