@@ -12,7 +12,7 @@ public class productos {
 	private int idproductos; //Declaro el int de id
 	private String nombre; //Declaro el String de nombre
 	private String descripcion; //Declaro el String de descripcion
-	private String precio; //Declaro el String de precio
+	private int precio; //Declaro el String de precio
 	private String foto; //Declaro el String de foto
 	//BORRAR ESTE COMENTARIO
 	
@@ -20,7 +20,7 @@ public class productos {
 	 *		CONSTRUCTOR DE PRODUCTOS 
 	 */
 	
-	productos(int ID, String NOMBRE, String DESCRIPCION, String PRECIO, String FOTO) {
+	productos(int ID, String NOMBRE, String DESCRIPCION, int PRECIO, String FOTO) {
 		
 		this.setId(ID);
 		this.setNombre(NOMBRE);
@@ -64,11 +64,11 @@ public class productos {
 		this.nombre = nombre;
 	}
 
-	public String getPrecio() {
+	public int getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(String precio) {
+	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
 
@@ -97,7 +97,7 @@ public class productos {
 				
 					statement.setString(1, nombre);
 					statement.setString(2, descripcion);
-					statement.setString(3, precio);
+					statement.setInt(3, precio);
 					statement.setString(4, foto);
 					
 					int rowsInserted = statement.executeUpdate();
@@ -127,7 +127,7 @@ public class productos {
 				
 					statement.setString(1, nombre);
 					statement.setString(2, descripcion);
-					statement.setString(3, precio);
+					statement.setInt(3, precio);
 					statement.setString(4, foto);
 					statement.setInt(5, idproductos);
 					
@@ -221,7 +221,7 @@ public class productos {
 				
 				String descripcion = resultSet.getString("descripcion");
 				
-				String precio = resultSet.getString("precio");
+				int precio = resultSet.getInt("precio");
 				
 				String foto = resultSet.getString("foto");
 				
@@ -259,7 +259,7 @@ public class productos {
 					
 					String descripcion = resultSet.getString("descripcion");
 					
-					String precio = resultSet.getString("precio");
+					int precio = resultSet.getInt("precio");
 					
 					String foto = resultSet.getString("foto");
 					
@@ -287,9 +287,13 @@ public class productos {
 	    	
 	    	System.out.println("Hay una cantidad de " + NumeroDeProducto + " productos.");
 	    	
+	    } else if (NumeroDeProducto == 1) {
+	    	
+	    	System.out.println("Hay un producto.");
+	    	
 	    } else {
 	    	
-	    	System.out.println("Hay " + NumeroDeProducto + " producto.");
+	    	System.out.println("No hay productos.");
 	    	
 	    }
 		
@@ -334,7 +338,9 @@ public static void main(String[] args) {
 				
 				System.out.println("Ingrese el precio para el producto: ");
 				
-				p.setPrecio(sr.nextLine());
+				p.setPrecio(sr.nextInt());
+				
+				sr.nextLine();
 				
 				System.out.println("Ingrese la ruta de la foto: ");
 				
@@ -362,7 +368,9 @@ public static void main(String[] args) {
 				
 				System.out.println("Ingrese el nuevo precio para el producto: ");
 				
-				p.setPrecio(sr.nextLine());
+				p.setPrecio(sr.nextInt());
+				
+				sr.nextLine();
 				
 				System.out.println("Ingrese la nueva ruta de la foto: ");
 				
