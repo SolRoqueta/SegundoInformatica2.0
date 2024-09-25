@@ -1,2 +1,18 @@
 ACA ESTA EL SCRIPT SQL PARA LA CREACION DE LA BASE DE DATOS
 
+drop DATABASE testproyecto;
+CREATE DATABASE testproyecto;
+
+use testproyecto;
+
+CREATE TABLE productos (
+	idproductos int NOT NULL AUTO_INCREMENT,
+    nombre varchar(45) NOT NULL,
+    descripcion LONGTEXT,
+    precio varchar(45) NOT NULL,
+    foto LONGTEXT NOT NULL,
+    PRIMARY KEY (idproductos)
+);
+
+CREATE UNIQUE INDEX nombreunico 
+ON productos (nombre);
