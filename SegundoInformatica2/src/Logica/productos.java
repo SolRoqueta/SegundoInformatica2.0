@@ -17,6 +17,10 @@ public class productos {
 	//BORRAR ESTE COMENTARIO
 	
 	/*
+	 *		CONFIGURAR BASE DE DATOS PARA QUE LA TABLA RPODUCTOS TENGA UN INDICE DE NOMBRE UNICO 
+	 */
+	
+	/*
 	 *		CONSTRUCTOR DE PRODUCTOS 
 	 */
 	
@@ -92,25 +96,26 @@ public class productos {
 	     //Sentencia SQL que inserta los datos en la tabla "productos"
 	     String query = "INSERT INTO productos (nombre, descripcion, precio, foto) VALUES (?, ?, ?, ?);";
 	     
-	     try (Connection connection = con;
-				 PreparedStatement statement = connection.prepareStatement(query)) {
-				
-					statement.setString(1, nombre);
-					statement.setString(2, descripcion);
-					statement.setString(3, precio);
-					statement.setString(4, foto);
+		 try (Connection connection = con;
+					 PreparedStatement statement = connection.prepareStatement(query)) {
 					
-					int rowsInserted = statement.executeUpdate();
-					if (rowsInserted > 0) {
-						System.out.println("Ingresado con exito!");
-					}
+						statement.setString(1, nombre);
+						statement.setString(2, descripcion);
+						statement.setString(3, precio);
+						statement.setString(4, foto);
+						
+						int rowsInserted = statement.executeUpdate();
+						if (rowsInserted > 0) {
+							System.out.println("Ingresado con exito!");
+						}
+					
+				} catch (SQLException ex) {
+					
+					ex.printStackTrace();
+					System.out.println("ERROR, ese producto ya existe!");
 				
-			} catch (SQLException ex) {
-				
-				ex.printStackTrace();
-			
-			}
-		
+				}
+	 		
 	}
 	
 	public void ModificarProducto() {
@@ -340,7 +345,7 @@ public static void main(String[] args) {
 				p.setFoto(sr.nextLine());
 				
 				p.AgregarProducto();
-				
+					
 				break;
 			
 			case 2:
