@@ -108,6 +108,7 @@ public class productos {
 			} catch (SQLException ex) {
 				
 				ex.printStackTrace();
+				System.out.println("ERROR, ya existe ese nombre en la base de datos.");
 			
 			}
 		
