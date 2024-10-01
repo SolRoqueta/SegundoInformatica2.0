@@ -25,7 +25,7 @@ public class eliminarProductos extends JFrame {
         panel.add(titulo);
         
         // Etiqueta de Buscar Producto
-        JLabel buscarProductoLabel = new JLabel("Buscar Producto");
+        JLabel buscarProductoLabel = new JLabel("Producto a eliminar");
         buscarProductoLabel.setBounds(39, 89, 101, 25);
         panel.add(buscarProductoLabel);
         
@@ -33,11 +33,6 @@ public class eliminarProductos extends JFrame {
         JTextField buscarProductoField = new JTextField();
         buscarProductoField.setBounds(39, 115, 120, 25);
         panel.add(buscarProductoField);
-        
-        // ComboBox para seleccionar un criterio o categoría
-        JComboBox<String> comboBox = new JComboBox<>(new String[] {"ID", "Nombre", "Categoría"});
-        comboBox.setBounds(171, 115, 61, 25);
-        panel.add(comboBox);
         
         // Botón Eliminar Producto
         JButton eliminarProductoBtn = new JButton("Eliminar Producto");

@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 public class agregarProductos extends JFrame {
 	
 	public productos producto = new productos();
-	private int id_productos;
 	private String nombre;
 	private String descripcion;
 	private int precio;
@@ -92,6 +91,7 @@ public class agregarProductos extends JFrame {
 				fc.setFileFilter(filtro);
 				fc.showOpenDialog(subirImagenBtn);
 				
+				foto = fc.getSelectedFile().getAbsolutePath();
 				ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
 				Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
 				
@@ -114,13 +114,14 @@ public class agregarProductos extends JFrame {
         		
         		nombre = nombreField.getText();
         		descripcion = descripcionArea.getText();
-        		precio = Integer.parseInt(precioLabel.getText());
-//        		foto = 
+        		precio = Integer.parseInt(precioField.getText());
         		
         		producto.setNombre(nombre);
         		producto.setDescripcion(descripcion);
         		producto.setPrecio(precio);
         		producto.setFoto(foto);
+        		
+        		producto.AgregarProducto();
         		
         	}
         });
