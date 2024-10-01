@@ -20,7 +20,7 @@ public class productos {
 	 *		CONSTRUCTOR DE PRODUCTOS 
 	 */
 	
-	productos(int ID, String NOMBRE, String DESCRIPCION, int PRECIO, String FOTO) {
+	public productos(int ID, String NOMBRE, String DESCRIPCION, int PRECIO, String FOTO) {
 		
 		this.setId(ID);
 		this.setNombre(NOMBRE);
@@ -30,7 +30,7 @@ public class productos {
 		
 	}
 	
-	productos() {
+	public productos() {
 		
 		
 		
