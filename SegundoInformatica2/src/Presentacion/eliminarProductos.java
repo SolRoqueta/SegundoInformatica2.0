@@ -5,6 +5,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import Logica.productos;
 
+/*
+ * 
+ * 		MODIFICAR INTERFAZ PARA QUE SE PAREZCA AL MODIFICAR
+ * 
+ * 	La idea es que se igual al modificar para mostrar los datos 
+ * 	del producto a eliminar y confirmar que se quieria borrar ese.
+ * 
+ */
+
 public class eliminarProductos extends JFrame {
 	
 	public productos producto = new productos();
