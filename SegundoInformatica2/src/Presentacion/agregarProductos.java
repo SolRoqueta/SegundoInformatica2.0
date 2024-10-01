@@ -1,6 +1,7 @@
 package Presentacion;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Logica.productos;
 
@@ -84,6 +85,20 @@ public class agregarProductos extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		
         		//Este seccion del codigo se ejecuta cuando el boton Subir Imagen es apretado 
+        		JFileChooser fc = new JFileChooser();
+				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				
+				FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
+				fc.setFileFilter(filtro);
+				fc.showOpenDialog(subirImagenBtn);
+				
+				ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+				Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
+				
+				// Display the image in the label
+                imagenLabel.setText(""); // Remove placeholder text
+                imagenLabel.setIcon(new ImageIcon(image));
+
         		
         	}
         });
