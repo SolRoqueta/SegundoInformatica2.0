@@ -1,11 +1,21 @@
 package Presentacion;
 
+import Logica.productos;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class modificarProductos extends JFrame {
+	
+	public productos producto = new productos();
+	private int id_productos;
+	private String nombre;
+	private String descripcion;
+	private int precio;
+	private String foto;
     
     public modificarProductos() {
         // Configurar la ventana
@@ -66,11 +76,33 @@ public class modificarProductos extends JFrame {
         
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
-        imagenLabel.setBounds(291, 183, 100, 100);
+        imagenLabel.setBounds(275, 170, 133, 119);
         imagenLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         panel.add(imagenLabel);
         
         JButton subirImagenBtn = new JButton("Subir Imagen");
+        subirImagenBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		//Este seccion del codigo se ejecuta cuando el boton Subir Imagen es apretado 
+        		JFileChooser fc = new JFileChooser();
+				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				
+				FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
+				fc.setFileFilter(filtro);
+				fc.showOpenDialog(subirImagenBtn);
+				
+				ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+				Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
+				
+				// Display the image in the label
+                imagenLabel.setIcon(new ImageIcon(image));
+                
+                foto = fc.getSelectedFile().getAbsolutePath();
+                System.out.print(foto);
+                
+        	}
+        });
         subirImagenBtn.setBounds(283, 302, 117, 25);
         panel.add(subirImagenBtn);
         
@@ -86,6 +118,29 @@ public class modificarProductos extends JFrame {
         btnNewButton.setBounds(267, 100, 78, 23);
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		
+        		nombre = buscarProductoField.getText();
+        		
+        		producto = producto.BuscarProducto(nombre, 1);
+   
+        		id_productos = producto.getId();
+
+        		nombre = producto.getNombre();
+        		
+        		descripcion = producto.getDescripcion();
+        		
+        		precio = producto.getPrecio();
+        		
+        		foto = producto.getFoto();
+        		
+        		nombreField.setText(nombre);
+        		descripcionArea.setText(descripcion);
+        		precioField.setText(String.valueOf(precio));
+        		
+        		ImageIcon imageIcon = new ImageIcon(foto);
+				Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
+        		imagenLabel.setIcon(new ImageIcon(image));
+        		
         	}
         });
         panel.add(btnNewButton);
