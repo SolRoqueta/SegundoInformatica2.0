@@ -8,6 +8,7 @@ import Logica.productos;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.LineBorder;
 
 public class agregarProductos extends JFrame {
 	
@@ -76,7 +77,7 @@ public class agregarProductos extends JFrame {
         JLabel imagenLabel = new JLabel();
         imagenLabel.setBackground(new Color(255, 255, 255));
         imagenLabel.setBounds(215, 105, 118, 121);
-        imagenLabel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
         
         JButton subirImagenBtn = new JButton("Subir Imagen");
