@@ -30,11 +30,7 @@ public class productos {
 		
 	}
 	
-	productos() {
-		
-		
-		
-	}
+	public productos() {}
 	
 	/*
 	 * 		GETS Y SETS DE LOS ATRIBUTOS

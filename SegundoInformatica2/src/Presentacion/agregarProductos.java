@@ -1,9 +1,29 @@
 package Presentacion;
 
 import javax.swing.*;
+
+import Logica.productos;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class agregarProductos extends JFrame {
+	
+	public productos producto = new productos();
+	private int id_productos;
+	private String nombre;
+	private String descripcion;
+	private int precio;
+	private String foto;
+	
+	public static void main(String[] args) {
+        // Crear y mostrar la ventana
+        SwingUtilities.invokeLater(() -> {
+            agregarProductos ventana = new agregarProductos();
+            ventana.setVisible(true);
+        });
+    }
     
     public agregarProductos() {
         // Configurar la ventana
@@ -60,23 +80,40 @@ public class agregarProductos extends JFrame {
         panel.add(imagenLabel);
         
         JButton subirImagenBtn = new JButton("Subir Imagen");
+        subirImagenBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		//Este seccion del codigo se ejecuta cuando el boton Subir Imagen es apretado 
+        		
+        	}
+        });
         subirImagenBtn.setBounds(215, 239, 118, 25);
         panel.add(subirImagenBtn);
         
         // Botón Agregar Producto
         JButton agregarProductoBtn = new JButton("Agregar Producto");
+        agregarProductoBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		//Se activa cuando el boton Agregar producto es pulsado
+        		
+        		nombre = nombreField.getText();
+        		descripcion = descripcionArea.getText();
+        		precio = Integer.parseInt(precioLabel.getText());
+//        		foto = 
+        		
+        		producto.setNombre(nombre);
+        		producto.setDescripcion(descripcion);
+        		producto.setPrecio(precio);
+        		producto.setFoto(foto);
+        		
+        	}
+        });
         agregarProductoBtn.setBounds(115, 322, 150, 30);
         panel.add(agregarProductoBtn);
         
         // Agregar el panel a la ventana
         getContentPane().add(panel);
     }
-
-    public static void main(String[] args) {
-        // Crear y mostrar la ventana
-        SwingUtilities.invokeLater(() -> {
-            agregarProductos ventana = new agregarProductos();
-            ventana.setVisible(true);
-        });
-    }
+    
 }
