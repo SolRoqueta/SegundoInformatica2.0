@@ -80,36 +80,31 @@ public class modificarProductos extends JFrame {
         imagenLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         panel.add(imagenLabel);
         
+      
         JButton subirImagenBtn = new JButton("Subir Imagen");
         subirImagenBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
         		//Este seccion del codigo se ejecuta cuando el boton Subir Imagen es apretado 
-        		JFileChooser fc = new JFileChooser();
-				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				
-				FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
-				fc.setFileFilter(filtro);
-				fc.showOpenDialog(subirImagenBtn);
-				
-				ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
-				Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
-				
-				// Display the image in the label
-                imagenLabel.setIcon(new ImageIcon(image));
-                
-                foto = fc.getSelectedFile().getAbsolutePath();
-                System.out.print(foto);
+                	JFileChooser fc = new JFileChooser();
+	        		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+	        		
+	        		FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
+	        		fc.setFileFilter(filtro);
+	        		fc.showOpenDialog(subirImagenBtn);
+        		
+        			ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+        			Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
+        			
+					// Display the image in the label
+	                imagenLabel.setIcon(new ImageIcon(image));
+	                
+	                foto = fc.getSelectedFile().getAbsolutePath();
                 
         	}
         });
         subirImagenBtn.setBounds(283, 302, 117, 25);
         panel.add(subirImagenBtn);
-        
-        // Botón Modificar Producto
-        JButton modificarProductoBtn = new JButton("Modificar Producto");
-        modificarProductoBtn.setBounds(153, 394, 150, 30);
-        panel.add(modificarProductoBtn);
         
         // Agregar el panel a la ventana
         getContentPane().add(panel);
@@ -124,13 +119,9 @@ public class modificarProductos extends JFrame {
         		producto = producto.BuscarProducto(nombre, 1);
    
         		id_productos = producto.getId();
-
         		nombre = producto.getNombre();
-        		
         		descripcion = producto.getDescripcion();
-        		
         		precio = producto.getPrecio();
-        		
         		foto = producto.getFoto();
         		
         		nombreField.setText(nombre);
@@ -144,6 +135,29 @@ public class modificarProductos extends JFrame {
         	}
         });
         panel.add(btnNewButton);
+    
+    // Botón Modificar Producto
+    JButton modificarProductoBtn = new JButton("Modificar Producto");
+    modificarProductoBtn.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		
+    		nombre = nombreField.getText();
+    		descripcion = descripcionArea.getText();
+    		precio = Integer.parseInt(precioField.getText());
+	        
+    		producto.setNombre(nombre);
+    		producto.setDescripcion(descripcion);
+    		producto.setPrecio(precio);
+    		producto.setFoto(foto);
+    		
+    		producto.ModificarProducto();
+    			
+    	}
+    });
+    
+    modificarProductoBtn.setBounds(153, 394, 150, 30);
+    panel.add(modificarProductoBtn);
+    
     }
 
     public static void main(String[] args) {
