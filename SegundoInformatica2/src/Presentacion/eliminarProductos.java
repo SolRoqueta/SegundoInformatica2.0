@@ -1,8 +1,14 @@
 package Presentacion;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import Logica.productos;
 
 public class eliminarProductos extends JFrame {
+	
+	public productos producto = new productos();
+	private String nombre;
     
     public eliminarProductos() {
         // Configurar la ventana
@@ -36,6 +42,16 @@ public class eliminarProductos extends JFrame {
         
         // Botón Eliminar Producto
         JButton eliminarProductoBtn = new JButton("Eliminar Producto");
+        eliminarProductoBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		nombre = buscarProductoField.getText();
+        		
+        		producto = producto.BuscarProducto(nombre, 1);
+        		producto.EliminarProducto();
+        		
+        	}
+        });
         eliminarProductoBtn.setBounds(52, 193, 150, 30);
         panel.add(eliminarProductoBtn);
         

@@ -142,6 +142,7 @@ public class productos {
 			} catch (SQLException ex) {
 				
 				ex.printStackTrace();
+				System.out.println("No se a podido modificar el producto");
 			
 			}
 		
@@ -171,7 +172,8 @@ public class productos {
 				
 			} catch (SQLException ex) {
 				
-				ex.printStackTrace();
+//				ex.printStackTrace();
+				System.out.println("No se a podido eliminar el prdoucto.");
 			
 			}
 		
@@ -237,7 +239,8 @@ public class productos {
 			}
 			} catch (SQLException e) {
 			
-				e.printStackTrace();
+//				e.printStackTrace();
+				System.out.println("Producto no encontrado");
 			
 			}
 	    	
@@ -276,7 +279,8 @@ public class productos {
 			}
 		    } catch (SQLException e) {
 			
-				e.printStackTrace();
+//				e.printStackTrace();
+		    	System.out.println("ERROR en la busqueda de productos");
 			
 			}
 				
