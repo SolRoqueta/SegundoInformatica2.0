@@ -213,33 +213,42 @@ public class productos {
 				preparedStatement.setString(1, tempNombre);
 				
 				ResultSet resultSet = preparedStatement.executeQuery();
-				
-				while (resultSet.next()) {
-				
-				int id = resultSet.getInt("idproductos");
-				
-				String nombre = resultSet.getString("nombre");
-				
-				String descripcion = resultSet.getString("descripcion");
-				
-				int precio = resultSet.getInt("precio");
-				
-				String foto = resultSet.getString("foto");
-				
-				tempProducto.setId(id);
-				tempProducto.setDescripcion(descripcion);
-				tempProducto.setFoto(foto);
-				tempProducto.setNombre(nombre);
-				tempProducto.setPrecio(precio);
-				
-				System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
-				
-				return tempProducto;
-				
-			}
+								
+				if (!resultSet.next()) {
+					
+					System.out.println("PRODUCTO NO ENCONTRADO");
+					
+				} else {
+					
+					do {
+						
+						int id = resultSet.getInt("idproductos");
+						
+						String nombre = resultSet.getString("nombre");
+						
+						String descripcion = resultSet.getString("descripcion");
+						
+						int precio = resultSet.getInt("precio");
+						
+						String foto = resultSet.getString("foto");
+						
+						tempProducto.setId(id);
+						tempProducto.setDescripcion(descripcion);
+						tempProducto.setFoto(foto);
+						tempProducto.setNombre(nombre);
+						tempProducto.setPrecio(precio);
+						
+						System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
+						
+						return tempProducto;
+						
+					} while (resultSet.next());
+					
+				}
+				 
 			} catch (SQLException e) {
 			
-//				e.printStackTrace();
+				e.printStackTrace();
 				System.out.println("Producto no encontrado");
 			
 			}
@@ -285,23 +294,8 @@ public class productos {
 			}
 				
 	    }
-	    
-	    if (NumeroDeProducto > 1) {
-	    	
-	    	System.out.println("Hay una cantidad de " + NumeroDeProducto + " productos.");
-	    	
-	    } else if (NumeroDeProducto == 1) {
-	    	
-	    	System.out.println("Hay un producto.");
-	    	
-	    } else {
-	    	
-	    	System.out.println("No hay productos.");
-	    	
-	    }
 		
 		return tempProducto;
-
 		
 	}
 	
