@@ -10,8 +10,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import Logica.productos;
+import java.util.ArrayList;
+import java.util.List;
 
 public class listarProductos extends JFrame {
+	
+	private productos producto = new productos();
+	private JTable table;
     
     public listarProductos() {
         // Configurar la ventana
@@ -63,13 +69,21 @@ public class listarProductos extends JFrame {
         // Agregar el panel a la ventana
         getContentPane().add(panel);
         
-        JButton btnListarTodos = new JButton("Listar Todos");
-        btnListarTodos.setBounds(253, 154, 128, 23);
-        panel.add(btnListarTodos);
-        
         JList list = new JList();
         list.setBounds(103, 199, 278, 278);
         panel.add(list);
+        
+        JButton btnListarTodos = new JButton("Listar Todos");
+        btnListarTodos.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		//Se ejecuta cuando el boton Listar Todos es pulsado
+        		
+        	}
+        });
+        btnListarTodos.setBounds(253, 154, 128, 23);
+        panel.add(btnListarTodos);
+        
     }
 
     public static void main(String[] args) {
