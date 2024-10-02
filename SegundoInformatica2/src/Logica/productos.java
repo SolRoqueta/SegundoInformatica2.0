@@ -107,7 +107,7 @@ public class productos {
 			} catch (SQLException ex) {
 				
 //				ex.printStackTrace();
-				System.out.println("ERROR, el producto ya existe");
+				System.out.println("ERROR, al agregar producto");
 			
 			}
 		
