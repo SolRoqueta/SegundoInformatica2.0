@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class listarProductos extends JFrame {
     
@@ -25,7 +27,7 @@ public class listarProductos extends JFrame {
         
         // Etiqueta de título
         JLabel titulo = new JLabel("LISTAR PRODUCTOS", SwingConstants.CENTER);
-        titulo.setBounds(0, 0, 500, 64);
+        titulo.setBounds(-8, 0, 500, 64);
         titulo.setOpaque(true);
         titulo.setBackground(Color.GRAY);
         titulo.setForeground(Color.WHITE);
@@ -33,22 +35,22 @@ public class listarProductos extends JFrame {
         
         // Etiqueta de Nombre Producto
         JLabel nombreProductoLabel = new JLabel("Nombre Producto");
-        nombreProductoLabel.setBounds(141, 81, 118, 25);
+        nombreProductoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        nombreProductoLabel.setBounds(183, 84, 118, 25);
         panel.add(nombreProductoLabel);
         
         // Campo de texto para buscar productos
         JTextField nombreProductoField = new JTextField();
-        nombreProductoField.setBounds(138, 105, 120, 25);
+        nombreProductoField.setBounds(173, 108, 138, 25);
         panel.add(nombreProductoField);
         
-        // ComboBox para seleccionar un criterio o categoría
-        JComboBox<String> comboBox = new JComboBox<>(new String[] {"ID", "Nombre", "Categoría"});
-        comboBox.setBounds(280, 105, 61, 25);
-        panel.add(comboBox);
-        
         // Botón Listar
-        JButton listarBtn = new JButton("Listar");
-        listarBtn.setBounds(192, 149, 100, 30);
+        JButton listarBtn = new JButton("Listar Producto");
+        listarBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        listarBtn.setBounds(103, 154, 128, 23);
         panel.add(listarBtn);
         
         // JList para mostrar los productos
@@ -60,6 +62,10 @@ public class listarProductos extends JFrame {
         
         // Agregar el panel a la ventana
         getContentPane().add(panel);
+        
+        JButton btnListarTodos = new JButton("Listar Todos");
+        btnListarTodos.setBounds(253, 154, 128, 23);
+        panel.add(btnListarTodos);
         
         JList list = new JList();
         list.setBounds(103, 199, 278, 278);
