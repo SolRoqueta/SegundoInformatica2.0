@@ -142,11 +142,14 @@ public class usuarioP extends usuarios {
 							
 							int id = resultSet.getInt("id_usuarios");
 							
+							int numero_tel = resultSet.getInt("numero_telefono");
+							
 							tempUsuario.setNombre(nombre);
 							tempUsuario.setCI(ci);
 							tempUsuario.setId(id);
+							tempUsuario.setNumero_Tel(numero_tel);
 							
-							System.out.println("ID: " + id + ", Nombre completo: " + nombre + ", " + "CI: " + ci);
+							System.out.println("ID: " + id + ", Nombre completo: " + nombre + ", " + "CI: " + ci + ", Numero de telefono: " + numero_tel);
 							
 							return tempUsuario;
 							
