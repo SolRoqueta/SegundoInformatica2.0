@@ -41,7 +41,7 @@ public class eliminarProductos extends JFrame {
         
         // Etiqueta de Buscar Producto
         JLabel buscarProductoLabel = new JLabel("Producto a eliminar");
-        buscarProductoLabel.setBounds(39, 89, 101, 25);
+        buscarProductoLabel.setBounds(39, 89, 120, 30);
         panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
