@@ -108,14 +108,24 @@ public class modificarProductos extends JFrame {
         		nombreField.setEditable(true);
         		newPrecioField.setEditable(true);
         		descripcionArea.setEditable(true);
-        		btnModificarProducto.setEnabled(true);
         		
         		nombre = buscarProductoField.getText();
         		
+        		
+				
+				
         		if (nombre.equals("")) {
         			
         			JOptionPane.showMessageDialog(null, "Nombre del producto no ingresado");
-
+        			btnModificarProducto.setEnabled(false);
+        			
+        			nombreField.setText("");
+            		descripcionArea.setText("");
+            		precioField.setValue(0);
+            		foto = "";
+            		
+            		imagenLabel.setIcon(new ImageIcon(foto));
+        			
         		} else {
         			
         			producto = producto.BuscarProducto(nombre, 1);
@@ -123,20 +133,31 @@ public class modificarProductos extends JFrame {
         			if (producto.getNombre() == null) {
         				
         				JOptionPane.showMessageDialog(null, "Producto no encontrado");
+        				btnModificarProducto.setEnabled(false);
+        				
+        				nombreField.setText("");
+                		descripcionArea.setText("");
+                		precioField.setValue(0);
+                		
+                		foto = "";
+                		imagenLabel.setIcon(new ImageIcon(foto));
+                		
         				
         			} else {
         				
+        				btnModificarProducto.setEnabled(true);
         				nombre = producto.getNombre();
                 		descripcion = producto.getDescripcion();
                 		precio = producto.getPrecio();
                 		foto = producto.getFoto();
+                	
                 		
                 		nombreField.setText(nombre);
                 		descripcionArea.setText(descripcion);
                 		precioField.setValue(precio);
                 		
                 		ImageIcon imageIcon = new ImageIcon(foto);
-        				Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
+                		Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
                 		imagenLabel.setIcon(new ImageIcon(image));
         				
         			}
@@ -146,6 +167,7 @@ public class modificarProductos extends JFrame {
         	}
         });
         panel.add(btnBuscarProducto);
+        
         
       // Se ejecuta cuando el boton Subir Imagen es apretado 
         btnSubirImagen.addActionListener(new ActionListener() {
