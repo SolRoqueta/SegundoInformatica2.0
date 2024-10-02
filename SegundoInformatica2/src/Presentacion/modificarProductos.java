@@ -104,15 +104,12 @@ public class modificarProductos extends JFrame {
         btnBuscarProducto.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		btnSubirImagen.setEnabled(true);
         		nombreField.setEditable(true);
         		newPrecioField.setEditable(true);
         		descripcionArea.setEditable(true);
         		
         		nombre = buscarProductoField.getText();
         		
-        		
-				
 				
         		if (nombre.equals("")) {
         			
@@ -134,6 +131,7 @@ public class modificarProductos extends JFrame {
         				
         				JOptionPane.showMessageDialog(null, "Producto no encontrado");
         				btnModificarProducto.setEnabled(false);
+        				btnSubirImagen.setEnabled(false);
         				
         				nombreField.setText("");
                 		descripcionArea.setText("");
@@ -146,6 +144,7 @@ public class modificarProductos extends JFrame {
         			} else {
         				
         				btnModificarProducto.setEnabled(true);
+        				btnSubirImagen.setEnabled(true);
         				nombre = producto.getNombre();
                 		descripcion = producto.getDescripcion();
                 		precio = producto.getPrecio();
