@@ -1,0 +1,14 @@
+agregar productos:
+	-hacer todos los campos requiere para que no pueda dejar campos vacios.
+	-en el campo precio solo dejar solo ingresar numeros.
+	-cuando se trata de ingresar una imagen pero luego no lo hace, debe aparecer un popup que le diga q es obligatoria la image y no el error en consola.
+	-agregar los popups de "producto agregado" o de "el producto ya existe"
+	
+modificar productos:
+	-cancelar los campos hasta que el usuario busque el nombre del producto a eliminar.
+	-si trata de cambiar la imagen y al final no lo hace, no dejar que aparezca el error en la consola.
+	-agregar un boton de cancelar por si al final edcido no modificar el producto.
+
+eliminar producto
+	-darle la misma opcion que el modificar de poder buscar por el nombre y que el sistema le diga si existe o no antes de eliminar.
+	-estariabueno que muestre los datos como en modificar pero que no deje que los modifique.
