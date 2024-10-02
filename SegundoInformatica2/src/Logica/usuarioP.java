@@ -258,9 +258,6 @@ public class usuarioP extends usuarios {
 		usuario.setNumero_Tel(tempNumero_Tel);
 		usuario.setContrasenia(tempCotrasenia);
 		
-		System.out.println(usuario.getNombre());
-		System.out.println(usuario.getId());
-		
 		usuario.ModificarUsuario();
 		
 	}
