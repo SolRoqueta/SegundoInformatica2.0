@@ -90,6 +90,8 @@ public class listarProductos extends JFrame {
         btnListarTodos.setBounds(253, 154, 128, 23);
         panel.add(btnListarTodos);
         
+        getContentPane().add(panel);
+        
     }
 
     public static void main(String[] args) {
