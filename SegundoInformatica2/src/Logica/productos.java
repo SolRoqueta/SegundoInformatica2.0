@@ -253,49 +253,53 @@ public class productos {
 			
 			}
 	    	
-	    } else {
-	    	
-				String query = "SELECT * FROM productos;";
-				
-				try (Connection conn = con;
-					PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-					
-					ResultSet resultSet = preparedStatement.executeQuery();
-					
-					while (resultSet.next()) {
-					
-					int id = resultSet.getInt("idproductos");
-					
-					String nombre = resultSet.getString("nombre");
-					
-					String descripcion = resultSet.getString("descripcion");
-					
-					int precio = resultSet.getInt("precio");
-					
-					String foto = resultSet.getString("foto");
-					
-					tempProducto.setId(id);
-					tempProducto.setDescripcion(descripcion);
-					tempProducto.setFoto(foto);
-					tempProducto.setNombre(nombre);
-					tempProducto.setPrecio(precio);
-					
-					NumeroDeProducto++;
-					
-					System.out.println(NumeroDeProducto + ". " + "ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
-					System.out.println(" ");
-		    	
-			}
-		    } catch (SQLException e) {
-			
-//				e.printStackTrace();
-		    	System.out.println("ERROR en la busqueda de productos");
-			
-			}
-				
 	    }
 		
 		return tempProducto;
+		
+	}
+	
+	public void BuscarProductos() {
+		
+		conexion cc = new conexion();
+	    Connection con = cc.conect();
+	    productos tempProducto = new productos();
+		
+		String query = "SELECT * FROM productos;";
+		
+		try (Connection conn = con;
+			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+			
+			int id = resultSet.getInt("idproductos");
+			
+			String nombre = resultSet.getString("nombre");
+			
+			String descripcion = resultSet.getString("descripcion");
+			
+			int precio = resultSet.getInt("precio");
+			
+			String foto = resultSet.getString("foto");
+			
+			tempProducto.setId(id);
+			tempProducto.setDescripcion(descripcion);
+			tempProducto.setFoto(foto);
+			tempProducto.setNombre(nombre);
+			tempProducto.setPrecio(precio);
+			
+			System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
+			System.out.println(" ");
+    	
+	}
+    } catch (SQLException e) {
+	
+//		e.printStackTrace();
+    	System.out.println("ERROR en la busqueda de productos");
+	
+	}
 		
 	}
 	
