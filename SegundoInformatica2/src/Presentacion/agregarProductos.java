@@ -59,7 +59,7 @@ public class agregarProductos extends JFrame {
         precioLabel.setBounds(24, 132, 40, 25);
         panel.add(precioLabel);
         
-        JTextField precioField = new JTextField();
+        JSpinner precioField = new JSpinner();
         precioField.setBounds(24, 153, 150, 25);
         panel.add(precioField);
         
@@ -92,14 +92,21 @@ public class agregarProductos extends JFrame {
 				fc.setFileFilter(filtro);
 				fc.showOpenDialog(subirImagenBtn);
 				
-				foto = fc.getSelectedFile().getAbsolutePath();
-				ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
-				Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
-				
-				// Display the image in the label
-                imagenLabel.setText(""); // Remove placeholder text
-                imagenLabel.setIcon(new ImageIcon(image));
-
+				   if (fc.getSelectedFile() == null) {
+		    			
+		    			JOptionPane.showMessageDialog(null, "Error, foto no seleccionada");
+		    			
+		            } else {
+		            	
+		            	
+		            	ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+		            	Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
+		   
+		            	// Mostrar la imagen en imagenLabel
+			            imagenLabel.setIcon(new ImageIcon(image));
+			            foto = fc.getSelectedFile().getAbsolutePath();
+		            	
+		            }
         		
         	}
         });
@@ -115,14 +122,34 @@ public class agregarProductos extends JFrame {
         		
         		nombre = nombreField.getText();
         		descripcion = descripcionArea.getText();
-        		precio = Integer.parseInt(precioField.getText());
+        		precio = (Integer) precioField.getValue();
         		
-        		producto.setNombre(nombre);
-        		producto.setDescripcion(descripcion);
-        		producto.setPrecio(precio);
-        		producto.setFoto(foto);
-        		
-        		producto.AgregarProducto();
+        		if (nombre.equals("") || descripcion.equals("") || precio == 0 || foto == null) {
+        			
+        			JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
+        			
+        		} else {
+        			
+        			productos tempProducto = new productos();
+        			String tempNombre = tempProducto.BuscarProducto(nombre, 1).getNombre();
+        			
+        			if (tempNombre == null) {
+        				
+        				producto.setNombre(nombre);
+                		producto.setDescripcion(descripcion);
+                		producto.setPrecio(precio);
+                		producto.setFoto(foto);
+                		
+                		producto.AgregarProducto();
+                		JOptionPane.showMessageDialog(null, "Producto agregado con exito!");
+        				
+        			} else {
+        				
+        				JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
+        				
+        			}
+        			
+        		}
         		
         	}
         });
