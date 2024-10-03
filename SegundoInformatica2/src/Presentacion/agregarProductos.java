@@ -107,7 +107,6 @@ public class agregarProductos extends JFrame {
 			            foto = fc.getSelectedFile().getAbsolutePath();
 		            	
 		            }
-
         		
         	}
         });
@@ -132,13 +131,9 @@ public class agregarProductos extends JFrame {
         		} else {
         			
         			productos tempProducto = new productos();
-        			tempProducto.BuscarProducto(nombre, 1);
+        			String tempNombre = tempProducto.BuscarProducto(nombre, 1).getNombre();
         			
-        			if (tempProducto.getNombre() == nombre) {
-        				
-        				JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
-        				
-        			} else {
+        			if (tempNombre == null) {
         				
         				producto.setNombre(nombre);
                 		producto.setDescripcion(descripcion);
@@ -148,8 +143,11 @@ public class agregarProductos extends JFrame {
                 		producto.AgregarProducto();
                 		JOptionPane.showMessageDialog(null, "Producto agregado con exito!");
         				
+        			} else {
+        				
+        				JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
+        				
         			}
-        			
         			
         		}
         		
