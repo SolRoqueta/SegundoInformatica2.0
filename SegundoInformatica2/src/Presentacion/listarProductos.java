@@ -18,6 +18,7 @@ public class listarProductos extends JFrame {
 	
 	private productos producto = new productos();
 	private JTable table;
+	private JTable Table;
     
     public listarProductos() {
         // Configurar la ventana
@@ -66,18 +67,23 @@ public class listarProductos extends JFrame {
         listModel.addElement("Producto 2");
         listModel.addElement("Producto 3");
         
-        // Agregar el panel a la ventana
-        getContentPane().add(panel);
+//        JList list = new JList();
+//        list.setBounds(103, 199, 278, 278);
+//        panel.add(list);
         
-        JList list = new JList();
-        list.setBounds(103, 199, 278, 278);
-        panel.add(list);
+        Table = new JTable();
+        Table.setBounds(103, 199, 278, 278);
+        panel.add(Table);
         
         JButton btnListarTodos = new JButton("Listar Todos");
         btnListarTodos.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
         		//Se ejecuta cuando el boton Listar Todos es pulsado
+        		
+        		productos producto = new productos();
+        		
+        		producto.BuscarProductos();
         		
         	}
         });
