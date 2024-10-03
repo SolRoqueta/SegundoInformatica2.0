@@ -9,7 +9,7 @@ public class login extends JFrame {
 
     public login() {
         // Configuración básica de la ventana
-        setTitle("Login Interface");
+        setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
         getContentPane().setLayout(null);  // Layout absoluto para ubicar los componentes manualmente
@@ -17,20 +17,20 @@ public class login extends JFrame {
         // Panel derecho para el formulario de login
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(null);
-        rightPanel.setBackground(new Color(51, 0, 51));
+        rightPanel.setBackground(new Color(33, 53, 72));
         rightPanel.setBounds(-15, -16, 632, 391);  // Tamaño y posición del panel derecho
 
         // Panel interno del formulario
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(null);
-        loginPanel.setBackground(Color.LIGHT_GRAY);
+        loginPanel.setBackground(new Color(191, 190, 190));
         loginPanel.setBounds(293, 13, 326, 381);  // Ubicación del panel de login en el panel derecho
         rightPanel.add(loginPanel);
 
         // Etiqueta "Login"
         JLabel loginLabel = new JLabel("Login");
         loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        loginLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        loginLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
         loginLabel.setBounds(113, 65, 83, 30);  // Posición de la etiqueta "Login"
         loginPanel.add(loginLabel);
 
@@ -59,7 +59,7 @@ public class login extends JFrame {
         backgroundPanel.setBounds(59, 48, 195, 269);
         loginPanel.add(backgroundPanel);
         backgroundPanel.setLayout(null);
-        backgroundPanel.setBackground(SystemColor.control);
+        backgroundPanel.setBackground(new Color(220, 220, 220));
         
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(47, 197, 100, 30);

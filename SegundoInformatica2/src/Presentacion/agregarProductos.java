@@ -40,6 +40,7 @@ public class agregarProductos extends JFrame {
         
         // Etiqueta de título
         JLabel titulo = new JLabel("AGREGAR PRODUCTOS", SwingConstants.CENTER);
+        titulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
         titulo.setBounds(0, 0, 372, 64);
         titulo.setOpaque(true);
         titulo.setBackground(Color.GRAY);
