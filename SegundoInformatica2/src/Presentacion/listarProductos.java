@@ -5,7 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
-
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -17,10 +18,12 @@ import java.util.List;
 public class listarProductos extends JFrame {
 	
 	private productos producto = new productos();
-	private JTable table;
 	private JTable Table;
+	private JTextField textField;
+	private JTable tablaListarProductos;
     
     public listarProductos() {
+         
         // Configurar la ventana
         setTitle("Listar Productos");
         setSize(500, 538);
@@ -29,12 +32,13 @@ public class listarProductos extends JFrame {
         
         // Crear el panel principal
         JPanel panel = new JPanel();
-        panel.setLayout(null); // Usamos layout nulo para posicionar los elementos manualmente
+        panel.setLayout(null);
         panel.setBackground(Color.LIGHT_GRAY);
+        panel.setLayout(null);
         
         // Etiqueta de título
         JLabel titulo = new JLabel("LISTAR PRODUCTOS", SwingConstants.CENTER);
-        titulo.setBounds(-8, 0, 500, 64);
+        titulo.setBounds(-11, 0, 507, 63);
         titulo.setOpaque(true);
         titulo.setBackground(Color.GRAY);
         titulo.setForeground(Color.WHITE);
@@ -43,54 +47,62 @@ public class listarProductos extends JFrame {
         // Etiqueta de Nombre Producto
         JLabel nombreProductoLabel = new JLabel("Nombre Producto");
         nombreProductoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        nombreProductoLabel.setBounds(183, 84, 118, 25);
+        nombreProductoLabel.setBounds(191, 91, 102, 14);
         panel.add(nombreProductoLabel);
         
-        // Campo de texto para buscar productos
-        JTextField nombreProductoField = new JTextField();
-        nombreProductoField.setBounds(173, 108, 138, 25);
-        panel.add(nombreProductoField);
-        
         // Botón Listar
-        JButton listarBtn = new JButton("Listar Producto");
-        listarBtn.addActionListener(new ActionListener() {
+        JButton btnListarProductos = new JButton("Listar Producto");
+        JButton btnListarTodos = new JButton("Listar Todos");
+        
+        //Se ejecuta cuando el boton Listar Todos es pulsado 
+        btnListarProductos.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		
+        		
         	}
         });
-        listarBtn.setBounds(103, 154, 128, 23);
-        panel.add(listarBtn);
         
-        // JList para mostrar los productos
-        DefaultListModel<String> listModel = new DefaultListModel<>();
-        // Ejemplo de datos para la lista
-        listModel.addElement("Producto 1");
-        listModel.addElement("Producto 2");
-        listModel.addElement("Producto 3");
+        btnListarProductos.setBounds(277, 158, 105, 23);
+        panel.add(btnListarProductos);
         
-//        JList list = new JList();
-//        list.setBounds(103, 199, 278, 278);
-//        panel.add(list);
-        
-        Table = new JTable();
-        Table.setBounds(103, 199, 278, 278);
-        panel.add(Table);
-        
-        JButton btnListarTodos = new JButton("Listar Todos");
+       
+        //Se ejecuta cuando el boton Listar Todos es pulsado 
         btnListarTodos.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		//Se ejecuta cuando el boton Listar Todos es pulsado
-        		
         		productos producto = new productos();
-        		
         		producto.BuscarProductos();
-        		
         	}
         });
-        btnListarTodos.setBounds(253, 154, 128, 23);
+        
+        btnListarTodos.setBounds(101, 158, 105, 23);
         panel.add(btnListarTodos);
         
         getContentPane().add(panel);
+        
+        textField = new JTextField();
+        textField.setBounds(178, 109, 127, 20);
+        panel.add(textField);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setEnabled(false);
+        scrollPane.setBounds(98, 191, 300, 300);
+        panel.add(scrollPane);
+        
+        JTable tablaListarProductos_1 = new JTable(new DefaultTableModel(
+        	new Object[][] {
+        		{"Oreo", "100", "Galletita"},
+        		{"Doritos", "200", "Papitas"},
+        	},
+        	new String [] {
+        		"Nombre", "Precio", "Descripcion"
+        	}
+        ));
+        tablaListarProductos_1.setRowSelectionAllowed(false);
+        tablaListarProductos_1.setEnabled(false);
+        scrollPane.setViewportView(tablaListarProductos_1);
+        
+       
         
     }
 
