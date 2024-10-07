@@ -163,6 +163,7 @@ h2 {
     border-radius: 15px;
     box-shadow: 0 5px 10px rgba (0, 0, 0, 0.2);
     background-color: #cbecb6;
+    min-width: 10px;
 }
  /*Agregar cajas productos*/
 .box:nth-child(1),
@@ -407,7 +408,8 @@ h2 {
 .carousel {
     margin: 0 auto; /* Centrar el carrusel */
     width: 100%; /* Ajustar el ancho del carrusel */
-    max-width: 800px; /* Ancho máximo */
+    max-width: 1000px; /* Ancho máximo */
+    min-width: 350px;
     height: auto; /* Ajustar la altura automáticamente según el contenido */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave detrás del carrusel */
 }
