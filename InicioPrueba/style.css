@@ -209,6 +209,22 @@ h2 {
     justify-content: space-between;
 }
 
+.link {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.link ul {
+
+    display: flex;
+    flex-direction: column;
+    padding-left: 0rem;
+    gap: 0;
+
+}
+
 .link h3 {
     color:#cbecb6; 
     font-size: 18px;
@@ -308,7 +324,7 @@ h2 {
     }
 
     .footer {
-        padding: 30px
+        padding: 30px;
     }
     
     .footer-content {
