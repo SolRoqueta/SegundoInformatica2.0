@@ -1,7 +1,6 @@
 package Presentacion;
 
 import java.awt.*;
-import javax.swing.border.Border;
 import javax.swing.*;
 
 
