@@ -27,7 +27,7 @@ public class listarProductos extends JFrame {
         // Configurar la ventana
         setTitle("Listar Productos");
         setSize(500, 538);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
         // Crear el panel principal
@@ -104,13 +104,5 @@ public class listarProductos extends JFrame {
         
        
         
-    }
-
-    public static void main(String[] args) {
-        // Crear y mostrar la ventana
-        SwingUtilities.invokeLater(() -> {
-            listarProductos ventana = new listarProductos();
-            ventana.setVisible(true);
-        });
     }
 }

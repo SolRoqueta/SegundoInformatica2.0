@@ -11,16 +11,19 @@ import java.awt.event.ActionEvent;
 public class modificarProductos extends JFrame {
 	
 	public productos producto = new productos();
+	
+	// Declaracion de atributos de Productos
 	private String nombre;
-	private String descripcion;
 	private int precio;
+	private String descripcion;
 	private String foto;
     
     public modificarProductos() {
+    	
         // Configurar la ventana
         setTitle("Modificar Productos");
         setSize(475, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
         // Crear el panel principal
@@ -46,7 +49,7 @@ public class modificarProductos extends JFrame {
         buscarProductoField.setBounds(135, 99, 120, 25);
         panel.add(buscarProductoField);
         
-        // Etiquetas y campos de texto para modificar los datos del producto
+        // Etiquetas y campos de texto 
         JLabel nombreLabel = new JLabel("Nombre");
         nombreLabel.setBounds(72, 150, 100, 25);
         panel.add(nombreLabel);
@@ -88,19 +91,24 @@ public class modificarProductos extends JFrame {
         imagenLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         panel.add(imagenLabel);
         
-        // Botón Buscar Producto
+        // Botones
         JButton btnBuscarProducto = new JButton("Buscar");
         btnBuscarProducto.setBounds(267, 100, 78, 23);
+        panel.add(btnBuscarProducto);
         
-        // Botón Subir Imagen
         JButton btnSubirImagen = new JButton("Subir Imagen");
+        btnSubirImagen.setBounds(283, 302, 117, 25);
+        panel.add(btnSubirImagen);
         btnSubirImagen.setEnabled(false);
         
-        // Botón Modificar Producto
         JButton btnModificarProducto = new JButton("Modificar Producto");
+        btnModificarProducto.setBounds(153, 394, 150, 30);
+        panel.add(btnModificarProducto);
         btnModificarProducto.setEnabled(false);
         
-     //Se ejecuta cuando el boton Buscar Producto es apretado
+       // ACCIONES
+        
+	    // Accion para Boton BuscarProducto
         btnBuscarProducto.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
@@ -110,7 +118,9 @@ public class modificarProductos extends JFrame {
         		
         		nombre = buscarProductoField.getText();
         		
-				
+        		// Verifica el valor del nombre, si es nulo muestra un error, si no existe muestra otro error y finalmente si existe 
+        		// lo busca en la base de datos y muestra todos sus atributos
+        		
         		if (nombre.equals("")) {
         			
         			JOptionPane.showMessageDialog(null, "Nombre del producto no ingresado");
@@ -140,7 +150,6 @@ public class modificarProductos extends JFrame {
                 		foto = "";
                 		imagenLabel.setIcon(new ImageIcon(foto));
                 		
-        				
         			} else {
         				
         				btnModificarProducto.setEnabled(true);
@@ -150,43 +159,40 @@ public class modificarProductos extends JFrame {
                 		precio = producto.getPrecio();
                 		foto = producto.getFoto();
                 	
-                		
                 		nombreField.setText(nombre);
                 		descripcionArea.setText(descripcion);
                 		precioField.setValue(precio);
                 		
+                		// Se crea un image icon con el path de la foto del producto y una imagen que agarra la foto y las medidas del image Label
                 		ImageIcon imageIcon = new ImageIcon(foto);
                 		Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
                 		imagenLabel.setIcon(new ImageIcon(image));
         				
-        			}
-        			   
+        			}	   
         		}
-        		
         	}
         });
-        panel.add(btnBuscarProducto);
-        
-        
-      // Se ejecuta cuando el boton Subir Imagen es apretado 
+      
+	    // Accion para Boton SubirImagen
         btnSubirImagen.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
+        		// Se crea un JfileChooser y se aplica un filtro para solo archivos
                 JFileChooser fc = new JFileChooser();
 	        	fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-	        		
+	        	
+	        	// Se crea un filtro de extension que solo permite archivos de imagen	
 	        	FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
 	        	fc.setFileFilter(filtro);
 	        	fc.showOpenDialog(btnSubirImagen);
-        		
         		
 	            if (fc.getSelectedFile() == null) {
 	    			
 	    			JOptionPane.showMessageDialog(null, "Error, foto no seleccionada");
 	    			
 	            } else {
-	            	
-	            	
+	            		
+	            	// Se crea un image icon con el path de la foto seleccionada y una imagen que agarra la foto y las medidas del image Label
 	            	ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
 	            	Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
 	   
@@ -195,51 +201,40 @@ public class modificarProductos extends JFrame {
 		            foto = fc.getSelectedFile().getAbsolutePath();
 	            	
 	            }
-                
         	}
         });
-        btnSubirImagen.setBounds(283, 302, 117, 25);
-        panel.add(btnSubirImagen);
-        
-        // Agregar el panel a la ventana
-        getContentPane().add(panel);
-        
-    // Se ejecuta cuando el boton Modificar Producto es apretado 
-    btnModificarProducto.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		
-    		nombre = nombreField.getText();
-    		descripcion = descripcionArea.getText();
-    		precio = (Integer) precioField.getValue();
-    		
-    		producto.setNombre(nombre);
-    		producto.setDescripcion(descripcion);
-    		producto.setPrecio(precio);
-    		producto.setFoto(foto);
-    		
-    		int confirmar = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres modificar el producto?", "Si", JOptionPane.YES_NO_OPTION);
-
-    		if (confirmar == JOptionPane.YES_OPTION) {
-    		    producto.ModificarProducto();
-    		    JOptionPane.showMessageDialog(null, "Producto modificado con exito!");
-    		} else {    			
-    			JOptionPane.showMessageDialog(null, "Producto no modificado");
-    		}
-    		
-    			
-    	}
-    });
+     
+	    // Accion para Boton ModificarProducto
+	    btnModificarProducto.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		
+	    		nombre = nombreField.getText();
+	    		descripcion = descripcionArea.getText();
+	    		precio = (Integer) precioField.getValue();
+	    		
+	    		producto.setNombre(nombre);
+	    		producto.setDescripcion(descripcion);
+	    		producto.setPrecio(precio);
+	    		producto.setFoto(foto);
+	    		
+	    		int confirmar = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres modificar el producto?", "Si", JOptionPane.YES_NO_OPTION);
+	
+	    		if (confirmar == JOptionPane.YES_OPTION) {
+	    			
+	    		    producto.ModificarProducto();
+	    		    JOptionPane.showMessageDialog(null, "Producto modificado con exito!");
+	    		    
+	    		} else {
+	    			
+	    			JOptionPane.showMessageDialog(null, "Producto no modificado");
+	    			
+	    		}	
+	    	}
+	    });
     
-    btnModificarProducto.setBounds(153, 394, 150, 30);
-    panel.add(btnModificarProducto);
+	    // Agregar el panel a la ventana
+	    getContentPane().add(panel);
     
     }
+  }
 
-    public static void main(String[] args) {
-        // Crear y mostrar la ventana
-        SwingUtilities.invokeLater(() -> {
-            modificarProductos ventana = new modificarProductos();
-            ventana.setVisible(true);
-        });
-    }
-}

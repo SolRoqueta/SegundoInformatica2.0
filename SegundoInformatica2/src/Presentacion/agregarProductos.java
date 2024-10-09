@@ -13,29 +13,24 @@ import javax.swing.border.LineBorder;
 public class agregarProductos extends JFrame {
 	
 	public productos producto = new productos();
-	private String nombre;
-	private String descripcion;
-	private int precio;
-	private String foto;
 	
-	public static void main(String[] args) {
-        // Crear y mostrar la ventana
-        SwingUtilities.invokeLater(() -> {
-            agregarProductos ventana = new agregarProductos();
-            ventana.setVisible(true);
-        });
-    }
+	// Declaracion de atributos de Productos
+	private String nombre;
+	private int precio;
+	private String descripcion;
+	private String foto;
     
     public agregarProductos() {
+    	
         // Configurar la ventana
         setTitle("Agregar Productos");
         setSize(388, 429);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
         // Crear el panel principal
         JPanel panel = new JPanel();
-        panel.setLayout(null); // Usamos layout nulo para posicionar los elementos manualmente
+        panel.setLayout(null);
         panel.setBackground(Color.LIGHT_GRAY);
         
         // Etiqueta de título
@@ -81,14 +76,24 @@ public class agregarProductos extends JFrame {
         imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
         
+        // Botones
         JButton subirImagenBtn = new JButton("Subir Imagen");
+        subirImagenBtn.setBounds(215, 239, 118, 25);
+        panel.add(subirImagenBtn);
+        
+        JButton agregarProductoBtn = new JButton("Agregar Producto");
+        agregarProductoBtn.setBounds(115, 322, 150, 30);
+        panel.add(agregarProductoBtn);
+        
+        // Accion para boton Subir Imagen
         subirImagenBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		//Este seccion del codigo se ejecuta cuando el boton Subir Imagen es apretado 
+        		// Se crea un JfileChooser y se aplica un filtro para solo archivos
         		JFileChooser fc = new JFileChooser();
 				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				
+				// Se crea un filtro de extension que solo permite archivos de imagen
 				FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
 				fc.setFileFilter(filtro);
 				fc.showOpenDialog(subirImagenBtn);
@@ -99,7 +104,7 @@ public class agregarProductos extends JFrame {
 		    			
 		            } else {
 		            	
-		            	
+		            	// Se crea un image icon con el path de la foto seleccionada y una imagen que agarra la foto y las medidas del image Label
 		            	ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
 		            	Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
 		   
@@ -111,20 +116,17 @@ public class agregarProductos extends JFrame {
         		
         	}
         });
-        subirImagenBtn.setBounds(215, 239, 118, 25);
-        panel.add(subirImagenBtn);
-        
-        // Botón Agregar Producto
-        JButton agregarProductoBtn = new JButton("Agregar Producto");
+       
+       // Accion para boton AgregarProducto
         agregarProductoBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		//Se activa cuando el boton Agregar producto es pulsado
-        		
+        		// Gets de todos los atributos del producto a crear
         		nombre = nombreField.getText();
         		descripcion = descripcionArea.getText();
         		precio = (Integer) precioField.getValue();
         		
+        		// Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
         		if (nombre.equals("") || descripcion.equals("") || precio == 0 || foto == null) {
         			
         			JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
@@ -148,17 +150,14 @@ public class agregarProductos extends JFrame {
         				
         				JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
         				
-        			}
-        			
-        		}
-        		
+        			}	
+        		}	
         	}
         });
-        agregarProductoBtn.setBounds(115, 322, 150, 30);
-        panel.add(agregarProductoBtn);
-        
+      
         // Agregar el panel a la ventana
         getContentPane().add(panel);
+        
     }
     
 }
