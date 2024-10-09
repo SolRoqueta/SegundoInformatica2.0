@@ -12,6 +12,7 @@ public class eliminarProductos extends JFrame {
 	public productos producto = new productos();
 	
 	// Declaracion de atributos de Productos
+	private int idproducto;
 	private String nombre;
 	private int precio;
 	private String descripcion;
@@ -21,7 +22,7 @@ public class eliminarProductos extends JFrame {
     	
         // Configurar la ventana
         setTitle("Eliminar Productos");
-        setSize(475, 500);
+        setSize(475, 555);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -40,30 +41,30 @@ public class eliminarProductos extends JFrame {
         
         // Etiqueta de Buscar Producto
         JLabel buscarProductoLabel = new JLabel("Nombre Producto");
-        buscarProductoLabel.setBounds(135, 78, 121, 25);
+        buscarProductoLabel.setBounds(122, 78, 121, 25);
         panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
         JTextField buscarProductoField = new JTextField();
-        buscarProductoField.setBounds(135, 99, 120, 25);
+        buscarProductoField.setBounds(122, 99, 120, 25);
         panel.add(buscarProductoField);
         
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
-        nombreLabel.setBounds(72, 150, 100, 25);
+        nombreLabel.setBounds(72, 200, 100, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.setBounds(72, 170, 150, 25);
+        nombreField.setBounds(72, 220, 150, 25);
         panel.add(nombreField);
         nombreField.setEditable(false);
         
         JLabel precioLabel = new JLabel("Precio");
-        precioLabel.setBounds(72, 199, 47, 25);
+        precioLabel.setBounds(72, 250, 47, 25);
         panel.add(precioLabel);
         
         JTextField precioField = new JTextField();
-        precioField.setBounds(72, 220, 150, 25);
+        precioField.setBounds(72, 270, 150, 25);
         panel.add(precioField);
         precioField.setEditable(false);
         
@@ -71,7 +72,7 @@ public class eliminarProductos extends JFrame {
         newPrecioField.setEnabled(false);
         
         JLabel descripcionLabel = new JLabel("Descripción");
-        descripcionLabel.setBounds(72, 253, 100, 25);
+        descripcionLabel.setBounds(72, 300, 100, 25);
         panel.add(descripcionLabel);
         
         JTextArea descripcionArea = new JTextArea();
@@ -82,22 +83,26 @@ public class eliminarProductos extends JFrame {
         panel.add(descripcionArea);
         
         JScrollPane scrollPane = new JScrollPane(descripcionArea);
-        scrollPane.setBounds(72, 275, 150, 75);
+        scrollPane.setBounds(72, 320, 150, 75);
         panel.add(scrollPane); 
+        
+        JComboBox cbbxProductos = new JComboBox();
+        cbbxProductos.setBounds(122, 144, 214, 22);
+        panel.add(cbbxProductos);
         
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
-        imagenLabel.setBounds(267, 188, 148, 148);
+        imagenLabel.setBounds(267, 230, 148, 148);
         imagenLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         panel.add(imagenLabel);
         
         // Botones
         JButton btnBuscarProducto = new JButton("Buscar");
-        btnBuscarProducto.setBounds(267, 100, 78, 23);
+        btnBuscarProducto.setBounds(255, 100, 78, 23);
         panel.add(btnBuscarProducto);
         
         JButton btnEliminarProducto = new JButton("Eliminar Producto");
-        btnEliminarProducto.setBounds(153, 394, 150, 30);
+        btnEliminarProducto.setBounds(153, 440, 150, 30);
         panel.add(btnEliminarProducto);
         btnEliminarProducto.setEnabled(false);
         
@@ -133,12 +138,13 @@ public class eliminarProductos extends JFrame {
         			} else {
         				
         				btnEliminarProducto.setEnabled(true);
-        				
+			
+        				idproducto = producto.getId();
         				nombre = producto.getNombre();
                 		descripcion = producto.getDescripcion();
                 		precio = producto.getPrecio();
                 		foto = producto.getFoto();
-                	
+                		
                 		nombreField.setText(nombre);
                 		precioField.setText(Integer.toString(precio));
                 		descripcionArea.setText(descripcion);
@@ -147,6 +153,9 @@ public class eliminarProductos extends JFrame {
                 		ImageIcon imageIcon = new ImageIcon(foto);
                 		Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
                 		imagenLabel.setIcon(new ImageIcon(image));
+                		
+                		
+                		cbbxProductos.addItem( "ID: " + idproducto + " | " + nombre + " | " + "$" + precio);
         				
         			}
         			   
