@@ -236,5 +236,6 @@ public class modificarProductos extends JFrame {
 	    getContentPane().add(panel);
     
     }
+    
   }
 
