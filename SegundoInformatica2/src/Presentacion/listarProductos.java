@@ -1,10 +1,5 @@
 package Presentacion;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import java.awt.Color;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.*;
@@ -21,6 +16,7 @@ public class listarProductos extends JFrame {
 	private JTable Table;
 	private JTextField textField;
 	private JTable tablaListarProductos;
+	private JTable tabla;
     
     public listarProductos() {
          
@@ -64,14 +60,44 @@ public class listarProductos extends JFrame {
         
         btnListarProductos.setBounds(277, 158, 105, 23);
         panel.add(btnListarProductos);
-        
        
         //Se ejecuta cuando el boton Listar Todos es pulsado 
         btnListarTodos.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
         		productos producto = new productos();
-        		producto.BuscarProductos();
+        		String[][] datos = producto.BuscarProductos();
+        		
+        		for (int x = 0; x < 100; x++) {
+        			
+        			for (int y = 0; y < 4; y++) {
+        				
+        				if (datos[x][y] != null) {
+        					
+        					System.out.println(datos[x][y]);
+        					
+        					
+        				} else if (datos[x][y] == null) {
+        					
+        					break;
+        					
+        				}
+        				
+        			}
+        			
+        		}
+        		
+        		String[] columnas = {"ID", "Nombre","Precio", "Descripcion"};
+        		
+        		tabla = new JTable(datos, columnas);
+        		
+        		JScrollPane scrollPane = new JScrollPane(tabla);
+        		scrollPane.setBounds(98, 191, 300, 300);
+        		panel.add(scrollPane);
+        		
+        		tabla.setPreferredScrollableViewportSize(new Dimension(450, 100));
+                tabla.setFillsViewportHeight(true);
+
         	}
         });
         
@@ -84,25 +110,20 @@ public class listarProductos extends JFrame {
         textField.setBounds(178, 109, 127, 20);
         panel.add(textField);
         
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setEnabled(false);
-        scrollPane.setBounds(98, 191, 300, 300);
-        panel.add(scrollPane);
-        
-        JTable tablaListarProductos_1 = new JTable(new DefaultTableModel(
-        	new Object[][] {
-        		{"Oreo", "100", "Galletita"},
-        		{"Doritos", "200", "Papitas"},
-        	},
-        	new String [] {
-        		"Nombre", "Precio", "Descripcion"
-        	}
-        ));
-        tablaListarProductos_1.setRowSelectionAllowed(false);
-        tablaListarProductos_1.setEnabled(false);
-        scrollPane.setViewportView(tablaListarProductos_1);
-        
-       
+//        JScrollPane scrollPane = new JScrollPane();
+//        scrollPane.setEnabled(false);
+//        scrollPane.setBounds(98, 191, 300, 300);
+//        panel.add(scrollPane);       
         
     }
+    
+    //BORRRAR EL MAIN DESPUES
+    
+    public static void main(String[] args) {
+		
+    	listarProductos l = new listarProductos();
+    	l.setVisible(true);
+    	
+	}
+    
 }
