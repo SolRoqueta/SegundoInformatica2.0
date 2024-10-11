@@ -12,6 +12,7 @@ public class menuPrincipal extends JFrame{
 	private menuProductos ventanaProductos;
     private menuUsuarios  ventanaUsuarios;
     private menuReservas ventanaReservas;
+    static menuPrincipal MenuPrincipal;
 	
 	public menuPrincipal() {
   
@@ -38,6 +39,7 @@ public class menuPrincipal extends JFrame{
                 reservasButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                     	ventanaReservas = new menuReservas(); 
+                    	MenuPrincipal.setVisible(false);
                     }
                 });
                     
@@ -50,7 +52,7 @@ public class menuPrincipal extends JFrame{
                 public void actionPerformed(ActionEvent e) {
             		
             		menuUsuarios MenuUsuarios = new menuUsuarios();
-            		
+            		MenuPrincipal.setVisible(false);
             	}
             });
             usuariosButton.setBounds(78, 170, 133, 31);
@@ -62,6 +64,7 @@ public class menuPrincipal extends JFrame{
                         	public void actionPerformed(ActionEvent e) {
                         		
                         		menuProductos MenuProductos = new menuProductos();
+                        		MenuPrincipal.setVisible(false);
                         		
                         	}
                         });
@@ -72,9 +75,8 @@ public class menuPrincipal extends JFrame{
 	
                         public static void main(String[] args) {
                         	// Show the main window
-                        	menuPrincipal MenuPrincipal = new menuPrincipal();
+                        	MenuPrincipal = new menuPrincipal();
                         	MenuPrincipal.setVisible(true);
-                        
     }
 	
 }
