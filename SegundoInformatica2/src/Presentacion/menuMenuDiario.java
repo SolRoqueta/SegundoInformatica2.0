@@ -3,8 +3,8 @@ package Presentacion;
 import javax.swing.*;
 import java.awt.*;
 
-public class menuReservas extends JFrame {
-	public menuReservas() {
+public class menuMenuDiario extends JFrame {
+	public menuMenuDiario() {
 
         // Create the frame
         JFrame frame = new JFrame("Menu Reservas");

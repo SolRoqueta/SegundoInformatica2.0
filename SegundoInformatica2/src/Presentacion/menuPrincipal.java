@@ -11,7 +11,7 @@ public class menuPrincipal extends JFrame{
 	
 	private menuProductos ventanaProductos;
     private menuUsuarios  ventanaUsuarios;
-    private menuReservas ventanaReservas;
+    private menuMenuDiario ventanaReservas;
 	
 	public menuPrincipal() {
   
@@ -37,7 +37,7 @@ public class menuPrincipal extends JFrame{
                 JButton reservasButton = new JButton("Menu Reservas");
                 reservasButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                    	ventanaReservas = new menuReservas(); 
+                    	ventanaReservas = new menuMenuDiario(); 
                     }
                 });
                     

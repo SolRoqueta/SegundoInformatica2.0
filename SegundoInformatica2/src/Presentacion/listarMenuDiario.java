@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class listarReservas {
+public class listarMenuDiario {
 
 	private JFrame frame;
 
@@ -12,7 +12,7 @@ public class listarReservas {
 	/**
 	 * Create the application.
 	 */
-	public listarReservas() {
+	public listarMenuDiario() {
 		initialize();
 	}
 
