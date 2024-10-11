@@ -68,25 +68,6 @@ public class listarProductos extends JFrame {
         		productos producto = new productos();
         		String[][] datos = producto.BuscarProductos();
         		
-        		for (int x = 0; x < 100; x++) {
-        			
-        			for (int y = 0; y < 4; y++) {
-        				
-        				if (datos[x][y] != null) {
-        					
-        					System.out.println(datos[x][y]);
-        					
-        					
-        				} else if (datos[x][y] == null) {
-        					
-        					break;
-        					
-        				}
-        				
-        			}
-        			
-        		}
-        		
         		String[] columnas = {"ID", "Nombre","Precio", "Descripcion"};
         		
         		tabla = new JTable(datos, columnas);
@@ -108,22 +89,8 @@ public class listarProductos extends JFrame {
         
         textField = new JTextField();
         textField.setBounds(178, 109, 127, 20);
-        panel.add(textField);
-        
-//        JScrollPane scrollPane = new JScrollPane();
-//        scrollPane.setEnabled(false);
-//        scrollPane.setBounds(98, 191, 300, 300);
-//        panel.add(scrollPane);       
+        panel.add(textField);  
         
     }
-    
-    //BORRRAR EL MAIN DESPUES
-    
-    public static void main(String[] args) {
-		
-    	listarProductos l = new listarProductos();
-    	l.setVisible(true);
-    	
-	}
     
 }
