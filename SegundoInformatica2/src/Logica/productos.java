@@ -259,7 +259,6 @@ public class productos {
 		
 	}
 	
-	
 	public String[][] BuscarProductos() {
 		
 		conexion cc = new conexion();
