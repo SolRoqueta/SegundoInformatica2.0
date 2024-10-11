@@ -2,6 +2,8 @@ package Presentacion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class menuUsuarios extends JFrame {
 	public menuUsuarios() {
@@ -27,6 +29,14 @@ public class menuUsuarios extends JFrame {
                         JButton btnAgregarUsuarios= new JButton("Agregar");
                         btnAgregarUsuarios.setBounds(80, 100, 125, 31);
                         frame.getContentPane().add(btnAgregarUsuarios);
+                        btnAgregarUsuarios.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                    		
+                    		agregarUsuarios ventanaAgregar = new agregarUsuarios();
+                    		ventanaAgregar.setVisible(true);
+
+                    	}
+                    });
                         
                         // Boton para Modificar Usuarios
                         JButton btnModificarUsuarios = new JButton("Modificar");
