@@ -259,11 +259,14 @@ public class productos {
 		
 	}
 	
-	public void BuscarProductos() {
+	
+	public String[][] BuscarProductos() {
 		
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
 	    productos tempProducto = new productos();
+	    String[][] datos = new String[100][4];
+	    int index = 0;
 		
 		String query = "SELECT * FROM productos;";
 		
@@ -290,7 +293,17 @@ public class productos {
 			tempProducto.setNombre(nombre);
 			tempProducto.setPrecio(precio);
 			
-			System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
+			String idTemp = String.valueOf(tempProducto.getId());
+			String precioTemp = String.valueOf(tempProducto.getPrecio());
+			
+			datos[index][0] = idTemp;
+            datos[index][1] = tempProducto.getNombre();
+            datos[index][2] = tempProducto.getDescripcion();
+            datos[index][3] = precioTemp;
+			
+			index++;
+			
+			System.out.println("ID: " + idTemp + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
 			System.out.println(" ");
     	
 	}
@@ -300,6 +313,8 @@ public class productos {
     	System.out.println("ERROR en la busqueda de productos");
 	
 	}
+		
+	return datos;
 		
 }
 	
