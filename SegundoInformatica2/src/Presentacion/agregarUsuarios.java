@@ -99,25 +99,25 @@ public class agregarUsuarios extends JFrame {
         			
         		} else {
         			
-        			usuarios tempUsuario = new usuarios();
-        			String tempNombre = tempUsuario.BuscarUsuario(nombre).getNombre();
-        			
-        			if (tempNombre == null) {
-        				
-        				usuario.setNombre(nombre);
-                		usuario.setCont(contra);
-                		usuario.setMail(mail);
-                		usuario.setTipoUsuario(tipoUsuario);
-                		
-                		usuario.AgregarUsuario();
-                		JOptionPane.showMessageDialog(null, "Usuario agregado con exito!");
-        				
-        			} else {
-        				
-        				JOptionPane.showMessageDialog(null, "Error, el usuario ya existe");
-        				
-        			}	
-        		
+//        			usuarios tempUsuario = new usuarios();
+//        			String tempNombre = tempUsuario.BuscarUsuario(nombre).getNombre();
+//        			
+//        			if (tempNombre == null) {
+//        				
+//        				usuario.setNombre(nombre);
+//                		usuario.setCont(contra);
+//                		usuario.setMail(mail);
+//                		usuario.setTipoUsuario(tipoUsuario);
+//                		
+//                		usuario.AgregarUsuario();
+//                		JOptionPane.showMessageDialog(null, "Usuario agregado con exito!");
+//        				
+//        			} else {
+//        				
+//        				JOptionPane.showMessageDialog(null, "Error, el usuario ya existe");
+//        				
+//        			}	
+//        		
         	}
         	}
         	

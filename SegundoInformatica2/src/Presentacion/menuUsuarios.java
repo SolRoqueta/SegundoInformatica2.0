@@ -38,16 +38,24 @@ public class menuUsuarios extends JFrame {
                     	}
                     });
                         
+                        // Boton para Eliminar Usuarios
+                        JButton btnEliminarUsuarios = new JButton("Eliminar");
+                        btnEliminarUsuarios.setBounds(80, 200, 125, 31);
+                        frame.getContentPane().add(btnEliminarUsuarios);
+                        btnEliminarUsuarios.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                        		
+                        		eliminarUsuarios ventanaEliminar = new eliminarUsuarios();
+                        		ventanaEliminar.setVisible(true);
+
+                        	}
+                        });
+                        
                         // Boton para Modificar Usuarios
                         JButton btnModificarUsuarios = new JButton("Modificar");
                         btnModificarUsuarios.setBounds(80, 150, 125, 31);
                         frame.getContentPane().add(btnModificarUsuarios);
                                 
-                        // Boton para Eliminar Usuarios
-                        JButton btnEliminarUsuarios = new JButton("Eliminar");
-                        btnEliminarUsuarios.setBounds(80, 200, 125, 31);
-                        frame.getContentPane().add(btnEliminarUsuarios);
-                        
                         // Boton para Listar Usuarios
                         JButton btnListarUsuarios = new JButton("Listar");
                         btnListarUsuarios.setBounds(80, 250, 125, 31);

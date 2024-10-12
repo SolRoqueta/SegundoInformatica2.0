@@ -107,7 +107,7 @@ public class usuarios {
 	    Connection con = cc.conect();
 			
 	     //Sentencia SQL que elimina los datos en la tabla "productos" de la fila del usuario cullo nombre sea del objeto
-	     String query = "DELETE FROM usuarios WHERE idUsuarios = ? LIMIT 1;";
+	     String query = "DELETE FROM usuarios WHERE id_usuarios = ? LIMIT 1;";
 	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -194,7 +194,7 @@ public class usuarios {
 						
 						String nombre = resultSet.getString("nombre");
 						
-						String tipo = resultSet.getString("tipousuario");
+						String tipo = resultSet.getString("tipo_usuario");
 						
 						tempUsuario.setId(id);
 						tempUsuario.setNombre(nombre);
@@ -241,7 +241,7 @@ public class usuarios {
 			
 			String nombre = resultSet.getString("nombre");
 			
-			String tipo = resultSet.getString("tipousuario");
+			String tipo = resultSet.getString("tipo_usuario");
 			
 			datos[index][0] = tempId;
             datos[index][1] = nombre;
