@@ -1,6 +1,6 @@
 package Presentacion;
 
-import Logica.usuarios;
+import Logica.productos;
 import javax.swing.*;
 
 import java.awt.*;
@@ -9,108 +9,81 @@ import java.awt.event.ActionEvent;
 
 public class eliminarUsuarios extends JFrame {
 	
-	public usuarios usuario = new usuarios();
+	public productos producto = new productos();
 	
 	// Declaracion de atributos de Productos
-		private int idusuario;
-		private String nombre;
-		private String contra;
-		private String tipoUsuario;
-		private String mail;
-		private JTable tabla;
+	private int idproducto;
+	private String nombre;
+	private int precio;
+	private String descripcion;
+	private String foto;
     
     public eliminarUsuarios() {
     	
         // Configurar la ventana
-        setTitle("Eliminar Usuarios");
-        setSize(475, 555);
+        setTitle("Eliminar Productos");
+        setSize(500, 575);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
         // Crear el panel principal
         JPanel panel = new JPanel();
-        panel.setBackground(Color.LIGHT_GRAY);
+        panel.setBackground(new Color(43, 70, 77));
         panel.setLayout(null);
         
         // Etiqueta de título
-        JLabel titulo = new JLabel("ELIMINAR USUARIOS", SwingConstants.CENTER);
-        titulo.setBounds(-30, 0, 519, 60);
-        titulo.setOpaque(true);
+        JLabel titulo = new JLabel("ELIMINAR", SwingConstants.CENTER);
+        titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
+        titulo.setBounds(177, 11, 130, 60);
         titulo.setBackground(Color.GRAY);
         titulo.setForeground(Color.WHITE);
         panel.add(titulo);
         
         // Etiqueta de Buscar Producto
-        JLabel buscarUsuariosLabel = new JLabel("Nombre Usuarios");
-        buscarUsuariosLabel.setBounds(122, 78, 121, 25);
-        panel.add(buscarUsuariosLabel);
+        JLabel buscarProductoLabel = new JLabel("Nombre Producto");
+        buscarProductoLabel.setForeground(new Color(255, 255, 255));
+        buscarProductoLabel.setBounds(106, 97, 121, 25);
+        panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
-        JTextField buscarUsuariosField = new JTextField();
-        buscarUsuariosField.setBounds(122, 99, 120, 25);
-        panel.add(buscarUsuariosField);
+        JTextField buscarProductoField = new JTextField();
+        buscarProductoField.setBounds(106, 116, 127, 20);
+        panel.add(buscarProductoField);
         
-        JButton btnBuscarUsuarios = new JButton("Buscar Usuarios");
-        btnBuscarUsuarios.setBounds(254, 96, 150, 30);
-        panel.add(btnBuscarUsuarios);
-        
-        JButton btnEliminarUsuario = new JButton("Eliminar Usuario");
-        btnEliminarUsuario.setBounds(153, 440, 150, 30);
-        panel.add(btnEliminarUsuario);
-        btnEliminarUsuario.setEnabled(false);
-        
-        // Accion para boton BuscarUsuarios
-        btnBuscarUsuarios.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		        		
-//        		nombre = buscarUsuariosField.getText();	
-////        		
-////        		// Verifica el valor del nombre, si es nulo muestra un error, si no existe muestra otro error y finalmente si existe 
-////        		// lo busca en la base de datos y muestra todos sus atributos
-////        		
-//        		if (nombre.equals("")) {
-////        			
-//        			btnEliminarUsuario.setEnabled(false);
-//        			JOptionPane.showMessageDialog(null, "Nombre del usuario no ingresado");
-////        			
-//        		} else {
-        			
-        			
-            		
-            		tabla.setPreferredScrollableViewportSize(new Dimension(450, 100));
-                    tabla.setFillsViewportHeight(true);
-        			
-//        			if (usuario.getNombre() == null) {
-//        				
-//        				btnEliminarUsuario.setEnabled(false);
-//        				JOptionPane.showMessageDialog(null, "Producto no encontrado");
-//        				
-////        			}
-        			   
-//        		}
-        		
-        	}
-        });
+        JButton btnEliminarProducto = new JButton("Eliminar Producto");
+        btnEliminarProducto.setBounds(167, 482, 150, 30);
+        panel.add(btnEliminarProducto);
+        btnEliminarProducto.setEnabled(false);
     
         // Accion para boton EliminarProducto
-	    btnEliminarUsuario.addActionListener(new ActionListener() {
+	    btnEliminarProducto.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    		int confirmar = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres eliminar el producto?", "Si", JOptionPane.YES_NO_OPTION);
-	
-	    		// Verifica si el usuario confirmo la eliminacion del producto
-	    		if (confirmar == JOptionPane.YES_OPTION) {
-	    		    usuario.EliminarUsuario();
-	    		    JOptionPane.showMessageDialog(null, "Producto eliminado con exito!");
-	        		
-	    		} else {    			
-	    			JOptionPane.showMessageDialog(null, "Producto no eliminado");
-	    		}
+	    	
 	    	}
 	    });
 	    
     // Agregar el panel a la ventana
     getContentPane().add(panel);
+    
+    JLabel lblProductos = new JLabel("USUARIOS", SwingConstants.CENTER);
+    lblProductos.setForeground(Color.WHITE);
+    lblProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+    lblProductos.setBackground(Color.GRAY);
+    lblProductos.setBounds(192, 52, 100, 40);
+    panel.add(lblProductos);
+    
+    JComboBox comboBox = new JComboBox();
+    comboBox.setBounds(264, 116, 100, 20);
+    panel.add(comboBox);
+    
+    JSeparator separator = new JSeparator();
+    separator.setBounds(192, 58, 100, 2);
+    panel.add(separator);
+    
+    JScrollPane scrollPane = new JScrollPane();
+    scrollPane.setBounds(92, 158, 300, 300);
+    panel.add(scrollPane);
     
     }
 }
