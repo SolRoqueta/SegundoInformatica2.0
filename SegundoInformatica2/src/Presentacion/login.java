@@ -2,6 +2,8 @@ package Presentacion;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class login extends JFrame {
@@ -10,60 +12,73 @@ public class login extends JFrame {
         // Configuración básica de la ventana
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 400);
+        setSize(589, 424);
         getContentPane().setLayout(null);  // Layout absoluto para ubicar los componentes manualmente
 
         // Panel derecho para el formulario de login
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(null);
-        rightPanel.setBackground(new Color(33, 53, 72));
-        rightPanel.setBounds(-15, -16, 632, 391);  // Tamaño y posición del panel derecho
-
-        // Panel interno del formulario
-        JPanel loginPanel = new JPanel();
-        loginPanel.setLayout(null);
-        loginPanel.setBackground(new Color(191, 190, 190));
-        loginPanel.setBounds(293, 13, 326, 381);  // Ubicación del panel de login en el panel derecho
-        rightPanel.add(loginPanel);
-
-        // Etiqueta "Login"
-        JLabel loginLabel = new JLabel("Login");
-        loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        loginLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
-        loginLabel.setBounds(113, 65, 83, 30);  // Posición de la etiqueta "Login"
-        loginPanel.add(loginLabel);
-
-        // Etiqueta "Nombre"
-        JLabel nameLabel = new JLabel("Nombre");
-        nameLabel.setBounds(82, 112, 100, 20);  // Posición de la etiqueta "Nombre"
-        loginPanel.add(nameLabel);
-
-        // Campo de texto para el nombre
-        JTextField nameField = new JTextField();
-        nameField.setBounds(82, 132, 150, 20);  // Posición del campo de texto para el nombre
-        loginPanel.add(nameField);
-
-        // Etiqueta "Contraseña"
-        JLabel passwordLabel = new JLabel("Contraseña");
-        passwordLabel.setBounds(82, 177, 100, 20);  // Posición de la etiqueta "Contraseña"
-        loginPanel.add(passwordLabel);
-
-        // Campo de texto para la contraseña
-        JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(82, 196, 150, 20);  // Posición del campo de texto para la contraseña
-        loginPanel.add(passwordField);
-        
-        JPanel backgroundPanel = new JPanel();
-        backgroundPanel.setForeground(SystemColor.control);
-        backgroundPanel.setBounds(59, 48, 195, 269);
-        loginPanel.add(backgroundPanel);
-        backgroundPanel.setLayout(null);
-        backgroundPanel.setBackground(new Color(220, 220, 220));
-        
-        JButton loginButton = new JButton("Login");
-        loginButton.setBounds(47, 197, 100, 30);
-        backgroundPanel.add(loginButton);
+        rightPanel.setBackground(new Color(43, 70, 77));
+        rightPanel.setBounds(251, 0, 322, 391);
         getContentPane().add(rightPanel);
+                                                
+                                                        // Etiqueta "Nombre"
+                                                        JLabel nameLabel = new JLabel("Nombre");
+                                                        nameLabel.setForeground(new Color(240, 240, 240));
+                                                        nameLabel.setBounds(86, 123, 100, 20);
+                                                        rightPanel.add(nameLabel);
+                                                        
+                                                                // Campo de texto para el nombre
+                                                                JTextField nameField = new JTextField();
+                                                                nameField.setBounds(86, 149, 150, 20);
+                                                                rightPanel.add(nameField);
+                                                                
+                                                                        // Etiqueta "Login"
+                                                                        JLabel loginLabel = new JLabel("LOGIN");
+                                                                        loginLabel.setForeground(new Color(210, 210, 210));
+                                                                        loginLabel.setBounds(119, 32, 83, 30);
+                                                                        rightPanel.add(loginLabel);
+                                                                        loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                                                                        loginLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
+                                                                        
+                                                                                // Campo de texto para la contraseña
+                                                                                JPasswordField passwordField = new JPasswordField();
+                                                                                passwordField.setBounds(86, 229, 150, 20);
+                                                                                rightPanel.add(passwordField);
+                                                                                
+                                                                                        // Etiqueta "Contraseña"
+                                                                                        JLabel passwordLabel = new JLabel("Contraseña");
+                                                                                        passwordLabel.setForeground(new Color(240, 240, 240));
+                                                                                        passwordLabel.setBounds(86, 209, 100, 20);
+                                                                                        rightPanel.add(passwordLabel);
+                                                                                        
+                                                                                        JButton loginButton = new JButton("Login");
+                                                                                        loginButton.setBounds(111, 302, 100, 30);
+                                                                                        rightPanel.add(loginButton);
+                                                                                        
+                                                                                        JSeparator separator = new JSeparator();
+                                                                                        separator.setBackground(new Color(210, 210, 210));
+                                                                                        separator.setForeground(new Color(210, 210, 210));
+                                                                                        separator.setBounds(111, 62, 100, 2);
+                                                                                        rightPanel.add(separator);
+                                                                                        
+                                                                                        JLabel lblBienvenidoa = new JLabel("BIENVENIDO/A");
+                                                                                        lblBienvenidoa.setBackground(new Color(210, 210, 210));
+                                                                                        lblBienvenidoa.setForeground(new Color(210, 210, 210));
+                                                                                        lblBienvenidoa.setHorizontalAlignment(SwingConstants.CENTER);
+                                                                                        lblBienvenidoa.setFont(new Font("Tahoma", Font.PLAIN, 14));
+                                                                                        lblBienvenidoa.setBounds(96, 62, 130, 30);
+                                                                                        rightPanel.add(lblBienvenidoa);
+                                                                                        
+                                                                                        JPanel rightPanel_1_1 = new JPanel();
+                                                                                        rightPanel_1_1.setLayout(null);
+                                                                                        rightPanel_1_1.setBackground(new Color(53, 88, 96));
+                                                                                        rightPanel_1_1.setBounds(0, 0, 263, 391);
+                                                                                        getContentPane().add(rightPanel_1_1);
+                                                                                        loginButton.addActionListener(new ActionListener() {
+                                                                                        	public void actionPerformed(ActionEvent e) {
+                                                                                        	}
+                                                                                        });
 
         setVisible(true);
     }
