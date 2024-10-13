@@ -59,7 +59,7 @@ public class menuPrincipal extends JFrame {
             		MenuPrincipal.setVisible(false);
             	}
             });
-            usuariosButton.setBounds(80, 141, 133, 31);
+            usuariosButton.setBounds(80, 155, 133, 31);
             getContentPane().add(usuariosButton);      
                 
                         // Button for Menu Productos
@@ -72,19 +72,15 @@ public class menuPrincipal extends JFrame {
                         		
                         	}
                         });
-                        productosButton.setBounds(80, 186, 133, 31);
+                        productosButton.setBounds(80, 203, 133, 31);
                         getContentPane().add(productosButton);
                         
-                        JButton usuariosButton_1 = new JButton("Menu Usuarios");
-                        usuariosButton_1.setBounds(80, 97, 133, 31);
-                        getContentPane().add(usuariosButton_1);
-                        
-                        JButton usuariosButton_1_1 = new JButton("Menu Usuarios");
+                        JButton usuariosButton_1_1 = new JButton("Menu M Fijos");
                         usuariosButton_1_1.addActionListener(new ActionListener() {
                         	public void actionPerformed(ActionEvent e) {
                         	}
                         });
-                        usuariosButton_1_1.setBounds(80, 231, 133, 31);
+                        usuariosButton_1_1.setBounds(80, 251, 133, 31);
                         getContentPane().add(usuariosButton_1_1);
                         
                         JSeparator separator = new JSeparator();
@@ -95,12 +91,12 @@ public class menuPrincipal extends JFrame {
                         lblPrincipal.setForeground(Color.WHITE);
                         lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 14));
                         lblPrincipal.setBackground(Color.WHITE);
-                        lblPrincipal.setBounds(91, 43, 110, 40);
+                        lblPrincipal.setBounds(101, 52, 90, 20);
                         getContentPane().add(lblPrincipal);
                         
-                        JButton usuariosButton_1_1_1 = new JButton("←");
-                        usuariosButton_1_1_1.setBounds(121, 278, 50, 15);
-                        getContentPane().add(usuariosButton_1_1_1);
+                        JButton btnMenuMDiarios = new JButton("Menu M Diarios");
+                        btnMenuMDiarios.setBounds(80, 102, 133, 31);
+                        getContentPane().add(btnMenuMDiarios);
                         
 	}
                         
