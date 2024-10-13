@@ -75,16 +75,7 @@ public class eliminarUsuarios extends JFrame {
 ////        			
 //        		} else {
         			
-        			usuarios usuario = new usuarios();
-            		String[][] datos = usuario.BuscarUsuarios();
-            		
-            		String[] columnas = {"ID", "Nombre","Tipo Usuario"};
-            		
-            		tabla = new JTable(datos, columnas);
-            		
-            		JScrollPane scrollPane = new JScrollPane(tabla);
-            		scrollPane.setBounds(98, 191, 300, 300);
-            		panel.add(scrollPane);
+        			
             		
             		tabla.setPreferredScrollableViewportSize(new Dimension(450, 100));
                     tabla.setFillsViewportHeight(true);

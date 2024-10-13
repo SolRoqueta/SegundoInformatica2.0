@@ -25,61 +25,64 @@ public class agregarUsuarios extends JFrame {
     	
         // Configurar la ventana
         setTitle("Agregar Usuarios");
-        setSize(388, 429);
+        setSize(326, 429);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
         // Crear el panel principal
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(Color.LIGHT_GRAY);
+        panel.setBackground(new Color(43, 70, 77));
         
         // Etiqueta de título
-        JLabel titulo = new JLabel("AGREGAR USUARIOS", SwingConstants.CENTER);
-        titulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        titulo.setBounds(0, 0, 372, 64);
-        titulo.setOpaque(true);
+        JLabel titulo = new JLabel("AGREGAR", SwingConstants.CENTER);
+        titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
+        titulo.setBounds(99, 0, 111, 64);
         titulo.setBackground(Color.GRAY);
-        titulo.setForeground(Color.WHITE);
+        titulo.setForeground(new Color(210, 210, 210));
         panel.add(titulo);
         
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
-        nombreLabel.setBounds(24, 82, 53, 25);
+        nombreLabel.setForeground(new Color(230, 230, 230));
+        nombreLabel.setBounds(80, 86, 53, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.setBounds(24, 105, 150, 25);
+        nombreField.setBounds(80, 112, 150, 25);
         panel.add(nombreField);
         
         JLabel contraLabel = new JLabel("Contraseña");
-        contraLabel.setBounds(24, 132, 84, 25);
+        contraLabel.setForeground(new Color(230, 230, 230));
+        contraLabel.setBounds(78, 141, 84, 25);
         panel.add(contraLabel);
         
         JPasswordField contraField = new JPasswordField();
-        contraField.setBounds(24, 155, 150, 25);
+        contraField.setBounds(80, 162, 150, 25);
         panel.add(contraField);
         
         JLabel tipoUsuarioLabel = new JLabel("Tipo Usuario");
-        tipoUsuarioLabel.setBounds(24, 229, 100, 25);
+        tipoUsuarioLabel.setForeground(new Color(230, 230, 230));
+        tipoUsuarioLabel.setBounds(80, 242, 100, 25);
         panel.add(tipoUsuarioLabel);
         
         String[] tipoUsu = {"Padre", "Profesor"};
         
         JComboBox<String> tipoUsuarioCbbx = new JComboBox<>(tipoUsu);
-        tipoUsuarioCbbx.setBounds(24, 251, 150, 25);
+        tipoUsuarioCbbx.setBounds(80, 268, 150, 25);
         panel.add(tipoUsuarioCbbx);
         
         JLabel mailLabel = new JLabel("Mail");
-        mailLabel.setBounds(24, 178, 100, 25);
+        mailLabel.setForeground(new Color(230, 230, 230));
+        mailLabel.setBounds(78, 192, 100, 25);
         panel.add(mailLabel);
         
         JTextField mailField = new JTextField();
-        mailField.setBounds(24, 200, 150, 25);
+        mailField.setBounds(80, 214, 150, 25);
         panel.add(mailField);
         
         JButton agregarUsuarioBtn = new JButton("Agregar Usuario");
-        agregarUsuarioBtn.setBounds(115, 322, 150, 30);
+        agregarUsuarioBtn.setBounds(80, 323, 150, 30);
         panel.add(agregarUsuarioBtn);
        
        // Accion para boton AgregarProducto
@@ -126,6 +129,18 @@ public class agregarUsuarios extends JFrame {
       
         // Agregar el panel a la ventana
         getContentPane().add(panel);
+        
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(192, 192, 192));
+        separator.setBounds(105, 51, 100, 2);
+        panel.add(separator);
+        
+        JLabel lblUsuarios = new JLabel("USUARIOS", SwingConstants.CENTER);
+        lblUsuarios.setForeground(new Color(210, 210, 210));
+        lblUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblUsuarios.setBackground(Color.GRAY);
+        lblUsuarios.setBounds(99, 55, 111, 20);
+        panel.add(lblUsuarios);
         
         }
         

@@ -31,19 +31,19 @@ public class agregarProductos extends JFrame {
         // Crear el panel principal
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(Color.LIGHT_GRAY);
+        panel.setBackground(new Color(43, 70, 77));
         
         // Etiqueta de título
-        JLabel titulo = new JLabel("AGREGAR PRODUCTOS", SwingConstants.CENTER);
+        JLabel titulo = new JLabel("PRODUCTOS", SwingConstants.CENTER);
         titulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        titulo.setBounds(0, 0, 372, 64);
-        titulo.setOpaque(true);
+        titulo.setBounds(132, 33, 108, 51);
         titulo.setBackground(Color.GRAY);
-        titulo.setForeground(Color.WHITE);
+        titulo.setForeground(new Color(210, 210, 210));
         panel.add(titulo);
         
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
+        nombreLabel.setForeground(new Color(230, 230, 230));
         nombreLabel.setBounds(24, 82, 53, 25);
         panel.add(nombreLabel);
         
@@ -52,6 +52,7 @@ public class agregarProductos extends JFrame {
         panel.add(nombreField);
         
         JLabel precioLabel = new JLabel("Precio");
+        precioLabel.setForeground(new Color(230, 230, 230));
         precioLabel.setBounds(24, 132, 40, 25);
         panel.add(precioLabel);
         
@@ -60,6 +61,7 @@ public class agregarProductos extends JFrame {
         panel.add(precioField);
         
         JLabel descripcionLabel = new JLabel("Descripción");
+        descripcionLabel.setForeground(new Color(230, 230, 230));
         descripcionLabel.setBounds(24, 178, 100, 25);
         panel.add(descripcionLabel);
         
@@ -158,6 +160,18 @@ public class agregarProductos extends JFrame {
         // Agregar el panel a la ventana
         getContentPane().add(panel);
         
+        JLabel titulo_1 = new JLabel("AGREGAR", SwingConstants.CENTER);
+        titulo_1.setForeground(new Color(210, 210, 210));
+        titulo_1.setFont(new Font("Tahoma", Font.BOLD, 22));
+        titulo_1.setBackground(Color.GRAY);
+        titulo_1.setBounds(123, 0, 125, 59);
+        panel.add(titulo_1);
+        
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(210, 210, 210));
+        separator.setBackground(Color.LIGHT_GRAY);
+        separator.setBounds(136, 45, 100, 2);
+        panel.add(separator);
+        
     }
-    
 }
