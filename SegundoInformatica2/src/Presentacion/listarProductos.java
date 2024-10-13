@@ -29,7 +29,7 @@ public class listarProductos extends JFrame {
         // Crear el panel principal
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(new Color(43, 70, 73));
+        panel.setBackground(new Color(43, 70, 77));
         panel.setLayout(null);
         
         // Etiqueta de título
