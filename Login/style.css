@@ -12,7 +12,7 @@ section {
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    background: url(/img/fondo.ejemplo.jpeg);
+    background: url(../img/fondo.ejemplo.jpeg);
     background-position: center;
     background-size: cover;
 }
