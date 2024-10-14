@@ -14,7 +14,11 @@ public class productos {
 	private String descripcion; //Declaro el String de descripcion
 	private int precio; //Declaro el String de precio
 	private String foto; //Declaro el String de foto
-	//BORRAR ESTE COMENTARIO
+	private String AgregarProductoQuery = "INSERT INTO productos (nombre, descripcion, precio, foto) VALUES (?, ?, ?, ?);";
+	private String ModificarProductoQuery = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, foto = ? WHERE idproductos = ?;";
+	private String EliminarProductoQuery = "DELETE FROM productos WHERE nombre = ? LIMIT 1;";
+	private String BuscarProductoQuery = "SELECT * FROM productos WHERE nombre = ?;";
+	private String BuscarProductosQuery = "SELECT * FROM productos;";
 	
 	/*
 	 *		CONSTRUCTOR DE PRODUCTOS 
@@ -89,7 +93,7 @@ public class productos {
 	     Connection con = cc.conect();
 			
 	     //Sentencia SQL que inserta los datos en la tabla "productos"
-	     String query = "INSERT INTO productos (nombre, descripcion, precio, foto) VALUES (?, ?, ?, ?);";
+	     String query = AgregarProductoQuery;
 	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -119,7 +123,7 @@ public class productos {
 	    Connection con = cc.conect();
 			
 	     //Sentencia SQL que inserta los datos en la tabla "productos"
-	     String query = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, foto = ? WHERE idproductos = ?";
+	     String query = ModificarProductoQuery;
 	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -154,7 +158,7 @@ public class productos {
 	    Connection con = cc.conect();
 			
 	     //Sentencia SQL que elimina los datos en la tabla "productos" de la fila del prdoucto cullo nombre sea del objeto
-	     String query = "DELETE FROM productos WHERE nombre = ? LIMIT 1;";
+	     String query = EliminarProductoQuery; 
 	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -205,7 +209,7 @@ public class productos {
 	    
 	    if (opcion == 1) {
 			
-			String query = "SELECT * FROM productos WHERE nombre = ?";
+			String query = BuscarProductoQuery;
 			
 			try (Connection conn = con;
 				PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -267,7 +271,7 @@ public class productos {
 	    String[][] datos = new String[100][4];
 	    int index = 0;
 		
-		String query = "SELECT * FROM productos;";
+		String query = BuscarProductosQuery;
 		
 		try (Connection conn = con;
 			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
