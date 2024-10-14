@@ -33,30 +33,15 @@ public class menuPrincipal extends JFrame {
                 welcomeLabel.setBackground(Color.GRAY);
                 welcomeLabel.setForeground(new Color(255, 255, 255));
                 
-               
-                // Button for Menu Reservas
-                JButton reservasButton = new JButton("Menu Reservas");
-                reservasButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-
-                    	ventanaMenuDiario = new menuMenuDiario(); 
-
-                    	ventanaMenuDiario = new menuMenuDiario(); 
-                    	MenuPrincipal.setVisible(false);
-                    
-                reservasButton.setBounds(78, 100, 133, 31);
-                getContentPane().add(reservasButton);
-                
-                    }
-                });
                         
                 // Button for Menu Usuarios
                 JButton usuariosButton = new JButton("Menu Usuarios");
                 usuariosButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
             		
+                	MenuPrincipal.setVisible(false);
             		menuUsuarios MenuUsuarios = new menuUsuarios();
-            		MenuPrincipal.setVisible(false);
+            		
             	}
             });
             usuariosButton.setBounds(80, 155, 133, 31);
@@ -72,12 +57,17 @@ public class menuPrincipal extends JFrame {
                         		
                         	}
                         });
+                        
                         productosButton.setBounds(80, 203, 133, 31);
                         getContentPane().add(productosButton);
                         
                         JButton usuariosButton_1_1 = new JButton("Menu M Fijos");
                         usuariosButton_1_1.addActionListener(new ActionListener() {
                         	public void actionPerformed(ActionEvent e) {
+                        		
+                        		menuMenuFijo MenuFijo = new menuMenuFijo();
+                        		MenuPrincipal.setVisible(false);
+                        		
                         	}
                         });
                         usuariosButton_1_1.setBounds(80, 251, 133, 31);
@@ -95,16 +85,24 @@ public class menuPrincipal extends JFrame {
                         getContentPane().add(lblPrincipal);
                         
                         JButton btnMenuMDiarios = new JButton("Menu M Diarios");
+                        btnMenuMDiarios.addActionListener(new ActionListener() {
+                        	public void actionPerformed(ActionEvent e) {
+                        		
+                        		menuMenuDiario MenuDiarios = new menuMenuDiario();
+                        		MenuPrincipal.setVisible(false);
+                        		
+                        	}
+                        });
                         btnMenuMDiarios.setBounds(80, 102, 133, 31);
                         getContentPane().add(btnMenuMDiarios);
                         
 	}
                         
-                        public static void main(String[] args) {
-                        	// Show the main window
-                        	MenuPrincipal = new menuPrincipal();
-                        	MenuPrincipal.setVisible(true);
-                        }
+	 public static void main(String[] args) {
+     	// Show the main window
+     	MenuPrincipal = new menuPrincipal();
+     	MenuPrincipal.setVisible(true);
+     }
 }
                         
                 

@@ -72,6 +72,15 @@ public class menuUsuarios extends JFrame {
                         frame.getContentPane().add(lblUsuarios);
                         
                         JButton btnListarUsuarios_1 = new JButton("←");
+                        btnListarUsuarios_1.addActionListener(new ActionListener() {
+                        	public void actionPerformed(ActionEvent e) {
+                        		
+                        		frame.setVisible(false);
+                        		menuPrincipal ventanaPrincipal = new menuPrincipal();
+                        		ventanaPrincipal.setVisible(true);
+                        	
+                        	}
+                        });
                         btnListarUsuarios_1.setBounds(121, 292, 50, 15);
                         frame.getContentPane().add(btnListarUsuarios_1);
 

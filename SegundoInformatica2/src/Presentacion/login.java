@@ -12,18 +12,18 @@ public class login extends JFrame {
         // Configuración básica de la ventana
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(589, 424);
+        setSize(630, 424);
         getContentPane().setLayout(null);  // Layout absoluto para ubicar los componentes manualmente
 
         // Panel derecho para el formulario de login
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(null);
         rightPanel.setBackground(new Color(43, 70, 77));
-        rightPanel.setBounds(251, 0, 322, 391);
+        rightPanel.setBounds(292, 0, 322, 391);
         getContentPane().add(rightPanel);
-                                                
-                                                        // Etiqueta "Nombre"
-                                                        JLabel nameLabel = new JLabel("Nombre");
+
+        // Etiqueta "Nombre"
+        JLabel nameLabel = new JLabel("Nombre");
                                                         nameLabel.setForeground(new Color(240, 240, 240));
                                                         nameLabel.setBounds(86, 123, 100, 20);
                                                         rightPanel.add(nameLabel);
@@ -73,7 +73,7 @@ public class login extends JFrame {
                                                                                         JPanel rightPanel_1_1 = new JPanel();
                                                                                         rightPanel_1_1.setLayout(null);
                                                                                         rightPanel_1_1.setBackground(new Color(53, 88, 96));
-                                                                                        rightPanel_1_1.setBounds(0, 0, 263, 391);
+                                                                                        rightPanel_1_1.setBounds(0, 0, 297, 391);
                                                                                         getContentPane().add(rightPanel_1_1);
                                                                                         loginButton.addActionListener(new ActionListener() {
                                                                                         	public void actionPerformed(ActionEvent e) {
