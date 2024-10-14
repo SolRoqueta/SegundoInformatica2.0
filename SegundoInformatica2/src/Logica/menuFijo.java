@@ -23,9 +23,11 @@ public class menuFijo {
 	private FileInputStream foto;
 	private FileInputStream fotoTemp;
 	private BufferedImage fotoPaMostrar;
-	private String AgregarMenuFijoQuery = "INSERT INTO menus_fijos (nombre, precio, descripcion, foto, stock) VALUES (?, ?, ?, ?, ?)";
-	private String BuscarMenuFijoQuery = "SELECT * FROM menus_fijos WHERE nombre = ?";
-	private String BuscarMenusFijosQuery = "SELECT * FROM menus_fijos";
+	private String AgregarMenuFijoQuery = "INSERT INTO menus_fijos (nombre, precio, descripcion, foto, stock) VALUES (?, ?, ?, ?, ?);";
+	private String BuscarMenuFijoQuery = "SELECT * FROM menus_fijos WHERE nombre = ?;";
+	private String BuscarMenusFijosQuery = "SELECT * FROM menus_fijos;";
+	private String EliminarMenuFijoQuery = "DELETE FROM menus_fijos WHERE idmenus_fijos = ?;";
+	private String ModificarMenusFijosQuery = "UPDATE menus_fijos SET nombre = ?, precio = ?, descripcion = ?, foto = ?, stock = ? WHERE idmenus_fijos = ?;";
 	
 	public menuFijo(String nombre, int precio, String descripcion, int stock, String fotoPath) {
 		
@@ -252,12 +254,12 @@ public class menuFijo {
 		
 	}
 	
-public String[][] buscarMenusDiarios() {
+	public String[][] buscarMenusFijos() {
 		
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
-	    menuDiario tempMenu = new menuDiario();
-	    String[][] datos = new String[100][6];
+	    menuFijo tempMenu = new menuFijo();
+	    String[][] datos = new String[100][4];
 	    int index = 0;
 		
 		String query = BuscarMenusFijosQuery;
@@ -269,7 +271,7 @@ public String[][] buscarMenusDiarios() {
 			
 			while (resultSet.next()) {
 			
-			int id = resultSet.getInt("idmenus_diarios");
+			int id = resultSet.getInt("idmenus_fijos");
 				
 			String nombre = resultSet.getString("nombre");
 				
@@ -277,31 +279,23 @@ public String[][] buscarMenusDiarios() {
 				
 			int stock = resultSet.getInt("stock");
 				
-			String dia = resultSet.getString("diaCorrespondiente");
-				
 			String descripcion = resultSet.getString("descripcion");
-				
-			String acla = resultSet.getString("aclaraciones");
 			
 			InputStream input = resultSet.getBinaryStream("foto");
 			
+			tempMenu.setId(id);
 			tempMenu.setNombre(nombre);
 			tempMenu.setPrecio(precio);
 			tempMenu.setStock(stock);
-			tempMenu.setDiaCorrespondiente(dia);
-			tempMenu.setDescripcion(descripcion);
-			tempMenu.setAclaraciones(acla);
 			
-			datos[index][0] = tempMenu.getNombre();
-			datos[index][1] = String.valueOf(tempMenu.getPrecio());
-			datos[index][2] = String.valueOf(tempMenu.getStock());
-			datos[index][3] = tempMenu.getDiaCorrespondiente();
-			datos[index][4] = tempMenu.getDescripcion();
-			datos[index][5] = tempMenu.getAclaraciones();
+			datos[index][0] = String.valueOf(tempMenu.getId());
+			datos[index][1] = tempMenu.getNombre();
+			datos[index][2] = String.valueOf(tempMenu.getPrecio());
+			datos[index][3] = String.valueOf(tempMenu.getStock());
 			
 			index++;
 			
-			System.out.println("ID: " + id + ", Nombre: " + nombre + ", precio: " + precio + ", stock: " + stock + ", dia de la semana: " + dia + ", descripcion: " + descripcion + ", aclaraciones: " + acla + ", foto: " + input);
+			System.out.println("ID: " + id + ", Nombre: " + nombre + ", precio: " + precio + ", stock: " + stock + ", descripcion: " + descripcion + ", foto: " + input);
 			System.out.println(" ");
     	
 	}
@@ -316,6 +310,89 @@ public String[][] buscarMenusDiarios() {
 		
 	}
 	
+	public void eliminarMenuFijo() {
+		
+		conexion cc = new conexion();
+	    Connection con = cc.conect();
+			
+	     //Sentencia SQL que elimina los datos en la tabla "menus_fijos" de la fila del prdoucto cullo nombre sea del objeto
+	     String query = EliminarMenuFijoQuery; 
+	     
+	     try (Connection connection = con;
+				 PreparedStatement statement = connection.prepareStatement(query)) {
+				
+					statement.setInt(1, this.getId());
+					
+					int rowsUpdated = statement.executeUpdate();
+					
+					if (rowsUpdated > 0) {
+						
+						System.out.println("Eliminado con exito!");
+						
+					} else if (rowsUpdated == 0) {
+						
+						System.out.println("No eliminado");
+						
+					}
+				
+			} catch (SQLException ex) {
+				
+				ex.printStackTrace();
+				System.out.println("No se a podido eliminar el menu fijo.");
+			
+			}
+		
+	}
+	
+	public void modificarMenuFijo() {
+		
+		conexion cc = new conexion();
+	    Connection con = cc.conect();
+			
+	     //Sentencia SQL que modifica datos en la tabla "menus_fijos"
+	     String query = ModificarMenusFijosQuery;
+	     
+	     try (Connection connection = con;
+				 PreparedStatement statement = connection.prepareStatement(query)) {
+				
+	    	 	statement.setString(1, this.getNombre());
+				statement.setInt(2, this.getPrecio());
+				statement.setString(3, this.getDescripcion());
+				
+				try {
+					
+					statement.setBinaryStream(4, getFoto(), getFoto().available());
+					
+				} catch (IOException e) {
+
+					e.printStackTrace();
+					
+				}
+				
+				statement.setInt(5, this.getStock());
+				statement.setInt(6, this.getId());
+					
+					int rowsUpdated = statement.executeUpdate();
+					
+					if (rowsUpdated > 0) {
+						
+						System.out.println("Actualizado con exito!");
+						
+					} else if (rowsUpdated == 0) {
+						
+						System.out.println("No actualizado");
+						
+					}
+				
+			} catch (SQLException ex) {
+				
+				ex.printStackTrace();
+				System.out.println("No se a podido modificar el menu_fijo");
+			
+			}
+		
+	}
+
 public static void main(String[] args) {
 		
 		int OP = 0;
@@ -364,16 +441,12 @@ public static void main(String[] args) {
 				
 				break;
 				
-			/*case 2:
+			case 2:
 				
 				System.out.println("Ingrese el nombre del producto a modificar: ");
 				tempNombre = sr.nextLine();
 				
-				m = m.buscarMenuDiario(tempNombre);
-				
-				if (m != null) {
-					System.out.println(m.getId());
-				}
+				m = m.buscarMenuFijo(tempNombre);
 				
 				System.out.println("Ingrese el nuevo nombre: ");
 				m.setNombre(sr.nextLine());
@@ -386,21 +459,16 @@ public static void main(String[] args) {
 				
 				sr.nextLine();
 				
-				System.out.println("Ingrese el nuevo dia correspondiente: ");
-				m.setDiaCorrespondiente(sr.nextLine());
-				
 				System.out.println("Ingrese la nueva descripcion: ");
 				m.setDescripcion(sr.nextLine());
 				
-				System.out.println("Ingrese las nuevas aclaraciones: ");
-				m.setAclaraciones(sr.nextLine());
 				
 				System.out.println("Ingrese la nueva foto: ");
 				m.setFoto(sr.next());
 				
-				m.modificarMenuDiario();
+				m.modificarMenuFijo();
 				
-				break;*/
+				break;
 				
 			case 3:
 				
@@ -411,9 +479,9 @@ public static void main(String[] args) {
 				
 				break;
 				
-			/*case 4:
+			case 4:
 				
-				m.buscarMenusDiarios();
+				m.buscarMenusFijos();
 				
 				break;
 				
@@ -422,10 +490,10 @@ public static void main(String[] args) {
 				System.out.println("Ingrese el nombre del menu diario a eliminar: ");
 				tempNombre = sr.nextLine();
 				
-				m = m.buscarMenuDiario(tempNombre);
-				m.eliminarMenuDiario();
+				m = m.buscarMenuFijo(tempNombre);
+				m.eliminarMenuFijo();
 				
-				break;*/
+				break;
 			
 			case 6:
 				
