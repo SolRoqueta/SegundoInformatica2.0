@@ -194,12 +194,12 @@ th, td {
     text-transform: capitalize;
     margin-bottom: 100px;
     text-decoration: none;
-    border-radius: 5px; /* Añadido para mejor apariencia */
-    transition: background-color 0.3s ease; /* Añadido para transición suave */
+    border-radius: 5px; 
+    transition: background-color 0.3s ease; 
 }
 
 .btn-1:hover {
-    background-color: #054e1a; /* Añadido para efecto hover */
+    background-color: #054e1a; 
 }
 
 .header-img {
@@ -224,11 +224,31 @@ h2 {
 }
 
 .titulo-productos {
-    margin-top: 50px; /* Aumentar este valor para mayor separación */
+    margin-top: 50px; 
     text-align: center; /* Centrar el título */
     font-size: 30px;
     font-weight: bold;
     color: #333;
+}
+
+.card {
+    background-color: #94d384; 
+    border: none; 
+    border-radius: 15px; /* Esquinas redondeadas */
+    padding: 20px; 
+    margin-bottom: 20px; /* Espacio entre las cartas */
+    box-shadow: 0 4px 8px rgb(52, 87, 31); /* Sombra*/
+}
+
+.precio {
+    font-size: 17px;
+    font-weight: 700; /* negrita */
+    color:#185c07;  /* Color del precio */
+}
+
+.card-title {
+    font-weight: bold; /* negrita */
+    color: #111419; /* nombre del producto */
 }
 
 .box-container {
@@ -239,8 +259,8 @@ h2 {
 
 .box img {
     height: 200px;
-    width: 100%; /* Mantener el ancho completo dentro del contenedor */
-    object-fit: cover; /* Ajusta la imagen sin distorsionar */
+    width: 100%; 
+    object-fit: cover; 
 }
 
 
@@ -425,9 +445,9 @@ h2 {
 
 
 #menu-icon {
-    width: 40px;  /* Ajusta el tamaño según prefieras */
+    width: 40px;  
     height: auto;
-    cursor: pointer;  /* Hace que el cursor cambie a pointer al pasar por encima */
+    cursor: pointer; 
   }
   
   nav {
@@ -455,7 +475,7 @@ h2 {
     justify-content: center;
     align-items: center;
     margin: 35px auto;
-    width: 200px; /* Ajusta el ancho a tu preferencia */
+    width: 200px; 
     padding: 10px;
     background-color: #108130;
     color: white;
@@ -465,10 +485,10 @@ h2 {
 }
 
 #cargar-mas-container {
-    width: 100%; /* El contenedor ocupa todo el ancho disponible */
+    width: 100%; 
     display: flex;
-    justify-content: center; /* Esto centrará el botón */
-    margin-top: 20px; /* Ajusta el margen según lo necesario */
+    justify-content: center; 
+    margin-top: 20px;
 }
 
 #cargar-mas {
@@ -478,15 +498,15 @@ h2 {
     font-weight: bold;
     text-align: center;
     cursor: pointer;
-    border: none; /* Si deseas eliminar bordes */
-    border-radius: 5px; /* Para darle un aspecto más redondeado */
+    border: none; 
+    border-radius: 5px; 
 }
 
 .titulo-menu-semanal {
-    margin-bottom: 10px; /* Ajusta este valor para mover el título más cerca o lejos del carrusel */
-    background-color: #ffffff; /* Color de fondo gris */
-    padding: 30px; /* Espaciado interno alrededor del texto */
-    text-align: center; /* Centrar el texto */
+    margin-bottom: 10px; /*este valor es para mover el título más cerca o lejos del carrusel */
+    background-color: #ffffff; 
+    padding: 30px; 
+    text-align: center; 
 }
 
 .carousel {
@@ -494,16 +514,16 @@ h2 {
     width: 100%; /* Ajustar el ancho del carrusel */
     max-width: 1000px; /* Ancho máximo */
     min-width: 350px;
-    height: auto; /* Ajustar la altura automáticamente según el contenido */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave detrás del carrusel */
+    height: auto;
+    box-shadow: 0px 4px 10px rgb(50, 95, 29); /* Sombra suave detrás del carrusel */
 }
 
 .carousel-caption {
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo negro con 60% de transparencia */
+    background-color: rgba(63, 62, 62, 0.349); 
     color: #fff;
     padding: 10px;
     border-radius: 5px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra en el texto */
-    max-width: 80%; /* Ajusta el ancho del texto */
-    margin: 0 auto; /* Centrar el texto */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.582); 
+    max-width: 80%; 
+    margin: 0 auto; 
 }
