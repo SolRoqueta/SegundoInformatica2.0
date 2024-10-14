@@ -25,7 +25,7 @@ public class menuFijo {
 	private BufferedImage fotoPaMostrar;
 	private String AgregarMenuFijoQuery = "INSERT INTO menus_fijos (nombre, precio, descripcion, foto, stock) VALUES (?, ?, ?, ?, ?)";
 	private String BuscarMenuFijoQuery = "SELECT * FROM menus_fijos WHERE nombre = ?";
-	private String BuscarMenusFijosQuery = "";
+	private String BuscarMenusFijosQuery = "SELECT * FROM menus_fijos";
 	
 	public menuFijo(String nombre, int precio, String descripcion, int stock, String fotoPath) {
 		

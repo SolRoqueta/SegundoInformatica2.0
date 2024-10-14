@@ -32,6 +32,8 @@ public class menuDiario {
 	private BufferedImage fotoPaMostrar;
 	private String EliminarMenuDiarioQuery = "DELETE FROM menus_diarios WHERE idmenus_diarios = ?";
 	
+	//Borrar este comentario
+	
 	/*
 	 * 
 	 * 		CONSTRUCTORES DE LA CLASE menuDiario

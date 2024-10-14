@@ -29,6 +29,8 @@ public class productos {
 	private String BuscarProductoQuery = "SELECT * FROM productos WHERE nombre = ?;";
 	private String BuscarProductosQuery = "SELECT * FROM productos;";
 	
+	//Borrar este comentario
+	
 	/*
 	 *		CONSTRUCTOR DE PRODUCTOS 
 	 */
