@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
@@ -194,7 +195,8 @@ public class menuDiario {
 						
 					} catch (IOException e) {
 
-						e.printStackTrace();
+//						e.printStackTrace();
+						System.out.println("Error al agregar la imagen.");
 						
 					}
 					
@@ -305,7 +307,7 @@ public class menuDiario {
 		
 	}
 	
-	public String[][] buscarMenuDiario(String tempNombre) {
+	public menuDiario buscarMenuDiario(String tempNombre) {
 		
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
@@ -363,7 +365,7 @@ public class menuDiario {
 						
 						System.out.println("ID: " + id + ", Nombre: " + nombre + ", precio: " + precio + ", stock: " + stock + ", dia de la semana: " + dia + ", descripcion: " + descripcion + ", aclaraciones: " + acla + ", foto: " + input);
 						
-						return dato;
+						return tempMenu;
 						
 					} while (resultSet.next());
 					
@@ -462,7 +464,15 @@ public class menuDiario {
 			System.out.println("4. Buscar todos los menus diarios");
 			System.out.println("5. Eliminar menu diario");
 			System.out.println("6. Salir");
+			
+			try {
 			OP = sr.nextInt();
+			} catch (InputMismatchException e) {
+				
+//				e.printStackTrace();
+                System.out.println("ERROR, ingrese un numero entero");
+                
+            }
 			
 			sr.nextLine();
 			
@@ -502,7 +512,7 @@ public class menuDiario {
 				System.out.println("Ingrese el nombre del producto a modificar: ");
 				tempNombre = sr.nextLine();
 				
-				String[][] dato = m.buscarMenuDiario(tempNombre);
+				m.buscarMenuDiario(tempNombre);
 				
 				if (m != null) {
 					System.out.println(m.getId());
@@ -555,15 +565,9 @@ public class menuDiario {
 				System.out.println("Ingrese el nombre del menu diario a eliminar: ");
 				tempNombre = sr.nextLine();
 				
-				String[][] dato1 = m.buscarMenuDiario(tempNombre);
+				m.buscarMenuDiario(tempNombre);
 				
-				if (dato1 != null) {
-					
-					m.setId(Integer.parseInt(dato1[0][0]));
-					
-					m.eliminarMenuDiario();
-					
-				}
+				m.eliminarMenuDiario();
 				
 				break;
 			

@@ -1,18 +1,34 @@
 ACA ESTA EL SCRIPT SQL PARA LA CREACION DE LA BASE DE DATOS
 
-drop DATABASE testproyecto;
 CREATE DATABASE testproyecto;
 
 use testproyecto;
 
-CREATE TABLE productos (
-	idproductos int NOT NULL AUTO_INCREMENT,
-    nombre varchar(45) NOT NULL,
-    descripcion LONGTEXT,
-    precio int NOT NULL,
-    foto LONGTEXT NOT NULL,
-    PRIMARY KEY (idproductos)
-);
+CREATE TABLE `testproyecto`.`productos` (
+  `id_productos` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` LONGTEXT NULL,
+  `precio` INT NOT NULL,
+  `foto` BLOB NOT NULL,
+  PRIMARY KEY (`id_productos`),
+  UNIQUE INDEX `nombre_unico` (`nombre` ASC) VISIBLE);
 
-CREATE UNIQUE INDEX nombreunico 
-ON productos (nombre);
+CREATE TABLE `testproyecto`.`menus_diarios` (
+  `idmenus_diarios` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `precio` INT NOT NULL,
+  `stock` INT NOT NULL,
+  `diaCorrespondiente` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
+  `aclaraciones` VARCHAR(45) NULL,
+  `foto` MEDIUMBLOB NOT NULL,
+  PRIMARY KEY (idmenus_diarios));
+
+CREATE TABLE `testproyecto`.`menus_fijos` (
+  `idmenus_fijos` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `precio` INT NOT NULL,
+  `descripcion` LONGTEXT NULL,
+  `foto` MEDIUMBLOB NOT NULL,
+  `stock` INT NOT NULL,
+  PRIMARY KEY (`idmenus_fijos`));
