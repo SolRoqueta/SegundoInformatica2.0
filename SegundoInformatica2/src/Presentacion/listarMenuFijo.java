@@ -10,7 +10,7 @@ import Logica.productos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class listarUsuarios extends JFrame {
+public class listarMenuFijo extends JFrame {
 	
 	private productos producto = new productos();
 	private JTable Table;
@@ -18,7 +18,7 @@ public class listarUsuarios extends JFrame {
 	private JTable tablaListarProductos;
 	private JTable tabla;
     
-    public listarUsuarios() {
+    public listarMenuFijo() {
          
         // Configurar la ventana
         setTitle("Listar Productos");
@@ -53,11 +53,11 @@ public class listarUsuarios extends JFrame {
         textField.setBounds(106, 116, 127, 20);
         panel.add(textField);  
         
-        JLabel lblProductos = new JLabel("USUARIOS", SwingConstants.CENTER);
+        JLabel lblProductos = new JLabel("MENUS FIJOS", SwingConstants.CENTER);
         lblProductos.setForeground(Color.WHITE);
         lblProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblProductos.setBackground(Color.GRAY);
-        lblProductos.setBounds(192, 41, 100, 50);
+        lblProductos.setBounds(187, 41, 110, 50);
         panel.add(lblProductos);
         
         JSeparator separator = new JSeparator();

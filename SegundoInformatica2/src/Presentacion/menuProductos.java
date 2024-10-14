@@ -10,18 +10,17 @@ public class menuProductos extends JFrame {
 	public menuProductos() {
 
         JFrame frame = new JFrame("Menu Productos");
-        frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+        frame.getContentPane().setBackground(new Color(43, 70, 77));
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(309, 378);
+        frame.setSize(309, 368);
         frame.getContentPane().setLayout(null);
         
-                JLabel labelTitulo = new JLabel("MENU PRODUCTOS", SwingConstants.CENTER);
+                JLabel labelTitulo = new JLabel("MENU", SwingConstants.CENTER);
                 labelTitulo.setBackground(Color.WHITE);
-                labelTitulo.setBounds(-1, -1, 295, 64);
+                labelTitulo.setBounds(96, 11, 100, 40);
                 frame.getContentPane().add(labelTitulo);
-                labelTitulo.setFont(new Font("Tahoma", Font.PLAIN, 16));
+                labelTitulo.setFont(new Font("Tahoma", Font.BOLD, 22));
                 labelTitulo.setBackground(Color.GRAY);
-                labelTitulo.setOpaque(true);
                 labelTitulo.setForeground(new Color(255, 255, 255));
                 
                         // Boton para Agregar Productos
@@ -34,7 +33,7 @@ public class menuProductos extends JFrame {
 
                         	}
                         });
-                        btnAgregarProductos.setBounds(80, 100, 125, 31);
+                        btnAgregarProductos.setBounds(84, 88, 125, 31);
                         frame.getContentPane().add(btnAgregarProductos);
                         
                         // Boton para Modificar Productos
@@ -47,7 +46,7 @@ public class menuProductos extends JFrame {
 
                         	}
                         });
-                        btnModificarProductos.setBounds(80, 150, 125, 31);
+                        btnModificarProductos.setBounds(84, 138, 125, 31);
                         frame.getContentPane().add(btnModificarProductos);
                                 
                         // Boton para Eliminar Productos
@@ -60,7 +59,7 @@ public class menuProductos extends JFrame {
                         		
                         	}
                         });
-                        btnEliminarProductos.setBounds(80, 200, 125, 31);
+                        btnEliminarProductos.setBounds(84, 188, 125, 31);
                         frame.getContentPane().add(btnEliminarProductos);
                         
                         // Boton para Listar Productos
@@ -73,8 +72,23 @@ public class menuProductos extends JFrame {
                         		
                         	}
                         });
-                        btnListarProductos.setBounds(80, 250, 125, 31);
+                        btnListarProductos.setBounds(84, 238, 125, 31);
                         frame.getContentPane().add(btnListarProductos);
+                        
+                        JSeparator separator = new JSeparator();
+                        separator.setBounds(101, 49, 90, 2);
+                        frame.getContentPane().add(separator);
+                        
+                        JLabel lblProductos = new JLabel("PRODUCTOS", SwingConstants.CENTER);
+                        lblProductos.setForeground(Color.WHITE);
+                        lblProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+                        lblProductos.setBackground(Color.WHITE);
+                        lblProductos.setBounds(96, 43, 100, 40);
+                        frame.getContentPane().add(lblProductos);
+                        
+                        JButton btnu = new JButton("\u2190");
+                        btnu.setBounds(121, 291, 50, 15);
+                        frame.getContentPane().add(btnu);
 
         // Make the frame visible
         frame.setVisible(true);

@@ -28,50 +28,55 @@ public class modificarProductos extends JFrame {
         
         // Crear el panel principal
         JPanel panel = new JPanel();
-        panel.setBackground(Color.LIGHT_GRAY);
+        panel.setForeground(new Color(255, 255, 255));
+        panel.setBackground(new Color(43, 70, 77));
         panel.setLayout(null);
         
         // Etiqueta de título
-        JLabel titulo = new JLabel("MODIFICAR PRODUCTOS", SwingConstants.CENTER);
-        titulo.setBounds(-21, 0, 519, 60);
-        titulo.setOpaque(true);
+        JLabel titulo = new JLabel("MODIFICAR", SwingConstants.CENTER);
+        titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
+        titulo.setBounds(158, 22, 150, 20);
         titulo.setBackground(Color.GRAY);
-        titulo.setForeground(Color.WHITE);
+        titulo.setForeground(new Color(210, 210, 210));
         panel.add(titulo);
         
         // Etiqueta de Buscar Producto
         JLabel buscarProductoLabel = new JLabel("Nombre Producto");
-        buscarProductoLabel.setBounds(135, 78, 121, 25);
+        buscarProductoLabel.setForeground(new Color(230, 230, 230));
+        buscarProductoLabel.setBounds(134, 92, 121, 25);
         panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
         JTextField buscarProductoField = new JTextField();
-        buscarProductoField.setBounds(135, 99, 120, 25);
+        buscarProductoField.setBounds(135, 114, 120, 25);
         panel.add(buscarProductoField);
         
         // Etiquetas y campos de texto 
         JLabel nombreLabel = new JLabel("Nombre");
-        nombreLabel.setBounds(72, 150, 100, 25);
+        nombreLabel.setForeground(new Color(230, 230, 230));
+        nombreLabel.setBounds(72, 157, 100, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.setBounds(72, 170, 150, 25);
+        nombreField.setBounds(72, 178, 150, 25);
         panel.add(nombreField);
         nombreField.setEditable(false);
         
         JLabel precioLabel = new JLabel("Precio");
-        precioLabel.setBounds(72, 199, 47, 25);
+        precioLabel.setForeground(new Color(230, 230, 230));
+        precioLabel.setBounds(72, 214, 47, 25);
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
-        precioField.setBounds(72, 220, 150, 25);
+        precioField.setBounds(72, 234, 150, 25);
         panel.add(precioField);
         
         JFormattedTextField newPrecioField = new JFormattedTextField();
         newPrecioField.setEnabled(false);
         
         JLabel descripcionLabel = new JLabel("Descripción");
-        descripcionLabel.setBounds(72, 253, 100, 25);
+        descripcionLabel.setForeground(new Color(230, 230, 230));
+        descripcionLabel.setBounds(72, 270, 100, 25);
         panel.add(descripcionLabel);
         
         JTextArea descripcionArea = new JTextArea();
@@ -82,27 +87,27 @@ public class modificarProductos extends JFrame {
         descripcionArea.setEditable(false);
         
         JScrollPane scrollPane = new JScrollPane(descripcionArea);
-        scrollPane.setBounds(72, 275, 150, 75);
+        scrollPane.setBounds(72, 295, 150, 75);
         panel.add(scrollPane); 
         
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
-        imagenLabel.setBounds(275, 170, 133, 119);
+        imagenLabel.setBounds(275, 188, 133, 119);
         imagenLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         panel.add(imagenLabel);
         
         // Botones
         JButton btnBuscarProducto = new JButton("Buscar");
-        btnBuscarProducto.setBounds(267, 100, 78, 23);
+        btnBuscarProducto.setBounds(271, 115, 78, 23);
         panel.add(btnBuscarProducto);
         
         JButton btnSubirImagen = new JButton("Subir Imagen");
-        btnSubirImagen.setBounds(283, 302, 117, 25);
+        btnSubirImagen.setBounds(283, 326, 117, 25);
         panel.add(btnSubirImagen);
         btnSubirImagen.setEnabled(false);
         
         JButton btnModificarProducto = new JButton("Modificar Producto");
-        btnModificarProducto.setBounds(153, 394, 150, 30);
+        btnModificarProducto.setBounds(154, 406, 150, 30);
         panel.add(btnModificarProducto);
         btnModificarProducto.setEnabled(false);
         
@@ -234,6 +239,18 @@ public class modificarProductos extends JFrame {
     
 	    // Agregar el panel a la ventana
 	    getContentPane().add(panel);
+	    
+	    JLabel lblProductos = new JLabel("PRODUCTOS", SwingConstants.CENTER);
+	    lblProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	    lblProductos.setForeground(new Color(210, 210, 210));
+	    lblProductos.setBackground(Color.GRAY);
+	    lblProductos.setBounds(183, 53, 100, 20);
+	    panel.add(lblProductos);
+	    
+	    JSeparator separator = new JSeparator();
+	    separator.setForeground(new Color(210, 210, 210));
+	    separator.setBounds(183, 50, 100, 3);
+	    panel.add(separator);
     
     }
     

@@ -29,68 +29,48 @@ public class listarProductos extends JFrame {
         // Crear el panel principal
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(Color.LIGHT_GRAY);
+        panel.setBackground(new Color(43, 70, 77));
         panel.setLayout(null);
         
         // Etiqueta de título
-        JLabel titulo = new JLabel("LISTAR PRODUCTOS", SwingConstants.CENTER);
-        titulo.setBounds(-11, 0, 507, 63);
-        titulo.setOpaque(true);
+        JLabel titulo = new JLabel("LISTAR", SwingConstants.CENTER);
+        titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
+        titulo.setBounds(193, 11, 100, 50);
         titulo.setBackground(Color.GRAY);
         titulo.setForeground(Color.WHITE);
         panel.add(titulo);
         
         // Etiqueta de Nombre Producto
         JLabel nombreProductoLabel = new JLabel("Nombre Producto");
-        nombreProductoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        nombreProductoLabel.setBounds(191, 91, 102, 14);
+        nombreProductoLabel.setForeground(new Color(255, 255, 255));
+        nombreProductoLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        nombreProductoLabel.setBounds(106, 100, 102, 14);
         panel.add(nombreProductoLabel);
-        
-        // Botón Listar
-        JButton btnListarProductos = new JButton("Listar Producto");
-        JButton btnListarTodos = new JButton("Listar Todos");
-        
-        //Se ejecuta cuando el boton Listar Todos es pulsado 
-        btnListarProductos.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		
-        	}
-        });
-        
-        btnListarProductos.setBounds(277, 158, 105, 23);
-        panel.add(btnListarProductos);
-       
-        //Se ejecuta cuando el boton Listar Todos es pulsado 
-        btnListarTodos.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		productos producto = new productos();
-        		String[][] datos = producto.BuscarProductos();
-        		
-        		String[] columnas = {"ID", "Nombre","Precio", "Descripcion"};
-        		
-        		tabla = new JTable(datos, columnas);
-        		
-        		JScrollPane scrollPane = new JScrollPane(tabla);
-        		scrollPane.setBounds(98, 191, 300, 300);
-        		panel.add(scrollPane);
-        		
-        		tabla.setPreferredScrollableViewportSize(new Dimension(450, 100));
-                tabla.setFillsViewportHeight(true);
-
-        	}
-        });
-        
-        btnListarTodos.setBounds(101, 158, 105, 23);
-        panel.add(btnListarTodos);
         
         getContentPane().add(panel);
         
         textField = new JTextField();
-        textField.setBounds(178, 109, 127, 20);
+        textField.setBounds(106, 116, 127, 20);
         panel.add(textField);  
         
+        JLabel lblProductos = new JLabel("PRODUCTOS", SwingConstants.CENTER);
+        lblProductos.setForeground(Color.WHITE);
+        lblProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblProductos.setBackground(Color.GRAY);
+        lblProductos.setBounds(192, 41, 100, 50);
+        panel.add(lblProductos);
+        
+        JSeparator separator = new JSeparator();
+        separator.setBounds(192, 52, 100, 2);
+        panel.add(separator);
+        
+        JComboBox comboBox = new JComboBox();
+        comboBox.setBounds(264, 116, 100, 20);
+        panel.add(comboBox);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(92, 175, 300, 300);
+        panel.add(scrollPane);
+        
     }
-    
 }
