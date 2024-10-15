@@ -14,6 +14,8 @@ public class modificarMenuFijo extends JFrame {
 	
 	public productos producto = new productos();
 	
+	private menuMenuFijo MenuFijo;
+	
 	// Declaracion de atributos de Productos
 	private String nombre;
 	private int precio;
@@ -21,7 +23,7 @@ public class modificarMenuFijo extends JFrame {
 	private String foto;
 	private JTextField textField;
     
-    public modificarMenuFijo() {
+    public modificarMenuFijo(menuMenuFijo MenuFijo) {
     	
         // Configurar la ventana
         setTitle("Agregar Productos");
@@ -187,6 +189,8 @@ public class modificarMenuFijo extends JFrame {
         JButton agregarProductoBtn_1 = new JButton("←");
         agregarProductoBtn_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		MenuFijo.setVisible(true);
+        		modificarMenuFijo.this.dispose();
         	}
         });
         agregarProductoBtn_1.setBounds(203, 533, 50, 15);

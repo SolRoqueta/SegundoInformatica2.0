@@ -14,13 +14,15 @@ public class agregarMenuFijo extends JFrame {
 	
 	public productos producto = new productos();
 	
+	private menuMenuFijo MenuFijo;
+	
 	// Declaracion de atributos de Productos
 	private String nombre;
 	private int precio;
 	private String descripcion;
 	private String foto;
     
-    public agregarMenuFijo() {
+    public agregarMenuFijo(menuMenuFijo MenuFijo) {
     	
         // Configurar la ventana
         setTitle("Agregar Productos");
@@ -185,6 +187,8 @@ public class agregarMenuFijo extends JFrame {
         JButton agregarProductoBtn_1 = new JButton("←");
         agregarProductoBtn_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		MenuFijo.setVisible(true);
+        		agregarMenuFijo.this.dispose();
         	}
         });
         agregarProductoBtn_1.setBounds(161, 401, 50, 15);

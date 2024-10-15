@@ -33,6 +33,9 @@ public class menuMenuFijo extends JFrame {
         getContentPane().add(btnAgregarUsuarios);
         btnAgregarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	agregarMenuFijo ventanaAgregar = new agregarMenuFijo(menuMenuFijo.this);
+            	ventanaAgregar.setVisible(true);
+            	menuMenuFijo.this.dispose();
             }
         });
         
@@ -42,16 +45,33 @@ public class menuMenuFijo extends JFrame {
         getContentPane().add(btnEliminarUsuarios);
         btnEliminarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	eliminarMenuFijo ventanaEliminar = new eliminarMenuFijo(menuMenuFijo.this);
+            	ventanaEliminar.setVisible(true);
+            	menuMenuFijo.this.dispose();
             }
         });
         
         // Boton para Modificar Usuarios
         JButton btnModificarUsuarios = new JButton("Modificar");
+        btnModificarUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	modificarMenuFijo ventanaModificar = new modificarMenuFijo(menuMenuFijo.this);
+            	ventanaModificar.setVisible(true);
+            	menuMenuFijo.this.dispose();
+            }
+        });
         btnModificarUsuarios.setBounds(84, 136, 125, 31);
         getContentPane().add(btnModificarUsuarios);
         
         // Boton para Listar Usuarios
         JButton btnListarUsuarios = new JButton("Listar");
+        btnListarUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	listarMenuFijo ventanaListar = new listarMenuFijo(menuMenuFijo.this);
+            	ventanaListar.setVisible(true);
+            	menuMenuFijo.this.dispose();
+            }
+        });
         btnListarUsuarios.setBounds(84, 236, 125, 31);
         getContentPane().add(btnListarUsuarios);
         
