@@ -22,10 +22,9 @@ public class menuDiario {
 	private int stock;
 	private String diaCorrespondiente;
 	private String descripcion;
-	private String aclaraciones;
 	private FileInputStream foto;
-	private String AgregarMenuDiarioQuery = "INSERT INTO menus_diarios (nombre, precio, stock, diaCorrespondiente, descripcion, aclaraciones, foto) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private String ModificarMenusDiaiosQuery = "UPDATE menus_diarios SET nombre = ?, precio = ?, stock = ?, diaCorrespondiente = ?, descripcion = ?, aclaraciones = ?, foto = ? WHERE idmenus_diarios = ?";
+	private String AgregarMenuDiarioQuery = "INSERT INTO menus_diarios (nombre, precio, stock, dia_correspondiente, descripcion, foto) VALUES (?, ?, ?, ?, ?, ?)";
+	private String ModificarMenusDiaiosQuery = "UPDATE menus_diarios SET nombre = ?, precio = ?, stock = ?, dia_correspondiente = ?, descripcion = ?, foto = ? WHERE idmenus_diarios = ?";
 	private String BuscarMenuDiarioQuery = "SELECT * FROM menus_diarios WHERE nombre = ?";
 	private String BuscarMenusDiariosQuery = "SELECT * FROM menus_diarios";
 	private FileInputStream fotoTemp;
@@ -40,14 +39,13 @@ public class menuDiario {
 	 * 
 	 */
 	
-	public menuDiario(String nombre, int precio, int stock, String diaCorrespondiente, String descripcion, String aclaraciones, String fotoPath) {
+	public menuDiario(String nombre, int precio, int stock, String diaCorrespondiente, String descripcion, String fotoPath) {
 		
 		this.nombre = nombre;
 		this.precio = precio;
 		this.stock = stock;
 		this.diaCorrespondiente = diaCorrespondiente;
 		this.descripcion = descripcion;
-		this.aclaraciones = aclaraciones;
 		try {
 			
 			this.foto = new FileInputStream(fotoPath);
@@ -125,14 +123,6 @@ public class menuDiario {
 		this.diaCorrespondiente = diaCorrespondiente;
 	}
 
-	public String getAclaraciones() {
-		return aclaraciones;
-	}
-
-	public void setAclaraciones(String aclaraciones) {
-		this.aclaraciones = aclaraciones;
-	}
-
 	public FileInputStream getFoto() {
 		return foto;
 	}
@@ -190,10 +180,9 @@ public class menuDiario {
 					statement.setInt(3, getStock());
 					statement.setString(4, getDiaCorrespondiente());
 					statement.setString(5, getDescripcion());
-					statement.setString(6, getAclaraciones());
 					try {
 						
-						statement.setBinaryStream(7, getFoto(), getFoto().available());
+						statement.setBinaryStream(6, getFoto(), getFoto().available());
 						
 					} catch (IOException e) {
 
@@ -232,17 +221,15 @@ public class menuDiario {
 				statement.setInt(3, this.getStock());
 				statement.setString(4, this.getDiaCorrespondiente());
 				statement.setString(5, this.getDescripcion());
-				statement.setString(6, this.getAclaraciones());
 				try {
 					
-					statement.setBinaryStream(7, getFoto(), getFoto().available());
+					statement.setBinaryStream(6, getFoto(), getFoto().available());
 					
 				} catch (IOException e) {
 					
 					e.printStackTrace();
 					
 				}
-				statement.setInt(8, this.getId());
 				
 				try {
 					
@@ -253,6 +240,8 @@ public class menuDiario {
 					e.printStackTrace();
 					
 				}
+				
+				statement.setInt(8, this.getId());
 					
 					int rowsUpdated = statement.executeUpdate();
 					
@@ -343,11 +332,9 @@ public class menuDiario {
 						
 						int stock = resultSet.getInt("stock");
 						
-						String dia = resultSet.getString("diaCorrespondiente");
+						String dia = resultSet.getString("dia_correspondiente");
 						
 						String descripcion = resultSet.getString("descripcion");
-						
-						String acla = resultSet.getString("aclaraciones");
 						
 						InputStream input = resultSet.getBinaryStream("foto");
 						
@@ -357,7 +344,6 @@ public class menuDiario {
 						tempMenu.setStock(stock);
 						tempMenu.setDiaCorrespondiente(dia);
 						tempMenu.setDescripcion(descripcion);
-						tempMenu.setAclaraciones(acla);
 						tempMenu.setFotoPaMostrar(input);
 						
 						dato[0][0] = String.valueOf(id);
@@ -365,7 +351,7 @@ public class menuDiario {
 						dato[0][2] = String.valueOf(precio);
 						dato[0][3] = String.valueOf(stock);
 						
-						System.out.println("ID: " + id + ", Nombre: " + nombre + ", precio: " + precio + ", stock: " + stock + ", dia de la semana: " + dia + ", descripcion: " + descripcion + ", aclaraciones: " + acla + ", foto: " + input);
+						System.out.println("ID: " + id + ", Nombre: " + nombre + ", precio: " + precio + ", stock: " + stock + ", dia de la semana: " + dia + ", descripcion: " + descripcion + ", foto: " + input);
 						
 						return tempMenu;
 						
@@ -388,7 +374,7 @@ public class menuDiario {
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
 	    menuDiario tempMenu = new menuDiario();
-	    String[][] datos = new String[100][6];
+	    String[][] datos = new String[100][5];
 	    int index = 0;
 		
 		String query = BuscarMenusDiariosQuery;
@@ -408,7 +394,7 @@ public class menuDiario {
 				
 			int stock = resultSet.getInt("stock");
 				
-			String dia = resultSet.getString("diaCorrespondiente");
+			String dia = resultSet.getString("dia_correspondiente");
 				
 			String descripcion = resultSet.getString("descripcion");
 				
@@ -416,19 +402,18 @@ public class menuDiario {
 			
 			InputStream input = resultSet.getBinaryStream("foto");
 			
+			tempMenu.setId(id);
 			tempMenu.setNombre(nombre);
 			tempMenu.setPrecio(precio);
 			tempMenu.setStock(stock);
 			tempMenu.setDiaCorrespondiente(dia);
 			tempMenu.setDescripcion(descripcion);
-			tempMenu.setAclaraciones(acla);
 			
-			datos[index][0] = tempMenu.getNombre();
-			datos[index][1] = String.valueOf(tempMenu.getPrecio());
-			datos[index][2] = String.valueOf(tempMenu.getStock());
+			datos[index][0] = String.valueOf(tempMenu.getId());
+			datos[index][1] = tempMenu.getNombre();
+			datos[index][2] = String.valueOf(tempMenu.getPrecio());
+			datos[index][3] = String.valueOf(tempMenu.getStock());
 			datos[index][3] = tempMenu.getDiaCorrespondiente();
-			datos[index][4] = tempMenu.getDescripcion();
-			datos[index][5] = tempMenu.getAclaraciones();
 			
 			index++;
 			
@@ -499,9 +484,6 @@ public class menuDiario {
 				System.out.println("Ingrese la descripcion: ");
 				m.setDescripcion(sr.nextLine());
 				
-				System.out.println("Ingrese las aclaraciones: ");
-				m.setAclaraciones(sr.nextLine());
-				
 				System.out.println("Ingrese la foto: ");
 				m.setFoto(sr.next());
 				
@@ -536,9 +518,6 @@ public class menuDiario {
 				
 				System.out.println("Ingrese la nueva descripcion: ");
 				m.setDescripcion(sr.nextLine());
-				
-				System.out.println("Ingrese las nuevas aclaraciones: ");
-				m.setAclaraciones(sr.nextLine());
 				
 				System.out.println("Ingrese la nueva foto: ");
 				m.setFoto(sr.next());

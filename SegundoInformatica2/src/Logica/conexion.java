@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class conexion {
-	
-	//BORRAR ESTE COMENTARIO
 
 	public Connection conect() {
 		
@@ -20,7 +18,7 @@ public class conexion {
 
 			Class.forName(driver);
 
-			String url = "jdbc:mysql://localhost:3306/testproyecto?useTimezone=true&serverTimezone=UTC";
+			String url = "jdbc:mysql://localhost:3306/cantina_daniela?useTimezone=true&serverTimezone=UTC";
 
 			conn = DriverManager.getConnection(url,"root","root");
 
