@@ -94,12 +94,4 @@ public class menuPrincipal extends JFrame {
         getContentPane().add(btnMenuMDiarios);
     }
 
-    public static void main(String[] args) {
-        // Show the main window
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new menuPrincipal().setVisible(true);
-            }
-        });
-    }
 }

@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 
 public class login extends JFrame {
 
+	private String nombre;
+	private String contra;
+	
     public login() {
         // Configuración básica de la ventana
         setTitle("Login");
@@ -75,8 +78,29 @@ public class login extends JFrame {
                                                                                         rightPanel_1_1.setBackground(new Color(53, 88, 96));
                                                                                         rightPanel_1_1.setBounds(0, 0, 297, 391);
                                                                                         getContentPane().add(rightPanel_1_1);
+                                                                                        
+                                                                                        
                                                                                         loginButton.addActionListener(new ActionListener() {
                                                                                         	public void actionPerformed(ActionEvent e) {
+                                                                                        		
+                                                                                        		nombre = nameField.getText();
+                                                                                        		contra = new String (passwordField.getPassword());
+                                                                                        		
+                                                                                        		if (nombre.equals("admin") && contra.equals("admin")) {
+                                                                                        			
+                                                                                        			menuPrincipal ventanaPrincipal = new menuPrincipal();
+                                                                                        			
+                                                                                        			JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso! Bienvenido, " + nombre);
+                                                                                        			
+                                                                                        			ventanaPrincipal.setVisible(true);
+                                                                                        			login.this.dispose();
+                                                                                        			
+                                                                                        		} else {
+                                                                                        			
+                                                                                        			JOptionPane.showMessageDialog(null, "Error al iniciar sesion");
+                                                                                        			
+                                                                                        		}
+                                                                                        		
                                                                                         	}
                                                                                         });
 
@@ -84,6 +108,11 @@ public class login extends JFrame {
     }
 
     public static void main(String[] args) {
-        new login();
+        // Show the main window
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new login().setVisible(true);
+            }
+        });
     }
 }
