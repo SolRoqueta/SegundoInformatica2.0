@@ -12,13 +12,15 @@ public class modificarProductos extends JFrame {
 	
 	public productos producto = new productos();
 	
+	private menuProductos MenuProductos;
+	
 	// Declaracion de atributos de Productos
 	private String nombre;
 	private int precio;
 	private String descripcion;
 	private String foto;
     
-    public modificarProductos() {
+    public modificarProductos(menuProductos MenuProductos) {
     	
         // Configurar la ventana
         setTitle("Modificar Productos");
@@ -252,7 +254,12 @@ public class modificarProductos extends JFrame {
 	    panel.add(separator);
 	    
 	    JButton btnModificarProducto_1 = new JButton("←");
-	    btnModificarProducto_1.setEnabled(false);
+	    btnModificarProducto_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		MenuProductos.setVisible(true); // Show the main menu
+        		modificarProductos.this.dispose();    // Close the current window
+        	}
+        });
 	    btnModificarProducto_1.setBounds(204, 435, 50, 15);
 	    panel.add(btnModificarProducto_1);
     
