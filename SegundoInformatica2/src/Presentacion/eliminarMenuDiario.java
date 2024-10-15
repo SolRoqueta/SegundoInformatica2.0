@@ -11,6 +11,8 @@ public class eliminarMenuDiario extends JFrame {
 	
 	public productos producto = new productos();
 	
+	private menuMenuDiario MenuDiario;
+	
 	// Declaracion de atributos de Productos
 	private int idproducto;
 	private String nombre;
@@ -18,7 +20,7 @@ public class eliminarMenuDiario extends JFrame {
 	private String descripcion;
 	private String foto;
     
-    public eliminarMenuDiario() {
+    public eliminarMenuDiario(menuMenuDiario MenuDiario) {
     	
         // Configurar la ventana
         setTitle("Eliminar Productos");
@@ -51,7 +53,7 @@ public class eliminarMenuDiario extends JFrame {
         panel.add(buscarProductoField);
         
         JButton btnEliminarProducto = new JButton("Eliminar Producto");
-        btnEliminarProducto.setBounds(167, 482, 150, 30);
+        btnEliminarProducto.setBounds(167, 466, 150, 30);
         panel.add(btnEliminarProducto);
         btnEliminarProducto.setEnabled(false);
     
@@ -82,8 +84,18 @@ public class eliminarMenuDiario extends JFrame {
     panel.add(separator);
     
     JScrollPane scrollPane = new JScrollPane();
-    scrollPane.setBounds(92, 158, 300, 300);
+    scrollPane.setBounds(92, 151, 300, 300);
     panel.add(scrollPane);
+    
+    JButton btnEliminarProducto_1 = new JButton("←");
+    btnEliminarProducto_1.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		MenuDiario.setVisible(true);
+    		eliminarMenuDiario.this.dispose();
+    	}
+    });
+    btnEliminarProducto_1.setBounds(217, 509, 50, 15);
+    panel.add(btnEliminarProducto_1);
     
     }
 }

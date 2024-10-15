@@ -13,12 +13,15 @@ import java.util.List;
 public class listarMenuDiario extends JFrame {
 	
 	private productos producto = new productos();
+	
+	private menuMenuDiario MenuDiario;
+	
 	private JTable Table;
 	private JTextField textField;
 	private JTable tablaListarProductos;
 	private JTable tabla;
     
-    public listarMenuDiario() {
+    public listarMenuDiario(menuMenuDiario MenuDiario) {
          
         // Configurar la ventana
         setTitle("Listar Productos");
@@ -69,8 +72,18 @@ public class listarMenuDiario extends JFrame {
         panel.add(comboBox);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(92, 175, 300, 300);
+        scrollPane.setBounds(92, 161, 300, 300);
         panel.add(scrollPane);
+        
+        JButton btnNewButton = new JButton("←");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		MenuDiario.setVisible(true);
+        		listarMenuDiario.this.dispose();
+        	}
+        });
+        btnNewButton.setBounds(217, 471, 50, 15);
+        panel.add(btnNewButton);
         
     }
 }

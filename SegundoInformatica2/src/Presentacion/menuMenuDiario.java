@@ -33,6 +33,9 @@ public class menuMenuDiario extends JFrame {
         getContentPane().add(btnAgregarUsuarios);
         btnAgregarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	agregarMenuDiario ventanaAgregar = new agregarMenuDiario(menuMenuDiario.this);
+            	ventanaAgregar.setVisible(true);
+            	menuMenuDiario.this.dispose();
             }
         });
         
@@ -42,16 +45,33 @@ public class menuMenuDiario extends JFrame {
         getContentPane().add(btnEliminarUsuarios);
         btnEliminarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	eliminarMenuDiario ventanaEliminar = new eliminarMenuDiario(menuMenuDiario.this);
+            	ventanaEliminar.setVisible(true);
+            	menuMenuDiario.this.dispose();
             }
         });
         
         // Boton para Modificar Usuarios
         JButton btnModificarUsuarios = new JButton("Modificar");
+        btnModificarUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	modificarMenuDiario ventanaModificar = new modificarMenuDiario(menuMenuDiario.this);
+            	ventanaModificar.setVisible(true);
+            	menuMenuDiario.this.dispose();
+            }
+        });
         btnModificarUsuarios.setBounds(84, 136, 125, 31);
         getContentPane().add(btnModificarUsuarios);
         
         // Boton para Listar Usuarios
         JButton btnListarUsuarios = new JButton("Listar");
+        btnListarUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	listarMenuDiario ventanaListar = new listarMenuDiario(menuMenuDiario.this);
+            	ventanaListar.setVisible(true);
+            	menuMenuDiario.this.dispose();
+            }
+        });
         btnListarUsuarios.setBounds(84, 236, 125, 31);
         getContentPane().add(btnListarUsuarios);
         
