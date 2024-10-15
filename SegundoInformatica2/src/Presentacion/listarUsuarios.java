@@ -21,7 +21,7 @@ public class listarUsuarios extends JFrame {
 	private JTable tablaListarProductos;
 	private JTable tabla;
     
-    public listarUsuarios() {
+    public listarUsuarios(menuUsuarios MenuUsuarios) {
          
         // Configurar la ventana
         setTitle("Listar Productos");
@@ -78,6 +78,8 @@ public class listarUsuarios extends JFrame {
         JButton btnNewButton = new JButton("←");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		MenuUsuarios.setVisible(true); // Show the main menu
+        		listarUsuarios.this.dispose();    // Close the current window
         	}
         });
         btnNewButton.setBounds(217, 470, 50, 15);

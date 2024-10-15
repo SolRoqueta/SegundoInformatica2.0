@@ -48,6 +48,7 @@ public class menuUsuarios extends JFrame {
             public void actionPerformed(ActionEvent e) {
         		eliminarUsuarios ventanaEliminar = new eliminarUsuarios(menuUsuarios.this);
         		ventanaEliminar.setVisible(true);
+        		menuUsuarios.this.dispose();
         	}
         });
         
@@ -55,11 +56,25 @@ public class menuUsuarios extends JFrame {
         JButton btnModificarUsuarios = new JButton("Modificar");
         btnModificarUsuarios.setBounds(84, 136, 125, 31);
         this.getContentPane().add(btnModificarUsuarios);
+        btnModificarUsuarios.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+    		modificarUsuarios ventanaModificar = new modificarUsuarios(menuUsuarios.this);
+    		ventanaModificar.setVisible(true);
+    		menuUsuarios.this.dispose();
+    	}
+    });
         
         // Button to List Users
         JButton btnListarUsuarios = new JButton("Listar");
         btnListarUsuarios.setBounds(84, 236, 125, 31);
         this.getContentPane().add(btnListarUsuarios);
+        btnListarUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+        		listarUsuarios ventanaModificar = new listarUsuarios(menuUsuarios.this);
+        		ventanaModificar.setVisible(true);
+        		menuUsuarios.this.dispose();
+        	}
+        });
         
         // Separator
         JSeparator separator = new JSeparator();
