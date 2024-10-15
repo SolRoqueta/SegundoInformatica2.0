@@ -14,13 +14,15 @@ public class agregarProductos extends JFrame {
 	
 	public productos producto = new productos();
 	
+	private menuProductos MenuProductos;
+	
 	// Declaracion de atributos de Productos
 	private String nombre;
 	private int precio;
 	private String descripcion;
 	private String foto;
     
-    public agregarProductos() {
+    public agregarProductos(menuProductos MenuProductos) {
     	
         // Configurar la ventana
         setTitle("Agregar Productos");
@@ -176,6 +178,8 @@ public class agregarProductos extends JFrame {
         JButton agregarProductoBtn_1 = new JButton("←");
         agregarProductoBtn_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		MenuProductos.setVisible(true); // Show the main menu
+        		agregarProductos.this.dispose();    // Close the current window
         	}
         });
         agregarProductoBtn_1.setBounds(161, 361, 50, 15);

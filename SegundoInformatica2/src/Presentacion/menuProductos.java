@@ -30,8 +30,9 @@ public class menuProductos extends JFrame {
         JButton btnAgregarProductos = new JButton("Agregar");
         btnAgregarProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                agregarProductos ventanaAgregar = new agregarProductos();
+                agregarProductos ventanaAgregar = new agregarProductos(menuProductos.this);
                 ventanaAgregar.setVisible(true);
+                menuProductos.this.dispose();
             }
         });
         btnAgregarProductos.setBounds(84, 88, 125, 31);
@@ -41,8 +42,9 @@ public class menuProductos extends JFrame {
         JButton btnModificarProductos = new JButton("Modificar");
         btnModificarProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                modificarProductos ventanaModificar = new modificarProductos();
+                modificarProductos ventanaModificar = new modificarProductos(menuProductos.this);
                 ventanaModificar.setVisible(true);
+                menuProductos.this.dispose();
             }
         });
         btnModificarProductos.setBounds(84, 138, 125, 31);
@@ -52,8 +54,9 @@ public class menuProductos extends JFrame {
         JButton btnEliminarProductos = new JButton("Eliminar");
         btnEliminarProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                eliminarProductos ventanaEliminar = new eliminarProductos();
+                eliminarProductos ventanaEliminar = new eliminarProductos(menuProductos.this);
                 ventanaEliminar.setVisible(true);
+                menuProductos.this.dispose();
             }
         });
         btnEliminarProductos.setBounds(84, 188, 125, 31);
@@ -63,8 +66,9 @@ public class menuProductos extends JFrame {
         JButton btnListarProductos = new JButton("Listar");
         btnListarProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                listarProductos ventanaListar = new listarProductos();
+                listarProductos ventanaListar = new listarProductos(menuProductos.this);
                 ventanaListar.setVisible(true);
+                menuProductos.this.dispose();
             }
         });
         btnListarProductos.setBounds(84, 238, 125, 31);

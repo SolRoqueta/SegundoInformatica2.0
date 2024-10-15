@@ -13,12 +13,15 @@ import java.util.List;
 public class listarProductos extends JFrame {
 	
 	private productos producto = new productos();
+	
+	private menuProductos MenuProductos;
+	
 	private JTable Table;
 	private JTextField textField;
 	private JTable tablaListarProductos;
 	private JTable tabla;
     
-    public listarProductos() {
+    public listarProductos(menuProductos MenuProductos) {
          
         // Configurar la ventana
         setTitle("Listar Productos");
@@ -73,6 +76,12 @@ public class listarProductos extends JFrame {
         panel.add(scrollPane);
         
         JButton btnNewButton = new JButton("←");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		MenuProductos.setVisible(true); // Show the main menu
+        		listarProductos.this.dispose();    // Close the current window
+        	}
+        });
         btnNewButton.setBounds(217, 468, 50, 15);
         panel.add(btnNewButton);
         

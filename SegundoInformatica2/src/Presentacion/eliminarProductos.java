@@ -11,6 +11,8 @@ public class eliminarProductos extends JFrame {
 	
 	public productos producto = new productos();
 	
+	private menuProductos MenuProductos;
+	
 	// Declaracion de atributos de Productos
 	private int idproducto;
 	private String nombre;
@@ -18,7 +20,7 @@ public class eliminarProductos extends JFrame {
 	private String descripcion;
 	private String foto;
     
-    public eliminarProductos() {
+    public eliminarProductos(menuProductos MenuProductos) {
     	
         // Configurar la ventana
         setTitle("Eliminar Productos");
@@ -58,8 +60,6 @@ public class eliminarProductos extends JFrame {
         // Accion para boton EliminarProducto
 	    btnEliminarProducto.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		
-	    	
 	    	}
 	    });
 	    
@@ -86,6 +86,12 @@ public class eliminarProductos extends JFrame {
     panel.add(scrollPane);
     
     JButton btnEliminarProducto_1 = new JButton("←");
+    btnEliminarProducto_1.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		MenuProductos.setVisible(true); // Show the main menu
+    		eliminarProductos.this.dispose();    // Close the current window
+    	}
+    });
     btnEliminarProducto_1.setBounds(217, 505, 50, 15);
     panel.add(btnEliminarProducto_1);
     
