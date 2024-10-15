@@ -1,7 +1,7 @@
 ACA ESTA EL SCRIPT SQL PARA LA CREACION DE LA BASE DE DATOS
 
--- DROP DATABASE `cantina_daniela` ;
-CREATE SCHEMA `cantina_daniela` ;
+-- DROP DATABASE `cantina_daniela`;
+CREATE SCHEMA `cantina_daniela`;
 
 USE `cantina_daniela`;
 
