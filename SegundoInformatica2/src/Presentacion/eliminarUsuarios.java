@@ -61,7 +61,7 @@ public class eliminarUsuarios extends JFrame {
 	    btnEliminarProducto.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    	
+	    		
 	    	}
 	    });
 	    
@@ -90,6 +90,8 @@ public class eliminarUsuarios extends JFrame {
     JButton btnEliminarProducto_1 = new JButton("←");
     btnEliminarProducto_1.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
+    		MenuUsuarios.setVisible(true); // Show the main menu
+    		eliminarUsuarios.this.dispose();    // Close the current window
     	}
     });
     

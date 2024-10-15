@@ -142,6 +142,8 @@ public class modificarUsuarios extends JFrame {
 	    JButton btnModificarProducto_1 = new JButton("←");
 	    btnModificarProducto_1.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
+	    		MenuUsuarios.setVisible(true); // Show the main menu
+        		modificarUsuarios.this.dispose();    // Close the current window
 	    	}
 	    });
 	    btnModificarProducto_1.setBounds(142, 426, 50, 15);
