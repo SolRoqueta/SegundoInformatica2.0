@@ -84,7 +84,7 @@ public class agregarMenuFijo extends JFrame {
         panel.add(subirImagenBtn);
         
         JButton agregarProductoBtn = new JButton("Agregar Menu");
-        agregarProductoBtn.setBounds(110, 361, 150, 30);
+        agregarProductoBtn.setBounds(111, 357, 150, 30);
         panel.add(agregarProductoBtn);
         
         // Accion para boton Subir Imagen
@@ -136,7 +136,7 @@ public class agregarMenuFijo extends JFrame {
         		} else {
         			
         			productos tempProducto = new productos();
-        			String tempNombre = tempProducto.BuscarProducto(nombre, 1).getNombre();
+        			String tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
         			
         			if (tempNombre == null) {
         				
@@ -181,6 +181,14 @@ public class agregarMenuFijo extends JFrame {
         lblCantidad.setForeground(new Color(230, 230, 230));
         lblCantidad.setBounds(24, 181, 53, 25);
         panel.add(lblCantidad);
+        
+        JButton agregarProductoBtn_1 = new JButton("←");
+        agregarProductoBtn_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        agregarProductoBtn_1.setBounds(161, 401, 50, 15);
+        panel.add(agregarProductoBtn_1);
         
     }
 }

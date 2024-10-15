@@ -84,7 +84,7 @@ public class agregarProductos extends JFrame {
         panel.add(subirImagenBtn);
         
         JButton agregarProductoBtn = new JButton("Agregar Producto");
-        agregarProductoBtn.setBounds(115, 322, 150, 30);
+        agregarProductoBtn.setBounds(111, 315, 150, 30);
         panel.add(agregarProductoBtn);
         
         // Accion para boton Subir Imagen
@@ -136,7 +136,7 @@ public class agregarProductos extends JFrame {
         		} else {
         			
         			productos tempProducto = new productos();
-        			String tempNombre = tempProducto.BuscarProducto(nombre, 1).getNombre();
+        			String tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
         			
         			if (tempNombre == null) {
         				
@@ -172,6 +172,14 @@ public class agregarProductos extends JFrame {
         separator.setBackground(Color.LIGHT_GRAY);
         separator.setBounds(136, 45, 100, 2);
         panel.add(separator);
+        
+        JButton agregarProductoBtn_1 = new JButton("←");
+        agregarProductoBtn_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        agregarProductoBtn_1.setBounds(161, 361, 50, 15);
+        panel.add(agregarProductoBtn_1);
         
     }
 }

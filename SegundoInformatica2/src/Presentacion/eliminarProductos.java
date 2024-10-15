@@ -51,7 +51,7 @@ public class eliminarProductos extends JFrame {
         panel.add(buscarProductoField);
         
         JButton btnEliminarProducto = new JButton("Eliminar Producto");
-        btnEliminarProducto.setBounds(167, 482, 150, 30);
+        btnEliminarProducto.setBounds(167, 465, 150, 30);
         panel.add(btnEliminarProducto);
         btnEliminarProducto.setEnabled(false);
     
@@ -82,8 +82,12 @@ public class eliminarProductos extends JFrame {
     panel.add(separator);
     
     JScrollPane scrollPane = new JScrollPane();
-    scrollPane.setBounds(92, 158, 300, 300);
+    scrollPane.setBounds(92, 151, 300, 300);
     panel.add(scrollPane);
+    
+    JButton btnEliminarProducto_1 = new JButton("←");
+    btnEliminarProducto_1.setBounds(217, 505, 50, 15);
+    panel.add(btnEliminarProducto_1);
     
     }
 }

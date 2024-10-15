@@ -33,8 +33,6 @@ public class menuMenuFijo extends JFrame {
         getContentPane().add(btnAgregarUsuarios);
         btnAgregarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                agregarUsuarios ventanaAgregar = new agregarUsuarios();
-                ventanaAgregar.setVisible(true);
             }
         });
         
@@ -44,8 +42,6 @@ public class menuMenuFijo extends JFrame {
         getContentPane().add(btnEliminarUsuarios);
         btnEliminarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                eliminarUsuarios ventanaEliminar = new eliminarUsuarios();
-                ventanaEliminar.setVisible(true);
             }
         });
         

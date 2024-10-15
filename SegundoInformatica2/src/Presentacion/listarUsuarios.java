@@ -13,6 +13,9 @@ import java.util.List;
 public class listarUsuarios extends JFrame {
 	
 	private productos producto = new productos();
+	
+	private menuUsuarios MenuUsuarios;
+	
 	private JTable Table;
 	private JTextField textField;
 	private JTable tablaListarProductos;
@@ -69,8 +72,16 @@ public class listarUsuarios extends JFrame {
         panel.add(comboBox);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(92, 175, 300, 300);
+        scrollPane.setBounds(92, 158, 300, 300);
         panel.add(scrollPane);
+        
+        JButton btnNewButton = new JButton("←");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnNewButton.setBounds(217, 470, 50, 15);
+        panel.add(btnNewButton);
         
     }
 }

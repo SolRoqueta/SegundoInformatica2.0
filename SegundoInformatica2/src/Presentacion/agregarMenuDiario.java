@@ -85,7 +85,7 @@ public class agregarMenuDiario extends JFrame {
         panel.add(subirImagenBtn);
         
         JButton agregarProductoBtn = new JButton("Agregar Menu");
-        agregarProductoBtn.setBounds(133, 449, 150, 30);
+        agregarProductoBtn.setBounds(133, 439, 150, 30);
         panel.add(agregarProductoBtn);
         
         // Accion para boton Subir Imagen
@@ -137,7 +137,7 @@ public class agregarMenuDiario extends JFrame {
         		} else {
         			
         			productos tempProducto = new productos();
-        			String tempNombre = tempProducto.BuscarProducto(nombre, 1).getNombre();
+        			String tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
         			
         			if (tempNombre == null) {
         				
@@ -192,7 +192,7 @@ public class agregarMenuDiario extends JFrame {
         JLabel lblAclaraciones = new JLabel("Aclaraciones");
         lblAclaraciones.setHorizontalAlignment(SwingConstants.CENTER);
         lblAclaraciones.setForeground(new Color(230, 230, 230));
-        lblAclaraciones.setBounds(256, 311, 100, 25);
+        lblAclaraciones.setBounds(252, 310, 100, 25);
         panel.add(lblAclaraciones);
         
         JComboBox comboBox = new JComboBox();
@@ -203,6 +203,14 @@ public class agregarMenuDiario extends JFrame {
         lblDiaCorrespondiente.setForeground(new Color(230, 230, 230));
         lblDiaCorrespondiente.setBounds(36, 238, 125, 25);
         panel.add(lblDiaCorrespondiente);
+        
+        JButton agregarProductoBtn_1 = new JButton("←");
+        agregarProductoBtn_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        agregarProductoBtn_1.setBounds(183, 484, 50, 15);
+        panel.add(agregarProductoBtn_1);
         
     }
 }

@@ -107,7 +107,7 @@ public class modificarProductos extends JFrame {
         btnSubirImagen.setEnabled(false);
         
         JButton btnModificarProducto = new JButton("Modificar Producto");
-        btnModificarProducto.setBounds(154, 406, 150, 30);
+        btnModificarProducto.setBounds(154, 392, 150, 30);
         panel.add(btnModificarProducto);
         btnModificarProducto.setEnabled(false);
         
@@ -140,7 +140,7 @@ public class modificarProductos extends JFrame {
         			
         		} else {
         			
-        			producto = producto.BuscarProducto(nombre, 1);
+        			producto = producto.BuscarProducto(nombre);
         			
         			if (producto.getNombre() == null) {
         				
@@ -162,7 +162,6 @@ public class modificarProductos extends JFrame {
         				nombre = producto.getNombre();
                 		descripcion = producto.getDescripcion();
                 		precio = producto.getPrecio();
-                		foto = producto.getFoto();
                 	
                 		nombreField.setText(nombre);
                 		descripcionArea.setText(descripcion);
@@ -251,6 +250,11 @@ public class modificarProductos extends JFrame {
 	    separator.setForeground(new Color(210, 210, 210));
 	    separator.setBounds(183, 50, 100, 3);
 	    panel.add(separator);
+	    
+	    JButton btnModificarProducto_1 = new JButton("←");
+	    btnModificarProducto_1.setEnabled(false);
+	    btnModificarProducto_1.setBounds(204, 435, 50, 15);
+	    panel.add(btnModificarProducto_1);
     
     }
     

@@ -11,6 +11,8 @@ public class eliminarUsuarios extends JFrame {
 	
 	public productos producto = new productos();
 	
+	private menuUsuarios MenuUsuarios;
+	
 	// Declaracion de atributos de Productos
 	private int idproducto;
 	private String nombre;
@@ -18,7 +20,7 @@ public class eliminarUsuarios extends JFrame {
 	private String descripcion;
 	private String foto;
     
-    public eliminarUsuarios() {
+    public eliminarUsuarios(menuUsuarios MenuUsuarios) {
     	
         // Configurar la ventana
         setTitle("Eliminar Productos");
@@ -42,16 +44,16 @@ public class eliminarUsuarios extends JFrame {
         // Etiqueta de Buscar Producto
         JLabel buscarProductoLabel = new JLabel("Nombre Producto");
         buscarProductoLabel.setForeground(new Color(255, 255, 255));
-        buscarProductoLabel.setBounds(106, 97, 121, 25);
+        buscarProductoLabel.setBounds(110, 92, 121, 25);
         panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
         JTextField buscarProductoField = new JTextField();
-        buscarProductoField.setBounds(106, 116, 127, 20);
+        buscarProductoField.setBounds(110, 112, 127, 20);
         panel.add(buscarProductoField);
         
         JButton btnEliminarProducto = new JButton("Eliminar Producto");
-        btnEliminarProducto.setBounds(167, 482, 150, 30);
+        btnEliminarProducto.setBounds(167, 470, 150, 30);
         panel.add(btnEliminarProducto);
         btnEliminarProducto.setEnabled(false);
     
@@ -74,7 +76,7 @@ public class eliminarUsuarios extends JFrame {
     panel.add(lblProductos);
     
     JComboBox comboBox = new JComboBox();
-    comboBox.setBounds(264, 116, 100, 20);
+    comboBox.setBounds(267, 112, 100, 20);
     panel.add(comboBox);
     
     JSeparator separator = new JSeparator();
@@ -82,8 +84,17 @@ public class eliminarUsuarios extends JFrame {
     panel.add(separator);
     
     JScrollPane scrollPane = new JScrollPane();
-    scrollPane.setBounds(92, 158, 300, 300);
+    scrollPane.setBounds(92, 151, 300, 300);
     panel.add(scrollPane);
+    
+    JButton btnEliminarProducto_1 = new JButton("←");
+    btnEliminarProducto_1.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    	}
+    });
+    
+    btnEliminarProducto_1.setBounds(217, 511, 50, 15);
+    panel.add(btnEliminarProducto_1);
     
     }
 }

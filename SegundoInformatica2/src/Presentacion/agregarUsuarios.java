@@ -15,13 +15,15 @@ public class agregarUsuarios extends JFrame {
 	
 	public usuarios usuario = new usuarios();
 	
+	private menuUsuarios MenuUsuarios;
+	
 	// Declaracion de atributos de Productos
 	private String nombre;
 	private String contra;
 	private String tipoUsuario;
 	private String mail;
     
-    public agregarUsuarios() {
+    public agregarUsuarios(menuUsuarios MenuUsuarios) {
     	
         // Configurar la ventana
         setTitle("Agregar Usuarios");
@@ -82,7 +84,7 @@ public class agregarUsuarios extends JFrame {
         panel.add(mailField);
         
         JButton agregarUsuarioBtn = new JButton("Agregar Usuario");
-        agregarUsuarioBtn.setBounds(80, 323, 150, 30);
+        agregarUsuarioBtn.setBounds(80, 314, 150, 30);
         panel.add(agregarUsuarioBtn);
        
        // Accion para boton AgregarProducto
@@ -100,28 +102,7 @@ public class agregarUsuarios extends JFrame {
         			
         			JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
         			
-        		} else {
-        			
-//        			usuarios tempUsuario = new usuarios();
-//        			String tempNombre = tempUsuario.BuscarUsuario(nombre).getNombre();
-//        			
-//        			if (tempNombre == null) {
-//        				
-//        				usuario.setNombre(nombre);
-//                		usuario.setCont(contra);
-//                		usuario.setMail(mail);
-//                		usuario.setTipoUsuario(tipoUsuario);
-//                		
-//                		usuario.AgregarUsuario();
-//                		JOptionPane.showMessageDialog(null, "Usuario agregado con exito!");
-//        				
-//        			} else {
-//        				
-//        				JOptionPane.showMessageDialog(null, "Error, el usuario ya existe");
-//        				
-//        			}	
-//        		
-        	}
+        		}
         	}
         	
         });
@@ -141,6 +122,16 @@ public class agregarUsuarios extends JFrame {
         lblUsuarios.setBackground(Color.GRAY);
         lblUsuarios.setBounds(99, 55, 111, 20);
         panel.add(lblUsuarios);
+        
+        JButton agregarUsuarioBtn_1 = new JButton("←");
+        agregarUsuarioBtn_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		MenuUsuarios.setVisible(true); // Show the main menu
+        		agregarUsuarios.this.dispose();    // Close the current window
+        	}
+        });
+        agregarUsuarioBtn_1.setBounds(130, 359, 50, 15);
+        panel.add(agregarUsuarioBtn_1);
         
         }
         

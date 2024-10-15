@@ -34,8 +34,9 @@ public class menuUsuarios extends JFrame {
         this.getContentPane().add(btnAgregarUsuarios);
         btnAgregarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-        		agregarUsuarios ventanaAgregar = new agregarUsuarios();
+        		agregarUsuarios ventanaAgregar = new agregarUsuarios(menuUsuarios.this);
         		ventanaAgregar.setVisible(true);
+        		menuUsuarios.this.dispose();
         	}
         });
         
@@ -45,7 +46,7 @@ public class menuUsuarios extends JFrame {
         this.getContentPane().add(btnEliminarUsuarios);
         btnEliminarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-        		eliminarUsuarios ventanaEliminar = new eliminarUsuarios();
+        		eliminarUsuarios ventanaEliminar = new eliminarUsuarios(menuUsuarios.this);
         		ventanaEliminar.setVisible(true);
         	}
         });

@@ -69,8 +69,12 @@ public class listarProductos extends JFrame {
         panel.add(comboBox);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(92, 175, 300, 300);
+        scrollPane.setBounds(92, 153, 300, 300);
         panel.add(scrollPane);
+        
+        JButton btnNewButton = new JButton("←");
+        btnNewButton.setBounds(217, 468, 50, 15);
+        panel.add(btnNewButton);
         
     }
 }
