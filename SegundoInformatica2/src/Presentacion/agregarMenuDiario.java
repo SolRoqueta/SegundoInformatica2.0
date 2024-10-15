@@ -44,30 +44,30 @@ public class agregarMenuDiario extends JFrame {
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
         nombreLabel.setForeground(new Color(230, 230, 230));
-        nombreLabel.setBounds(36, 82, 53, 25);
+        nombreLabel.setBounds(37, 82, 53, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.setBounds(36, 105, 150, 25);
+        nombreField.setBounds(37, 105, 150, 25);
         panel.add(nombreField);
         
         JLabel precioLabel = new JLabel("Precio");
         precioLabel.setForeground(new Color(230, 230, 230));
-        precioLabel.setBounds(36, 132, 40, 25);
+        precioLabel.setBounds(37, 132, 40, 25);
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
-        precioField.setBounds(36, 153, 150, 25);
+        precioField.setBounds(37, 153, 150, 25);
         panel.add(precioField);
         
         JLabel descripcionLabel = new JLabel("Descripción");
-        descripcionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        descripcionLabel.setHorizontalAlignment(SwingConstants.LEFT);
         descripcionLabel.setForeground(new Color(230, 230, 230));
-        descripcionLabel.setBounds(63, 311, 100, 25);
+        descripcionLabel.setBounds(37, 297, 100, 25);
         panel.add(descripcionLabel);
         
         JTextArea descripcionArea = new JTextArea();
-        descripcionArea.setBounds(36, 337, 150, 75);
+        descripcionArea.setBounds(37, 322, 150, 75);
         descripcionArea.setLineWrap(true);
         descripcionArea.setWrapStyleWord(true);
         panel.add(descripcionArea);
@@ -75,13 +75,13 @@ public class agregarMenuDiario extends JFrame {
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
         imagenLabel.setBackground(new Color(255, 255, 255));
-        imagenLabel.setBounds(235, 105, 134, 136);
+        imagenLabel.setBounds(224, 139, 155, 155);
         imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
         
         // Botones
         JButton subirImagenBtn = new JButton("Subir Imagen");
-        subirImagenBtn.setBounds(243, 261, 118, 25);
+        subirImagenBtn.setBounds(242, 315, 118, 25);
         panel.add(subirImagenBtn);
         
         JButton agregarProductoBtn = new JButton("Agregar Menu");
@@ -175,33 +175,21 @@ public class agregarMenuDiario extends JFrame {
         panel.add(separator);
         
         JSpinner precioField_1 = new JSpinner();
-        precioField_1.setBounds(36, 202, 150, 25);
+        precioField_1.setBounds(37, 202, 150, 25);
         panel.add(precioField_1);
         
         JLabel lblCantidad = new JLabel("Stock");
         lblCantidad.setForeground(new Color(230, 230, 230));
-        lblCantidad.setBounds(36, 181, 53, 25);
+        lblCantidad.setBounds(37, 181, 53, 25);
         panel.add(lblCantidad);
         
-        JTextArea descripcionArea_1 = new JTextArea();
-        descripcionArea_1.setWrapStyleWord(true);
-        descripcionArea_1.setLineWrap(true);
-        descripcionArea_1.setBounds(227, 337, 150, 75);
-        panel.add(descripcionArea_1);
-        
-        JLabel lblAclaraciones = new JLabel("Aclaraciones");
-        lblAclaraciones.setHorizontalAlignment(SwingConstants.CENTER);
-        lblAclaraciones.setForeground(new Color(230, 230, 230));
-        lblAclaraciones.setBounds(252, 310, 100, 25);
-        panel.add(lblAclaraciones);
-        
         JComboBox comboBox = new JComboBox();
-        comboBox.setBounds(36, 261, 150, 25);
+        comboBox.setBounds(37, 261, 150, 25);
         panel.add(comboBox);
         
         JLabel lblDiaCorrespondiente = new JLabel("Dia Correspondiente");
         lblDiaCorrespondiente.setForeground(new Color(230, 230, 230));
-        lblDiaCorrespondiente.setBounds(36, 238, 125, 25);
+        lblDiaCorrespondiente.setBounds(37, 238, 125, 25);
         panel.add(lblDiaCorrespondiente);
         
         JButton agregarProductoBtn_1 = new JButton("←");
