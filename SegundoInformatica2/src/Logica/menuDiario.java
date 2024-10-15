@@ -303,7 +303,7 @@ public class menuDiario {
 			} catch (SQLException ex) {
 				
 				ex.printStackTrace();
-				System.out.println("No se a podido eliminar el prdoucto.");
+				System.out.println("No se a podido eliminar el menu diario.");
 			
 			}
 		
