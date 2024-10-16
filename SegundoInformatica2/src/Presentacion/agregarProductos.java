@@ -2,28 +2,26 @@ package Presentacion;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import Logica.productos;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
 public class agregarProductos extends JFrame {
-	
-	public productos producto = new productos();
-	
-	private menuProductos MenuProductos;
-	
-	// Declaracion de atributos de Productos
-	private String nombre;
-	private int precio;
-	private String descripcion;
-	private String foto;
+    
+    public productos producto = new productos();
+    
+    private menuProductos MenuProductos;
+
+    // Declaracion de atributos de Productos
+    private String nombre;
+    private int precio;
+    private String descripcion;
+    private String foto;
     
     public agregarProductos(menuProductos MenuProductos) {
-    	
+        
         // Configurar la ventana
         setTitle("Agregar Productos");
         setSize(388, 429);
@@ -35,13 +33,26 @@ public class agregarProductos extends JFrame {
         panel.setLayout(null);
         panel.setBackground(new Color(43, 70, 77));
         
+        JLabel tituloAgregar = new JLabel("AGREGAR", SwingConstants.CENTER);
+        tituloAgregar.setForeground(new Color(210, 210, 210));
+        tituloAgregar.setFont(new Font("Tahoma", Font.BOLD, 22));
+        tituloAgregar.setBackground(Color.GRAY);
+        tituloAgregar.setBounds(123, 0, 125, 59);
+        panel.add(tituloAgregar);
+
         // Etiqueta de título
-        JLabel titulo = new JLabel("PRODUCTOS", SwingConstants.CENTER);
-        titulo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        titulo.setBounds(132, 33, 108, 51);
-        titulo.setBackground(Color.GRAY);
-        titulo.setForeground(new Color(210, 210, 210));
-        panel.add(titulo);
+        JLabel tituloProductos = new JLabel("PRODUCTOS", SwingConstants.CENTER);
+        tituloProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        tituloProductos.setBounds(132, 33, 108, 51);
+        tituloProductos.setBackground(Color.GRAY);
+        tituloProductos.setForeground(new Color(210, 210, 210));
+        panel.add(tituloProductos);
+        
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(210, 210, 210));
+        separator.setBackground(Color.LIGHT_GRAY);
+        separator.setBounds(136, 45, 100, 2);
+        panel.add(separator);
         
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
@@ -89,101 +100,75 @@ public class agregarProductos extends JFrame {
         agregarProductoBtn.setBounds(111, 315, 150, 30);
         panel.add(agregarProductoBtn);
         
-        // Accion para boton Subir Imagen
+        JButton volverBtn = new JButton("←");
+        volverBtn.setBounds(161, 361, 50, 15);
+        panel.add(volverBtn);
+
+        // Acciones Botones
+
+        // Subir Imagen
         subirImagenBtn.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		// Se crea un JfileChooser y se aplica un filtro para solo archivos
-        		JFileChooser fc = new JFileChooser();
-				fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				
-				// Se crea un filtro de extension que solo permite archivos de imagen
-				FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
-				fc.setFileFilter(filtro);
-				fc.showOpenDialog(subirImagenBtn);
-				
-				   if (fc.getSelectedFile() == null) {
-		    			
-		    			JOptionPane.showMessageDialog(null, "Error, foto no seleccionada");
-		    			
-		            } else {
-		            	
-		            	// Se crea un image icon con el path de la foto seleccionada y una imagen que agarra la foto y las medidas del image Label
-		            	ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
-		            	Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
-		   
-		            	// Mostrar la imagen en imagenLabel
-			            imagenLabel.setIcon(new ImageIcon(image));
-			            foto = fc.getSelectedFile().getAbsolutePath();
-		            	
-		            }
-        		
-        	}
+            public void actionPerformed(ActionEvent e) {
+                // Se crea un JfileChooser y se aplica un filtro para solo archivos
+                JFileChooser fc = new JFileChooser();
+                fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                
+                // Se crea un filtro de extension que solo permite archivos de imagen
+                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
+                fc.setFileFilter(filtro);
+                fc.showOpenDialog(subirImagenBtn);
+                
+                if (fc.getSelectedFile() == null) {
+                    JOptionPane.showMessageDialog(null, "Error, foto no seleccionada");
+                } else {
+                    // Se crea un image icon con el path de la foto seleccionada y una imagen que agarra la foto y las medidas del image Label
+                    ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+                    Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_FAST);
+                    // Mostrar la imagen en imagenLabel
+                    imagenLabel.setIcon(new ImageIcon(image));
+                    foto = fc.getSelectedFile().getAbsolutePath();
+                }
+            }
+        });
+
+        // Agregar Producto
+        agregarProductoBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Gets de todos los atributos del producto a crear
+                nombre = nombreField.getText();
+                descripcion = descripcionArea.getText();
+                precio = (Integer) precioField.getValue();
+                
+                // Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
+                if (nombre.equals("") || descripcion.equals("") || precio == 0 || foto == null) {
+                    JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
+                } else {
+                    productos tempProducto = new productos();
+                    String tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
+                    
+                    if (tempNombre == null) {
+                        producto.setNombre(nombre);
+                        producto.setDescripcion(descripcion);
+                        producto.setPrecio(precio);
+                        producto.setFoto(foto);
+                        producto.AgregarProducto();
+                        JOptionPane.showMessageDialog(null, "Producto agregado con exito!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
+                    }    
+                }    
+            }
+        });
+
+        // Volver atras
+        volverBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                MenuProductos.setVisible(true); 
+                agregarProductos.this.dispose(); 
+            }
         });
        
-       // Accion para boton AgregarProducto
-        agregarProductoBtn.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		// Gets de todos los atributos del producto a crear
-        		nombre = nombreField.getText();
-        		descripcion = descripcionArea.getText();
-        		precio = (Integer) precioField.getValue();
-        		
-        		// Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
-        		if (nombre.equals("") || descripcion.equals("") || precio == 0 || foto == null) {
-        			
-        			JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
-        			
-        		} else {
-        			
-        			productos tempProducto = new productos();
-        			String tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
-        			
-        			if (tempNombre == null) {
-        				
-        				producto.setNombre(nombre);
-                		producto.setDescripcion(descripcion);
-                		producto.setPrecio(precio);
-                		producto.setFoto(foto);
-                		
-                		producto.AgregarProducto();
-                		JOptionPane.showMessageDialog(null, "Producto agregado con exito!");
-        				
-        			} else {
-        				
-        				JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
-        				
-        			}	
-        		}	
-        	}
-        });
-      
         // Agregar el panel a la ventana
         getContentPane().add(panel);
-        
-        JLabel titulo_1 = new JLabel("AGREGAR", SwingConstants.CENTER);
-        titulo_1.setForeground(new Color(210, 210, 210));
-        titulo_1.setFont(new Font("Tahoma", Font.BOLD, 22));
-        titulo_1.setBackground(Color.GRAY);
-        titulo_1.setBounds(123, 0, 125, 59);
-        panel.add(titulo_1);
-        
-        JSeparator separator = new JSeparator();
-        separator.setForeground(new Color(210, 210, 210));
-        separator.setBackground(Color.LIGHT_GRAY);
-        separator.setBounds(136, 45, 100, 2);
-        panel.add(separator);
-        
-        JButton agregarProductoBtn_1 = new JButton("←");
-        agregarProductoBtn_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		MenuProductos.setVisible(true); // Show the main menu
-        		agregarProductos.this.dispose();    // Close the current window
-        	}
-        });
-        agregarProductoBtn_1.setBounds(161, 361, 50, 15);
-        panel.add(agregarProductoBtn_1);
-        
     }
 }

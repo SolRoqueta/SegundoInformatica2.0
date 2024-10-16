@@ -1,30 +1,28 @@
 package Presentacion;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import Logica.productos;
 import Logica.usuarios;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.border.LineBorder;
 
 public class agregarUsuarios extends JFrame {
-	
-	public usuarios usuario = new usuarios();
-	
-	private menuUsuarios MenuUsuarios;
-	
-	// Declaracion de atributos de Productos
-	private String nombre;
-	private String contra;
-	private String tipoUsuario;
-	private String mail;
+    
+    public usuarios usuario = new usuarios();
+    
+    private menuUsuarios MenuUsuarios;
+    
+    // Declaración de atributos de Usuarios
+    private String nombre;
+    private String contra;
+    private String tipoUsuario;
+    private String mail;
+    
+    private String[] tipoUsu = {"Padre", "Profesor"};
     
     public agregarUsuarios(menuUsuarios MenuUsuarios) {
-    	
+        
         // Configurar la ventana
         setTitle("Agregar Usuarios");
         setSize(326, 429);
@@ -40,9 +38,19 @@ public class agregarUsuarios extends JFrame {
         JLabel titulo = new JLabel("AGREGAR", SwingConstants.CENTER);
         titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
         titulo.setBounds(99, 0, 111, 64);
-        titulo.setBackground(Color.GRAY);
         titulo.setForeground(new Color(210, 210, 210));
         panel.add(titulo);
+        
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(192, 192, 192));
+        separator.setBounds(105, 51, 100, 2);
+        panel.add(separator);
+        
+        JLabel tituloUsuarios = new JLabel("USUARIOS", SwingConstants.CENTER);
+        tituloUsuarios.setForeground(new Color(210, 210, 210));
+        tituloUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        tituloUsuarios.setBounds(99, 55, 111, 20);
+        panel.add(tituloUsuarios);
         
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
@@ -63,17 +71,6 @@ public class agregarUsuarios extends JFrame {
         contraField.setBounds(80, 162, 150, 25);
         panel.add(contraField);
         
-        JLabel tipoUsuarioLabel = new JLabel("Tipo Usuario");
-        tipoUsuarioLabel.setForeground(new Color(230, 230, 230));
-        tipoUsuarioLabel.setBounds(80, 242, 100, 25);
-        panel.add(tipoUsuarioLabel);
-        
-        String[] tipoUsu = {"Padre", "Profesor"};
-        
-        JComboBox<String> tipoUsuarioCbbx = new JComboBox<>(tipoUsu);
-        tipoUsuarioCbbx.setBounds(80, 268, 150, 25);
-        panel.add(tipoUsuarioCbbx);
-        
         JLabel mailLabel = new JLabel("Mail");
         mailLabel.setForeground(new Color(230, 230, 230));
         mailLabel.setBounds(78, 192, 100, 25);
@@ -83,58 +80,53 @@ public class agregarUsuarios extends JFrame {
         mailField.setBounds(80, 214, 150, 25);
         panel.add(mailField);
         
+        JLabel tipoUsuarioLabel = new JLabel("Tipo Usuario");
+        tipoUsuarioLabel.setForeground(new Color(230, 230, 230));
+        tipoUsuarioLabel.setBounds(80, 242, 100, 25);
+        panel.add(tipoUsuarioLabel);
+        
+        JComboBox<String> tipoUsuarioCbbx = new JComboBox<>(tipoUsu);
+        tipoUsuarioCbbx.setBounds(80, 268, 150, 25);
+        panel.add(tipoUsuarioCbbx);
+        
+        // Botón Agregar Usuario
         JButton agregarUsuarioBtn = new JButton("Agregar Usuario");
         agregarUsuarioBtn.setBounds(80, 314, 150, 30);
         panel.add(agregarUsuarioBtn);
-       
-       // Accion para boton AgregarProducto
+        
+        JButton volverBtn = new JButton("←");
+        volverBtn.setBounds(130, 359, 50, 15);
+        panel.add(volverBtn);
+        
+        // Acciones Botones
+        
+        // Agregar Usuario
         agregarUsuarioBtn.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		// Gets de todos los atributos del producto a crear
-        		nombre = nombreField.getText();
-        		contra = new String (contraField.getPassword());
-        		tipoUsuario = tipoUsuarioCbbx.getSelectedItem().toString();
-        		mail = mailField.getText();
-        		
-        		// Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
-        		if (nombre.equals("") || contra.equals("") || tipoUsuario.equals("") || mail.equals("")) {
-        			
-        			JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
-        			
-        		}
-        	}
-        	
+            public void actionPerformed(ActionEvent e) {
+                
+                // Gets de todos los atributos del usuario a crear
+                nombre = nombreField.getText();
+                contra = new String(contraField.getPassword());
+                tipoUsuario = tipoUsuarioCbbx.getSelectedItem().toString();
+                mail = mailField.getText();
+                
+                // Verifica si los atributos son nulos
+                if (nombre.equals("") || contra.equals("") || tipoUsuario.equals("") || mail.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
+                }
+            }
         });
-        			
-      
+        
+        // Volver Atras
+        volverBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                MenuUsuarios.setVisible(true); // Mostrar el menú principal
+                agregarUsuarios.this.dispose(); // Cerrar la ventana actual
+            }
+        });
+   
+        
         // Agregar el panel a la ventana
         getContentPane().add(panel);
-        
-        JSeparator separator = new JSeparator();
-        separator.setForeground(new Color(192, 192, 192));
-        separator.setBounds(105, 51, 100, 2);
-        panel.add(separator);
-        
-        JLabel lblUsuarios = new JLabel("USUARIOS", SwingConstants.CENTER);
-        lblUsuarios.setForeground(new Color(210, 210, 210));
-        lblUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblUsuarios.setBackground(Color.GRAY);
-        lblUsuarios.setBounds(99, 55, 111, 20);
-        panel.add(lblUsuarios);
-        
-        JButton agregarUsuarioBtn_1 = new JButton("←");
-        agregarUsuarioBtn_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		MenuUsuarios.setVisible(true); // Show the main menu
-        		agregarUsuarios.this.dispose();    // Close the current window
-        	}
-        });
-        agregarUsuarioBtn_1.setBounds(130, 359, 50, 15);
-        panel.add(agregarUsuarioBtn_1);
-        
-        }
-        
     }
-    
-        
+}
