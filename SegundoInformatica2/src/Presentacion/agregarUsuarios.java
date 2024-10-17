@@ -25,7 +25,7 @@ public class agregarUsuarios extends JFrame {
         
         // Configurar la ventana
         setTitle("Agregar Usuarios");
-        setSize(326, 429);
+        setSize(326, 463);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -55,47 +55,47 @@ public class agregarUsuarios extends JFrame {
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
         nombreLabel.setForeground(new Color(230, 230, 230));
-        nombreLabel.setBounds(80, 86, 53, 25);
+        nombreLabel.setBounds(80, 97, 53, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.setBounds(80, 112, 150, 25);
+        nombreField.setBounds(80, 123, 150, 25);
         panel.add(nombreField);
         
         JLabel contraLabel = new JLabel("Contraseña");
         contraLabel.setForeground(new Color(230, 230, 230));
-        contraLabel.setBounds(78, 141, 84, 25);
+        contraLabel.setBounds(80, 152, 84, 25);
         panel.add(contraLabel);
         
         JPasswordField contraField = new JPasswordField();
-        contraField.setBounds(80, 162, 150, 25);
+        contraField.setBounds(80, 173, 150, 25);
         panel.add(contraField);
         
         JLabel mailLabel = new JLabel("Mail");
         mailLabel.setForeground(new Color(230, 230, 230));
-        mailLabel.setBounds(78, 192, 100, 25);
+        mailLabel.setBounds(80, 203, 100, 25);
         panel.add(mailLabel);
         
         JTextField mailField = new JTextField();
-        mailField.setBounds(80, 214, 150, 25);
+        mailField.setBounds(80, 225, 150, 25);
         panel.add(mailField);
         
         JLabel tipoUsuarioLabel = new JLabel("Tipo Usuario");
         tipoUsuarioLabel.setForeground(new Color(230, 230, 230));
-        tipoUsuarioLabel.setBounds(80, 242, 100, 25);
+        tipoUsuarioLabel.setBounds(80, 253, 100, 25);
         panel.add(tipoUsuarioLabel);
         
         JComboBox<String> tipoUsuarioCbbx = new JComboBox<>(tipoUsu);
-        tipoUsuarioCbbx.setBounds(80, 268, 150, 25);
+        tipoUsuarioCbbx.setBounds(80, 279, 150, 25);
         panel.add(tipoUsuarioCbbx);
         
         // Botón Agregar Usuario
         JButton agregarUsuarioBtn = new JButton("Agregar Usuario");
-        agregarUsuarioBtn.setBounds(80, 314, 150, 30);
+        agregarUsuarioBtn.setBounds(80, 338, 150, 30);
         panel.add(agregarUsuarioBtn);
         
         JButton volverBtn = new JButton("←");
-        volverBtn.setBounds(130, 359, 50, 15);
+        volverBtn.setBounds(130, 383, 50, 15);
         panel.add(volverBtn);
         
         // Acciones Botones

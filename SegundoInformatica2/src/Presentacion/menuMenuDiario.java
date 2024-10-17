@@ -25,7 +25,7 @@ public class menuMenuDiario extends JFrame {
         getContentPane().add(labelTitulo);
         labelTitulo.setFont(new Font("Tahoma", Font.BOLD, 22));
         labelTitulo.setBackground(Color.GRAY);
-        labelTitulo.setForeground(new Color(255, 255, 255));
+        labelTitulo.setForeground(new Color(210, 210, 210));
         
         // Boton para Agregar Usuarios
         JButton btnAgregarUsuarios = new JButton("Agregar");
@@ -76,14 +76,16 @@ public class menuMenuDiario extends JFrame {
         getContentPane().add(btnListarUsuarios);
         
         JSeparator separator = new JSeparator();
-        separator.setBounds(106, 45, 80, 2);
+        separator.setBackground(new Color(210, 210, 210));
+        separator.setForeground(new Color(210, 210, 210));
+        separator.setBounds(106, 49, 80, 2);
         getContentPane().add(separator);
         
         JLabel lblUsuarios = new JLabel("MENUS DIARIOS", SwingConstants.CENTER);
-        lblUsuarios.setForeground(Color.WHITE);
+        lblUsuarios.setForeground(new Color(210, 210, 210));
         lblUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblUsuarios.setBackground(Color.WHITE);
-        lblUsuarios.setBounds(90, 40, 113, 40);
+        lblUsuarios.setBounds(90, 43, 113, 40);
         getContentPane().add(lblUsuarios);
         
         JButton btnBack = new JButton("←");

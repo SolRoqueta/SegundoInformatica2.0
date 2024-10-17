@@ -38,22 +38,22 @@ public class eliminarUsuarios extends JFrame {
         titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
         titulo.setBounds(177, 11, 130, 60);
         titulo.setBackground(Color.GRAY);
-        titulo.setForeground(Color.WHITE);
+        titulo.setForeground(new Color(210, 210, 210));
         panel.add(titulo);
         
         // Etiqueta de Buscar Producto
-        JLabel buscarProductoLabel = new JLabel("Nombre Producto");
+        JLabel buscarProductoLabel = new JLabel("Nombre Usuarios");
         buscarProductoLabel.setForeground(new Color(255, 255, 255));
-        buscarProductoLabel.setBounds(110, 92, 121, 25);
+        buscarProductoLabel.setBounds(106, 92, 121, 25);
         panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
         JTextField buscarProductoField = new JTextField();
-        buscarProductoField.setBounds(110, 112, 127, 20);
+        buscarProductoField.setBounds(106, 116, 127, 20);
         panel.add(buscarProductoField);
         
-        JButton btnEliminarProducto = new JButton("Eliminar Producto");
-        btnEliminarProducto.setBounds(167, 470, 150, 30);
+        JButton btnEliminarProducto = new JButton("Eliminar Usuarios");
+        btnEliminarProducto.setBounds(167, 466, 150, 30);
         panel.add(btnEliminarProducto);
         btnEliminarProducto.setEnabled(false);
     
@@ -69,17 +69,21 @@ public class eliminarUsuarios extends JFrame {
     getContentPane().add(panel);
     
     JLabel lblProductos = new JLabel("USUARIOS", SwingConstants.CENTER);
-    lblProductos.setForeground(Color.WHITE);
+    lblProductos.setForeground(new Color(210, 210, 210));
     lblProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
     lblProductos.setBackground(Color.GRAY);
     lblProductos.setBounds(192, 52, 100, 40);
     panel.add(lblProductos);
     
-    JComboBox comboBox = new JComboBox();
-    comboBox.setBounds(267, 112, 100, 20);
+    JComboBox <String> comboBox = new JComboBox();
+    comboBox.setBounds(267, 116, 100, 20);
     panel.add(comboBox);
     
+    comboBox.addItem("Nombre");
+    comboBox.addItem("Todos");
+    
     JSeparator separator = new JSeparator();
+    separator.setBackground(new Color(210, 210, 210));
     separator.setBounds(192, 58, 100, 2);
     panel.add(separator);
     
@@ -95,7 +99,7 @@ public class eliminarUsuarios extends JFrame {
     	}
     });
     
-    btnEliminarProducto_1.setBounds(217, 511, 50, 15);
+    btnEliminarProducto_1.setBounds(217, 509, 50, 15);
     panel.add(btnEliminarProducto_1);
     
     }

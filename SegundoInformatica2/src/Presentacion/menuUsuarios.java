@@ -26,11 +26,11 @@ public class menuUsuarios extends JFrame {
         this.getContentPane().add(labelTitulo);
         labelTitulo.setFont(new Font("Tahoma", Font.BOLD, 22));
         labelTitulo.setBackground(Color.GRAY);
-        labelTitulo.setForeground(new Color(255, 255, 255));
+        labelTitulo.setForeground(new Color(210, 210, 210));
         
         // Button to Add Users
         JButton btnAgregarUsuarios= new JButton("Agregar");
-        btnAgregarUsuarios.setBounds(84, 86, 125, 31);
+        btnAgregarUsuarios.setBounds(84, 88, 125, 31);
         this.getContentPane().add(btnAgregarUsuarios);
         btnAgregarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -42,7 +42,7 @@ public class menuUsuarios extends JFrame {
         
         // Button to Delete Users
         JButton btnEliminarUsuarios = new JButton("Eliminar");
-        btnEliminarUsuarios.setBounds(84, 186, 125, 31);
+        btnEliminarUsuarios.setBounds(84, 188, 125, 31);
         this.getContentPane().add(btnEliminarUsuarios);
         btnEliminarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -54,7 +54,7 @@ public class menuUsuarios extends JFrame {
         
         // Button to Modify Users
         JButton btnModificarUsuarios = new JButton("Modificar");
-        btnModificarUsuarios.setBounds(84, 136, 125, 31);
+        btnModificarUsuarios.setBounds(84, 138, 125, 31);
         this.getContentPane().add(btnModificarUsuarios);
         btnModificarUsuarios.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -66,7 +66,7 @@ public class menuUsuarios extends JFrame {
         
         // Button to List Users
         JButton btnListarUsuarios = new JButton("Listar");
-        btnListarUsuarios.setBounds(84, 236, 125, 31);
+        btnListarUsuarios.setBounds(84, 238, 125, 31);
         this.getContentPane().add(btnListarUsuarios);
         btnListarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -78,19 +78,20 @@ public class menuUsuarios extends JFrame {
         
         // Separator
         JSeparator separator = new JSeparator();
-        separator.setBounds(106, 45, 80, 2);
+        separator.setBackground(new Color(210, 210, 210));
+        separator.setBounds(106, 49, 80, 2);
         this.getContentPane().add(separator);
         
         JLabel lblUsuarios = new JLabel("USUARIOS", SwingConstants.CENTER);
-        lblUsuarios.setForeground(Color.WHITE);
+        lblUsuarios.setForeground(new Color(210, 210, 210));
         lblUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblUsuarios.setBackground(Color.WHITE);
-        lblUsuarios.setBounds(96, 40, 100, 40);
+        lblUsuarios.setBounds(96, 43, 100, 40);
         this.getContentPane().add(lblUsuarios);
         
         // Back Button (Back to Main Menu)
         JButton btnBack = new JButton("←");
-        btnBack.setBounds(121, 292, 50, 15);
+        btnBack.setBounds(121, 291, 50, 15);
         this.getContentPane().add(btnBack);
         
         btnBack.addActionListener(new ActionListener() {

@@ -40,14 +40,14 @@ public class listarUsuarios extends JFrame {
         titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
         titulo.setBounds(193, 11, 100, 50);
         titulo.setBackground(Color.GRAY);
-        titulo.setForeground(Color.WHITE);
+        titulo.setForeground(new Color(210, 210, 210));
         panel.add(titulo);
         
         // Etiqueta de Nombre Producto
-        JLabel nombreProductoLabel = new JLabel("Nombre Producto");
+        JLabel nombreProductoLabel = new JLabel("Nombre Usuario");
         nombreProductoLabel.setForeground(new Color(255, 255, 255));
         nombreProductoLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        nombreProductoLabel.setBounds(106, 100, 102, 14);
+        nombreProductoLabel.setBounds(106, 95, 102, 14);
         panel.add(nombreProductoLabel);
         
         getContentPane().add(panel);
@@ -57,22 +57,26 @@ public class listarUsuarios extends JFrame {
         panel.add(textField);  
         
         JLabel lblProductos = new JLabel("USUARIOS", SwingConstants.CENTER);
-        lblProductos.setForeground(Color.WHITE);
+        lblProductos.setForeground(new Color(210, 210, 210));
         lblProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblProductos.setBackground(Color.GRAY);
         lblProductos.setBounds(192, 41, 100, 50);
         panel.add(lblProductos);
         
         JSeparator separator = new JSeparator();
+        separator.setBackground(new Color(210, 210, 210));
         separator.setBounds(192, 52, 100, 2);
         panel.add(separator);
         
-        JComboBox comboBox = new JComboBox();
-        comboBox.setBounds(264, 116, 100, 20);
+        JComboBox <String> comboBox = new JComboBox();
+        comboBox.setBounds(267, 116, 100, 20);
         panel.add(comboBox);
         
+        comboBox.addItem("Nombre");
+        comboBox.addItem("Todos");
+        
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(92, 158, 300, 300);
+        scrollPane.setBounds(92, 153, 300, 300);
         panel.add(scrollPane);
         
         JButton btnNewButton = new JButton("←");
@@ -82,7 +86,7 @@ public class listarUsuarios extends JFrame {
         		listarUsuarios.this.dispose();    // Close the current window
         	}
         });
-        btnNewButton.setBounds(217, 470, 50, 15);
+        btnNewButton.setBounds(217, 468, 50, 15);
         panel.add(btnNewButton);
         
     }

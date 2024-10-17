@@ -57,17 +57,17 @@ public class modificarUsuarios extends JFrame {
         // Etiquetas y campos de texto 
         JLabel nombreLabel = new JLabel("Nombre");
         nombreLabel.setForeground(new Color(230, 230, 230));
-        nombreLabel.setBounds(92, 161, 100, 25);
+        nombreLabel.setBounds(92, 155, 100, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.setBounds(92, 181, 150, 25);
+        nombreField.setBounds(92, 177, 150, 25);
         panel.add(nombreField);
         nombreField.setEditable(false);
         
         JLabel precioLabel = new JLabel("Contraseña");
         precioLabel.setForeground(new Color(230, 230, 230));
-        precioLabel.setBounds(92, 210, 76, 25);
+        precioLabel.setBounds(92, 208, 76, 25);
         panel.add(precioLabel);
         
         JFormattedTextField newPrecioField = new JFormattedTextField();
@@ -75,7 +75,7 @@ public class modificarUsuarios extends JFrame {
         
         JLabel descripcionLabel = new JLabel("Mail");
         descripcionLabel.setForeground(new Color(230, 230, 230));
-        descripcionLabel.setBounds(92, 264, 100, 25);
+        descripcionLabel.setBounds(92, 262, 100, 25);
         panel.add(descripcionLabel);
         
         // Botones
@@ -110,20 +110,23 @@ public class modificarUsuarios extends JFrame {
 	    
 	    JLabel lblTipoUsuario = new JLabel("Tipo Usuario");
 	    lblTipoUsuario.setForeground(new Color(230, 230, 230));
-	    lblTipoUsuario.setBounds(92, 318, 100, 25);
+	    lblTipoUsuario.setBounds(92, 311, 100, 25);
 	    panel.add(lblTipoUsuario);
 	    
 	    textField = new JTextField();
 	    textField.setEditable(false);
-	    textField.setBounds(92, 286, 150, 25);
+	    textField.setBounds(92, 282, 150, 25);
 	    panel.add(textField);
 	    
-	    JComboBox comboBox = new JComboBox();
-	    comboBox.setBounds(92, 339, 150, 25);
+	    JComboBox <String> comboBox = new JComboBox();
+	    comboBox.setBounds(92, 335, 150, 25);
 	    panel.add(comboBox);
 	    
+	    comboBox.addItem("Padre");
+	    comboBox.addItem("Profesor");
+	    
 	    passwordField = new JPasswordField();
-	    passwordField.setBounds(92, 233, 150, 25);
+	    passwordField.setBounds(92, 229, 150, 25);
 	    panel.add(passwordField);
 	    
 	    JLabel lblUsuarios = new JLabel("USUARIOS", SwingConstants.CENTER);

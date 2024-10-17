@@ -38,13 +38,13 @@ public class eliminarProductos extends JFrame {
         titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
         titulo.setBounds(177, 11, 130, 60);
         titulo.setBackground(Color.GRAY);
-        titulo.setForeground(Color.WHITE);
+        titulo.setForeground(new Color(210, 210, 210));
         panel.add(titulo);
         
         // Etiqueta de Buscar Producto
         JLabel buscarProductoLabel = new JLabel("Nombre Producto");
         buscarProductoLabel.setForeground(new Color(255, 255, 255));
-        buscarProductoLabel.setBounds(106, 97, 121, 25);
+        buscarProductoLabel.setBounds(106, 92, 121, 25);
         panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
@@ -53,7 +53,7 @@ public class eliminarProductos extends JFrame {
         panel.add(buscarProductoField);
         
         JButton btnEliminarProducto = new JButton("Eliminar Producto");
-        btnEliminarProducto.setBounds(167, 465, 150, 30);
+        btnEliminarProducto.setBounds(167, 466, 150, 30);
         panel.add(btnEliminarProducto);
         btnEliminarProducto.setEnabled(false);
     
@@ -67,22 +67,28 @@ public class eliminarProductos extends JFrame {
     getContentPane().add(panel);
     
     JLabel lblProductos = new JLabel("PRODUCTOS", SwingConstants.CENTER);
-    lblProductos.setForeground(Color.WHITE);
+    lblProductos.setForeground(new Color(210, 210, 210));
     lblProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
     lblProductos.setBackground(Color.GRAY);
     lblProductos.setBounds(192, 52, 100, 40);
     panel.add(lblProductos);
     
-    JComboBox comboBox = new JComboBox();
-    comboBox.setBounds(264, 116, 100, 20);
+    JComboBox <String> comboBox = new JComboBox();
+    
+    comboBox.setBounds(267, 116, 100, 20);
     panel.add(comboBox);
     
+    comboBox.addItem("Nombre");
+    comboBox.addItem("Todos");
+    
     JSeparator separator = new JSeparator();
+    separator.setForeground(new Color(210, 210, 210));
+    separator.setBackground(new Color(210, 210, 210));
     separator.setBounds(192, 58, 100, 2);
     panel.add(separator);
     
     JScrollPane scrollPane = new JScrollPane();
-    scrollPane.setBounds(92, 151, 300, 300);
+    scrollPane.setBounds(92, 153, 300, 300);
     panel.add(scrollPane);
     
     JButton btnEliminarProducto_1 = new JButton("←");
@@ -92,7 +98,7 @@ public class eliminarProductos extends JFrame {
     		eliminarProductos.this.dispose();    // Close the current window
     	}
     });
-    btnEliminarProducto_1.setBounds(217, 505, 50, 15);
+    btnEliminarProducto_1.setBounds(217, 509, 50, 15);
     panel.add(btnEliminarProducto_1);
     
     }

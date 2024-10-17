@@ -28,7 +28,7 @@ public class login extends JFrame {
         // Etiqueta "Nombre"
         JLabel nameLabel = new JLabel("Nombre");
                                                         nameLabel.setForeground(new Color(240, 240, 240));
-                                                        nameLabel.setBounds(86, 123, 100, 20);
+                                                        nameLabel.setBounds(86, 127, 100, 20);
                                                         rightPanel.add(nameLabel);
                                                         
                                                                 // Campo de texto para el nombre
@@ -52,7 +52,7 @@ public class login extends JFrame {
                                                                                         // Etiqueta "Contraseña"
                                                                                         JLabel passwordLabel = new JLabel("Contraseña");
                                                                                         passwordLabel.setForeground(new Color(240, 240, 240));
-                                                                                        passwordLabel.setBounds(86, 209, 100, 20);
+                                                                                        passwordLabel.setBounds(86, 207, 100, 20);
                                                                                         rightPanel.add(passwordLabel);
                                                                                         
                                                                                         JButton loginButton = new JButton("Login");
@@ -78,6 +78,30 @@ public class login extends JFrame {
                                                                                         rightPanel_1_1.setBackground(new Color(53, 88, 96));
                                                                                         rightPanel_1_1.setBounds(0, 0, 297, 391);
                                                                                         getContentPane().add(rightPanel_1_1);
+                                                                                        
+                                                                                        JLabel lblNewLabel = new JLabel("");
+                                                                                        lblNewLabel.setBounds(53, 110, 190, 190);
+                                                                                        rightPanel_1_1.add(lblNewLabel);
+                                                                                        
+                                                                                        JLabel lblLaCantina = new JLabel("LA CANTINA");
+                                                                                        lblLaCantina.setHorizontalAlignment(SwingConstants.CENTER);
+                                                                                        lblLaCantina.setForeground(new Color(210, 210, 210));
+                                                                                        lblLaCantina.setFont(new Font("Tahoma", Font.BOLD, 22));
+                                                                                        lblLaCantina.setBounds(57, 16, 182, 30);
+                                                                                        rightPanel_1_1.add(lblLaCantina);
+                                                                                        
+                                                                                        JLabel lblLaCantina_1 = new JLabel("DE DANIELA");
+                                                                                        lblLaCantina_1.setHorizontalAlignment(SwingConstants.CENTER);
+                                                                                        lblLaCantina_1.setForeground(new Color(210, 210, 210));
+                                                                                        lblLaCantina_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+                                                                                        lblLaCantina_1.setBounds(59, 50, 182, 30);
+                                                                                        rightPanel_1_1.add(lblLaCantina_1);
+                                                                                        
+                                                                                        JSeparator separator_1 = new JSeparator();
+                                                                                        separator_1.setForeground(new Color(210, 210, 210));
+                                                                                        separator_1.setBackground(new Color(210, 210, 210));
+                                                                                        separator_1.setBounds(97, 49, 100, 2);
+                                                                                        rightPanel_1_1.add(separator_1);
                                                                                         
                                                                                         
                                                                                         loginButton.addActionListener(new ActionListener() {

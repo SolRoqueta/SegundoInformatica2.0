@@ -90,9 +90,15 @@ public class agregarMenuDiario extends JFrame {
         diaLabel.setBounds(37, 238, 125, 25);
         panel.add(diaLabel);
         
-        JComboBox diaCbbx = new JComboBox();
-        diaCbbx.setBounds(37, 261, 150, 25);
-        panel.add(diaCbbx);
+        JComboBox <String> comboBox = new JComboBox();
+        comboBox.setBounds(37, 261, 150, 25);
+        panel.add(comboBox);
+        
+        comboBox.addItem("Lunes");
+        comboBox.addItem("Martes");
+        comboBox.addItem("Miercoles");
+        comboBox.addItem("Jueves");
+        comboBox.addItem("Viernes");
         
         JLabel descripcionLabel = new JLabel("Descripción");
         descripcionLabel.setHorizontalAlignment(SwingConstants.LEFT);

@@ -98,7 +98,7 @@ public class agregarMenuFijo extends JFrame {
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
         imagenLabel.setBackground(new Color(255, 255, 255));
-        imagenLabel.setBounds(215, 132, 118, 121);
+        imagenLabel.setBounds(198, 114, 150, 139);
         imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
 

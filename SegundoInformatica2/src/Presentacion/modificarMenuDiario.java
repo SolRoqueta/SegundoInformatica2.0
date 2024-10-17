@@ -47,11 +47,11 @@ public class modificarMenuDiario extends JFrame {
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
         nombreLabel.setForeground(new Color(230, 230, 230));
-        nombreLabel.setBounds(77, 82, 53, 25);
+        nombreLabel.setBounds(83, 82, 53, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.setBounds(77, 104, 150, 25);
+        nombreField.setBounds(83, 110, 150, 25);
         panel.add(nombreField);
         
         JLabel precioLabel = new JLabel("Precio");
@@ -186,9 +186,15 @@ public class modificarMenuDiario extends JFrame {
         lblCantidad.setBounds(254, 167, 53, 25);
         panel.add(lblCantidad);
         
-        JComboBox comboBox = new JComboBox();
+        JComboBox <String> comboBox = new JComboBox();
         comboBox.setBounds(53, 422, 150, 25);
         panel.add(comboBox);
+        
+        comboBox.addItem("Lunes");
+        comboBox.addItem("Martes");
+        comboBox.addItem("Miercoles");
+        comboBox.addItem("Jueves");
+        comboBox.addItem("Viernes");
         
         JLabel lblDiaCorrespondiente = new JLabel("Dia Correspondiente");
         lblDiaCorrespondiente.setForeground(new Color(230, 230, 230));
@@ -210,7 +216,7 @@ public class modificarMenuDiario extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
-        btnBuscarMenu.setBounds(245, 104, 118, 25);
+        btnBuscarMenu.setBounds(256, 110, 118, 25);
         panel.add(btnBuscarMenu);
         
         textField = new JTextField();

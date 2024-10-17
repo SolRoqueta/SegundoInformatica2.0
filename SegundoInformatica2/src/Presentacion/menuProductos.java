@@ -24,7 +24,7 @@ public class menuProductos extends JFrame {
         getContentPane().add(labelTitulo);
         labelTitulo.setFont(new Font("Tahoma", Font.BOLD, 22));
         labelTitulo.setBackground(Color.GRAY);
-        labelTitulo.setForeground(new Color(255, 255, 255));
+        labelTitulo.setForeground(new Color(210, 210, 210));
         
         // Boton para Agregar Productos
         JButton btnAgregarProductos = new JButton("Agregar");
@@ -75,11 +75,13 @@ public class menuProductos extends JFrame {
         getContentPane().add(btnListarProductos);
         
         JSeparator separator = new JSeparator();
+        separator.setBackground(new Color(210, 210, 210));
+        separator.setForeground(new Color(210, 210, 210));
         separator.setBounds(101, 49, 90, 2);
         getContentPane().add(separator);
         
         JLabel lblProductos = new JLabel("PRODUCTOS", SwingConstants.CENTER);
-        lblProductos.setForeground(Color.WHITE);
+        lblProductos.setForeground(new Color(210, 210, 210));
         lblProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblProductos.setBackground(Color.WHITE);
         lblProductos.setBounds(96, 43, 100, 40);
