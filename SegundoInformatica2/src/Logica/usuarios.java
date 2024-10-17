@@ -160,7 +160,7 @@ public class usuarios {
 				
 			} catch (SQLException ex) {
 				
-				ex.printStackTrace();
+//				ex.printStackTrace();
 				System.out.println("No se a podido modificar el usuario");
 			
 			}
@@ -211,7 +211,7 @@ public class usuarios {
 				 
 			} catch (SQLException e) {
 			
-				e.printStackTrace();
+//				e.printStackTrace();
 				System.out.println("Usuario no encontrado");
 			
 			}

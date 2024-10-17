@@ -98,7 +98,7 @@ public class productos {
 			
 		} catch (FileNotFoundException e) {
 			
-			e.printStackTrace();
+//			e.printStackTrace();
 			
 		}
 		
@@ -126,7 +126,7 @@ public class productos {
 			
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+//			e.printStackTrace();
 			
 		}
 	}
@@ -196,7 +196,7 @@ public class productos {
 				
 			} catch (SQLException ex) {
 				
-				ex.printStackTrace();
+//				ex.printStackTrace();
 				System.out.println("No se a podido modificar el producto");
 			
 			}
@@ -301,7 +301,7 @@ public class productos {
 				 
 			} catch (SQLException e) {
 			
-				e.printStackTrace();
+//				e.printStackTrace();
 				System.out.println("Producto no encontrado");
 			
 			}

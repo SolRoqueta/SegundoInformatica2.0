@@ -41,7 +41,7 @@ public class menuFijo {
 			
 		} catch (FileNotFoundException e) {
 			
-			e.printStackTrace();
+//			e.printStackTrace();
 			System.out.println("ERROR AL AGREGAR LA FOTO");
 			
 		}
@@ -104,7 +104,7 @@ public class menuFijo {
 			
 		} catch (FileNotFoundException e) {
 			
-			e.printStackTrace();
+//			e.printStackTrace();
 			
 		}
 		
@@ -136,7 +136,7 @@ public class menuFijo {
 			
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+//			e.printStackTrace();
 			
 		}
 	}
@@ -185,7 +185,7 @@ public class menuFijo {
 				
 			} catch (SQLException ex) {
 				
-				ex.printStackTrace();
+//				ex.printStackTrace();
 				System.out.println("ERROR, al agregar el menu fijo");
 			
 			}
@@ -246,7 +246,7 @@ public class menuFijo {
 				 
 			} catch (SQLException e) {
 			
-				e.printStackTrace();
+//				e.printStackTrace();
 				System.out.println("Menu diario no encontrado");
 				return null;
 				
@@ -301,7 +301,7 @@ public class menuFijo {
 	}
     } catch (SQLException e) {
 	
-		e.printStackTrace();
+//		e.printStackTrace();
     	System.out.println("ERROR en la busqueda de productos");
 	
 	}
@@ -337,7 +337,7 @@ public class menuFijo {
 				
 			} catch (SQLException ex) {
 				
-				ex.printStackTrace();
+//				ex.printStackTrace();
 				System.out.println("No se a podido eliminar el menu fijo.");
 			
 			}
@@ -386,7 +386,7 @@ public class menuFijo {
 				
 			} catch (SQLException ex) {
 				
-				ex.printStackTrace();
+//				ex.printStackTrace();
 				System.out.println("No se a podido modificar el menu_fijo");
 			
 			}
