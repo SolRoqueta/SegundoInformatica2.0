@@ -170,7 +170,7 @@ public class modificarProductos extends JFrame {
                 		precioField.setValue(precio);
                 		
                 		// Se crea un image icon con el path de la foto del producto y una imagen que agarra la foto y las medidas del image Label
-                		ImageIcon imageIcon = new ImageIcon(foto);
+                		ImageIcon imageIcon = new ImageIcon(producto.getFotoPaMostrar());
                 		Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(),imagenLabel.getHeight(), Image.SCALE_FAST);
                 		imagenLabel.setIcon(new ImageIcon(image));
         				
@@ -205,6 +205,7 @@ public class modificarProductos extends JFrame {
 	            	// Mostrar la imagen en imagenLabel
 		            imagenLabel.setIcon(new ImageIcon(image));
 		            foto = fc.getSelectedFile().getAbsolutePath();
+		            producto.setFoto(foto);
 	            	
 	            }
         	}

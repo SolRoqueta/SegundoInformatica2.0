@@ -22,6 +22,7 @@ public class agregarMenuDiario extends JFrame {
 	private String diaCorrespondiente;
 	private String descripcion;
 	private String caminoFoto;
+	private String foto;
     
     public agregarMenuDiario(menuMenuDiario MenuDiario) {
     	
@@ -138,12 +139,36 @@ public class agregarMenuDiario extends JFrame {
         subirImagenBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 		            	
+        		// Se crea un JfileChooser y se aplica un filtro para solo archivos
+                JFileChooser fc = new JFileChooser();
+                fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                
+                // Se crea un filtro de extension que solo permite archivos de imagen
+                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
+                fc.setFileFilter(filtro);
+                fc.showOpenDialog(subirImagenBtn);
+                
+                if (fc.getSelectedFile() == null) {
+                    JOptionPane.showMessageDialog(null, "Error, foto no seleccionada");
+                } else {
+                    // Se crea un image icon con el path de la foto seleccionada y una imagen que agarra la foto y las medidas del image Label
+                    ImageIcon imageIcon = new ImageIcon(fc.getSelectedFile().getAbsolutePath());
+                    Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_FAST);
+                    // Mostrar la imagen en imagenLabel
+                    imagenLabel.setIcon(new ImageIcon(image));
+                    foto = fc.getSelectedFile().getAbsolutePath();
+                }
+        		
 		            }
         });
        
        // AgregarMenu
         agregarMenuBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		
+        		// Gets de todos los atributos del usuario a crear
+                nombre = nombreField.getText();
+                precio = Integer.parseInt(precioField.getValue().toString());
         		
         		}	
         });

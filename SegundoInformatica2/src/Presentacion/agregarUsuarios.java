@@ -113,7 +113,26 @@ public class agregarUsuarios extends JFrame {
                 // Verifica si los atributos son nulos
                 if (nombre.equals("") || contra.equals("") || tipoUsuario.equals("") || mail.equals("")) {
                     JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
+                } else {
+                	
+                	String tempNombre = usuario.BuscarUsuario(nombre).getNombre();
+                    
+                    if (tempNombre == null) {
+                    	
+                    	usuario.setNombre(nombre);
+                    	usuario.setCont(contra);
+                    	usuario.setTipoUsuario(tipoUsuario);
+                    	usuario.setMail(mail);
+                    	usuario.AgregarUsuario();
+                    	
+                    	JOptionPane.showMessageDialog(null, "Usuario, " + nombre + " agregado con exito!");
+                    	
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
+                    } 
+                	
                 }
+                
             }
         });
         

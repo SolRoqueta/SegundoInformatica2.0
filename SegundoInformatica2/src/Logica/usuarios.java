@@ -1,6 +1,7 @@
 package Logica;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,8 @@ public class usuarios {
 	private String contrasenha; //Declaro el String de contraseña
 	private String tipoUsuario; 
 	private String mail;
+	private Date fecha_ultimo_acceso;
+	private String AgregarUsuarioQuery = "INSERT INTO usuarios (nombre, contrasenia, mail, tipo_usuario, fecha_ultimo_acceso) VALUES (?, ?, ?, ?, ?);";
 	
 
 	 // CONSTRUCTOR DE USUARIOS 
@@ -76,15 +79,18 @@ public class usuarios {
 	     Connection con = cc.conect();
 			
 	     //Sentencia SQL que inserta los datos en la tabla "usuarios"
-	     String query = "INSERT INTO usuarios (nombre, contrasenha, mail, tipo_usuario) VALUES (?, ?, ?, ?);";
+	     String query = AgregarUsuarioQuery;
 	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
 				
+	    	 		fecha_ultimo_acceso = new Date(System.currentTimeMillis());
+	    	 		
 					statement.setString(1, this.getNombre());
 					statement.setString(2, this.getCont());
 					statement.setString(3, this.getMail());
 					statement.setString(4, this.getTipoUsuario());
+					statement.setDate(5, fecha_ultimo_acceso);
 			
 					
 					int rowsInserted = statement.executeUpdate();
@@ -94,7 +100,7 @@ public class usuarios {
 				
 			} catch (SQLException ex) {
 				
-//				ex.printStackTrace();
+				ex.printStackTrace();
 				System.out.println("ERROR, al agregar usuario");
 			
 			}

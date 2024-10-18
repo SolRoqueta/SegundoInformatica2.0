@@ -140,7 +140,7 @@ public class agregarProductos extends JFrame {
                 precio = (Integer) precioField.getValue();
                 
                 // Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
-                if (nombre.equals("") || descripcion.equals("") || precio == 0 || foto == null) {
+                if (nombre.equals("") || precio == 0 || foto == null) {
                     JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
                 } else {
                     productos tempProducto = new productos();
