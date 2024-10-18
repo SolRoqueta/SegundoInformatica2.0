@@ -1,150 +1,198 @@
 ACA ESTA EL SCRIPT SQL PARA LA CREACION DE LA BASE DE DATOS
 
--- DROP DATABASE `cantina_daniela`;
-CREATE SCHEMA `cantina_daniela`;
-
-USE `cantina_daniela`;
+DROP database `cantina_daniela`;
+CREATE database `cantina_daniela`; 
+use `cantina_daniela`;
 
 CREATE TABLE `cantina_daniela`.`productos` (
-  `id_productos` INT NOT NULL AUTO_INCREMENT,
+  `id_producto` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `precio` INT NOT NULL,
+  `precio` INT UNSIGNED NOT NULL,
   `descripcion` LONGTEXT NULL,
   `foto` MEDIUMBLOB NOT NULL,
-  PRIMARY KEY (`id_productos`),
-  UNIQUE INDEX `nombre_unico` (`nombre` ASC) VISIBLE);
+  PRIMARY KEY (`id_producto`),
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC) VISIBLE);
   
-  CREATE TABLE `cantina_daniela`.`menus_fijos` (
-  `idmenus_fijos` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `precio` INT NOT NULL,
-  `descripcion` LONGTEXT NULL,
-  `foto` MEDIUMBLOB NOT NULL,
-  `stock` INT NOT NULL,
-  PRIMARY KEY (`idmenus_fijos`));
+  CREATE TABLE `cantina_daniela`.`menus_semanales` (
+  `id_menu_semanal` INT NOT NULL AUTO_INCREMENT,
+  `fecha_desde` DATE NOT NULL,
+  `fecha_hasta` DATE NOT NULL,
+  PRIMARY KEY (`id_menu_semanal`));
   
-  CREATE TABLE `cantina_daniela`.`menus_diarios` (
-  `idmenus_diarios` INT NOT NULL AUTO_INCREMENT,
+  CREATE TABLE `cantina_daniela`.`grupos` (
+  `id_grupo` INT NOT NULL AUTO_INCREMENT,
+  `nombre_grupo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_grupo`));
+
+CREATE TABLE `cantina_daniela`.`menus` (
+  `id_menu` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `precio` INT NOT NULL,
   `descripcion` LONGTEXT NULL,
   `foto` MEDIUMBLOB NOT NULL,
   `dia_correspondiente` VARCHAR(45) NOT NULL,
   `stock` INT NOT NULL,
-  PRIMARY KEY (`idmenus_diarios`));
-  
-  CREATE TABLE `cantina_daniela`.`usuarios` (
-  `idusuarios` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `contrasenia` VARCHAR(45) NOT NULL,
-  `fecha_ultimo_acceso` DATE NOT NULL,
-  `tipo_usuario` VARCHAR(45) NOT NULL,
-  `mail` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idusuarios`));
-  
-  CREATE TABLE `cantina_daniela`.`clientes` (
-  `idclientes` INT NOT NULL AUTO_INCREMENT,
-  `fk_nombre_completo` INT NOT NULL,
+  `diario` TINYINT NOT NULL,
+  `fk_id_menu_semanal` INT NOT NULL,
+  PRIMARY KEY (`id_menu`),
+  INDEX `fk_id_menusemanal_idx` (`fk_id_menu_semanal` ASC) VISIBLE,
+  CONSTRAINT `fk_id_menusemanal`
+    FOREIGN KEY (`fk_id_menu_semanal`)
+    REFERENCES `cantina_daniela`.`menus_semanales` (`id_menu_semanal`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+CREATE TABLE `cantina_daniela`.`clientes` (
+  `id_cliente` INT NOT NULL AUTO_INCREMENT,
+  `nombre_completo` VARCHAR(45) NOT NULL,
   `saldo` INT NOT NULL,
   `numero_telefono` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idclientes`),
-  INDEX `fk_a_usuarios_idx` (`fk_nombre_completo` ASC) VISIBLE,
-  CONSTRAINT `fk_a_usuarios`
-    FOREIGN KEY (`fk_nombre_completo`)
-    REFERENCES `cantina_daniela`.`usuarios` (`idusuarios`)
+  PRIMARY KEY (`id_cliente`));
+  
+  CREATE TABLE `cantina_daniela`.`usuarios` (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `contrasenia` VARCHAR(45) NOT NULL,
+  `fecha_ultimo_acceso` DATE NULL,
+  `tipo_usuario` VARCHAR(45) NOT NULL,
+  `mail` VARCHAR(45) NOT NULL,
+  `fk_id_cliente` INT NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  INDEX `fk_idcliente_idx` (`fk_id_cliente` ASC) VISIBLE,
+  CONSTRAINT `fk_idcliente`
+    FOREIGN KEY (`fk_id_cliente`)
+    REFERENCES `cantina_daniela`.`clientes` (`id_cliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+ALTER TABLE `cantina_daniela`.`clientes` 
+ADD COLUMN `fk_id_usuario` INT NOT NULL AFTER `numero_telefono`,
+ADD INDEX `fk_idusuario_idx` (`fk_id_usuario` ASC) VISIBLE;
+
+ALTER TABLE `cantina_daniela`.`clientes` 
+ADD CONSTRAINT `fk_cliente_usuario`
+  FOREIGN KEY (`fk_id_usuario`)
+  REFERENCES `cantina_daniela`.`usuarios` (`id_usuario`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+  CREATE TABLE `cantina_daniela`.`alumnos` (
+  `id_alumno` INT NOT NULL AUTO_INCREMENT,
+  `nombre_completo` VARCHAR(45) NOT NULL,
+  `foto` MEDIUMBLOB NOT NULL,
+  `fk_id_cliente` INT NOT NULL,
+  `fk_id_grupo` INT NOT NULL,
+  PRIMARY KEY (`id_alumno`),
+  INDEX `fk_idcliente_idx` (`fk_id_cliente` ASC) VISIBLE,
+  INDEX `fk_idgrupo_idx` (`fk_id_grupo` ASC) VISIBLE,
+  CONSTRAINT `fk_alumno_cliente`
+    FOREIGN KEY (`fk_id_cliente`)
+    REFERENCES `cantina_daniela`.`clientes` (`id_cliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+CONSTRAINT `fk_alumnos_grupo`
+    FOREIGN KEY (`fk_id_grupo`)
+    REFERENCES `cantina_daniela`.`grupos` (`id_grupo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+CREATE TABLE `cantina_daniela`.`pedidos` (
+  `id_pedido` INT NOT NULL AUTO_INCREMENT,
+  `total` INT NOT NULL,
+  `online` TINYINT NOT NULL,
+  `fecha` DATE NOT NULL,
+  `fk_id_cliente` INT NOT NULL,
+  PRIMARY KEY (`id_pedido`),
+  INDEX `fk_pedidos_clientes_idx` (`fk_id_cliente` ASC) VISIBLE,
+  CONSTRAINT `fk_pedidos_clientes`
+    FOREIGN KEY (`fk_id_cliente`)
+    REFERENCES `cantina_daniela`.`clientes` (`id_cliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-    CREATE TABLE `cantina_daniela`.`movimientos` (
-  `idmovimientos` INT NOT NULL AUTO_INCREMENT,
-  `fk_id_clientes` INT NOT NULL,
-  `credito_debito` TINYINT NOT NULL,
-  PRIMARY KEY (`idmovimientos`),
-  INDEX `fk_id_cleientes_idx` (`fk_id_clientes` ASC) VISIBLE,
-  CONSTRAINT `fk_a_id_clientes`
-    FOREIGN KEY (`fk_id_clientes`)
-    REFERENCES `cantina_daniela`.`clientes` (`idclientes`)
+CREATE TABLE `cantina_daniela`.`item_pedidos` (
+  `id_item_pedido` INT NOT NULL AUTO_INCREMENT,
+  `fk_id_alumno` INT NOT NULL,
+  `fk_id_pedido` INT NOT NULL,
+  `fk_id_menu` INT NOT NULL,
+  PRIMARY KEY (`id_item_pedido`),
+  INDEX `fk_itempedidos_alumnos_idx` (`fk_id_alumno` ASC) VISIBLE,
+  INDEX `fk_itempedidos_pedidos_idx` (`fk_id_pedido` ASC) VISIBLE,
+  INDEX `fk_itempedidos_menus_idx` (`fk_id_menu` ASC) VISIBLE,
+  CONSTRAINT `fk_itempedidos_alumnos`
+    FOREIGN KEY (`fk_id_alumno`)
+    REFERENCES `cantina_daniela`.`alumnos` (`id_alumno`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_itempedidos_pedidos`
+    FOREIGN KEY (`fk_id_pedido`)
+    REFERENCES `cantina_daniela`.`pedidos` (`id_pedido`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_itempedidos_menus`
+    FOREIGN KEY (`fk_id_menu`)
+    REFERENCES `cantina_daniela`.`menus` (`id_menu`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-    
+
 CREATE TABLE `cantina_daniela`.`pagos` (
-  `idpagos` INT NOT NULL AUTO_INCREMENT,
-  `fk_id_clientes` INT NOT NULL,
+  `id_pagos` INT NOT NULL AUTO_INCREMENT,
   `monto` INT NOT NULL,
   `fecha` DATE NOT NULL,
-  PRIMARY KEY (`idpagos`),
-  INDEX `fk_a_id_clientes_idx` (`fk_id_clientes` ASC) VISIBLE,
-  CONSTRAINT `fk_a_id_clientess`
-    FOREIGN KEY (`fk_id_clientes`)
-    REFERENCES `cantina_daniela`.`clientes` (`idclientes`)
+  `fk_id_cliente` INT NOT NULL,
+  PRIMARY KEY (`id_pagos`),
+  INDEX `fk_pagos_clientes_idx` (`fk_id_cliente` ASC) VISIBLE,
+  CONSTRAINT `fk_pagos_clientes`
+    FOREIGN KEY (`fk_id_cliente`)
+    REFERENCES `cantina_daniela`.`clientes` (`id_cliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-    
-    CREATE TABLE `cantina_daniela`.`pedidos` (
-  `idpedidos` INT NOT NULL AUTO_INCREMENT,
-  `fk_id_menus_diarios` INT NOT NULL,
-  `fk_id_clientes` INT NOT NULL,
-  `total` INT NOT NULL,
-  PRIMARY KEY (`idpedidos`),
-  INDEX `fk_id_menus_diarios_idx` (`fk_id_menus_diarios` ASC) VISIBLE,
-  INDEX `fk_id_clientes_idx` (`fk_id_clientes` ASC) VISIBLE,
-  CONSTRAINT `fk_id_menus_diarios`
-    FOREIGN KEY (`fk_id_menus_diarios`)
-    REFERENCES `cantina_daniela`.`menus_diarios` (`idmenus_diarios`)
+
+CREATE TABLE `cantina_daniela`.`movimientos` (
+  `id_movimiento` INT NOT NULL AUTO_INCREMENT,
+  `credito_debito` TINYINT NOT NULL,
+  `descripcion` VARCHAR(45) NOT NULL,
+  `monto` INT NOT NULL,
+  `fk_id_cliente` INT NOT NULL,
+  `fk_id_pago` INT NOT NULL,
+  PRIMARY KEY (`id_movimiento`),
+  INDEX `fk_movimientos_clientes_idx` (`fk_id_cliente` ASC) VISIBLE,
+  INDEX `fk_movimientos_pagos_idx` (`fk_id_pago` ASC) VISIBLE,
+  CONSTRAINT `fk_movimientos_clientes`
+    FOREIGN KEY (`fk_id_cliente`)
+    REFERENCES `cantina_daniela`.`clientes` (`id_cliente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_id_clientes`
-    FOREIGN KEY (`fk_id_clientes`)
-    REFERENCES `cantina_daniela`.`clientes` (`idclientes`)
+  CONSTRAINT `fk_movimientos_pagos`
+    FOREIGN KEY (`fk_id_pago`)
+    REFERENCES `cantina_daniela`.`pagos` (`id_pagos`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-    
-CREATE TABLE `cantina_daniela`.`alumnos` (
-  `idalumnos` INT NOT NULL AUTO_INCREMENT,
-  `nombre_completo` VARCHAR(45) NOT NULL,
-  `grupo` VARCHAR(45) NOT NULL,
-  `foto` MEDIUMBLOB NOT NULL,
-  `fk_id_clientes` INT NOT NULL,
-  PRIMARY KEY (`idalumnos`),
-  INDEX `fk_a_id_clientes_idx` (`fk_id_clientes` ASC) VISIBLE,
-  CONSTRAINT `fk_aa_id_clientes`
-    FOREIGN KEY (`fk_id_clientes`)
-    REFERENCES `cantina_daniela`.`clientes` (`idclientes`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-    
-    CREATE TABLE `cantina_daniela`.`items_pedidos` (
-  `iditems_pedidos` INT NOT NULL AUTO_INCREMENT,
-  `fk_id_alumnos` INT NOT NULL,
-  `fk_id_pedidos` INT NOT NULL,
-  `fk_id_menu_diario` INT NOT NULL,
-  PRIMARY KEY (`iditems_pedidos`),
-  INDEX `fk_id_alumons_idx` (`fk_id_alumnos` ASC) VISIBLE,
-  INDEX `fk_id_pedidos_idx` (`fk_id_pedidos` ASC) VISIBLE,
-  INDEX `fk_id_menu_diario_idx` (`fk_id_menu_diario` ASC) VISIBLE,
-  CONSTRAINT `fk_id_alumons`
-    FOREIGN KEY (`fk_id_alumnos`)
-    REFERENCES `cantina_daniela`.`alumnos` (`idalumnos`)
+
+CREATE TABLE `cantina_daniela`.`productos_pedidos` (
+  `id_productos_pedidos` INT NOT NULL AUTO_INCREMENT,
+  `fk_id_producto` INT NOT NULL,
+  `fk_id_pedido` INT NOT NULL,
+  `cantidad` INT NOT NULL,
+  PRIMARY KEY (`id_productos_pedidos`),
+  INDEX `fk_productopedidos_productos_idx` (`fk_id_producto` ASC) VISIBLE,
+  INDEX `fk_productopedidos_pedidos_idx` (`fk_id_pedido` ASC) VISIBLE,
+  CONSTRAINT `fk_productopedidos_productos`
+    FOREIGN KEY (`fk_id_producto`)
+    REFERENCES `cantina_daniela`.`productos` (`id_producto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_id_pedidos`
-    FOREIGN KEY (`fk_id_pedidos`)
-    REFERENCES `cantina_daniela`.`pedidos` (`idpedidos`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_id_menu_diario`
-    FOREIGN KEY (`fk_id_menu_diario`)
-    REFERENCES `cantina_daniela`.`menus_diarios` (`idmenus_diarios`)
+  CONSTRAINT `fk_productopedidos_pedidos`
+    FOREIGN KEY (`fk_id_pedido`)
+    REFERENCES `cantina_daniela`.`pedidos` (`id_pedido`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
     
-    CREATE TABLE `cantina_daniela`.`menus_semanales` (
-  `idmenus_semanales` INT NOT NULL AUTO_INCREMENT,
-  `fecha_desde` DATE NOT NULL,
-  `feche_hasta` DATE NOT NULL,
-  PRIMARY KEY (`idmenus_semanales`));
   
-  CREATE TABLE `cantina_daniela`.`grupos` (
-  `idgrupos` INT NOT NULL AUTO_INCREMENT,
-  `nombre_grupo` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idgrupos`));
+  
+
+    
+    
+
+
