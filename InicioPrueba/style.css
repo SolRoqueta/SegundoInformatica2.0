@@ -527,3 +527,65 @@ h2 {
     max-width: 80%; 
     margin: 0 auto; 
 }
+
+.fijo-content {
+    display: flex;
+    border-width: 0 0 20px rgba(0,0,0,0.2);
+    margin-top: -50px;
+}
+
+.fijo-1 {
+    flex-basis: 25%;
+}
+
+.fijo-txt {
+    padding: 35px;
+    text-align: center;
+    background-color: #eff3f4;
+}
+
+.fijo-img {
+    height: 230px;
+}
+
+.fijo-img img {
+    height: 230px;
+}
+
+.btn-3 {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #108130;
+    text-transform: uppercase;
+}
+
+.menufijo-container h2 {
+    text-align: center; 
+    font-size: 2.6em; 
+    margin-bottom: 60px; 
+}
+
+.fijo-content .fijo1 {
+    font-size: 1.2em; /* Aumentar el tamaño del texto */
+    margin-bottom: 20px; /* Espacio entre cada caja */
+}
+
+.fijo {
+    margin-bottom: 100px; /* Aumenta la separación con el footer */
+}
+
+.fijo1 {
+    padding: 10px; /* Puedes ajustar este valor para dar un pequeño espacio sin exagerar */
+    margin: 0;
+}
+
+.fijo1 img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;  /* Mantiene toda la imagen dentro del contenedor */
+}
+
+
+.fijo {
+    margin-bottom: 100px; /* Aumenta la separación con el footer */
+}
