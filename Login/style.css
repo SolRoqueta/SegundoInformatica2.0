@@ -49,13 +49,15 @@ section {
     color: #fff;
     font-size: 1rem;
     pointer-events: none;
-    transition: .6s;
+    transition: all 0.3s ease; 
     font-weight: bold;
 }
 
 input:focus ~ label,
-input:valid ~ label {
+input:not(:placeholder-shown) ~ label {
     top: -5px;
+    font-size: 0.85rem;
+    color: #fff;
 }
 
 .input-contenedor input {
@@ -65,7 +67,7 @@ input:valid ~ label {
     border: none;
     outline: none;
     font-size: 1rem;
-    padding: 5px 0 5px 35px; /* Ajustado */
+    padding: 5px 0 5px 35px;
     color: #fff;
 }
 
@@ -109,7 +111,7 @@ input:valid ~ label {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-bottom: 15px; /* Espacio entre los botones */
+    margin-bottom: 15px; 
 }
 
 .button:hover, .dropdown-btn:hover {
