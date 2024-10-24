@@ -92,6 +92,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #f5f4f4;
+  height: 55vh;
 }
 
 .heroMainInfo h4 {
@@ -104,6 +105,69 @@ body {
 
 .heroLogo img {
   width: 100%;
+}
+
+/* Seccion Menu Semanal y Carousel */
+
+.menuSemanal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45vh;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+  background-color: red;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+  list-style: none;
+  background-color: #f0f0f0;
+  color: black;
+  text-align: center;
+  padding: 40px;
+  margin: 10px;
+  width: 300px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
+
+.carousel-control {
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.left {
+  margin-right: 20px;
+}
+
+.right {
+  margin-left: 20px;
+}
+
+.carousel-control:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
 }
 
 .menu .navbar ul li {

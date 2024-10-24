@@ -22,3 +22,50 @@ const showLoader = () => {
 const hideLoader = () => { 
     loader.classList.remove("show-loader"); 
 }
+
+// Codigo Carousel MenuSemanal
+
+const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
+
+const slideWidth = slides[0].getBoundingClientRect().width;
+const slidesToMove = 1.5; // Define how many slides to move with each click
+
+// Arrange the slides next to one another
+const setSlidePosition = (slide, index) => {
+  slide.style.left = slideWidth * index + 'px';
+};
+
+slides.forEach(setSlidePosition);
+
+let currentIndex = 0;
+
+// Move to a specific slide
+const moveToSlide = (track, currentSlide, targetIndex) => {
+  track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
+  currentIndex = targetIndex; // Update the current index
+};
+
+// Update the buttons (disable if at the end/start)
+const updateButtons = () => {
+  prevButton.disabled = currentIndex === 0;
+  nextButton.disabled = currentIndex >= slides.length - 3;
+};
+
+updateButtons();
+
+// When you click next
+nextButton.addEventListener('click', () => {
+  const targetIndex = Math.min(currentIndex + slidesToMove, slides.length - 1.5); // Ensure we don't go past the last slide
+  moveToSlide(track, slides[currentIndex], targetIndex);
+  updateButtons();
+});
+
+// When you click previous
+prevButton.addEventListener('click', () => {
+  const targetIndex = Math.max(currentIndex - slidesToMove, 0); // Ensure we don't go before the first slide
+  moveToSlide(track, slides[currentIndex], targetIndex);
+  updateButtons();
+});
