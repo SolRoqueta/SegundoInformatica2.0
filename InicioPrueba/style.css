@@ -20,16 +20,18 @@ html, body {
 
 .section-loader {
   position: fixed;
-  left: 0;
   top: 0;
-  height: 100%;
+  left: 0;
   width: 100%;
-  z-index: 9999;
-  display: none;
-  background-color: white;
-  justify-content: center;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
   align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  display: none; /* Por defecto oculto */
 }
+
 
 .loader {
   position: relative;
@@ -269,37 +271,60 @@ h2 {
   text-align: center;
 }
 
+.product-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .titulo-productos {
   margin-top: 50px;
-  text-align: center; /* Centrar el título */
+  text-align: center;
   font-size: 30px;
   font-weight: bold;
   color: #333;
 }
 
 .card {
-  background-color: #94d384;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border: none;
-  border-radius: 15px; /* Esquinas redondeadas */
-  padding: 20px;
-  margin-bottom: 20px; /* Espacio entre las cartas */
-  box-shadow: 0 4px 8px rgb(52, 87, 31); /* Sombra*/
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
 }
 
 .precio {
   font-size: 17px;
   font-weight: 700; /* negrita */
-  color: #185c07; /* Color del precio */
+  color: #185c07; 
 }
 
 .card-title {
-  font-weight: bold; /* negrita */
-  color: #111419; /* nombre del producto */
+  font-size: 1.2rem;
+  font-weight: 700; /* negrita */
+}
+
+.card-description {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .box-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  display: flex;
+  border-radius: 15px;
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 2rem; 
+  justify-items: center; 
+  width: 100%; 
+  max-width: 1200px; 
+  margin: 0 auto; 
   gap: 20px;
 }
 
@@ -310,13 +335,14 @@ h2 {
 }
 
 .box {
-  border-top: 2px solid #108130;
-  padding: 20px;
+  margin: 10px;
+  width: 100%;
+  max-width: 250px;
+  padding: 15px;
+  background-color: #94d384;
   border-radius: 15px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Corregido: eliminado espacio */
-  background-color: #cbecb6;
-  min-width: 10px;
 }
+
 
 /*Agregar cajas productos*/
 .box:nth-child(1),
@@ -511,26 +537,25 @@ ul li a {
 
 /*bOTON DE CARGAR MAS*/
 #cargar-mas {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 35px auto;
-  width: 200px;
-  padding: 10px;
+  padding: 15px 40px;
   background-color: #108130;
   color: white;
   font-weight: bold;
+  font-size: 18px;
   text-align: center;
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 250px; /* Aumentar tamaño del botón */
 }
 
 #cargar-mas-container {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 40px; /* Aumenta el valor para crear más espacio */
 }
-
 #cargar-mas {
   padding: 10px 20px;
   background-color: #108130;
@@ -602,27 +627,27 @@ ul li a {
 .menufijo-container h2 {
   text-align: center;
   font-size: 2.6em;
-  margin-bottom: 60px;
+  margin-bottom: 90px; 
 }
 
 .fijo-content .fijo1 {
-  font-size: 1.2em; /* Aumentar el tamaño del texto */
-  margin-bottom: 20px; /* Espacio entre cada caja */
+  font-size: 1.2em; 
+  margin-bottom: 20px; 
 }
 
 .fijo {
-  margin-bottom: 100px; /* Aumenta la separación con el footer */
+  margin-bottom: 100px; 
 }
 
 .fijo1 {
-  padding: 10px; /* Puedes ajustar este valor para dar un pequeño espacio sin exagerar */
+  padding: 10px; 
   margin: 0;
 }
 
 .fijo1 img {
   width: 100%;
   height: 200px;
-  object-fit: contain; /* Mantiene toda la imagen dentro del contenedor */
+  object-fit: contain; 
 }
 
 /*MENU FIJO*/
