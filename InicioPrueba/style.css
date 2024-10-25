@@ -12,6 +12,12 @@
   box-sizing: inherit;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .section-loader {
   position: fixed;
   left: 0;
