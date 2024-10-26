@@ -6,6 +6,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class modificarUsuarios extends JFrame {
@@ -49,10 +51,22 @@ public class modificarUsuarios extends JFrame {
         buscarProductoLabel.setBounds(58, 93, 121, 25);
         panel.add(buscarProductoLabel);
         
-        // Campo de texto para buscar productos
-        JTextField buscarProductoField = new JTextField();
-        buscarProductoField.setBounds(58, 119, 120, 25);
-        panel.add(buscarProductoField);
+        // Campo de texto para buscar usuarios
+        JTextField buscarUsuarioField = new JTextField();
+        buscarUsuarioField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( buscarUsuarioField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
+        buscarUsuarioField.setBounds(58, 119, 120, 25);
+        panel.add(buscarUsuarioField);
         
         // Etiquetas y campos de texto 
         JLabel nombreLabel = new JLabel("Nombre");
@@ -61,6 +75,18 @@ public class modificarUsuarios extends JFrame {
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
+        nombreField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( nombreField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
         nombreField.setBounds(92, 177, 150, 25);
         panel.add(nombreField);
         nombreField.setEditable(false);

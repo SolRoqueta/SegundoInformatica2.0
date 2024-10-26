@@ -6,6 +6,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class modificarProductos extends JFrame {
@@ -50,6 +52,18 @@ public class modificarProductos extends JFrame {
         
         // Campo de texto para buscar productos
         JTextField buscarProductoField = new JTextField();
+        buscarProductoField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( buscarProductoField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
         buscarProductoField.setBounds(135, 114, 120, 25);
         panel.add(buscarProductoField);
         
@@ -60,6 +74,18 @@ public class modificarProductos extends JFrame {
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
+        nombreField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( nombreField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
         nombreField.setBounds(72, 178, 150, 25);
         panel.add(nombreField);
         nombreField.setEditable(false);

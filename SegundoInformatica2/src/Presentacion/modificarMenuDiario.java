@@ -7,6 +7,8 @@ import Logica.productos;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
@@ -21,7 +23,7 @@ public class modificarMenuDiario extends JFrame {
 	private int precio;
 	private String descripcion;
 	private String foto;
-	private JTextField textField;
+	private JTextField nombreField;
     
     public modificarMenuDiario(menuMenuDiario MenuDiario) {
     	
@@ -50,9 +52,21 @@ public class modificarMenuDiario extends JFrame {
         nombreLabel.setBounds(83, 82, 53, 25);
         panel.add(nombreLabel);
         
-        JTextField nombreField = new JTextField();
-        nombreField.setBounds(83, 110, 150, 25);
-        panel.add(nombreField);
+        JTextField buscarMenuField = new JTextField();
+        buscarMenuField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( buscarMenuField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
+        buscarMenuField.setBounds(83, 110, 150, 25);
+        panel.add(buscarMenuField);
         
         JLabel precioLabel = new JLabel("Precio");
         precioLabel.setForeground(new Color(230, 230, 230));
@@ -128,7 +142,7 @@ public class modificarMenuDiario extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		
         		// Gets de todos los atributos del producto a crear
-        		nombre = nombreField.getText();
+        		nombre = buscarMenuField.getText();
         		descripcion = descripcionArea.getText();
         		precio = (Integer) precioField.getValue();
         		
@@ -219,9 +233,24 @@ public class modificarMenuDiario extends JFrame {
         btnBuscarMenu.setBounds(256, 110, 118, 25);
         panel.add(btnBuscarMenu);
         
-        textField = new JTextField();
-        textField.setBounds(52, 194, 150, 25);
-        panel.add(textField);
+        nombreField = new JTextField();
+        JTextField nombreField = new JTextField();
+        nombreField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( nombreField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
+        nombreField.setBounds(52, 194, 150, 25);
+        panel.add(nombreField);
+        nombreField.setBounds(52, 194, 150, 25);
+        panel.add(nombreField);
         
         JLabel nombreLabel_1 = new JLabel("Nombre");
         nombreLabel_1.setForeground(new Color(230, 230, 230));

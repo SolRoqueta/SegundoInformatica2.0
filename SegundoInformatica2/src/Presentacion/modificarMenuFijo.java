@@ -7,6 +7,8 @@ import Logica.productos;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
@@ -50,9 +52,37 @@ public class modificarMenuFijo extends JFrame {
         nombreLabel.setBounds(83, 86, 53, 25);
         panel.add(nombreLabel);
         
+        JTextField buscarMenuField = new JTextField();
+        buscarMenuField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( buscarMenuField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
+        
         JTextField nombreField = new JTextField();
-        nombreField.setBounds(83, 111, 150, 25);
+        nombreField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( nombreField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
+        nombreField.setBounds(52, 194, 150, 25);
         panel.add(nombreField);
+        buscarMenuField.setBounds(83, 111, 150, 25);
+        panel.add(buscarMenuField);
         
         JLabel precioLabel = new JLabel("Precio");
         precioLabel.setForeground(new Color(230, 230, 230));
@@ -204,9 +234,7 @@ public class modificarMenuFijo extends JFrame {
         btnBuscarMenu.setBounds(256, 111, 118, 25);
         panel.add(btnBuscarMenu);
         
-        textField = new JTextField();
-        textField.setBounds(52, 194, 150, 25);
-        panel.add(textField);
+
         
         JLabel nombreLabel_1 = new JLabel("Nombre");
         nombreLabel_1.setForeground(new Color(230, 230, 230));

@@ -71,9 +71,12 @@ public class agregarMenuDiario extends JFrame {
         	@Override
         	public void keyTyped(KeyEvent e) {
 //        		
-//        		if (( nombreField.get() ))
-//        		
-        		
+        		if (( nombreField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+
+        		}
+//        		        		
         	}
         });
         nombreField.setBounds(37, 105, 150, 25);
