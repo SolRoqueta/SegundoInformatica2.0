@@ -31,7 +31,7 @@ const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
 
 const slideWidth = slides[0].getBoundingClientRect().width;
-const slidesToMove = 1.5; // Define how many slides to move with each click
+const slidesToMove = 1.1; // Define how many slides to move with each click
 
 // Arrange the slides next to one another
 const setSlidePosition = (slide, index) => {

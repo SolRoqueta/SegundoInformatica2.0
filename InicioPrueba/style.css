@@ -12,7 +12,8 @@
   box-sizing: inherit;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -31,7 +32,6 @@ html, body {
   z-index: 9999;
   display: none; /* Por defecto oculto */
 }
-
 
 .loader {
   position: relative;
@@ -119,39 +119,49 @@ body {
 
 .menuSemanal {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 45vh;
+  justify-content: center;
+  height: 55vh;
 }
 
 .carousel-container {
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 800px;
+  height: 100%;
+  width: 100%;
 }
 
 .carousel-track-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   position: relative;
+  height: 500px;
+  width: 100%;
 }
 
 .carousel-track {
   display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.4s ease-in-out;
 }
 
 .carousel-slide {
-  list-style: none;
-  background-color: #f0f0f0;
-  color: black;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+  height: 300px;
   padding: 40px;
   margin: 10px;
-  width: 300px;
-  border-radius: 10px;
+  background-color: #f0f0f0;
+  color: black;
+  list-style: none;
+  text-align: center;
+  border-radius: 20px;
   font-size: 1.2rem;
 }
 
@@ -298,7 +308,7 @@ h2 {
 .precio {
   font-size: 17px;
   font-weight: 700; /* negrita */
-  color: #185c07; 
+  color: #185c07;
 }
 
 .card-title {
@@ -318,13 +328,13 @@ h2 {
 .box-container {
   display: flex;
   border-radius: 15px;
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-  gap: 2rem; 
-  justify-items: center; 
-  width: 100%; 
-  max-width: 1200px; 
-  margin: 0 auto; 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   gap: 20px;
 }
 
@@ -342,7 +352,6 @@ h2 {
   background-color: #94d384;
   border-radius: 15px;
 }
-
 
 /*Agregar cajas productos*/
 .box:nth-child(1),
@@ -627,27 +636,27 @@ ul li a {
 .menufijo-container h2 {
   text-align: center;
   font-size: 2.6em;
-  margin-bottom: 90px; 
+  margin-bottom: 90px;
 }
 
 .fijo-content .fijo1 {
-  font-size: 1.2em; 
-  margin-bottom: 20px; 
+  font-size: 1.2em;
+  margin-bottom: 20px;
 }
 
 .fijo {
-  margin-bottom: 100px; 
+  margin-bottom: 100px;
 }
 
 .fijo1 {
-  padding: 10px; 
+  padding: 10px;
   margin: 0;
 }
 
 .fijo1 img {
   width: 100%;
   height: 200px;
-  object-fit: contain; 
+  object-fit: contain;
 }
 
 /*MENU FIJO*/
