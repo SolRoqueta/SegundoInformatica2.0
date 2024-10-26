@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class agregarMenuDiario extends JFrame {
 	
@@ -65,6 +67,15 @@ public class agregarMenuDiario extends JFrame {
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
+        nombreField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+//        		
+//        		if (( nombreField.get() ))
+//        		
+        		
+        	}
+        });
         nombreField.setBounds(37, 105, 150, 25);
         panel.add(nombreField);
         

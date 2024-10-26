@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class login extends JFrame {
@@ -34,6 +36,18 @@ public class login extends JFrame {
                                                         
         // Campo de texto para el nombre
         JTextField nameField = new JTextField();
+        nameField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( nameField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
         nameField.setBounds(86, 149, 150, 20);
         rightPanel.add(nameField);
         
@@ -45,10 +59,28 @@ public class login extends JFrame {
         loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
         loginLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
         
+        
         // Campo de texto para la contraseña
+        
         JPasswordField passwordField = new JPasswordField();
         passwordField.setBounds(86, 229, 150, 20);
         rightPanel.add(passwordField);
+        
+        passwordField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent evt) {
+        		
+        		String password = new String (passwordField.getPassword());
+        		
+        		if (( password.length() >= 30 )) {
+        			
+        			evt.consume();
+        			
+        		}
+        		
+        	}
+        });
+    
         
         // Etiqueta "Contraseña"
         JLabel passwordLabel = new JLabel("Contraseña");
