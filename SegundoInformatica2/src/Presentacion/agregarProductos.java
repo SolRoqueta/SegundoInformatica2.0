@@ -84,6 +84,17 @@ public class agregarProductos extends JFrame {
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
+        precioField.addChangeListener(e -> {
+        	
+            int valorActual = (int) precioField.getValue();
+            
+            if (valorActual < 0) {
+            	
+            	precioField.setValue(0);
+            	
+            }
+
+        });
         precioField.setBounds(24, 153, 150, 25);
         panel.add(precioField);
         

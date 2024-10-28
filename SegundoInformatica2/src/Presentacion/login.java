@@ -145,9 +145,11 @@ public class login extends JFrame {
         		
         		if (nombre.equals("admin") && contra.equals("admin")) {
         			
-        			menuPrincipal ventanaPrincipal = new menuPrincipal();
+        			menuPrincipal ventanaPrincipal = new menuPrincipal(login.this);
         			
         			JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso! Bienvenido, " + nombre);
+        			nameField.setText(null);
+        			passwordField.setText(null);
         			
         			ventanaPrincipal.setVisible(true);
         			login.this.dispose();

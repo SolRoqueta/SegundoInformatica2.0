@@ -88,6 +88,17 @@ public class agregarMenuDiario extends JFrame {
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
+        precioField.addChangeListener(e -> {
+        	
+            int valorActual = (int) precioField.getValue();
+            
+            if (valorActual < 0) {
+            	
+            	precioField.setValue(0);
+            	
+            }
+
+        });
         precioField.setBounds(37, 153, 150, 25);
         panel.add(precioField);
         
@@ -97,6 +108,17 @@ public class agregarMenuDiario extends JFrame {
         panel.add(stockLabel);
         
         JSpinner stockField = new JSpinner();
+        stockField.addChangeListener(e -> {
+        	
+            int valorActual = (int) stockField.getValue();
+            
+            if (valorActual < 0) {
+            	
+            	stockField.setValue(0);
+            	
+            }
+
+        });
         stockField.setBounds(37, 202, 150, 25);
         panel.add(stockField);
         

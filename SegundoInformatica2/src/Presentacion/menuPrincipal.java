@@ -13,7 +13,12 @@ public class menuPrincipal extends JFrame {
     private menuUsuarios ventanaUsuarios;
     private menuMenuDiario ventanaMenuDiario;
 
-    public menuPrincipal() {
+    private login Login;
+    
+    public menuPrincipal(login Login) {
+    	
+    	this.Login = Login;
+    	
         setTitle("Menu Principal");
         setSize(309, 368);
         getContentPane().setBackground(new Color(43, 70, 77));
@@ -31,7 +36,7 @@ public class menuPrincipal extends JFrame {
         welcomeLabel.setForeground(new Color(210, 210, 210));
 
         // Button for Menu Usuarios
-        JButton usuariosButton = new JButton("Menu Usuarios");
+        JButton usuariosButton = new JButton("Usuarios");
         usuariosButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuUsuarios window
@@ -44,7 +49,7 @@ public class menuPrincipal extends JFrame {
         getContentPane().add(usuariosButton);      
 
         // Button for Menu Productos
-        JButton productosButton = new JButton("Menu Productos");
+        JButton productosButton = new JButton("Productos");
         productosButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuProductos window
@@ -55,6 +60,33 @@ public class menuPrincipal extends JFrame {
         });
         productosButton.setBounds(80, 101, 133, 31);
         getContentPane().add(productosButton);
+        
+        // Button for Menu M Diarios
+        JButton btnMenus = new JButton("Menus");
+        btnMenus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Open the MenuDiarios window
+                ventanaMenuDiario = new menuMenuDiario(menuPrincipal.this); // Pass reference to menuPrincipal
+                ventanaMenuDiario.setVisible(true);
+                menuPrincipal.this.dispose(); // Close the main window
+            }
+        });
+        btnMenus.setBounds(80, 201, 133, 31);
+        getContentPane().add(btnMenus);
+        
+        // Boton para cerrar sesion
+        JButton btnCerrarSesion = new JButton("Cerrar Sesion");
+        btnCerrarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Open the MenuDiarios window
+            	
+            	JOptionPane.showMessageDialog(null, "Sesion cerrada con exito");
+            	Login.setVisible(true);
+            	menuPrincipal.this.dispose();
+            }
+        });
+        btnCerrarSesion.setBounds(80, 251, 133, 31);
+        getContentPane().add(btnCerrarSesion);
 
         JSeparator separator = new JSeparator();
         separator.setBackground(new Color(210, 210, 210));
@@ -68,18 +100,7 @@ public class menuPrincipal extends JFrame {
         lblPrincipal.setBounds(101, 52, 90, 20);
         getContentPane().add(lblPrincipal);
 
-        // Button for Menu M Diarios
-        JButton btnMenuMDiarios = new JButton("Menu Diario");
-        btnMenuMDiarios.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Open the MenuDiarios window
-                ventanaMenuDiario = new menuMenuDiario(menuPrincipal.this); // Pass reference to menuPrincipal
-                ventanaMenuDiario.setVisible(true);
-                menuPrincipal.this.dispose(); // Close the main window
-            }
-        });
-        btnMenuMDiarios.setBounds(80, 201, 133, 31);
-        getContentPane().add(btnMenuMDiarios);
+     
     }
 
 }
