@@ -45,7 +45,7 @@ public class menuPrincipal extends JFrame {
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
-        usuariosButton.setBounds(80, 151, 133, 31);
+        usuariosButton.setBounds(80, 153, 133, 31);
         getContentPane().add(usuariosButton);      
 
         // Button for Menu Productos
@@ -58,7 +58,7 @@ public class menuPrincipal extends JFrame {
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
-        productosButton.setBounds(80, 101, 133, 31);
+        productosButton.setBounds(80, 103, 133, 31);
         getContentPane().add(productosButton);
         
         // Button for Menu M Diarios
@@ -71,7 +71,7 @@ public class menuPrincipal extends JFrame {
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
-        btnMenus.setBounds(80, 201, 133, 31);
+        btnMenus.setBounds(80, 203, 133, 31);
         getContentPane().add(btnMenus);
         
         // Boton para cerrar sesion
@@ -85,7 +85,7 @@ public class menuPrincipal extends JFrame {
             	menuPrincipal.this.dispose();
             }
         });
-        btnCerrarSesion.setBounds(80, 251, 133, 31);
+        btnCerrarSesion.setBounds(85, 256, 122, 23);
         getContentPane().add(btnCerrarSesion);
 
         JSeparator separator = new JSeparator();

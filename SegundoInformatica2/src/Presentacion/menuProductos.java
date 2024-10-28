@@ -35,7 +35,7 @@ public class menuProductos extends JFrame {
                 menuProductos.this.dispose();
             }
         });
-        btnAgregarProductos.setBounds(84, 88, 125, 31);
+        btnAgregarProductos.setBounds(84, 98, 125, 31);
         getContentPane().add(btnAgregarProductos);
         
         // Boton para Modificar Productos
@@ -47,7 +47,7 @@ public class menuProductos extends JFrame {
                 menuProductos.this.dispose();
             }
         });
-        btnModificarProductos.setBounds(84, 138, 125, 31);
+        btnModificarProductos.setBounds(84, 159, 125, 31);
         getContentPane().add(btnModificarProductos);
                 
         // Boton para Eliminar Productos
@@ -59,7 +59,7 @@ public class menuProductos extends JFrame {
                 menuProductos.this.dispose();
             }
         });
-        btnEliminarProductos.setBounds(84, 188, 125, 31);
+        btnEliminarProductos.setBounds(84, 223, 125, 31);
         getContentPane().add(btnEliminarProductos);
         
         JSeparator separator = new JSeparator();
@@ -82,7 +82,7 @@ public class menuProductos extends JFrame {
                 menuProductos.this.dispose(); // Close the current window
             }
         });
-        btnBack.setBounds(121, 291, 50, 15);
+        btnBack.setBounds(121, 287, 50, 15);
         getContentPane().add(btnBack);
 
         // Make the frame visible

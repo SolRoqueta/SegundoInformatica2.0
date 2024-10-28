@@ -147,7 +147,7 @@ public class login extends JFrame {
         			
         			menuPrincipal ventanaPrincipal = new menuPrincipal(login.this);
         			
-        			JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso! Bienvenido, " + nombre);
+        			JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso! Bienvenido, " + nombre, null, JOptionPane.OK_OPTION, null);
         			nameField.setText(null);
         			passwordField.setText(null);
         			

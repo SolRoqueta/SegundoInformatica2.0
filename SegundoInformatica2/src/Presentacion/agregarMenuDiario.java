@@ -122,7 +122,7 @@ public class agregarMenuDiario extends JFrame {
         stockField.setBounds(37, 202, 150, 25);
         panel.add(stockField);
         
-        JLabel diaLabel = new JLabel("Dia Correspondiente");
+        JLabel diaLabel = new JLabel("Dia");
         diaLabel.setForeground(new Color(230, 230, 230));
         diaLabel.setBounds(37, 238, 125, 25);
         panel.add(diaLabel);

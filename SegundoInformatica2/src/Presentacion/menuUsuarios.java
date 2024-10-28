@@ -30,7 +30,7 @@ public class menuUsuarios extends JFrame {
         
         // Button to Add Users
         JButton btnAgregarUsuarios= new JButton("Agregar");
-        btnAgregarUsuarios.setBounds(84, 88, 125, 31);
+        btnAgregarUsuarios.setBounds(84, 98, 125, 31);
         this.getContentPane().add(btnAgregarUsuarios);
         btnAgregarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -42,7 +42,7 @@ public class menuUsuarios extends JFrame {
         
         // Button to Delete Users
         JButton btnEliminarUsuarios = new JButton("Eliminar");
-        btnEliminarUsuarios.setBounds(84, 188, 125, 31);
+        btnEliminarUsuarios.setBounds(84, 223, 125, 31);
         this.getContentPane().add(btnEliminarUsuarios);
         btnEliminarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -54,7 +54,7 @@ public class menuUsuarios extends JFrame {
         
         // Button to Modify Users
         JButton btnModificarUsuarios = new JButton("Modificar");
-        btnModificarUsuarios.setBounds(84, 138, 125, 31);
+        btnModificarUsuarios.setBounds(84, 159, 125, 31);
         this.getContentPane().add(btnModificarUsuarios);
         btnModificarUsuarios.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -79,7 +79,7 @@ public class menuUsuarios extends JFrame {
         
         // Back Button (Back to Main Menu)
         JButton btnBack = new JButton("←");
-        btnBack.setBounds(121, 291, 50, 15);
+        btnBack.setBounds(121, 287, 50, 15);
         this.getContentPane().add(btnBack);
         
         btnBack.addActionListener(new ActionListener() {

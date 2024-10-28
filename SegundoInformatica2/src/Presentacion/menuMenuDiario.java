@@ -29,7 +29,7 @@ public class menuMenuDiario extends JFrame {
         
         // Boton para Agregar Usuarios
         JButton btnAgregarUsuarios = new JButton("Agregar");
-        btnAgregarUsuarios.setBounds(84, 86, 125, 31);
+        btnAgregarUsuarios.setBounds(84, 98, 125, 31);
         getContentPane().add(btnAgregarUsuarios);
         btnAgregarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -41,7 +41,7 @@ public class menuMenuDiario extends JFrame {
         
         // Boton para Eliminar Usuarios
         JButton btnEliminarUsuarios = new JButton("Eliminar");
-        btnEliminarUsuarios.setBounds(84, 186, 125, 31);
+        btnEliminarUsuarios.setBounds(84, 223, 125, 31);
         getContentPane().add(btnEliminarUsuarios);
         btnEliminarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -60,7 +60,7 @@ public class menuMenuDiario extends JFrame {
             	menuMenuDiario.this.dispose();
             }
         });
-        btnModificarUsuarios.setBounds(84, 136, 125, 31);
+        btnModificarUsuarios.setBounds(84, 159, 125, 31);
         getContentPane().add(btnModificarUsuarios);
         
         JSeparator separator = new JSeparator();
@@ -83,7 +83,7 @@ public class menuMenuDiario extends JFrame {
                 menuMenuDiario.this.dispose(); // Close the current window
             }
         });
-        btnBack.setBounds(121, 292, 50, 15);
+        btnBack.setBounds(121, 287, 50, 15);
         getContentPane().add(btnBack);
 
         // Make the frame visible
