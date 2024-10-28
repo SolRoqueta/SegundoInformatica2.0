@@ -64,18 +64,6 @@ public class menuUsuarios extends JFrame {
     	}
     });
         
-        // Button to List Users
-        JButton btnListarUsuarios = new JButton("Listar");
-        btnListarUsuarios.setBounds(84, 238, 125, 31);
-        this.getContentPane().add(btnListarUsuarios);
-        btnListarUsuarios.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-        		listarUsuarios ventanaModificar = new listarUsuarios(menuUsuarios.this);
-        		ventanaModificar.setVisible(true);
-        		menuUsuarios.this.dispose();
-        	}
-        });
-        
         // Separator
         JSeparator separator = new JSeparator();
         separator.setBackground(new Color(210, 210, 210));

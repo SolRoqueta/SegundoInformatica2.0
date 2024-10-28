@@ -63,18 +63,6 @@ public class menuMenuDiario extends JFrame {
         btnModificarUsuarios.setBounds(84, 136, 125, 31);
         getContentPane().add(btnModificarUsuarios);
         
-        // Boton para Listar Usuarios
-        JButton btnListarUsuarios = new JButton("Listar");
-        btnListarUsuarios.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	listarMenuDiario ventanaListar = new listarMenuDiario(menuMenuDiario.this);
-            	ventanaListar.setVisible(true);
-            	menuMenuDiario.this.dispose();
-            }
-        });
-        btnListarUsuarios.setBounds(84, 236, 125, 31);
-        getContentPane().add(btnListarUsuarios);
-        
         JSeparator separator = new JSeparator();
         separator.setBackground(new Color(210, 210, 210));
         separator.setForeground(new Color(210, 210, 210));

@@ -62,18 +62,6 @@ public class menuProductos extends JFrame {
         btnEliminarProductos.setBounds(84, 188, 125, 31);
         getContentPane().add(btnEliminarProductos);
         
-        // Boton para Listar Productos
-        JButton btnListarProductos = new JButton("Listar");
-        btnListarProductos.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                listarProductos ventanaListar = new listarProductos(menuProductos.this);
-                ventanaListar.setVisible(true);
-                menuProductos.this.dispose();
-            }
-        });
-        btnListarProductos.setBounds(84, 238, 125, 31);
-        getContentPane().add(btnListarProductos);
-        
         JSeparator separator = new JSeparator();
         separator.setBackground(new Color(210, 210, 210));
         separator.setForeground(new Color(210, 210, 210));

@@ -56,19 +56,6 @@ public class menuPrincipal extends JFrame {
         productosButton.setBounds(80, 101, 133, 31);
         getContentPane().add(productosButton);
 
-        // Button for Menu M Fijos
-        JButton usuariosButton_1_1 = new JButton("Menu Fijos");
-        usuariosButton_1_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Open the MenuFijo window
-                menuMenuFijo ventanaMenuFijo = new menuMenuFijo(menuPrincipal.this);
-                ventanaMenuFijo.setVisible(true);
-                menuPrincipal.this.dispose(); // Close the main window
-            }
-        });
-        usuariosButton_1_1.setBounds(80, 251, 133, 31);
-        getContentPane().add(usuariosButton_1_1);
-
         JSeparator separator = new JSeparator();
         separator.setBackground(new Color(210, 210, 210));
         separator.setBounds(106, 49, 80, 2);
