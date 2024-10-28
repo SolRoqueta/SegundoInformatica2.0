@@ -69,3 +69,25 @@ prevButton.addEventListener('click', () => {
   moveToSlide(track, slides[currentIndex], targetIndex);
   updateButtons();
 });
+
+//Funcion para la sobra/transparencia del scroll del loader
+window.addEventListener('scroll', function() {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+  } else {
+      navbar.classList.remove('scrolled');
+  }
+});
+
+
+//funcion para que se desplegue el boton en menu fijo 
+function toggleText(id) {
+  const content = document.getElementById(id);
+  if (content.style.display === "none") {
+      content.style.display = "block";
+  } else {
+      content.style.display = "none";
+  }
+}
+
