@@ -24,7 +24,7 @@ public class productos {
 	private FileInputStream fotoTemp;
 	private BufferedImage fotoPaMostrar;
 	private String AgregarProductoQuery = "INSERT INTO productos (nombre, descripcion, precio, foto) VALUES (?, ?, ?, ?);";
-	private String ModificarProductoQuery = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, foto = ? WHERE id_productos = ?;";
+	private String ModificarProductoQuery = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, foto = ? WHERE id_producto = ?;";
 	private String EliminarProductoQuery = "DELETE FROM productos WHERE nombre = ? LIMIT 1;";
 	private String BuscarProductoQuery = "SELECT * FROM productos WHERE nombre = ?;";
 	private String BuscarProductosQuery = "SELECT * FROM productos;";
@@ -275,7 +275,7 @@ public class productos {
 					
 					do {
 						
-						int id = resultSet.getInt("id_productos");
+						int id = resultSet.getInt("id_producto");
 						
 						String nombre = resultSet.getString("nombre");
 						
@@ -327,7 +327,7 @@ public class productos {
 			
 			while (resultSet.next()) {
 			
-			int id = resultSet.getInt("id_productos");
+			int id = resultSet.getInt("id_producto");
 			
 			String nombre = resultSet.getString("nombre");
 			

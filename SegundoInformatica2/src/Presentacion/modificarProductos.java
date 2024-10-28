@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class modificarProductos extends JFrame {
 	
@@ -21,6 +23,7 @@ public class modificarProductos extends JFrame {
 	private int precio;
 	private String descripcion;
 	private String foto;
+	private boolean modificoLaFoto = false;
     
     public modificarProductos(menuProductos MenuProductos) {
     	
@@ -96,6 +99,17 @@ public class modificarProductos extends JFrame {
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
+        precioField.addChangeListener(e -> {
+        	
+            int valorActual = (int) precioField.getValue();
+            
+            if (valorActual < 0) {
+            	
+            	precioField.setValue(0);
+            	
+            }
+
+        });
         precioField.setBounds(72, 234, 150, 25);
         panel.add(precioField);
         
@@ -221,6 +235,7 @@ public class modificarProductos extends JFrame {
 	            if (fc.getSelectedFile() == null) {
 	    			
 	    			JOptionPane.showMessageDialog(null, "Error, foto no seleccionada");
+	    			setModificoLaFoto(false);
 	    			
 	            } else {
 	            		
@@ -232,6 +247,7 @@ public class modificarProductos extends JFrame {
 		            imagenLabel.setIcon(new ImageIcon(image));
 		            foto = fc.getSelectedFile().getAbsolutePath();
 		            producto.setFoto(foto);
+		            setModificoLaFoto(true);
 	            	
 	            }
         	}
@@ -248,7 +264,12 @@ public class modificarProductos extends JFrame {
 	    		producto.setNombre(nombre);
 	    		producto.setDescripcion(descripcion);
 	    		producto.setPrecio(precio);
-	    		producto.setFoto(foto);
+	    		
+	    		if (getModificoLaFoto()) {
+	    			
+	    			producto.setFoto(foto);
+	    			
+	    		}
 	    		
 	    		int confirmar = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres modificar el producto?", "Si", JOptionPane.YES_NO_OPTION);
 	
@@ -291,6 +312,20 @@ public class modificarProductos extends JFrame {
 	    panel.add(btnModificarProducto_1);
     
     }
+    
+    public void setPrecio(int input) {
+    	
+    	precio = input;
+    	
+    }
+
+	public boolean getModificoLaFoto() {
+		return modificoLaFoto;
+	}
+
+	public void setModificoLaFoto(boolean modificoLaFoto) {
+		this.modificoLaFoto = modificoLaFoto;
+	}
     
   }
 
