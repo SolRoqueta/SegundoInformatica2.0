@@ -8,6 +8,20 @@
   box-sizing: inherit;
 }
 
+.boton-iniciar-sesion {
+  background-color: #198754;
+  color: white;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.boton-iniciar-sesion:hover {
+  background-color: #0d693e;
+}
+
 
 html {
   margin: 0;
@@ -117,11 +131,6 @@ nav ul li a:hover {
 
 .heroMainInfo h4 {
   font-size: 15px;
-}
-
-.heroMainInfo button {
-  margin-top: 20px;
-  background-color: #388e3c;
 }
 
 .heroLogo img {
@@ -286,6 +295,7 @@ nav ul li a:hover {
 }
 
 /* Estilos para seccion Menus Fijos */
+
 
 .title-menusfijos {
   text-align: center;
