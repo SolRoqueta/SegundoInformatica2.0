@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class menuMenuDiario extends JFrame {
+public class menuMenus extends JFrame {
 
     private menuPrincipal MenuPrincipal; // Reference to the main menu
 
-    public menuMenuDiario(menuPrincipal MenuPrincipal) {
+    public menuMenus(menuPrincipal MenuPrincipal) {
         this.MenuPrincipal = MenuPrincipal; // Set the reference to the main menu
 
         setTitle("Menu Menus Diarios");
@@ -33,9 +33,9 @@ public class menuMenuDiario extends JFrame {
         getContentPane().add(btnAgregarUsuarios);
         btnAgregarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	agregarMenuDiario ventanaAgregar = new agregarMenuDiario(menuMenuDiario.this);
+            	agregarMenus ventanaAgregar = new agregarMenus(menuMenus.this);
             	ventanaAgregar.setVisible(true);
-            	menuMenuDiario.this.dispose();
+            	menuMenus.this.dispose();
             }
         });
         
@@ -45,9 +45,9 @@ public class menuMenuDiario extends JFrame {
         getContentPane().add(btnEliminarUsuarios);
         btnEliminarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	eliminarMenuDiario ventanaEliminar = new eliminarMenuDiario(menuMenuDiario.this);
+            	eliminarMenus ventanaEliminar = new eliminarMenus(menuMenus.this);
             	ventanaEliminar.setVisible(true);
-            	menuMenuDiario.this.dispose();
+            	menuMenus.this.dispose();
             }
         });
         
@@ -55,9 +55,9 @@ public class menuMenuDiario extends JFrame {
         JButton btnModificarUsuarios = new JButton("Modificar");
         btnModificarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	modificarMenuDiario ventanaModificar = new modificarMenuDiario(menuMenuDiario.this);
+            	modificarMenus ventanaModificar = new modificarMenus(menuMenus.this);
             	ventanaModificar.setVisible(true);
-            	menuMenuDiario.this.dispose();
+            	menuMenus.this.dispose();
             }
         });
         btnModificarUsuarios.setBounds(84, 159, 125, 31);
@@ -80,7 +80,7 @@ public class menuMenuDiario extends JFrame {
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 MenuPrincipal.setVisible(true); // Show the main menu
-                menuMenuDiario.this.dispose(); // Close the current window
+                menuMenus.this.dispose(); // Close the current window
             }
         });
         btnBack.setBounds(121, 287, 50, 15);

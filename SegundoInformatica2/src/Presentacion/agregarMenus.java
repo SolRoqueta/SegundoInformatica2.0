@@ -11,11 +11,11 @@ import javax.swing.border.LineBorder;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class agregarMenuDiario extends JFrame {
+public class agregarMenus extends JFrame {
 	
 	public menuDiario menuDiario = new menuDiario();
 	
-	private menuMenuDiario MenuDiario;
+	private menuMenus MenuMenus;
 	
 	// Declaracion de atributos de Productos
 	private String nombre;
@@ -26,7 +26,7 @@ public class agregarMenuDiario extends JFrame {
 	private String caminoFoto;
 	private String foto;
     
-    public agregarMenuDiario(menuMenuDiario MenuDiario) {
+    public agregarMenus(menuMenus MenuDiario) {
     	
         // Configurar la ventana
         setTitle("Agregar Menu Diario");
@@ -166,7 +166,7 @@ public class agregarMenuDiario extends JFrame {
         panel.add(agregarMenuBtn);
         
         JButton volverBtn = new JButton("←");
-        volverBtn.setBounds(183, 477, 50, 15);
+        volverBtn.setBounds(10, 11, 50, 15);
         panel.add(volverBtn);
       
        // Acciones botones
@@ -213,7 +213,7 @@ public class agregarMenuDiario extends JFrame {
         volverBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		MenuDiario.setVisible(true);
-        		agregarMenuDiario.this.dispose();
+        		agregarMenus.this.dispose();
         	}
         });
         

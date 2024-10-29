@@ -42,18 +42,18 @@ public class eliminarUsuarios extends JFrame {
         panel.add(titulo);
         
         // Etiqueta de Buscar Producto
-        JLabel buscarProductoLabel = new JLabel("Nombre Usuarios");
+        JLabel buscarProductoLabel = new JLabel("Buscar Usuario");
         buscarProductoLabel.setForeground(new Color(255, 255, 255));
-        buscarProductoLabel.setBounds(106, 92, 121, 25);
+        buscarProductoLabel.setBounds(92, 92, 121, 25);
         panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
         JTextField buscarProductoField = new JTextField();
-        buscarProductoField.setBounds(106, 116, 127, 20);
+        buscarProductoField.setBounds(92, 119, 186, 23);
         panel.add(buscarProductoField);
         
         JButton btnEliminarProducto = new JButton("Eliminar Usuarios");
-        btnEliminarProducto.setBounds(167, 466, 150, 30);
+        btnEliminarProducto.setBounds(167, 487, 150, 30);
         panel.add(btnEliminarProducto);
         btnEliminarProducto.setEnabled(false);
     
@@ -75,20 +75,13 @@ public class eliminarUsuarios extends JFrame {
     lblProductos.setBounds(192, 52, 100, 40);
     panel.add(lblProductos);
     
-    JComboBox <String> comboBox = new JComboBox();
-    comboBox.setBounds(267, 116, 100, 20);
-    panel.add(comboBox);
-    
-    comboBox.addItem("Nombre");
-    comboBox.addItem("Todos");
-    
     JSeparator separator = new JSeparator();
     separator.setBackground(new Color(210, 210, 210));
     separator.setBounds(192, 58, 100, 2);
     panel.add(separator);
     
     JScrollPane scrollPane = new JScrollPane();
-    scrollPane.setBounds(92, 151, 300, 300);
+    scrollPane.setBounds(60, 153, 363, 318);
     panel.add(scrollPane);
     
     JButton btnEliminarProducto_1 = new JButton("←");
@@ -99,8 +92,12 @@ public class eliminarUsuarios extends JFrame {
     	}
     });
     
-    btnEliminarProducto_1.setBounds(217, 509, 50, 15);
+    btnEliminarProducto_1.setBounds(10, 11, 50, 15);
     panel.add(btnEliminarProducto_1);
+    
+    JButton btnNewButton = new JButton("Buscar");
+    btnNewButton.setBounds(302, 119, 89, 23);
+    panel.add(btnNewButton);
     
     }
 }

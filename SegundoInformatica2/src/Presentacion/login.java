@@ -89,7 +89,7 @@ public class login extends JFrame {
         rightPanel.add(passwordLabel);
         
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(111, 302, 100, 30);
+        loginButton.setBounds(111, 307, 100, 30);
         rightPanel.add(loginButton);
         
         JSeparator separator = new JSeparator();
@@ -105,6 +105,13 @@ public class login extends JFrame {
         lblBienvenidoa.setFont(new Font("Tahoma", Font.PLAIN, 14));
         lblBienvenidoa.setBounds(96, 62, 130, 30);
         rightPanel.add(lblBienvenidoa);
+        
+        JButton btnCambiarContra = new JButton("¿Olvidaste tu contraseña?");
+        btnCambiarContra.setBounds(64, 260, 193, 23);
+        btnCambiarContra.setContentAreaFilled(false);
+        btnCambiarContra.setBorderPainted(false);
+        btnCambiarContra.setForeground(Color.white);
+        rightPanel.add(btnCambiarContra);
         
         JPanel rightPanel_1_1 = new JPanel();
         rightPanel_1_1.setLayout(null);
@@ -147,7 +154,7 @@ public class login extends JFrame {
         			
         			menuPrincipal ventanaPrincipal = new menuPrincipal(login.this);
         			
-        			JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso! Bienvenido, " + nombre, null, JOptionPane.OK_OPTION, null);
+        			JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso! Bienvenido, " + nombre);
         			nameField.setText(null);
         			passwordField.setText(null);
         			

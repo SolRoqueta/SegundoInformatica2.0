@@ -11,7 +11,7 @@ public class menuPrincipal extends JFrame {
     
     private menuProductos ventanaProductos;
     private menuUsuarios ventanaUsuarios;
-    private menuMenuDiario ventanaMenuDiario;
+    private menuMenus ventanaMenus;
 
     private login Login;
     
@@ -66,8 +66,8 @@ public class menuPrincipal extends JFrame {
         btnMenus.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuDiarios window
-                ventanaMenuDiario = new menuMenuDiario(menuPrincipal.this); // Pass reference to menuPrincipal
-                ventanaMenuDiario.setVisible(true);
+                ventanaMenus = new menuMenus(menuPrincipal.this); // Pass reference to menuPrincipal
+                ventanaMenus.setVisible(true);
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
@@ -85,7 +85,7 @@ public class menuPrincipal extends JFrame {
             	menuPrincipal.this.dispose();
             }
         });
-        btnCerrarSesion.setBounds(85, 256, 122, 23);
+        btnCerrarSesion.setBounds(80, 256, 133, 31);
         getContentPane().add(btnCerrarSesion);
 
         JSeparator separator = new JSeparator();

@@ -126,7 +126,7 @@ public class agregarProductos extends JFrame {
         panel.add(agregarProductoBtn);
         
         JButton volverBtn = new JButton("←");
-        volverBtn.setBounds(161, 361, 50, 15);
+        volverBtn.setBounds(10, 11, 50, 15);
         panel.add(volverBtn);
 
         // Acciones Botones

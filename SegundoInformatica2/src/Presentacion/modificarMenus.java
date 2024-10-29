@@ -12,11 +12,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
-public class modificarMenuDiario extends JFrame {
+public class modificarMenus extends JFrame {
 	
 	public productos producto = new productos();
 	
-	private menuMenuDiario MenuDiario;
+	private menuMenus MenuMenus;
 	
 	// Declaracion de atributos de Productos
 	private String nombre;
@@ -25,7 +25,7 @@ public class modificarMenuDiario extends JFrame {
 	private String foto;
 	private JTextField nombreField;
     
-    public modificarMenuDiario(menuMenuDiario MenuDiario) {
+    public modificarMenus(menuMenus MenuMenus) {
     	
         // Configurar la ventana
         setTitle("Agregar Productos");
@@ -240,8 +240,8 @@ public class modificarMenuDiario extends JFrame {
         JButton agregarProductoBtn_1 = new JButton("←");
         agregarProductoBtn_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		MenuDiario.setVisible(true);
-        		modificarMenuDiario.this.dispose();
+        		MenuMenus.setVisible(true);
+        		modificarMenus.this.dispose();
         	}
         });
         agregarProductoBtn_1.setBounds(203, 535, 50, 15);

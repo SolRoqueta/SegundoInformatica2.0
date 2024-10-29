@@ -308,7 +308,7 @@ public class modificarProductos extends JFrame {
         		modificarProductos.this.dispose();    // Close the current window
         	}
         });
-	    btnModificarProducto_1.setBounds(204, 435, 50, 15);
+	    btnModificarProducto_1.setBounds(10, 11, 50, 15);
 	    panel.add(btnModificarProducto_1);
     
     }
