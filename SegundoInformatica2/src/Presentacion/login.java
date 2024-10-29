@@ -107,6 +107,19 @@ public class login extends JFrame {
         rightPanel.add(lblBienvenidoa);
         
         JButton btnCambiarContra = new JButton("¿Olvidaste tu contraseña?");
+        btnCambiarContra.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		cambiarPassword ventanaPassword = new cambiarPassword(login.this);
+        		
+        		ventanaPassword.setVisible(true);
+    			login.this.dispose();
+        		
+        		
+        		
+        		
+        	}
+        });
         btnCambiarContra.setBounds(64, 260, 193, 23);
         btnCambiarContra.setContentAreaFilled(false);
         btnCambiarContra.setBorderPainted(false);
