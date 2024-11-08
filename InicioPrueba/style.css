@@ -8,6 +8,34 @@
   box-sizing: inherit;
 }
 
+h2.efecto-linea {
+  display: inline-block;
+  position: relative;
+  margin-top: 20px;    /* Espacio encima del título */
+  margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+h2.efecto-linea::before,
+h2.efecto-linea::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 3px;
+  background-color: currentColor;
+  top: 50%; /* Centra la línea verticalmente en el título */
+  transform: translateY(-50%);
+}
+
+h2.efecto-linea::before {
+  left: -130px; /* Línea izquierda */
+}
+
+h2.efecto-linea::after {
+  right: -130px; /* Línea derecha */
+}
+
+
+
 .boton-iniciar-sesion {
   background-color: #198754;
   color: white;
@@ -30,6 +58,7 @@ html {
 }
 
 body {
+  text-align: center;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -138,6 +167,12 @@ nav ul li a:hover {
 }
 
 /* Estilos para Menu Semanal y Carousel */
+
+.title-menuSemanal {
+  text-align: center;
+  margin: 20px 0;
+}
+
 
 .menuSemanal {
   display: flex;
@@ -402,6 +437,9 @@ a{
   margin: 2rem 0;
 }
 
+
+
+
 @media (max-width:1024px){
   .column-4{
     grid-template-columns: repeat(3,1fr);
@@ -453,6 +491,8 @@ a{
   color: #4cbb6b;
 }
 
+
+
 /* ANIMACIONES */
 
 @keyframes loader-1 {
@@ -474,3 +514,4 @@ a{
     transform: rotate(-360deg); /* Rota en sentido contrario */
   }
 }
+ 
