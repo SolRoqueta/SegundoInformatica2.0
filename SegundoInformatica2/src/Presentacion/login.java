@@ -17,7 +17,7 @@ public class login extends JFrame {
         // Configuración básica de la ventana
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(630, 424);
+        setSize(800, 700);
         getContentPane().setLayout(null);  // Layout absoluto para ubicar los componentes manualmente
 
         // Panel derecho para el formulario de login

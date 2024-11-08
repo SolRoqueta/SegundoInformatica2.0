@@ -9,9 +9,9 @@ public class menuPrincipal extends JFrame {
 
     private int limiteVentana = 0;
     
-    private menuProductos ventanaProductos;
-    private menuUsuarios ventanaUsuarios;
-    private menuMenus ventanaMenus;
+    private Productos ventanaProductos;
+    private Usuarios ventanaUsuarios;
+    private Menus ventanaMenus;
 
     private login Login;
     
@@ -20,62 +20,66 @@ public class menuPrincipal extends JFrame {
     	this.Login = Login;
     	
         setTitle("Menu Principal");
-        setSize(309, 368);
+        setSize(800, 700);
         getContentPane().setBackground(new Color(43, 70, 77));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setLayout(null);
 
         // Welcome Label
-        JLabel welcomeLabel = new JLabel("MENU", SwingConstants.CENTER);
-        welcomeLabel.setBackground(Color.WHITE);
-        welcomeLabel.setBounds(91, 11, 110, 40);
-        getContentPane().add(welcomeLabel);
-        welcomeLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-        welcomeLabel.setBackground(Color.GRAY);
-        welcomeLabel.setForeground(new Color(210, 210, 210));
+        JLabel menuLabel = new JLabel("MENU", SwingConstants.CENTER);
+        menuLabel.setBackground(Color.WHITE);
+        menuLabel.setBounds(332, 49, 119, 40);
+        getContentPane().add(menuLabel);
+        menuLabel.setFont(new Font("Tahoma", Font.BOLD, 35));
+        menuLabel.setBackground(Color.GRAY);
+        menuLabel.setForeground(new Color(210, 210, 210));
 
         // Button for Menu Usuarios
-        JButton usuariosButton = new JButton("Usuarios");
-        usuariosButton.addActionListener(new ActionListener() {
+        JButton btnUsuarios = new JButton("Usuarios");
+        btnUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btnUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuUsuarios window
-                ventanaUsuarios = new menuUsuarios(menuPrincipal.this);
+                ventanaUsuarios = new Usuarios(menuPrincipal.this);
                 ventanaUsuarios.setVisible(true);
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
-        usuariosButton.setBounds(80, 153, 133, 31);
-        getContentPane().add(usuariosButton);      
+        btnUsuarios.setBounds(317, 316, 150, 45);
+        getContentPane().add(btnUsuarios);      
 
         // Button for Menu Productos
-        JButton productosButton = new JButton("Productos");
-        productosButton.addActionListener(new ActionListener() {
+        JButton btnProductos = new JButton("Productos");
+        btnProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        btnProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuProductos window
-                ventanaProductos = new menuProductos(menuPrincipal.this);
+                ventanaProductos = new Productos(menuPrincipal.this);
                 ventanaProductos.setVisible(true);
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
-        productosButton.setBounds(80, 103, 133, 31);
-        getContentPane().add(productosButton);
+        btnProductos.setBounds(317, 216, 150, 45);
+        getContentPane().add(btnProductos);
         
         // Button for Menu M Diarios
         JButton btnMenus = new JButton("Menus");
+        btnMenus.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnMenus.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuDiarios window
-                ventanaMenus = new menuMenus(menuPrincipal.this); // Pass reference to menuPrincipal
+                ventanaMenus = new Menus(menuPrincipal.this); // Pass reference to menuPrincipal
                 ventanaMenus.setVisible(true);
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
-        btnMenus.setBounds(80, 203, 133, 31);
+        btnMenus.setBounds(317, 416, 150, 45);
         getContentPane().add(btnMenus);
         
         // Boton para cerrar sesion
         JButton btnCerrarSesion = new JButton("Cerrar Sesion");
+        btnCerrarSesion.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnCerrarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuDiarios window
@@ -85,20 +89,20 @@ public class menuPrincipal extends JFrame {
             	menuPrincipal.this.dispose();
             }
         });
-        btnCerrarSesion.setBounds(80, 256, 133, 31);
+        btnCerrarSesion.setBounds(317, 516, 150, 45);
         getContentPane().add(btnCerrarSesion);
 
         JSeparator separator = new JSeparator();
         separator.setBackground(new Color(210, 210, 210));
-        separator.setBounds(106, 49, 80, 2);
+        separator.setBounds(332, 90, 120, 2);
         getContentPane().add(separator);
 
-        JLabel lblPrincipal = new JLabel("PRINCIPAL", SwingConstants.CENTER);
-        lblPrincipal.setForeground(new Color(210, 210, 210));
-        lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblPrincipal.setBackground(Color.WHITE);
-        lblPrincipal.setBounds(101, 52, 90, 20);
-        getContentPane().add(lblPrincipal);
+        JLabel principalLabel = new JLabel("PRINCIPAL", SwingConstants.CENTER);
+        principalLabel.setForeground(new Color(210, 210, 210));
+        principalLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        principalLabel.setBackground(Color.WHITE);
+        principalLabel.setBounds(327, 95, 130, 20);
+        getContentPane().add(principalLabel);
 
      
     }

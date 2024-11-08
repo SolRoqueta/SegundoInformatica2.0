@@ -30,7 +30,7 @@ public class cambiarPassword extends JFrame{
 		lblCambiar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCambiar.setForeground(new Color(210, 210, 210));
 		lblCambiar.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblCambiar.setBounds(88, 39, 130, 27);
+		setSize(800, 700);
 		getContentPane().add(lblCambiar);
 		
 		JSeparator separator = new JSeparator();

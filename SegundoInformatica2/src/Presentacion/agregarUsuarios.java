@@ -13,8 +13,6 @@ public class agregarUsuarios extends JFrame {
     
     public usuarios usuario = new usuarios();
     
-    private menuUsuarios MenuUsuarios;
-    
     // Declaración de atributos de Usuarios
     private String nombre;
     private String contra;
@@ -23,11 +21,11 @@ public class agregarUsuarios extends JFrame {
     
     private String[] tipoUsu = {"Padre", "Profesor"};
     
-    public agregarUsuarios(menuUsuarios MenuUsuarios) {
+    public agregarUsuarios() {
         
         // Configurar la ventana
         setTitle("Agregar Usuarios");
-        setSize(326, 463);
+        setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -153,8 +151,6 @@ public class agregarUsuarios extends JFrame {
         // Volver Atras
         volverBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                MenuUsuarios.setVisible(true); // Mostrar el menú principal
-                agregarUsuarios.this.dispose(); // Cerrar la ventana actual
             }
         });
    

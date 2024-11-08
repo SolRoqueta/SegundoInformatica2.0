@@ -15,8 +15,6 @@ public class agregarMenus extends JFrame {
 	
 	public menuDiario menuDiario = new menuDiario();
 	
-	private menuMenus MenuMenus;
-	
 	// Declaracion de atributos de Productos
 	private String nombre;
 	private int precio;
@@ -26,11 +24,11 @@ public class agregarMenus extends JFrame {
 	private String caminoFoto;
 	private String foto;
     
-    public agregarMenus(menuMenus MenuDiario) {
+    public agregarMenus() {
     	
         // Configurar la ventana
         setTitle("Agregar Menu Diario");
-        setSize(433, 551);
+        setSize(800, 700);	
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -47,7 +45,7 @@ public class agregarMenus extends JFrame {
         tituloAgregar.setBounds(146, 0, 125, 59);
         panel.add(tituloAgregar);
         
-        JLabel tituloMenus = new JLabel("MENUS DIARIOS", SwingConstants.CENTER);
+        JLabel tituloMenus = new JLabel("MENUS", SwingConstants.CENTER);
         tituloMenus.setFont(new Font("Tahoma", Font.PLAIN, 14));
         tituloMenus.setBounds(154, 33, 108, 51);
         tituloMenus.setBackground(Color.GRAY);
@@ -212,8 +210,6 @@ public class agregarMenus extends JFrame {
       // Volver Atras
         volverBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		MenuDiario.setVisible(true);
-        		agregarMenus.this.dispose();
         	}
         });
         

@@ -16,8 +16,6 @@ public class modificarMenus extends JFrame {
 	
 	public productos producto = new productos();
 	
-	private menuMenus MenuMenus;
-	
 	// Declaracion de atributos de Productos
 	private String nombre;
 	private int precio;
@@ -25,11 +23,11 @@ public class modificarMenus extends JFrame {
 	private String foto;
 	private JTextField nombreField;
     
-    public modificarMenus(menuMenus MenuMenus) {
+    public modificarMenus() {
     	
         // Configurar la ventana
         setTitle("Agregar Productos");
-        setSize(473, 612);
+        setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -240,8 +238,6 @@ public class modificarMenus extends JFrame {
         JButton agregarProductoBtn_1 = new JButton("←");
         agregarProductoBtn_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		MenuMenus.setVisible(true);
-        		modificarMenus.this.dispose();
         	}
         });
         agregarProductoBtn_1.setBounds(203, 535, 50, 15);

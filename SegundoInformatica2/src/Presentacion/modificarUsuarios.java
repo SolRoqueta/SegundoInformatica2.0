@@ -14,8 +14,6 @@ public class modificarUsuarios extends JFrame {
 	
 	public productos producto = new productos();
 	
-	private menuUsuarios MenuUsuarios;
-	
 	// Declaracion de atributos de Productos
 	private String nombre;
 	private int precio;
@@ -24,11 +22,11 @@ public class modificarUsuarios extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
     
-    public modificarUsuarios(menuUsuarios MenuUsuarios) {
+    public modificarUsuarios() {
     	
         // Configurar la ventana
         setTitle("Modificar Productos");
-        setSize(351, 500);
+        setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -171,8 +169,6 @@ public class modificarUsuarios extends JFrame {
 	    JButton btnModificarProducto_1 = new JButton("←");
 	    btnModificarProducto_1.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		MenuUsuarios.setVisible(true); // Show the main menu
-        		modificarUsuarios.this.dispose();    // Close the current window
 	    	}
 	    });
 	    btnModificarProducto_1.setBounds(142, 426, 50, 15);

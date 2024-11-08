@@ -13,8 +13,7 @@ import javax.swing.border.LineBorder;
 public class agregarProductos extends JFrame {
     
     public productos producto = new productos();
-    
-    private menuProductos MenuProductos;
+
 
     // Declaracion de atributos de Productos
     private String nombre;
@@ -22,11 +21,11 @@ public class agregarProductos extends JFrame {
     private String descripcion;
     private String foto;
     
-    public agregarProductos(menuProductos MenuProductos) {
+    public agregarProductos() {
         
         // Configurar la ventana
         setTitle("Agregar Productos");
-        setSize(388, 429);
+        setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -188,8 +187,6 @@ public class agregarProductos extends JFrame {
         // Volver atras
         volverBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                MenuProductos.setVisible(true); 
-                agregarProductos.this.dispose(); 
             }
         });
        
