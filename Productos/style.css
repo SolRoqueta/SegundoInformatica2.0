@@ -130,7 +130,35 @@ nav ul li a:hover {
     margin: 5px;
     border: rgba(131, 131, 131, 0.25) solid 1px;
     border-radius: 10px;
+    max-height: 275px;
     /* margin-right: 25px; */
+
+}
+
+.descripcion {
+
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    width: 75%;
+    margin: 0px;
+
+}
+
+.filter-comboBox {
+
+    font-size: 25px;
+    padding: 10px;
+    padding-right: 30px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('');
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Posición de la flecha */
 
 }
 
