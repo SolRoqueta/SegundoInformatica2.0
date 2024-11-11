@@ -23,52 +23,20 @@ const hideLoader = () => {
     loader.classList.remove("show-loader"); 
 }
 
-// Codigo Carousel MenuSemanal
-
-const track = document.querySelector('.carousel-track');
-const slides = Array.from(track.children);
-const prevButton = document.getElementById('prev');
-const nextButton = document.getElementById('next');
-
-const slideWidth = slides[0].getBoundingClientRect().width;
-const slidesToMove = 1.1; // Define how many slides to move with each click
-
-// Arrange the slides next to one another
-const setSlidePosition = (slide, index) => {
-  slide.style.left = slideWidth * index + 'px';
-};
-
-slides.forEach(setSlidePosition);
-
-let currentIndex = 0;
-
-// Move to a specific slide
-const moveToSlide = (track, currentSlide, targetIndex) => {
-  track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
-  currentIndex = targetIndex; // Update the current index
-};
-
-// Update the buttons (disable if at the end/start)
-const updateButtons = () => {
-  prevButton.disabled = currentIndex === 0;
-  nextButton.disabled = currentIndex >= slides.length - 3;
-};
-
-updateButtons();
-
-// When you click next
-nextButton.addEventListener('click', () => {
-  const targetIndex = Math.min(currentIndex + slidesToMove, slides.length - 1.5); // Ensure we don't go past the last slide
-  moveToSlide(track, slides[currentIndex], targetIndex);
-  updateButtons();
+document.getElementById("next").addEventListener("click", function() {
+  const track = document.querySelector(".carousel-track");
+  const slides = document.querySelectorAll(".carousel-slide");
+  const slideWidth = slides[0].offsetWidth;
+  track.style.transform = `translateX(-${slideWidth}px)`;
 });
 
-// When you click previous
-prevButton.addEventListener('click', () => {
-  const targetIndex = Math.max(currentIndex - slidesToMove, 0); // Ensure we don't go before the first slide
-  moveToSlide(track, slides[currentIndex], targetIndex);
-  updateButtons();
+document.getElementById("prev").addEventListener("click", function() {
+  const track = document.querySelector(".carousel-track");
+  const slides = document.querySelectorAll(".carousel-slide");
+  const slideWidth = slides[0].offsetWidth;
+  track.style.transform = `translateX(${slideWidth}px)`;
 });
+
 
 //Funcion para la sobra/transparencia del scroll del loader
 window.addEventListener('scroll', function() {
@@ -80,14 +48,32 @@ window.addEventListener('scroll', function() {
   }
 });
 
+// Variables del carrusel
+const track = document.querySelector(".carousel-track");
+const slides = Array.from(document.querySelectorAll(".carousel-slide"));
+const nextButton = document.getElementById("next");
+const prevButton = document.getElementById("prev");
+const slideWidth = slides[0].offsetWidth; 
 
-//funcion para que se desplegue el boton en menu fijo 
-function toggleText(id) {
-  const content = document.getElementById(id);
-  if (content.style.display === "none") {
-      content.style.display = "block";
-  } else {
-      content.style.display = "none";
-  }
-}
+// Función para mover el carrusel a la derecha
+nextButton.addEventListener("click", () => {
+    track.style.transition = "transform 0.5s ease-in-out";
+    track.style.transform = `translateX(-${slideWidth}px)`;
+    setTimeout(() => {
+        track.appendChild(track.firstElementChild);
+        track.style.transition = "none";
+        track.style.transform = "translateX(0)";
+    }, 500);
+});
+
+// Función para mover el carrusel a la izquierda
+prevButton.addEventListener("click", () => {
+    track.insertBefore(track.lastElementChild, track.firstChild);
+    track.style.transition = "none";
+    track.style.transform = `translateX(-${slideWidth}px)`;
+    setTimeout(() => {
+        track.style.transition = "transform 0.5s ease-in-out";
+        track.style.transform = "translateX(0)";
+    }, 0);
+});
 
