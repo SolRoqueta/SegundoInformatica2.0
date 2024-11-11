@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
@@ -162,6 +163,7 @@ public class agregarProductos extends JFrame {
                 descripcion = descripcionArea.getText();
                 precio = (Integer) precioField.getValue();
                 
+                
                 // Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
                 if (nombre.equals("") || precio == 0 || foto == null) {
                     JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
@@ -174,19 +176,33 @@ public class agregarProductos extends JFrame {
                         producto.setDescripcion(descripcion);
                         producto.setPrecio(precio);
 //                        producto.setFoto(foto);
-                        producto.AgregarProducto();
+                        
+                        try {
+							producto.AgregarProducto();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
                         JOptionPane.showMessageDialog(null, "Producto agregado con exito!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
                     }    
-                }    
+                    
+                    
+                }
+                
+                panelProductos ventanaProductos = new panelProductos();
+            	ventanaProductos.setVisible(true);
+            	agregarProductos.this.dispose();
             }
+        
+            
         });
 
         // Volver atras
         volverBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	Pproductos ventanaProductos = new Pproductos();
+            	panelProductos ventanaProductos = new panelProductos();
             	ventanaProductos.setVisible(true);
             	agregarProductos.this.dispose();
             }

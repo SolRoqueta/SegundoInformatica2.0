@@ -172,7 +172,7 @@ public class modificarMenus extends JFrame {
                 		producto.setPrecio(precio);
 //                		producto.setFoto(foto);
                 		
-                		producto.AgregarProducto();
+//                		producto.AgregarProducto();
                 		JOptionPane.showMessageDialog(null, "Producto agregado con exito!");
         				
         			} else {

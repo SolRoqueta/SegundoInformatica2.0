@@ -9,7 +9,7 @@ public class menuPrincipal extends JFrame {
 
     private int limiteVentana = 0;
     
-    private Pproductos ventanaProductos;
+    private panelProductos ventanaProductos;
     private Usuarios ventanaUsuarios;
     private Menus ventanaMenus;
     
@@ -51,7 +51,7 @@ public class menuPrincipal extends JFrame {
         btnProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuProductos window
-                ventanaProductos = new Pproductos(menuPrincipal.this);
+                ventanaProductos = new panelProductos();
                 ventanaProductos.setVisible(true);
                 menuPrincipal.this.dispose(); // Close the main window
             }

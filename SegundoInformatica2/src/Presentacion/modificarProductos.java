@@ -18,15 +18,15 @@ public class modificarProductos extends JFrame {
 	  private String precio;
 	  private String descripcion;
     
-    public modificarProductos(String nombre, String precio, String descripcion, Pproductos pProductos) {
+    public modificarProductos(String nombre, String precio, String descripcion, panelProductos panelProductos) {
     	this.nombre = nombre;
     	this.precio = precio;
     	this.descripcion = descripcion;
     	
-    	presentacionModificar(pProductos);
+    	presentacionModificar(panelProductos);
     }
     
-    private void presentacionModificar(Pproductos pProductos) {
+    private void presentacionModificar(panelProductos pProductos) {
         
         // Configurar la ventana
         setTitle("Modificar Productos");
@@ -142,6 +142,10 @@ public class modificarProductos extends JFrame {
         		producto.setDescripcion(descripcionArea.getText());
         		
         		producto.ModificarProducto();
+        		
+        		panelProductos ventanaProductos = new panelProductos();
+            	ventanaProductos.setVisible(true);
+        		modificarProductos.this.dispose();   
   
         	}
         });
@@ -184,7 +188,7 @@ public class modificarProductos extends JFrame {
         volverBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-            	Pproductos ventanaProductos = new Pproductos();
+            	panelProductos ventanaProductos = new panelProductos();
             	ventanaProductos.setVisible(true);
         		modificarProductos.this.dispose();           	
             }

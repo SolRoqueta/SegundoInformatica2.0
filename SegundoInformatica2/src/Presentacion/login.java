@@ -111,10 +111,6 @@ public class login extends JFrame {
         btnCambiarContra.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
 
-        		
-        		
-        		
-        		
         	}
         });
         btnCambiarContra.setBounds(103, 333, 193, 23);
