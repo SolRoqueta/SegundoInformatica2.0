@@ -170,7 +170,7 @@ public class modificarMenus extends JFrame {
         				producto.setNombre(nombre);
                 		producto.setDescripcion(descripcion);
                 		producto.setPrecio(precio);
-                		producto.setFoto(foto);
+//                		producto.setFoto(foto);
                 		
                 		producto.AgregarProducto();
                 		JOptionPane.showMessageDialog(null, "Producto agregado con exito!");

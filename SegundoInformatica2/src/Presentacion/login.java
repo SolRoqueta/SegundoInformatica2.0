@@ -18,20 +18,21 @@ public class login extends JFrame {
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 700);
+        setLocationRelativeTo(null);
         getContentPane().setLayout(null);  // Layout absoluto para ubicar los componentes manualmente
 
         // Panel derecho para el formulario de login
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(null);
         rightPanel.setBackground(new Color(43, 70, 77));
-        rightPanel.setBounds(292, 0, 322, 391);
+        rightPanel.setBounds(390, 0, 400, 700);
         getContentPane().add(rightPanel);
 
         // Etiqueta "Nombre"
         JLabel nameLabel = new JLabel("Nombre");
         nameLabel.setForeground(new Color(240, 240, 240));
         nameLabel.setForeground(new Color(240, 240, 240));
-        nameLabel.setBounds(86, 127, 100, 20);
+        nameLabel.setBounds(125, 193, 100, 20);
         rightPanel.add(nameLabel);
                                                         
         // Campo de texto para el nombre
@@ -48,13 +49,13 @@ public class login extends JFrame {
         		
         	}
         });
-        nameField.setBounds(86, 149, 150, 20);
+        nameField.setBounds(125, 216, 150, 20);
         rightPanel.add(nameField);
         
         // Etiqueta "Login"
         JLabel loginLabel = new JLabel("LOGIN");
         loginLabel.setForeground(new Color(210, 210, 210));
-        loginLabel.setBounds(119, 32, 83, 30);
+        loginLabel.setBounds(158, 32, 83, 30);
         rightPanel.add(loginLabel);
         loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
         loginLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -63,7 +64,7 @@ public class login extends JFrame {
         // Campo de texto para la contraseña
         
         JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(86, 229, 150, 20);
+        passwordField.setBounds(125, 288, 150, 20);
         rightPanel.add(passwordField);
         
         passwordField.addKeyListener(new KeyAdapter() {
@@ -85,17 +86,17 @@ public class login extends JFrame {
         // Etiqueta "Contraseña"
         JLabel passwordLabel = new JLabel("Contraseña");
         passwordLabel.setForeground(new Color(240, 240, 240));
-        passwordLabel.setBounds(86, 207, 100, 20);
+        passwordLabel.setBounds(125, 262, 100, 20);
         rightPanel.add(passwordLabel);
         
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(111, 307, 100, 30);
+        loginButton.setBounds(150, 413, 100, 30);
         rightPanel.add(loginButton);
         
         JSeparator separator = new JSeparator();
         separator.setBackground(new Color(210, 210, 210));
         separator.setForeground(new Color(210, 210, 210));
-        separator.setBounds(111, 62, 100, 2);
+        separator.setBounds(150, 62, 100, 2);
         rightPanel.add(separator);
         
         JLabel lblBienvenidoa = new JLabel("BIENVENIDO/A");
@@ -103,24 +104,20 @@ public class login extends JFrame {
         lblBienvenidoa.setForeground(new Color(210, 210, 210));
         lblBienvenidoa.setHorizontalAlignment(SwingConstants.CENTER);
         lblBienvenidoa.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblBienvenidoa.setBounds(96, 62, 130, 30);
+        lblBienvenidoa.setBounds(135, 62, 130, 30);
         rightPanel.add(lblBienvenidoa);
         
         JButton btnCambiarContra = new JButton("¿Olvidaste tu contraseña?");
         btnCambiarContra.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
-        		cambiarPassword ventanaPassword = new cambiarPassword(login.this);
-        		
-        		ventanaPassword.setVisible(true);
-    			login.this.dispose();
+
         		
         		
         		
         		
         	}
         });
-        btnCambiarContra.setBounds(64, 260, 193, 23);
+        btnCambiarContra.setBounds(103, 333, 193, 23);
         btnCambiarContra.setContentAreaFilled(false);
         btnCambiarContra.setBorderPainted(false);
         btnCambiarContra.setForeground(Color.white);
@@ -129,7 +126,7 @@ public class login extends JFrame {
         JPanel rightPanel_1_1 = new JPanel();
         rightPanel_1_1.setLayout(null);
         rightPanel_1_1.setBackground(new Color(53, 88, 96));
-        rightPanel_1_1.setBounds(0, 0, 297, 391);
+        rightPanel_1_1.setBounds(-5, 0, 400, 700);
         getContentPane().add(rightPanel_1_1);
         
         JLabel lblNewLabel = new JLabel("");
@@ -140,20 +137,20 @@ public class login extends JFrame {
         lblLaCantina.setHorizontalAlignment(SwingConstants.CENTER);
         lblLaCantina.setForeground(new Color(210, 210, 210));
         lblLaCantina.setFont(new Font("Tahoma", Font.BOLD, 22));
-        lblLaCantina.setBounds(57, 16, 182, 30);
+        lblLaCantina.setBounds(109, 16, 182, 30);
         rightPanel_1_1.add(lblLaCantina);
         
         JLabel lblLaCantina_1 = new JLabel("DE DANIELA");
         lblLaCantina_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblLaCantina_1.setForeground(new Color(210, 210, 210));
         lblLaCantina_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblLaCantina_1.setBounds(59, 50, 182, 30);
+        lblLaCantina_1.setBounds(109, 50, 182, 30);
         rightPanel_1_1.add(lblLaCantina_1);
         
         JSeparator separator_1 = new JSeparator();
         separator_1.setForeground(new Color(210, 210, 210));
         separator_1.setBackground(new Color(210, 210, 210));
-        separator_1.setBounds(97, 49, 100, 2);
+        separator_1.setBounds(150, 49, 100, 2);
         rightPanel_1_1.add(separator_1);
         
         
@@ -165,7 +162,7 @@ public class login extends JFrame {
         		
         		if (nombre.equals("admin") && contra.equals("admin")) {
         			
-        			menuPrincipal ventanaPrincipal = new menuPrincipal(login.this);
+        			menuPrincipal ventanaPrincipal = new menuPrincipal();
         			
         			JOptionPane.showMessageDialog(null, "Inicio de sesion exitoso! Bienvenido, " + nombre);
         			nameField.setText(null);

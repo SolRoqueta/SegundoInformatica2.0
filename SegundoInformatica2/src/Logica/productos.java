@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
@@ -21,8 +23,8 @@ public class productos {
 	private String descripcion; //Declaro el String de descripcion
 	private int precio; //Declaro el String de precio
 	private FileInputStream foto;
-	private FileInputStream fotoTemp;
-	private BufferedImage fotoPaMostrar;
+//	private FileInputStream fotoTemp;
+//	private BufferedImage fotoPaMostrar;
 	private String AgregarProductoQuery = "INSERT INTO productos (nombre, descripcion, precio, foto) VALUES (?, ?, ?, ?);";
 	private String ModificarProductoQuery = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, foto = ? WHERE id_producto = ?;";
 	private String EliminarProductoQuery = "DELETE FROM productos WHERE nombre = ? LIMIT 1;";
@@ -35,13 +37,13 @@ public class productos {
 	 *		CONSTRUCTOR DE PRODUCTOS 
 	 */
 	
-	public productos(int ID, String NOMBRE, String DESCRIPCION, int PRECIO, String FOTO) {
+	public productos(int ID, String NOMBRE, String DESCRIPCION, int PRECIO) {
 		
 		this.setId(ID);
 		this.setNombre(NOMBRE);
 		this.setDescripcion(DESCRIPCION);
 		this.setPrecio(PRECIO);
-		this.setFoto(FOTO);
+//		this.setFoto(FOTO);
 		
 	}
 	
@@ -86,50 +88,50 @@ public class productos {
 		this.precio = precio;
 	}
 
-	public FileInputStream getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String fotoPath) {
-		
-		try {
-			
-			fotoTemp = new FileInputStream(fotoPath);
-			
-		} catch (FileNotFoundException e) {
-			
-//			e.printStackTrace();
-			
-		}
-		
-		this.foto = fotoTemp;
-	}
-	
-	public void setFotoTemp(FileInputStream fotoTemp) {
-		this.fotoTemp = fotoTemp;
-	}
-
-	public void setFotoBinary(FileInputStream input) {
-		
-		this.foto = input;
-		
-	}
-	
-	public BufferedImage getFotoPaMostrar() {
-		return fotoPaMostrar;
-	}
-
-	public void setFotoPaMostrar(InputStream fotoPaMostrar) {
-		try {
-			
-			this.fotoPaMostrar = ImageIO.read(fotoPaMostrar);
-			
-		} catch (IOException e) {
-			
-//			e.printStackTrace();
-			
-		}
-	}
+//	public FileInputStream getFoto() {
+//		return foto;
+//	}
+//
+//	public void setFoto(String fotoPath) {
+//		
+//		try {
+//			
+//			fotoTemp = new FileInputStream(fotoPath);
+//			
+//		} catch (FileNotFoundException e) {
+//			
+////			e.printStackTrace();
+//			
+//		}
+//		
+//		this.foto = fotoTemp;
+//	}
+//	
+//	public void setFotoTemp(FileInputStream fotoTemp) {
+//		this.fotoTemp = fotoTemp;
+//	}
+//
+//	public void setFotoBinary(FileInputStream input) {
+//		
+//		this.foto = input;
+//		
+//	}
+//	
+//	public BufferedImage getFotoPaMostrar() {
+//		return fotoPaMostrar;
+//	}
+//
+//	public void setFotoPaMostrar(InputStream fotoPaMostrar) {
+//		try {
+//			
+//			this.fotoPaMostrar = ImageIO.read(fotoPaMostrar);
+//			
+//		} catch (IOException e) {
+//			
+////			e.printStackTrace();
+//			
+//		}
+//	}
 	
 	/*
 	 * 		FUNCION QUE AGREGA EL PRODUCTO A LA BASE DE DATOS
@@ -227,7 +229,7 @@ public class productos {
 				
 			} catch (SQLException ex) {
 				
-//				ex.printStackTrace();
+				ex.printStackTrace();
 				System.out.println("No se a podido eliminar el prdoucto.");
 			
 			}
@@ -283,11 +285,11 @@ public class productos {
 						
 						int precio = resultSet.getInt("precio");
 						
-						InputStream foto = resultSet.getBinaryStream("foto");
+//						InputStream foto = resultSet.getBinaryStream("foto");
 						
 						tempProducto.setId(id);
 						tempProducto.setDescripcion(descripcion);
-						tempProducto.setFotoPaMostrar(foto);
+//						tempProducto.setFotoPaMostrar(foto);
 						tempProducto.setNombre(nombre);
 						tempProducto.setPrecio(precio);
 						
@@ -310,13 +312,11 @@ public class productos {
 			
 	    }
 	
-	public String[][] BuscarProductos() {
+	public List<Object[]> BuscarProductos() {
 		
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
-	    productos tempProducto = new productos();
-	    String[][] datos = new String[100][4];
-	    int index = 0;
+	    List<Object[]> productList = new ArrayList<>();
 		
 		String query = BuscarProductosQuery;
 		
@@ -327,33 +327,18 @@ public class productos {
 			
 			while (resultSet.next()) {
 			
-			int id = resultSet.getInt("id_producto");
+				int id = resultSet.getInt("id_producto");
+				
+				String nombre = resultSet.getString("nombre");
+				
+				String descripcion = resultSet.getString("descripcion");
+				
+				int precio = resultSet.getInt("precio");
+				
+				productList.add(new Object[]{id, nombre, precio, descripcion});
+					    	
+			}
 			
-			String nombre = resultSet.getString("nombre");
-			
-			String descripcion = resultSet.getString("descripcion");
-			
-			int precio = resultSet.getInt("precio");
-			
-			InputStream foto = resultSet.getBinaryStream("foto");
-			
-			tempProducto.setId(id);
-			tempProducto.setDescripcion(descripcion);
-			tempProducto.setFotoPaMostrar(foto);
-			tempProducto.setNombre(nombre);
-			tempProducto.setPrecio(precio);
-			
-			datos[index][0] = String.valueOf(tempProducto.getId());
-            datos[index][1] = tempProducto.getNombre();
-            datos[index][2] = tempProducto.getDescripcion();
-            datos[index][3] = String.valueOf(tempProducto.getPrecio());
-			
-			index++;
-			
-			System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio + ", ruta a la foto: " + foto);
-			System.out.println(" ");
-    	
-	}
     } catch (SQLException e) {
 	
 //		e.printStackTrace();
@@ -361,7 +346,7 @@ public class productos {
 	
 	}
 		
-	return datos;
+		return productList;
 		
 }
 	
@@ -407,8 +392,8 @@ public static void main(String[] args) {
 				
 				System.out.println("Ingrese la ruta de la foto: ");
 				
-				p.setFoto(sr.nextLine());
-				
+//				p.setFoto(sr.nextLine());
+//				
 				p.AgregarProducto();
 				
 				break;
@@ -437,7 +422,7 @@ public static void main(String[] args) {
 				
 				System.out.println("Ingrese la nueva ruta de la foto: ");
 				
-				p.setFoto(sr.nextLine());
+//				p.setFoto(sr.nextLine());
 				
 				p.ModificarProducto();
 				

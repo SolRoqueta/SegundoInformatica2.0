@@ -9,15 +9,11 @@ public class menuPrincipal extends JFrame {
 
     private int limiteVentana = 0;
     
-    private Productos ventanaProductos;
+    private Pproductos ventanaProductos;
     private Usuarios ventanaUsuarios;
     private Menus ventanaMenus;
-
-    private login Login;
     
-    public menuPrincipal(login Login) {
-    	
-    	this.Login = Login;
+    public menuPrincipal() {
     	
         setTitle("Menu Principal");
         setSize(800, 700);
@@ -55,7 +51,7 @@ public class menuPrincipal extends JFrame {
         btnProductos.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuProductos window
-                ventanaProductos = new Productos(menuPrincipal.this);
+                ventanaProductos = new Pproductos(menuPrincipal.this);
                 ventanaProductos.setVisible(true);
                 menuPrincipal.this.dispose(); // Close the main window
             }
@@ -85,6 +81,7 @@ public class menuPrincipal extends JFrame {
                 // Open the MenuDiarios window
             	
             	JOptionPane.showMessageDialog(null, "Sesion cerrada con exito");
+            	login Login = new login();
             	Login.setVisible(true);
             	menuPrincipal.this.dispose();
             }

@@ -11,10 +11,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
 public class agregarProductos extends JFrame {
-    
-    public productos producto = new productos();
 
-
+	productos producto = new productos();
+	
     // Declaracion de atributos de Productos
     private String nombre;
     private int precio;
@@ -174,7 +173,7 @@ public class agregarProductos extends JFrame {
                         producto.setNombre(nombre);
                         producto.setDescripcion(descripcion);
                         producto.setPrecio(precio);
-                        producto.setFoto(foto);
+//                        producto.setFoto(foto);
                         producto.AgregarProducto();
                         JOptionPane.showMessageDialog(null, "Producto agregado con exito!");
                     } else {
@@ -187,6 +186,9 @@ public class agregarProductos extends JFrame {
         // Volver atras
         volverBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	Pproductos ventanaProductos = new Pproductos();
+            	ventanaProductos.setVisible(true);
+            	agregarProductos.this.dispose();
             }
         });
        
