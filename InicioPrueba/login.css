@@ -12,7 +12,8 @@ section {
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    background: url(../img/cantina\ saludable\ Web.jpg);
+  
+    /*background: url(../img/cantina\ saludable\ Web.jpg);*/
     background-position: center;
     background-size: cover;
 }
@@ -20,12 +21,13 @@ section {
 .contenedor {
     position: relative;
     width: 400px;
-    border: 2px solid rgba(255, 255, 255, 6);
+    border: 2px solid black;
     border-radius: 20px;
     height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .contenedor h2 {
@@ -97,7 +99,7 @@ input:not(:placeholder-shown) ~ label {
 }
 
 .olvidar label a {
-    color: #c4a9a9;
+    color: #1f1919;
     text-decoration: none;
     transition: .3s;
     font-size: .9em;
@@ -142,7 +144,7 @@ input:not(:placeholder-shown) ~ label {
     padding: 10px;
     border-radius: 6px;
     text-decoration: none;
-    color: rgb(58, 94, 58);
+    color: rgb(202, 209, 202);
     font-weight: bold;
     display: block;
     transition: background-color 0.3s ease;
