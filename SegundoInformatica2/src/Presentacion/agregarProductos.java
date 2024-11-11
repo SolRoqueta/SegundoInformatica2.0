@@ -158,24 +158,30 @@ public class agregarProductos extends JFrame {
         // Agregar Producto
         agregarProductoBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Gets de todos los atributos del producto a crear
+      
                 nombre = nombreField.getText();
                 descripcion = descripcionArea.getText();
                 precio = (Integer) precioField.getValue();
-                
                 
                 // Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
                 if (nombre.equals("") || precio == 0 || foto == null) {
                     JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
                 } else {
                     productos tempProducto = new productos();
-                    String tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
+                    String tempNombre = null;
+					try {
+						tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                     
                     if (tempNombre == null) {
                         producto.setNombre(nombre);
                         producto.setDescripcion(descripcion);
                         producto.setPrecio(precio);
-//                        producto.setFoto(foto);
+                        producto.setFoto(foto);
+                        System.out.println(foto);
                         
                         try {
 							producto.AgregarProducto();

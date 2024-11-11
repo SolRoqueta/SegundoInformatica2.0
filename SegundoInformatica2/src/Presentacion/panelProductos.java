@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
@@ -199,18 +200,30 @@ public class panelProductos extends JFrame {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
 	    		filaSeleccionada = tablaProductos.getSelectedRow();
+	    		productos producto = new productos();
 	    		
 	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
 	  		        // Obtenemos los valores de cada columna
-	  		        nombre = tablaProductos.getValueAt(filaSeleccionada, 1).toString(); // Columna 1: Nombre
-	  		        precio = tablaProductos.getValueAt(filaSeleccionada, 2).toString(); // Columna 2: Precio
-	  		        descripcion = tablaProductos.getValueAt(filaSeleccionada, 3).toString(); // Columna 3: Descripción
-	
+	  		    	int id = (int) tablaProductos.getValueAt(filaSeleccionada, 0);
+	  		    	nombre = tablaProductos.getValueAt(filaSeleccionada, 1).toString(); // Columna 1: Nombre
+	  		        
+	  		        try {
+						producto = producto.BuscarProductoId(id);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	  		        
 	  		    } else {
 	  		        System.out.println("No hay ninguna fila seleccionada.");
 	  		    }
 	  		    
-	    		ventanaModificar = new modificarProductos(nombre, precio, descripcion, panelProductos.this);
+	    		try {
+					ventanaModificar = new modificarProductos(nombre, producto.getPrecio(), producto.getDescripcion(), producto.getIconoFoto());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	    		ventanaModificar.setVisible(true);
 	    		panelProductos.this.dispose();
 	    	}	
@@ -230,7 +243,12 @@ public class panelProductos extends JFrame {
 	  		        System.out.println("No hay ninguna fila seleccionada.");
 	  		    }
 	    		
-	    		producto = producto.BuscarProducto(nombre);
+	    		try {
+					producto = producto.BuscarProducto(nombre);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	    		producto.EliminarProducto();
 	    		modeloTabla.removeRow(filaSeleccionada);
 	    		

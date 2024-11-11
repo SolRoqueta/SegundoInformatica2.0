@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
@@ -163,7 +164,13 @@ public class modificarMenus extends JFrame {
         		} else {
         			
         			productos tempProducto = new productos();
-        			String tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
+        			String tempNombre = null;
+					try {
+						tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
         			
         			if (tempNombre == null) {
         				

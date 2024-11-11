@@ -2,11 +2,14 @@ package Presentacion;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import Logica.convertidorFoto;
 import Logica.productos;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
@@ -15,18 +18,21 @@ public class modificarProductos extends JFrame {
 	productos producto = new productos();
 
 	  private String nombre;
-	  private String precio;
+	  private int precio;
 	  private String descripcion;
+	  private ImageIcon foto;
+	  private String fotoPath;
     
-    public modificarProductos(String nombre, String precio, String descripcion, panelProductos panelProductos) {
+    public modificarProductos(String nombre, int precio, String descripcion, ImageIcon foto) throws IOException {
     	this.nombre = nombre;
     	this.precio = precio;
     	this.descripcion = descripcion;
+    	this.foto = foto;
     	
-    	presentacionModificar(panelProductos);
+    	presentacionModificar();
     }
     
-    private void presentacionModificar(panelProductos pProductos) {
+    private void presentacionModificar() throws IOException {
         
         // Configurar la ventana
         setTitle("Modificar Productos");
@@ -127,6 +133,9 @@ public class modificarProductos extends JFrame {
         imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
         
+        producto = producto.BuscarProducto(nombre);
+        imagenLabel.setIcon(producto.getIconoFoto());
+        
         // Botones
         JButton subirImagenBtn = new JButton("Subir Imagen");
         subirImagenBtn.setBounds(215, 239, 118, 25);
@@ -136,12 +145,15 @@ public class modificarProductos extends JFrame {
         btnModificar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		producto = producto.BuscarProducto(nombre);
-        		
         		producto.setNombre(nombreField.getText());
         		producto.setDescripcion(descripcionArea.getText());
+        		producto.setFoto(fotoPath);
         		
-        		producto.ModificarProducto();
+        		try {
+					producto.ModificarProducto();
+				} catch (IOException e1) {
+//					e1.printStackTrace();
+				}
         		
         		panelProductos ventanaProductos = new panelProductos();
             	ventanaProductos.setVisible(true);
@@ -178,7 +190,7 @@ public class modificarProductos extends JFrame {
                     Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_FAST);
                     // Mostrar la imagen en imagenLabel
                     imagenLabel.setIcon(new ImageIcon(image));
-//                    foto = fc.getSelectedFile().getAbsolutePath();
+                    fotoPath = fc.getSelectedFile().getAbsolutePath();
                 }
             }
         });

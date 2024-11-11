@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class productos {
 	
@@ -23,12 +24,16 @@ public class productos {
 	private String descripcion; 
 	private String foto;
 	private InputStream is;
+	private ImageIcon iconoFoto;
+	private Image imageFoto;
+	private byte[] fotoByte;
 	
 	// Queries predefinidas
 	private String AgregarProductoQuery = "INSERT INTO productos (nombre, descripcion, precio, foto) VALUES (?, ?, ?, ?);";
-	private String ModificarProductoQuery = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ? WHERE id_producto = ?;";
+	private String ModificarProductoQuery = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, foto = ? WHERE id_producto = ?;";
 	private String EliminarProductoQuery = "DELETE FROM productos WHERE nombre = ? LIMIT 1;";
 	private String BuscarProductoQuery = "SELECT * FROM productos WHERE nombre = ?;";
+	private String BuscarProductoIdQuery = "SELECT * FROM productos WHERE id_producto= ?;";
 	private String BuscarProductosQuery = "SELECT * FROM productos;";
 	
 	// CONSTRUCTOR DE PRODUCTOS 
@@ -87,6 +92,19 @@ public class productos {
 		this.foto = foto;
 	}
 	
+	public ImageIcon getIconoFoto() {
+		return iconoFoto;
+	}
+
+	public void setIconoFoto(ImageIcon iconoFoto) {
+		this.iconoFoto = iconoFoto;
+	}
+	
+	public void setFotoByte(byte[] fotoByte) {
+		this.fotoByte = fotoByte;
+	}
+	
+	
 	// METODO PARA AGREGAR UN PRODUCTO A LA BASE DE DATOS
 
 	public void AgregarProducto() throws IOException {
@@ -100,7 +118,7 @@ public class productos {
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
 				
-	    	 		byte[] fotoByte = convertidorFoto.convertirFotoABytes(this.foto);
+	    	 		fotoByte = convertidorFoto.convertirFotoABytes(this.foto);
 	    	 		is = new ByteArrayInputStream(fotoByte);
 	    	 		
 					statement.setString(1, nombre);
@@ -124,7 +142,7 @@ public class productos {
 	
 	// METODO PARA MODIFICAR UN PRODUCTO EXISTENTE
 	
-	public void ModificarProducto() {
+	public void ModificarProducto() throws IOException {
 		
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
@@ -135,11 +153,19 @@ public class productos {
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
 				
+	    	 	if (foto != null) {
+	    		 
+	    		 	fotoByte = convertidorFoto.convertirFotoABytes(this.foto);
+	 	 			is = new ByteArrayInputStream(fotoByte);
+	 	 			
+	    	 	}
+	    	 		
 					statement.setString(1, nombre);
 					statement.setString(2, descripcion);
 					statement.setInt(3, precio);
-					statement.setInt(4, idproductos);
-					
+					statement.setBinaryStream(4, is);
+					statement.setInt(5, idproductos);
+
 					int rowsUpdated = statement.executeUpdate();
 					
 					if (rowsUpdated > 0) {
@@ -195,7 +221,7 @@ public class productos {
 	}
 	
 	
-	public productos BuscarProducto(String tempNombre) {
+	public productos BuscarProducto(String tempNombre) throws IOException {
 		
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
@@ -218,7 +244,7 @@ public class productos {
 				} else {
 					
 					do {
-						
+		 	 			
 						int id = resultSet.getInt("id_producto");
 						
 						String nombre = resultSet.getString("nombre");
@@ -227,10 +253,80 @@ public class productos {
 						
 						int precio = resultSet.getInt("precio");
 						
+						byte[] fotoByte = resultSet.getBytes("foto");
+
 						tempProducto.setId(id);
 						tempProducto.setDescripcion(descripcion);
 						tempProducto.setNombre(nombre);
 						tempProducto.setPrecio(precio);
+						tempProducto.setIconoFoto(convertidorFoto.obtenerFotoDesdeBytes(fotoByte));
+						tempProducto.setFotoByte(fotoByte);
+						
+						System.out.println(fotoByte);
+						
+						
+						System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio);
+						
+						return tempProducto;
+						
+					} while (resultSet.next());
+					
+				}
+				 
+			} catch (SQLException e) {
+			
+//				e.printStackTrace();
+				System.out.println("Producto no encontrado");
+			
+			}
+	    	
+			return tempProducto;
+			
+	    }
+	
+public productos BuscarProductoId(int tempId) throws IOException {
+		
+		conexion cc = new conexion();
+	    Connection con = cc.conect();
+	    productos tempProducto = new productos();
+	    int NumeroDeProducto = 0;
+			
+			String query = BuscarProductoQuery;
+			
+			try (Connection conn = con;
+				PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+				
+				preparedStatement.setInt(1, tempId);
+				
+				ResultSet resultSet = preparedStatement.executeQuery();
+								
+				if (!resultSet.next()) {
+					
+					System.out.println("PRODUCTO NO ENCONTRADO");
+					
+				} else {
+					
+					do {
+		 	 			
+						int id = resultSet.getInt("id_producto");
+						
+						String nombre = resultSet.getString("nombre");
+						
+						String descripcion = resultSet.getString("descripcion");
+						
+						int precio = resultSet.getInt("precio");
+						
+						byte[] fotoByte = resultSet.getBytes("foto");
+
+						tempProducto.setId(id);
+						tempProducto.setDescripcion(descripcion);
+						tempProducto.setNombre(nombre);
+						tempProducto.setPrecio(precio);
+						tempProducto.setIconoFoto(convertidorFoto.obtenerFotoDesdeBytes(fotoByte));
+						tempProducto.setFotoByte(fotoByte);
+						
+						System.out.println(fotoByte);
+						
 						
 						System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio);
 						

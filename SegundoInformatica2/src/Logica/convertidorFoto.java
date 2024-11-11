@@ -20,11 +20,11 @@ public class convertidorFoto {
 		
 	}
 	
-	public static Image obtenerFotoDesdeBytes(byte[] imageBytes) throws IOException {
+	public static ImageIcon obtenerFotoDesdeBytes(byte[] imageBytes) throws IOException {
 		
 		 ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes); //Se crea el bais (Flujo de entrada) el cual lee los datos del array de bytes
 		 BufferedImage bufferedFoto = ImageIO.read(bais); //Lee el flujo de bytes guardado en el bais
-		 return new ImageIcon(bufferedFoto).getImage(); //Retorna la imagen en un formato que Swing pueda usar
+		 return new ImageIcon(bufferedFoto); //Retorna la imagen en un formato que Swing pueda usar
 		 
 	}
 	
