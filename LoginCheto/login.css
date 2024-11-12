@@ -200,3 +200,13 @@ button{
     color: red;
 
 }
+
+.error-password, .error-mail {
+
+    position: absolute;
+    text-align: center;
+
+    font-weight: bold;
+    color: red;
+
+}

@@ -11,6 +11,8 @@ function startEvents() {
     var subBtn = document.getElementById('enviar');
     var inputEmail = document.getElementById('email');
     var inputPassword = document.getElementById('password');
+    var errorEmail = document.getElementById('error-mail');
+    var errorPassword = document.getElementById('error-password');
 
     dropBtn.addEventListener('click', function(e) {
 
@@ -26,6 +28,19 @@ function startEvents() {
         document.getElementById('email').disabled = false;
         document.getElementById('password').disabled = false;
         subBtn.disabled = false;
+
+    });
+
+    profesor.addEventListener('click', function(e) {
+
+        e.preventDefault();
+        userType = 'profesor';
+        dropBtn.textContent = "Profesor seleccionado";
+        var inputEmail = document.getElementById('email').disabled = false;
+        var inputPassword = document.getElementById('password').disabled = false;
+        subBtn.disabled = false;
+        var email = document.getElementById('email');
+        var password = document.getElementById('password');
 
     });
     
@@ -57,6 +72,10 @@ function startEvents() {
 
     });
 
+    inputEmail.addEventListener('change', function() {errorEmail.innerHTML = "";});
+
+    inputPassword.addEventListener('change', function() {errorPassword.innerHTML = "";});
+
     inputPassword.addEventListener('mouseover', function() {
 
         if (inputPassword.disabled == true) {
@@ -71,21 +90,22 @@ function startEvents() {
 
     });
 
-    profesor.addEventListener('click', function(e) {
-
-        e.preventDefault();
-        userType = 'profesor';
-        dropBtn.textContent = "Profesor seleccionado";
-        var inputEmail = document.getElementById('email').disabled = false;
-        var inputPassword = document.getElementById('password').disabled = false;
-        subBtn.disabled = false;
-
-    });
-
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        if (userType === 'profesor' || userType === 'padre') {
+        if (email.value == "") {
+
+            errorEmail.innerHTML = "Campo obligatorio!";
+
+        }
+
+        if (password.value == "") {
+
+            errorPassword.innerHTML = "Campo obligatorio!";
+
+        }
+
+        if ((userType === 'profesor' || userType === 'padre') && email.value != "" && password.value != "") {
 
             checkUsers();
 
