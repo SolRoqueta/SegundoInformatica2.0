@@ -135,14 +135,20 @@ public class modificarProductos extends JFrame {
         imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
         
-        ImageIcon fotoOriginal = cF.convertirInputStreamAFoto(is);
-        
-        Image imagen = fotoOriginal.getImage();
-        Image scaledImagen = imagen.getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_SMOOTH);
-        
-        ImageIcon scaledIcon = new ImageIcon(scaledImagen);
-        imagenLabel.setIcon(scaledIcon);
-        
+        try {
+        	
+        	 ImageIcon fotoOriginal = cF.convertirInputStreamAFoto(is);
+        	 Image imagen = fotoOriginal.getImage();
+             Image scaledImagen = imagen.getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_SMOOTH);
+               
+             ImageIcon scaledIcon = new ImageIcon(scaledImagen);
+             imagenLabel.setIcon(scaledIcon);
+             
+        } catch (IOException e) {
+//        	e.printStackTrace();
+        	System.out.println("Error: la foto es null");
+        }
+       
         // Botones
         JButton subirImagenBtn = new JButton("Subir Imagen");
         subirImagenBtn.setBounds(215, 239, 118, 25);

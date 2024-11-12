@@ -18,6 +18,9 @@ import javax.swing.ImageIcon;
 
 public class productos {
 	
+	compresorFoto compFoto = new compresorFoto();
+	convertidorFoto convFoto = new convertidorFoto();
+	
 	private int idproductos; 
 	private String nombre; 
 	private int precio; 
@@ -118,13 +121,19 @@ public class productos {
 	     //Sentencia SQL que inserta los datos en la tabla "productos"
 	     String query = AgregarProductoQuery;
 	     
+	     byte[] fotoBytes = convFoto.convertirInputStreamABytes(is); 
+	     System.out.println("Tamaño original del InputStream en bytes: " + fotoBytes.length);
+	     
+	     byte[] fotoComprimida = compFoto.comprimirBytes(fotoBytes);
+	     System.out.println("Tamaño comprimido del InputStream en bytes: " + fotoComprimida.length);
+	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
 	    	 		
 					statement.setString(1, nombre);
 					statement.setString(2, descripcion);
 					statement.setInt(3, precio);
-					statement.setBinaryStream(4, is);
+					statement.setBytes(4, fotoComprimida);
 					
 					int rowsInserted = statement.executeUpdate();
 					if (rowsInserted > 0) {
@@ -150,13 +159,16 @@ public class productos {
 	     //Sentencia SQL que inserta los datos en la tabla "productos"
 	     String query = ModificarProductoQuery;
 	     
+	     byte[] fotoBytes = convFoto.convertirInputStreamABytes(is); 
+	     byte[] fotoComprimida = compFoto.comprimirBytes(fotoBytes);
+	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
 	    	 		
 					statement.setString(1, nombre);
 					statement.setString(2, descripcion);
 					statement.setInt(3, precio);
-					statement.setBinaryStream(4, is);
+					statement.setBytes(4, fotoComprimida);
 					statement.setInt(5, idproductos);
 
 					int rowsUpdated = statement.executeUpdate();
@@ -246,7 +258,11 @@ public class productos {
 						
 						int precio = resultSet.getInt("precio");
 						
+						byte[] fotoComprimida = resultSet.getBytes("foto");
+						
 						InputStream is = resultSet.getBinaryStream("foto");
+						
+						System.out.println("Tamaño del array de bytes recuperado: " + fotoComprimida.length);
 
 						tempProducto.setId(id);
 						tempProducto.setDescripcion(descripcion);
@@ -269,68 +285,7 @@ public class productos {
 	    	
 			return tempProducto;
 			
-	    }
-	
-public productos BuscarProductoId(int tempId) throws IOException {
-		
-		conexion cc = new conexion();
-	    Connection con = cc.conect();
-	    productos tempProducto = new productos();
-	    int NumeroDeProducto = 0;
-			
-			String query = BuscarProductoQuery;
-			
-			try (Connection conn = con;
-				PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-				
-				preparedStatement.setInt(1, tempId);
-				
-				ResultSet resultSet = preparedStatement.executeQuery();
-								
-				if (!resultSet.next()) {
-					
-					System.out.println("PRODUCTO NO ENCONTRADO");
-					
-				} else {
-					
-					do {
-		 	 			
-						int id = resultSet.getInt("id_producto");
-						
-						String nombre = resultSet.getString("nombre");
-						
-						String descripcion = resultSet.getString("descripcion");
-						
-						int precio = resultSet.getInt("precio");
-						
-						byte[] fotoByte = resultSet.getBytes("foto");
-
-						tempProducto.setId(id);
-						tempProducto.setDescripcion(descripcion);
-						tempProducto.setNombre(nombre);
-						tempProducto.setPrecio(precio);
-						
-						System.out.println(fotoByte);
-						
-						
-						System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio);
-						
-						return tempProducto;
-						
-					} while (resultSet.next());
-					
-				}
-				 
-			} catch (SQLException e) {
-			
-//				e.printStackTrace();
-				System.out.println("Producto no encontrado");
-			
-			}
-	    	
-			return tempProducto;
-			
-	    }
+	}
 	
 	public List<Object[]> BuscarProductos() {
 		

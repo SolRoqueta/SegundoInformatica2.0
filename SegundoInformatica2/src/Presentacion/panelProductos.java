@@ -220,7 +220,7 @@ public class panelProductos extends JFrame {
 	  		        try {
 						producto = producto.BuscarProducto(nombre);
 					} catch (IOException e1) {
-						e1.printStackTrace();
+//						e1.printStackTrace();
 					}
 	  		    
 				try {
