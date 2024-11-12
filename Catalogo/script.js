@@ -26,13 +26,25 @@ function processItems() {
     var products = document.getElementById('products');
 
     if (conexion_items.readyState == 4 && conexion_items.status == 200) {
+        // Parsear el JSON recibido
+        var data = JSON.parse(conexion_items.responseText);
+        products.innerHTML = "";  // Limpiar contenido previo
 
-        products.innerHTML = conexion_items.responseText;
+        // Construir tarjetas
+        data.forEach(function(item) {
+            var card = `
+                <div class='card' style='width: 18rem;'>
+                    <img src='https://dummyimage.com/150x150/000/fff' class='card-img-top' alt='${item.nombre}'>
+                    <div class='card-body'>
+                        <p class='card-text'>${item.nombre}</p>
+                    </div>
+                </div>
+            `;
+            products.innerHTML += card;
+        });
 
     } else {
-
-        products.innerHTML = "cargando...";
-
+        products.innerHTML = "Cargando...";
     }
 
 }

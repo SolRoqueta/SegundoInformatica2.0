@@ -3,21 +3,17 @@
     function conexion($query) {
 
         $host = 'localhost';
-        $usuario = 'root';
-        $contraseña = 'root';
-        $base_de_datos = 'cantina_daniela';
+        $user = 'root';
+        $password = 'root';
+        $data_base = 'cantina_daniela';
 
         // Crear la conexión
-        $conn = mysqli_connect($host, $usuario, $contraseña, $base_de_datos);
+        $conn = mysqli_connect($host, $user, $password, $data_base);
 
         // Verificar si la conexión fue exitosa
         if (!$conn) {
 
             die("Conexión fallida: " . mysqli_connect_error());
-
-        } else {
-
-            // echo "Conectado correctamente a la base de datos.";
 
         }
 
@@ -48,6 +44,12 @@
 
             break;
 
+        case 'fixed-menus':
+
+            fixedMenus();
+    
+            break;
+
         default:
             
             all();
@@ -56,32 +58,24 @@
 
     }
 
-    function dailyMenus() {
+    function fixedMenus() {
 
-        $query = "SELECT * FROM menus";
+        $query = "SELECT * FROM menus WHERE diario = 0;";
 
         // Ejecutar la consulta
         $resultado = conexion($query);
+        $data = [];
 
         if (mysqli_num_rows($resultado[0]) > 0) {
             // Mostrar los resultados
             while ($fila = mysqli_fetch_assoc($resultado[0])) {
 
-                $foto = base64_encode($fila['foto']);
-                $tipoImagen = 'image/jpeg';
+                $data[] = [
 
-                $result = "
-                    
-                    <div class='card' style='width: 18rem;'>
-                        <img src='https://dummyimage.com/150x150/000/fff' class='card-img-top' alt='...'>
-                        <div class='card-body'>
-                            <p class='card-text'>" . $fila['nombre'] . "</p>
-                        </div>
-                    </div>
-                ";
-
-
-                echo $result;
+                    'nombre' => $fila['nombre'],
+                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                
+                ];
 
             }
         } else {
@@ -92,6 +86,39 @@
 
         // Cerrar la conexión
         mysqli_close($resultado[1]);
+        echo json_encode($data);
+
+    }
+
+    function dailyMenus() {
+
+        $query = "SELECT * FROM menus WHERE diario = 1;";
+
+        // Ejecutar la consulta
+        $resultado = conexion($query);
+        $data = [];
+
+        if (mysqli_num_rows($resultado[0]) > 0) {
+            // Mostrar los resultados
+            while ($fila = mysqli_fetch_assoc($resultado[0])) {
+
+                $data[] = [
+
+                    'nombre' => $fila['nombre'],
+                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                
+                ];
+
+            }
+        } else {
+
+            echo "No se encontraron resultados.";
+
+        }
+
+        // Cerrar la conexión
+        mysqli_close($resultado[1]);
+        echo json_encode($data);
 
     }
 
@@ -100,27 +127,18 @@
         $query = "SELECT * FROM productos";
 
         $resultado = conexion($query);
+        $data = [];
 
-        // Verificar si se obtuvo un resultado
         if (mysqli_num_rows($resultado[0]) > 0) {
             // Mostrar los resultados
             while ($fila = mysqli_fetch_assoc($resultado[0])) {
 
-                $foto = base64_encode($fila['foto']);
-                $tipoImagen = 'image/jpeg';
+                $data[] = [
 
-                $result = "
-                    
-                    <div class='card' style='width: 18rem;'>
-                        <img src='https://dummyimage.com/150x150/000/fff' class='card-img-top' alt='...'>
-                        <div class='card-body'>
-                            <p class='card-text'>" . $fila['nombre'] . "</p>
-                        </div>
-                    </div>
-                ";
-
-
-                echo $result;
+                    'nombre' => $fila['nombre'],
+                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                
+                ];
 
             }
         } else {
@@ -129,7 +147,9 @@
 
         }
 
+        // Cerrar la conexión
         mysqli_close($resultado[1]);
+        echo json_encode($data);
 
     }
 
@@ -138,27 +158,18 @@
         $query = "SELECT * FROM productos";
 
         $resultado = conexion($query);
+        $data = [];
 
-        // Verificar si se obtuvo un resultado
         if (mysqli_num_rows($resultado[0]) > 0) {
             // Mostrar los resultados
             while ($fila = mysqli_fetch_assoc($resultado[0])) {
 
-                $foto = base64_encode($fila['foto']);
-                $tipoImagen = 'image/jpeg';
+                $data[] = [
 
-                $result = "
-                    
-                    <div class='card' style='width: 18rem;'>
-                        <img src='https://dummyimage.com/150x150/000/fff' class='card-img-top' alt='...'>
-                        <div class='card-body'>
-                            <p class='card-text'>" . $fila['nombre'] . "</p>
-                        </div>
-                    </div>
-                ";
-
-
-                echo $result;
+                    'nombre' => $fila['nombre'],
+                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                
+                ];
 
             }
         } else {
@@ -167,6 +178,7 @@
 
         }
 
+        // Cerrar la conexión
         mysqli_close($resultado[1]);
 
         $query = "SELECT * FROM menus";
@@ -178,21 +190,12 @@
             // Mostrar los resultados
             while ($fila = mysqli_fetch_assoc($resultado[0])) {
 
-                $foto = base64_encode($fila['foto']);
-                $tipoImagen = 'image/jpeg';
+                $data[] = [
 
-                $result = "
-                    
-                    <div class='card' style='width: 18rem;'>
-                        <img src='https://dummyimage.com/150x150/000/fff' class='card-img-top' alt='...'>
-                        <div class='card-body'>
-                            <p class='card-text'>" . $fila['nombre'] . "</p>
-                        </div>
-                    </div>
-                ";
-
-
-                echo $result;
+                    'nombre' => $fila['nombre'],
+                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                
+                ];
 
             }
         } else {
@@ -203,6 +206,7 @@
 
         // Cerrar la conexión
         mysqli_close($resultado[1]);
+        echo json_encode($data);
 
     }
 
