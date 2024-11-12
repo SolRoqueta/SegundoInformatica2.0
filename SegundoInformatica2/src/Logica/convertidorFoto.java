@@ -1,7 +1,6 @@
 package Logica;
 
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,7 +13,7 @@ import javax.swing.ImageIcon;
 
 public class convertidorFoto {
 
-	   public static InputStream convertirFotoAInputStream(String fotoPath) throws IOException {
+	   public InputStream convertirFotoAInputStream(String fotoPath) throws IOException {
 	        return new FileInputStream(new File(fotoPath));
 	    }
 	   

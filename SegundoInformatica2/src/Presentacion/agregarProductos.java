@@ -163,16 +163,18 @@ public class agregarProductos extends JFrame {
                 descripcion = descripcionArea.getText();
                 precio = (Integer) precioField.getValue();
                 
+                
                 // Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
                 if (nombre.equals("") || precio == 0 || foto == null) {
                     JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
                 } else {
                     productos tempProducto = new productos();
                     String tempNombre = null;
+                    
 					try {
+						//TEMPORAL, CAMBIAR A BUSCAR POR ID
 						tempNombre = tempProducto.BuscarProducto(nombre).getNombre();
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
                     
@@ -180,16 +182,16 @@ public class agregarProductos extends JFrame {
                         producto.setNombre(nombre);
                         producto.setDescripcion(descripcion);
                         producto.setPrecio(precio);
-                        producto.setFoto(foto);
-                        System.out.println(foto);
                         
                         try {
+							producto.setInputStream(foto, null);
 							producto.AgregarProducto();
 						} catch (IOException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+                      
                         JOptionPane.showMessageDialog(null, "Producto agregado con exito!");
+                        
                     } else {
                         JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
                     }    

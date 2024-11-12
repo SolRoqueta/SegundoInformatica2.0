@@ -126,11 +126,6 @@ public class productos {
 					statement.setInt(3, precio);
 					statement.setBinaryStream(4, is);
 					
-					System.out.println("Nombre: " + nombre);
-					System.out.println("Descripcion: " + descripcion);
-					System.out.println("Precio: " + precio);
-					System.out.println("Foto: " + is);
-					
 					int rowsInserted = statement.executeUpdate();
 					if (rowsInserted > 0) {
 						System.out.println("Ingresado con exito!");

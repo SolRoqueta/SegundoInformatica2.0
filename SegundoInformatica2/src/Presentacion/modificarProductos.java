@@ -25,7 +25,7 @@ public class modificarProductos extends JFrame {
 	  private String fotoPath;
 	  private InputStream is;
     
-    public modificarProductos(String nombre, int precio, String descripcion, InputStream is ) throws IOException {
+    public modificarProductos(String nombre, int precio, String descripcion, InputStream is) throws IOException {
     	this.nombre = nombre;
     	this.precio = precio;
     	this.descripcion = descripcion;
@@ -152,12 +152,27 @@ public class modificarProductos extends JFrame {
         btnModificar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		producto.setNombre(nombreField.getText());
-        		producto.setDescripcion(descripcionArea.getText());
-        		producto.setFoto(fotoPath);
-        		
         		try {
+        			
+        			producto = producto.BuscarProducto(nombre);
+
+        			nombre = nombreField.getText();
+                    descripcion = descripcionArea.getText();
+                    precio = (Integer) precioField.getValue();
+                    
+                    producto.setNombre(nombre);
+                    producto.setPrecio(precio);
+                    producto.setDescripcion(descripcion);
+                    
+                    if (fotoPath == producto.getFoto()) {
+                    	producto.setInputStream(null, producto.getInputStream());
+                    } else {
+                    	producto.setInputStream(fotoPath, null);
+                    	
+                    }
+                    
 					producto.ModificarProducto();
+					
 				} catch (IOException e1) {
 //					e1.printStackTrace();
 				}
