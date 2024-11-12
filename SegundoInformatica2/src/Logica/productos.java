@@ -24,9 +24,6 @@ public class productos {
 	private String descripcion; 
 	private String foto;
 	private InputStream is;
-	private ImageIcon iconoFoto;
-	private Image imageFoto;
-	private byte[] fotoByte;
 	
 	// Queries predefinidas
 	private String AgregarProductoQuery = "INSERT INTO productos (nombre, descripcion, precio, foto) VALUES (?, ?, ?, ?);";
@@ -91,19 +88,25 @@ public class productos {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-	public ImageIcon getIconoFoto() {
-		return iconoFoto;
-	}
 
-	public void setIconoFoto(ImageIcon iconoFoto) {
-		this.iconoFoto = iconoFoto;
+	public InputStream getInputStream() {
+		return is;
 	}
 	
-	public void setFotoByte(byte[] fotoByte) {
-		this.fotoByte = fotoByte;
-	}
+	public void setInputStream(String foto, InputStream is) throws IOException {
+		
+		if (foto != null) {
+			
+			convertidorFoto cF = new convertidorFoto();
+			this.is = cF.convertirFotoAInputStream(foto);
+			
+		} else {
+			
+			this.is = is;
+			
+		}
 	
+	}
 	
 	// METODO PARA AGREGAR UN PRODUCTO A LA BASE DE DATOS
 
@@ -117,14 +120,16 @@ public class productos {
 	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
-				
-	    	 		fotoByte = convertidorFoto.convertirFotoABytes(this.foto);
-	    	 		is = new ByteArrayInputStream(fotoByte);
 	    	 		
 					statement.setString(1, nombre);
 					statement.setString(2, descripcion);
 					statement.setInt(3, precio);
 					statement.setBinaryStream(4, is);
+					
+					System.out.println("Nombre: " + nombre);
+					System.out.println("Descripcion: " + descripcion);
+					System.out.println("Precio: " + precio);
+					System.out.println("Foto: " + is);
 					
 					int rowsInserted = statement.executeUpdate();
 					if (rowsInserted > 0) {
@@ -152,13 +157,6 @@ public class productos {
 	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
-				
-	    	 	if (foto != null) {
-	    		 
-	    		 	fotoByte = convertidorFoto.convertirFotoABytes(this.foto);
-	 	 			is = new ByteArrayInputStream(fotoByte);
-	 	 			
-	    	 	}
 	    	 		
 					statement.setString(1, nombre);
 					statement.setString(2, descripcion);
@@ -253,19 +251,13 @@ public class productos {
 						
 						int precio = resultSet.getInt("precio");
 						
-						byte[] fotoByte = resultSet.getBytes("foto");
+						InputStream is = resultSet.getBinaryStream("foto");
 
 						tempProducto.setId(id);
 						tempProducto.setDescripcion(descripcion);
 						tempProducto.setNombre(nombre);
 						tempProducto.setPrecio(precio);
-						tempProducto.setIconoFoto(convertidorFoto.obtenerFotoDesdeBytes(fotoByte));
-						tempProducto.setFotoByte(fotoByte);
-						
-						System.out.println(fotoByte);
-						
-						
-						System.out.println("ID: " + id + ", Nombre: " + nombre + ", descripcion: " + descripcion + ", precio: " + precio);
+						tempProducto.setInputStream(null, is);
 						
 						return tempProducto;
 						
@@ -322,8 +314,6 @@ public productos BuscarProductoId(int tempId) throws IOException {
 						tempProducto.setDescripcion(descripcion);
 						tempProducto.setNombre(nombre);
 						tempProducto.setPrecio(precio);
-						tempProducto.setIconoFoto(convertidorFoto.obtenerFotoDesdeBytes(fotoByte));
-						tempProducto.setFotoByte(fotoByte);
 						
 						System.out.println(fotoByte);
 						
@@ -383,115 +373,117 @@ public productos BuscarProductoId(int tempId) throws IOException {
 			return productList;
 	}
 	
-	// MAIN PARA TESTEAR (TEMPORAL)
-	public static void main(String[] args) throws IOException {
-	
-		productos p = new productos();
-		Scanner sr = new Scanner(System.in);
-		
-		int OP;
-		int inf = 1;
-		
-		while (inf == 1) {
-				
-				System.out.println("TEST DE PRUEBA DE FUNCIONES DE AGREGADO, MODIFICACION Y ELIMINACION");
-				System.out.println(" ");
-				System.out.println("1. AGREGAR PRODUCTO");
-				System.out.println("2. MODIFICAR PRODUCTO");
-				System.out.println("3. ELIMINAR PRODUCTO");
-				System.out.println("4. MOSTRAR LOS PRODUCTOS");
-				System.out.println("5. Salir");
-				
-				OP = sr.nextInt();
-				
-				sr.nextLine();
-				
-				switch (OP) {
-				
-				case 1:
-					
-					System.out.println("Ingrese el nombre del producto: ");
-					
-					p.setNombre(sr.nextLine());
-					
-					System.out.println("Ingrese la descripcion del producto: ");
-					
-					p.setDescripcion(sr.nextLine());
-					
-					System.out.println("Ingrese el precio para el producto: ");
-					
-					p.setPrecio(sr.nextInt());
-					
-					sr.nextLine();
-					
-					System.out.println("Ingrese la ruta de la foto: ");
-					
-	//				p.setFoto(sr.nextLine());
-	//				
-					p.AgregarProducto();
-					
-					break;
-				
-				case 2:
-					
-					p.BuscarProductos();
-					
-					System.out.println("Ingrese el nombre del producto a modificar: ");
-					
-					p = p.BuscarProducto(sr.nextLine());
-					
-					System.out.println("Ingrese el nuveo nombre del producto: ");
-					
-					p.setNombre(sr.nextLine());
-					
-					System.out.println("Ingrese la nueva descripcion del producto: ");
-					
-					p.setDescripcion(sr.nextLine());
-					
-					System.out.println("Ingrese el nuevo precio para el producto: ");
-					
-					p.setPrecio(sr.nextInt());
-					
-					sr.nextLine();
-					
-					System.out.println("Ingrese la nueva ruta de la foto: ");
-					
-	//				p.setFoto(sr.nextLine());
-					
-					p.ModificarProducto();
-					
-					break;
-					
-				case 3:
-					
-					p.BuscarProductos();
-					
-					System.out.println("Ingrese el nombre del producto a eliminar: ");
-					
-					p = p.BuscarProducto(sr.nextLine());
-					
-					p.EliminarProducto();
-					
-					break;
-					
-				case 4:
-					
-					p.BuscarProductos();
-					
-					break;
-					
-				case 5:
-					
-					inf = 0;
-					
-					break;
-					
-				}
-				
-		}
-		
-		sr.close();
-			
-		}
-	
 }
+	
+	// MAIN PARA TESTEAR (TEMPORAL)
+//	public static void main(String[] args) throws IOException {
+//	
+//		productos p = new productos();
+//		Scanner sr = new Scanner(System.in);
+//		
+//		int OP;
+//		int inf = 1;
+//		
+//		while (inf == 1) {
+//				
+//				System.out.println("TEST DE PRUEBA DE FUNCIONES DE AGREGADO, MODIFICACION Y ELIMINACION");
+//				System.out.println(" ");
+//				System.out.println("1. AGREGAR PRODUCTO");
+//				System.out.println("2. MODIFICAR PRODUCTO");
+//				System.out.println("3. ELIMINAR PRODUCTO");
+//				System.out.println("4. MOSTRAR LOS PRODUCTOS");
+//				System.out.println("5. Salir");
+//				
+//				OP = sr.nextInt();
+//				
+//				sr.nextLine();
+//				
+//				switch (OP) {
+//				
+//				case 1:
+//					
+//					System.out.println("Ingrese el nombre del producto: ");
+//					
+//					p.setNombre(sr.nextLine());
+//					
+//					System.out.println("Ingrese la descripcion del producto: ");
+//					
+//					p.setDescripcion(sr.nextLine());
+//					
+//					System.out.println("Ingrese el precio para el producto: ");
+//					
+//					p.setPrecio(sr.nextInt());
+//					
+//					sr.nextLine();
+//					
+//					System.out.println("Ingrese la ruta de la foto: ");
+//					
+//	//				p.setFoto(sr.nextLine());
+//	//				
+//					p.AgregarProducto();
+//					
+//					break;
+//				
+//				case 2:
+//					
+//					p.BuscarProductos();
+//					
+//					System.out.println("Ingrese el nombre del producto a modificar: ");
+//					
+//					p = p.BuscarProducto(sr.nextLine());
+//					
+//					System.out.println("Ingrese el nuveo nombre del producto: ");
+//					
+//					p.setNombre(sr.nextLine());
+//					
+//					System.out.println("Ingrese la nueva descripcion del producto: ");
+//					
+//					p.setDescripcion(sr.nextLine());
+//					
+//					System.out.println("Ingrese el nuevo precio para el producto: ");
+//					
+//					p.setPrecio(sr.nextInt());
+//					
+//					sr.nextLine();
+//					
+//					System.out.println("Ingrese la nueva ruta de la foto: ");
+//					
+//	//				p.setFoto(sr.nextLine());
+//					
+//					p.ModificarProducto();
+//					
+//					break;
+//					
+//				case 3:
+//					
+//					p.BuscarProductos();
+//					
+//					System.out.println("Ingrese el nombre del producto a eliminar: ");
+//					
+//					p = p.BuscarProducto(sr.nextLine());
+//					
+//					p.EliminarProducto();
+//					
+//					break;
+//					
+//				case 4:
+//					
+//					p.BuscarProductos();
+//					
+//					break;
+//					
+//				case 5:
+//					
+//					inf = 0;
+//					
+//					break;
+//					
+//				}
+//				
+//		}
+//		
+//		sr.close();
+//			
+//		}
+//	
+//}

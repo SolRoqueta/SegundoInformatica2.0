@@ -10,24 +10,26 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.io.InputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
 public class modificarProductos extends JFrame {
 
 	productos producto = new productos();
+	convertidorFoto cF = new convertidorFoto();
 
 	  private String nombre;
 	  private int precio;
 	  private String descripcion;
-	  private ImageIcon foto;
 	  private String fotoPath;
+	  private InputStream is;
     
-    public modificarProductos(String nombre, int precio, String descripcion, ImageIcon foto) throws IOException {
+    public modificarProductos(String nombre, int precio, String descripcion, InputStream is ) throws IOException {
     	this.nombre = nombre;
     	this.precio = precio;
     	this.descripcion = descripcion;
-    	this.foto = foto;
+    	this.is = is;
     	
     	presentacionModificar();
     }
@@ -133,8 +135,13 @@ public class modificarProductos extends JFrame {
         imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
         
-        producto = producto.BuscarProducto(nombre);
-        imagenLabel.setIcon(producto.getIconoFoto());
+        ImageIcon fotoOriginal = cF.convertirInputStreamAFoto(is);
+        
+        Image imagen = fotoOriginal.getImage();
+        Image scaledImagen = imagen.getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_SMOOTH);
+        
+        ImageIcon scaledIcon = new ImageIcon(scaledImagen);
+        imagenLabel.setIcon(scaledIcon);
         
         // Botones
         JButton subirImagenBtn = new JButton("Subir Imagen");

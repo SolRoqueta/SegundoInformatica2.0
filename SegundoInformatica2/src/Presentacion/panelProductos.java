@@ -1,5 +1,6 @@
 package Presentacion;
 
+import Logica.convertidorFoto;
 import Logica.productos;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.InputStream;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
@@ -22,8 +24,10 @@ public class panelProductos extends JFrame {
 	private JTable tablaProductos;
 
 	private String nombre;
-	private String precio;
+	private int precio;
 	private String descripcion;
+	private InputStream is;
+	private ImageIcon fotoIcon;
 	
 	private int filaSeleccionada;
 	
@@ -44,11 +48,11 @@ public class panelProductos extends JFrame {
 			this.nombre = nombre;
 		}
 
-		public String getPrecio() {
+		public int getPrecio() {
 			return precio;
 		}
 
-		public void setPrecio(String precio) {
+		public void setPrecio(int precio) {
 			this.precio = precio;
 		}
 
@@ -59,6 +63,20 @@ public class panelProductos extends JFrame {
 		public void setDescripcion(String descripcion) {
 			this.descripcion = descripcion;
 		}
+		
+	// Se encarga de mostrar todos los productos en la tabla
+	public void mostrarProductosTabla() {
+			  
+	        List<Object[]> infoProducto = producto.BuscarProductos();
+
+	        modeloTabla.setRowCount(0);
+
+	        for (Object[] row : infoProducto) {
+	            modeloTabla.addRow(row);
+	        }
+	    
+	}
+	
 	
 
 	//Metodo presentacion
@@ -120,17 +138,8 @@ public class panelProductos extends JFrame {
 	    scrollPane.setBounds(39, 196, 705, 365);
 	    panel.add(scrollPane);
 	    
-	    // Get the product data from the logic class
-        List<Object[]> infoProducto = producto.BuscarProductos();
-
-        // Clear existing rows
-        modeloTabla.setRowCount(0);
-
-        // Add each product as a row in the table model
-        for (Object[] row : infoProducto) {
-            modeloTabla.addRow(row);
-        }
-    
+	    mostrarProductosTabla();
+	    
         //Botones
         
 	    JButton btnVolver = new JButton("←");
@@ -203,31 +212,30 @@ public class panelProductos extends JFrame {
 	    		productos producto = new productos();
 	    		
 	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
+	  		    	
 	  		        // Obtenemos los valores de cada columna
-	  		    	int id = (int) tablaProductos.getValueAt(filaSeleccionada, 0);
 	  		    	nombre = tablaProductos.getValueAt(filaSeleccionada, 1).toString(); // Columna 1: Nombre
-	  		        
+	  		    	convertidorFoto cF = new convertidorFoto();
+	  		    	
 	  		        try {
-						producto = producto.BuscarProductoId(id);
+						producto = producto.BuscarProducto(nombre);
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-	  		        
-	  		    } else {
-	  		        System.out.println("No hay ninguna fila seleccionada.");
-	  		    }
 	  		    
-	    		try {
-					ventanaModificar = new modificarProductos(nombre, producto.getPrecio(), producto.getDescripcion(), producto.getIconoFoto());
+				try {
+					
+					  modificarProductos ventanaModificar = new modificarProductos(nombre, producto.getPrecio(), producto.getDescripcion(), producto.getInputStream());
+					  ventanaModificar.setVisible(true);
+					  panelProductos.this.dispose();
+					  
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-	    		ventanaModificar.setVisible(true);
-	    		panelProductos.this.dispose();
-	    	}	
-	    });
+				
+	  		    }
+	    	}
+	    	});
 	    
 	    //Btn Eliminar
 	    btnEliminar.addActionListener(new ActionListener() {
