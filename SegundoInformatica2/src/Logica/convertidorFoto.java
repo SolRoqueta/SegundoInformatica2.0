@@ -1,6 +1,7 @@
 package Logica;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,16 +19,20 @@ public class convertidorFoto {
 	        return new FileInputStream(new File(fotoPath));
 	    }
 	   
-//	   public static ImageIcon convertirInputStreamAFoto(ResultSet rs) throws IOException, SQLException {
-//		   InputStream is = rs.getBinaryStream("foto");
-//	       BufferedImage bufferedFoto = ImageIO.read(is); // Lee el InputStream como BufferedImage
-//	       return new ImageIcon(bufferedFoto); // Convierte BufferedImage a ImageIcon para Swing
-//		   
-//	   }
 	   
 	   public ImageIcon convertirInputStreamAFoto(InputStream is) throws IOException {
-	       BufferedImage bufferedFoto = ImageIO.read(is); // Lee el InputStream como BufferedImage
-	       return new ImageIcon(bufferedFoto); // Convierte BufferedImage a ImageIcon para Swing
+		   
+		   if (is == null) {
+		        throw new IOException("El InputStream es nulo.");
+		    }
+		    
+		    BufferedImage bufferedFoto = ImageIO.read(is); // Lee el InputStream como BufferedImage
+		    
+		    if (bufferedFoto == null) {
+		        throw new IOException("El InputStream no contiene una imagen válida.");
+		    }
+		    
+		    return new ImageIcon(bufferedFoto); // Convierte BufferedImage a ImageIcon para Swing
 		   
 	   }
 	   
@@ -40,7 +45,10 @@ public class convertidorFoto {
 		    }
 		    return buffer.toByteArray();
 		}
+	   
+	   public InputStream convertirBytesAInputStream(byte[] fotoBytes) {
+		    return new ByteArrayInputStream(fotoBytes);
+		}
 	
 	  
-	
 }

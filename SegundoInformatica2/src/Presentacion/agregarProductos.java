@@ -185,6 +185,7 @@ public class agregarProductos extends JFrame {
                         
                         try {
 							producto.setInputStream(foto, null);
+							System.out.println(producto.getInputStream());
 							producto.AgregarProducto();
 						} catch (IOException e1) {
 							e1.printStackTrace();

@@ -3,6 +3,7 @@ package Presentacion;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Logica.compresorFoto;
 import Logica.convertidorFoto;
 import Logica.productos;
 import java.awt.*;
@@ -18,18 +19,20 @@ public class modificarProductos extends JFrame {
 
 	productos producto = new productos();
 	convertidorFoto cF = new convertidorFoto();
+	compresorFoto compFoto = new compresorFoto();
 
 	  private String nombre;
 	  private int precio;
 	  private String descripcion;
 	  private String fotoPath;
 	  private InputStream is;
+	  private byte[] fotoBytes;
     
-    public modificarProductos(String nombre, int precio, String descripcion, InputStream is) throws IOException {
+    public modificarProductos(String nombre, int precio, String descripcion, byte[] fotoBytes) throws IOException {
     	this.nombre = nombre;
     	this.precio = precio;
     	this.descripcion = descripcion;
-    	this.is = is;
+    	this.fotoBytes = fotoBytes;
     	
     	presentacionModificar();
     }
@@ -137,6 +140,7 @@ public class modificarProductos extends JFrame {
         
         try {
         	
+        	 is = compFoto.descomprimirBytesAInputStream(fotoBytes);
         	 ImageIcon fotoOriginal = cF.convertirInputStreamAFoto(is);
         	 Image imagen = fotoOriginal.getImage();
              Image scaledImagen = imagen.getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_SMOOTH);
@@ -145,8 +149,7 @@ public class modificarProductos extends JFrame {
              imagenLabel.setIcon(scaledIcon);
              
         } catch (IOException e) {
-//        	e.printStackTrace();
-        	System.out.println("Error: la foto es null");
+        	e.printStackTrace();
         }
        
         // Botones

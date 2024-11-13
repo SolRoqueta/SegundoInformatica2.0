@@ -19,6 +19,13 @@ public class compresorFoto {
 
 	    return baos.toByteArray();
 	}
-
+	
+	   public InputStream descomprimirBytesAInputStream(byte[] compressedData) throws IOException {
+	        // Crear un InputStream que lea los datos comprimidos
+	        ByteArrayInputStream bais = new ByteArrayInputStream(compressedData);
+	        // Retornar un GZIPInputStream que descomprima los datos al leer
+	        return new GZIPInputStream(bais);
+	    }
+	
 
 }

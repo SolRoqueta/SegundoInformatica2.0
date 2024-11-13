@@ -17,9 +17,8 @@ import java.util.List;
 public class panelProductos extends JFrame {
 	
 	public productos producto = new productos();
-
-	private agregarProductos ventanaAgregar;
-	private modificarProductos ventanaModificar;
+	convertidorFoto convFoto = new convertidorFoto();
+	
 	private DefaultTableModel modeloTabla;
 	private JTable tablaProductos;
 
@@ -28,6 +27,7 @@ public class panelProductos extends JFrame {
 	private String descripcion;
 	private InputStream is;
 	private ImageIcon fotoIcon;
+	private byte[] fotoBytes;
 	
 	private int filaSeleccionada;
 	
@@ -36,33 +36,7 @@ public class panelProductos extends JFrame {
 		    
 	    presentacionProductos();
 	}
-
-	 
-	 //Setters y Getters
-	 
-		public String getNombre() {
-			return nombre;
-		}
-
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
-		public int getPrecio() {
-			return precio;
-		}
-
-		public void setPrecio(int precio) {
-			this.precio = precio;
-		}
-
-		public String getDescripcion() {
-			return descripcion;
-		}
-
-		public void setDescripcion(String descripcion) {
-			this.descripcion = descripcion;
-		}
+	    
 		
 	// Se encarga de mostrar todos los productos en la tabla
 	public void mostrarProductosTabla() {
@@ -198,7 +172,8 @@ public class panelProductos extends JFrame {
 	    //Btn Agregar Producto
 	    btnAgregar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {	
-				ventanaAgregar = new agregarProductos();
+	    		
+				agregarProductos ventanaAgregar = new agregarProductos();
 				ventanaAgregar.setVisible(true);
 				panelProductos.this.dispose();	
 			}
@@ -210,22 +185,28 @@ public class panelProductos extends JFrame {
 	    		
 	    		filaSeleccionada = tablaProductos.getSelectedRow();
 	    		productos producto = new productos();
+
 	    		
 	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
 	  		    	
 	  		        // Obtenemos los valores de cada columna
 	  		    	nombre = tablaProductos.getValueAt(filaSeleccionada, 1).toString(); // Columna 1: Nombre
-	  		    	convertidorFoto cF = new convertidorFoto();
 	  		    	
 	  		        try {
 						producto = producto.BuscarProducto(nombre);
+						is = producto.getInputStream();
+//						System.out.println(is);
+						fotoBytes = convFoto.convertirInputStreamABytes(is);
+//						System.out.println(fotoBytes);
+						
+
 					} catch (IOException e1) {
 //						e1.printStackTrace();
 					}
 	  		    
 				try {
 					
-					  modificarProductos ventanaModificar = new modificarProductos(nombre, producto.getPrecio(), producto.getDescripcion(), producto.getInputStream());
+					  modificarProductos ventanaModificar = new modificarProductos(nombre, producto.getPrecio(), producto.getDescripcion(), fotoBytes);
 					  ventanaModificar.setVisible(true);
 					  panelProductos.this.dispose();
 					  
@@ -268,5 +249,4 @@ public class panelProductos extends JFrame {
     getContentPane().add(panel);
 		
 	}
-    
 }

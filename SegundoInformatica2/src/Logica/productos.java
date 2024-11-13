@@ -27,6 +27,7 @@ public class productos {
 	private String descripcion; 
 	private String foto;
 	private InputStream is;
+	private byte[] fotoComprimida;
 	
 	// Queries predefinidas
 	private String AgregarProductoQuery = "INSERT INTO productos (nombre, descripcion, precio, foto) VALUES (?, ?, ?, ?);";
@@ -111,6 +112,14 @@ public class productos {
 	
 	}
 	
+	public byte[] getFotoComprimida() {
+		return fotoComprimida;
+	}
+	
+	public void setFotoComprimida(byte[] fotoComprimida) {
+		this.fotoComprimida = fotoComprimida;
+	}
+	
 	// METODO PARA AGREGAR UN PRODUCTO A LA BASE DE DATOS
 
 	public void AgregarProducto() throws IOException {
@@ -134,7 +143,7 @@ public class productos {
 					statement.setString(2, descripcion);
 					statement.setInt(3, precio);
 					statement.setBytes(4, fotoComprimida);
-					
+
 					int rowsInserted = statement.executeUpdate();
 					if (rowsInserted > 0) {
 						System.out.println("Ingresado con exito!");
@@ -161,6 +170,8 @@ public class productos {
 	     
 	     byte[] fotoBytes = convFoto.convertirInputStreamABytes(is); 
 	     byte[] fotoComprimida = compFoto.comprimirBytes(fotoBytes);
+	     
+	     is = compFoto.descomprimirBytesAInputStream(fotoComprimida);
 	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -258,11 +269,7 @@ public class productos {
 						
 						int precio = resultSet.getInt("precio");
 						
-						byte[] fotoComprimida = resultSet.getBytes("foto");
-						
 						InputStream is = resultSet.getBinaryStream("foto");
-						
-						System.out.println("Tamaño del array de bytes recuperado: " + fotoComprimida.length);
 
 						tempProducto.setId(id);
 						tempProducto.setDescripcion(descripcion);
