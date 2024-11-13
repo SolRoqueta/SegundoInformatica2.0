@@ -23,12 +23,6 @@ public class panelProductos extends JFrame {
 	private JTable tablaProductos;
 
 	private String nombre;
-	private int precio;
-	private String descripcion;
-	private InputStream is;
-	private ImageIcon fotoIcon;
-	private byte[] fotoBytes;
-	
 	private int filaSeleccionada;
 	
 	//Constructor
@@ -51,13 +45,11 @@ public class panelProductos extends JFrame {
 	    
 	}
 	
-	
-
 	//Metodo presentacion
 	public void presentacionProductos() {
 		
 		  // Configurar la ventana
-        setTitle("Eliminar Productos");
+        setTitle("Panel Productos");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -193,26 +185,22 @@ public class panelProductos extends JFrame {
 	  		    	nombre = tablaProductos.getValueAt(filaSeleccionada, 1).toString(); // Columna 1: Nombre
 	  		    	
 	  		        try {
+	  		        	
 						producto = producto.BuscarProducto(nombre);
-						is = producto.getInputStream();
-//						System.out.println(is);
-						fotoBytes = convFoto.convertirInputStreamABytes(is);
-//						System.out.println(fotoBytes);
 						
-
 					} catch (IOException e1) {
 //						e1.printStackTrace();
 					}
 	  		    
-				try {
+	  		        try {
 					
-					  modificarProductos ventanaModificar = new modificarProductos(nombre, producto.getPrecio(), producto.getDescripcion(), fotoBytes);
+					  modificarProductos ventanaModificar = new modificarProductos(nombre);
 					  ventanaModificar.setVisible(true);
 					  panelProductos.this.dispose();
 					  
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+					} catch (IOException e1) {
+//						e1.printStackTrace();
+					}
 				
 	  		    }
 	    	}
@@ -225,7 +213,7 @@ public class panelProductos extends JFrame {
 	    		filaSeleccionada = tablaProductos.getSelectedRow();
 	
 	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
-	  		        // Obtenemos los valores de cada columna
+	  		    	
 	  		    	nombre = tablaProductos.getValueAt(filaSeleccionada, 1).toString(); // Columna 1: Nombre
 	  		        
 	  		    } else {
@@ -233,11 +221,13 @@ public class panelProductos extends JFrame {
 	  		    }
 	    		
 	    		try {
+	    			
 					producto = producto.BuscarProducto(nombre);
+					
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+	    		
 	    		producto.EliminarProducto();
 	    		modeloTabla.removeRow(filaSeleccionada);
 	    		

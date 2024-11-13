@@ -26,13 +26,14 @@ public class modificarProductos extends JFrame {
 	  private String descripcion;
 	  private String fotoPath;
 	  private InputStream is;
-	  private byte[] fotoBytes;
     
-    public modificarProductos(String nombre, int precio, String descripcion, byte[] fotoBytes) throws IOException {
+    public modificarProductos(String nombre) throws IOException {
     	this.nombre = nombre;
-    	this.precio = precio;
-    	this.descripcion = descripcion;
-    	this.fotoBytes = fotoBytes;
+    	producto = producto.BuscarProducto(this.nombre);
+    	
+    	this.precio = producto.getPrecio();
+    	this.descripcion = producto.getDescripcion();
+    	this.is = producto.getInputStream();
     	
     	presentacionModificar();
     }
@@ -56,6 +57,12 @@ public class modificarProductos extends JFrame {
         tituloModificar.setBackground(Color.GRAY);
         tituloModificar.setBounds(123, 0, 125, 59);
         panel.add(tituloModificar);
+        
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(210, 210, 210));
+        separator.setBackground(Color.LIGHT_GRAY);
+        separator.setBounds(136, 45, 100, 2);
+        panel.add(separator);
 
         // Etiqueta de título
         JLabel tituloProductos = new JLabel("PRODUCTOS", SwingConstants.CENTER);
@@ -65,12 +72,6 @@ public class modificarProductos extends JFrame {
         tituloProductos.setForeground(new Color(210, 210, 210));
         panel.add(tituloProductos);
         
-        JSeparator separator = new JSeparator();
-        separator.setForeground(new Color(210, 210, 210));
-        separator.setBackground(Color.LIGHT_GRAY);
-        separator.setBounds(136, 45, 100, 2);
-        panel.add(separator);
-        
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
         nombreLabel.setForeground(new Color(230, 230, 230));
@@ -78,22 +79,8 @@ public class modificarProductos extends JFrame {
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyTyped(KeyEvent e) {
-//        		
-        		if (( nombreField.getText().length() >= 30 )) {
-        			
-        			e.consume();
-
-        		}
-//        		        		
-        	}
-        });
         nombreField.setBounds(24, 105, 150, 25);
         panel.add(nombreField);
-        
-        nombreField.setText(nombre);
         
         JLabel precioLabel = new JLabel("Precio");
         precioLabel.setForeground(new Color(230, 230, 230));
@@ -101,22 +88,8 @@ public class modificarProductos extends JFrame {
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
-        precioField.addChangeListener(e -> {
-        	
-            int valorActual = (int) precioField.getValue();
-            
-            if (valorActual < 0) {
-            	
-            	precioField.setValue(0);
-            	
-            }
-
-        });
         precioField.setBounds(24, 153, 150, 25);
         panel.add(precioField);
-        
-        Integer precioInt = Integer.valueOf(precio);
-        precioField.setValue(precioInt); // Establecer el valor numérico
         
         JLabel descripcionLabel = new JLabel("Descripción");
         descripcionLabel.setForeground(new Color(230, 230, 230));
@@ -129,8 +102,6 @@ public class modificarProductos extends JFrame {
         descripcionArea.setWrapStyleWord(true);
         panel.add(descripcionArea);
         
-        descripcionArea.setText(descripcion);
-        
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
         imagenLabel.setBackground(new Color(255, 255, 255));
@@ -138,14 +109,21 @@ public class modificarProductos extends JFrame {
         imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
         
+        // Setea los atributos del producto a los fields de la ventana
+        precioField.setValue(precio); 
+        nombreField.setText(nombre);
+        descripcionArea.setText(descripcion);
+       
+        // Convierte el InputStream del producto a un Image Icon y lo setea al label de la foto para mostrarlo
         try {
-        	
-        	 is = compFoto.descomprimirBytesAInputStream(fotoBytes);
+        	// Usa la clase convertidorFoto y convierte el input Stream del producto a un ImageIcon
         	 ImageIcon fotoOriginal = cF.convertirInputStreamAFoto(is);
+        	 
+        	 // Se encarga de escalar la imagen al mismo tamaño que el imageLabel creando un scaledIcon
         	 Image imagen = fotoOriginal.getImage();
              Image scaledImagen = imagen.getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_SMOOTH);
-               
              ImageIcon scaledIcon = new ImageIcon(scaledImagen);
+             
              imagenLabel.setIcon(scaledIcon);
              
         } catch (IOException e) {
@@ -158,40 +136,6 @@ public class modificarProductos extends JFrame {
         panel.add(subirImagenBtn);
         
         JButton btnModificar = new JButton("Modificar Producto");
-        btnModificar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		try {
-        			
-        			producto = producto.BuscarProducto(nombre);
-
-        			nombre = nombreField.getText();
-                    descripcion = descripcionArea.getText();
-                    precio = (Integer) precioField.getValue();
-                    
-                    producto.setNombre(nombre);
-                    producto.setPrecio(precio);
-                    producto.setDescripcion(descripcion);
-                    
-                    if (fotoPath == producto.getFoto()) {
-                    	producto.setInputStream(null, producto.getInputStream());
-                    } else {
-                    	producto.setInputStream(fotoPath, null);
-                    	
-                    }
-                    
-					producto.ModificarProducto();
-					
-				} catch (IOException e1) {
-//					e1.printStackTrace();
-				}
-        		
-        		panelProductos ventanaProductos = new panelProductos();
-            	ventanaProductos.setVisible(true);
-        		modificarProductos.this.dispose();   
-  
-        	}
-        });
         btnModificar.setBounds(111, 315, 150, 30);
         panel.add(btnModificar);
         
@@ -199,7 +143,7 @@ public class modificarProductos extends JFrame {
         volverBtn.setBounds(10, 11, 50, 15);
         panel.add(volverBtn);
 
-        // Acciones Botones
+        // Acciones Listeners Botones
 
         // Subir Imagen
         subirImagenBtn.addActionListener(new ActionListener() {
@@ -227,7 +171,42 @@ public class modificarProductos extends JFrame {
         });
 
 
-        // Volver atras
+        // Boton Modificar
+        btnModificar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		try {
+        			
+        			producto = producto.BuscarProducto(nombre);
+
+        			nombre = nombreField.getText();
+                    descripcion = descripcionArea.getText();
+                    precio = (Integer) precioField.getValue();
+                    
+                    producto.setNombre(nombre);
+                    producto.setPrecio(precio);
+                    producto.setDescripcion(descripcion);
+                    
+                    if (fotoPath == null) {
+                    	producto.setInputStream(null, producto.getInputStream());
+                    } else {
+                    	producto.setInputStream(fotoPath, null);
+                    }
+                    
+					producto.ModificarProducto();
+					
+				} catch (IOException e1) {
+//					e1.printStackTrace();
+				}
+        		
+        		panelProductos ventanaProductos = new panelProductos();
+            	ventanaProductos.setVisible(true);
+        		modificarProductos.this.dispose();   
+  
+        	}
+        });
+        
+        // Boton volver
         volverBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
@@ -236,7 +215,29 @@ public class modificarProductos extends JFrame {
         		modificarProductos.this.dispose();           	
             }
         });
-       
+        
+        // Key y Change Listeners
+        
+        // Key listener Nombre (Se encarga de no permitir mas de 30 caracteres)
+        nombreField.addKeyListener(new KeyAdapter() {
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( nombreField.getText().length() >= 30 )) {	
+        			e.consume();
+        		}  		        		
+        	}
+        });
+        
+        // Change Listener Precio (Se encarga de no permitir valores negativos)
+        precioField.addChangeListener(e -> {
+        	
+            int valorActual = (int) precioField.getValue();
+            
+            if (valorActual < 0) {
+            	precioField.setValue(0);
+            }
+
+        });
         // Agregar el panel a la ventana
         getContentPane().add(panel);
     }

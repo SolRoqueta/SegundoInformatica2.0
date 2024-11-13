@@ -25,7 +25,6 @@ public class productos {
 	private String nombre; 
 	private int precio; 
 	private String descripcion; 
-	private String foto;
 	private InputStream is;
 	private byte[] fotoComprimida;
 	
@@ -83,14 +82,6 @@ public class productos {
 
 	public void setPrecio(int precio) {
 		this.precio = precio;
-	}
-	
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
 	}
 
 	public InputStream getInputStream() {
@@ -171,8 +162,6 @@ public class productos {
 	     byte[] fotoBytes = convFoto.convertirInputStreamABytes(is); 
 	     byte[] fotoComprimida = compFoto.comprimirBytes(fotoBytes);
 	     
-	     is = compFoto.descomprimirBytesAInputStream(fotoComprimida);
-	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
 	    	 		
@@ -242,7 +231,6 @@ public class productos {
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
 	    productos tempProducto = new productos();
-	    int NumeroDeProducto = 0;
 			
 			String query = BuscarProductoQuery;
 			
@@ -269,7 +257,9 @@ public class productos {
 						
 						int precio = resultSet.getInt("precio");
 						
-						InputStream is = resultSet.getBinaryStream("foto");
+						byte[] fotoComprimida = resultSet.getBytes("foto");
+						
+						InputStream is = compFoto.descomprimirBytesAInputStream(fotoComprimida);
 
 						tempProducto.setId(id);
 						tempProducto.setDescripcion(descripcion);

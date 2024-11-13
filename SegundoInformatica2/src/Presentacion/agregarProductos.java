@@ -22,6 +22,11 @@ public class agregarProductos extends JFrame {
     private String foto;
     
     public agregarProductos() {
+    	
+    	presentacionAgregar();
+    }
+    
+    public void presentacionAgregar() {
         
         // Configurar la ventana
         setTitle("Agregar Productos");
@@ -40,6 +45,12 @@ public class agregarProductos extends JFrame {
         tituloAgregar.setBackground(Color.GRAY);
         tituloAgregar.setBounds(123, 0, 125, 59);
         panel.add(tituloAgregar);
+        
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(210, 210, 210));
+        separator.setBackground(Color.LIGHT_GRAY);
+        separator.setBounds(136, 45, 100, 2);
+        panel.add(separator);
 
         // Etiqueta de título
         JLabel tituloProductos = new JLabel("PRODUCTOS", SwingConstants.CENTER);
@@ -49,12 +60,6 @@ public class agregarProductos extends JFrame {
         tituloProductos.setForeground(new Color(210, 210, 210));
         panel.add(tituloProductos);
         
-        JSeparator separator = new JSeparator();
-        separator.setForeground(new Color(210, 210, 210));
-        separator.setBackground(Color.LIGHT_GRAY);
-        separator.setBounds(136, 45, 100, 2);
-        panel.add(separator);
-        
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
         nombreLabel.setForeground(new Color(230, 230, 230));
@@ -62,18 +67,6 @@ public class agregarProductos extends JFrame {
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyTyped(KeyEvent e) {
-//        		
-        		if (( nombreField.getText().length() >= 30 )) {
-        			
-        			e.consume();
-
-        		}
-//        		        		
-        	}
-        });
         nombreField.setBounds(24, 105, 150, 25);
         panel.add(nombreField);
         
@@ -83,17 +76,6 @@ public class agregarProductos extends JFrame {
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
-        precioField.addChangeListener(e -> {
-        	
-            int valorActual = (int) precioField.getValue();
-            
-            if (valorActual < 0) {
-            	
-            	precioField.setValue(0);
-            	
-            }
-
-        });
         precioField.setBounds(24, 153, 150, 25);
         panel.add(precioField);
         
@@ -116,22 +98,22 @@ public class agregarProductos extends JFrame {
         panel.add(imagenLabel);
         
         // Botones
-        JButton subirImagenBtn = new JButton("Subir Imagen");
-        subirImagenBtn.setBounds(215, 239, 118, 25);
-        panel.add(subirImagenBtn);
+        JButton btnSubirImagen = new JButton("Subir Imagen");
+        btnSubirImagen.setBounds(215, 239, 118, 25);
+        panel.add(btnSubirImagen);
         
-        JButton agregarProductoBtn = new JButton("Agregar Producto");
-        agregarProductoBtn.setBounds(111, 315, 150, 30);
-        panel.add(agregarProductoBtn);
+        JButton btnAgregar = new JButton("Agregar Producto");
+        btnAgregar.setBounds(111, 315, 150, 30);
+        panel.add(btnAgregar);
         
-        JButton volverBtn = new JButton("←");
-        volverBtn.setBounds(10, 11, 50, 15);
-        panel.add(volverBtn);
+        JButton btnVolver = new JButton("←");
+        btnVolver.setBounds(10, 11, 50, 15);
+        panel.add(btnVolver);
 
-        // Acciones Botones
+        // Acciones Listeners Botones
 
         // Subir Imagen
-        subirImagenBtn.addActionListener(new ActionListener() {
+        btnSubirImagen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Se crea un JfileChooser y se aplica un filtro para solo archivos
                 JFileChooser fc = new JFileChooser();
@@ -140,7 +122,7 @@ public class agregarProductos extends JFrame {
                 // Se crea un filtro de extension que solo permite archivos de imagen
                 FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
                 fc.setFileFilter(filtro);
-                fc.showOpenDialog(subirImagenBtn);
+                fc.showOpenDialog(btnSubirImagen);
                 
                 if (fc.getSelectedFile() == null) {
                     JOptionPane.showMessageDialog(null, "Error, foto no seleccionada");
@@ -156,7 +138,7 @@ public class agregarProductos extends JFrame {
         });
 
         // Agregar Producto
-        agregarProductoBtn.addActionListener(new ActionListener() {
+        btnAgregar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
       
                 nombre = nombreField.getText();
@@ -209,12 +191,35 @@ public class agregarProductos extends JFrame {
         });
 
         // Volver atras
-        volverBtn.addActionListener(new ActionListener() {
+        btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	panelProductos ventanaProductos = new panelProductos();
             	ventanaProductos.setVisible(true);
             	agregarProductos.this.dispose();
             }
+        });
+        
+       // Key y Change Listeners
+        
+        // Key listener Nombre (Se encarga de no permitir mas de 30 caracteres)
+        nombreField.addKeyListener(new KeyAdapter() {
+        	public void keyTyped(KeyEvent e) {   
+        		
+        		if (( nombreField.getText().length() >= 30 )) {
+        			e.consume();
+        		}    		        		
+        	}
+        });
+        
+        // Change Listener Precio (Se encarga de no permitir valores negativos)
+        precioField.addChangeListener(e -> {
+        	
+            int valorActual = (int) precioField.getValue();
+            
+            if (valorActual < 0) {
+            	precioField.setValue(0);
+            }
+
         });
        
         // Agregar el panel a la ventana
