@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class panelProductos extends JFrame {
 	
@@ -31,7 +33,6 @@ public class panelProductos extends JFrame {
 	    presentacionProductos();
 	}
 	    
-		
 	// Se encarga de mostrar todos los productos en la tabla
 	public void mostrarProductosTabla() {
 			  
@@ -39,16 +40,30 @@ public class panelProductos extends JFrame {
 
 	        modeloTabla.setRowCount(0);
 
-	        for (Object[] row : infoProducto) {
-	            modeloTabla.addRow(row);
+	        for (Object[] fila : infoProducto) {
+	            modeloTabla.addRow(fila);
 	        }
 	    
 	}
 	
+	// Se encarga de mostrar todos los productos en la tabla
+	public void mostrarProductosEspecificosTabla(String nombreProducto) {
+			 
+			List<Object[]> listaProductos = producto.BuscarProductos(nombreProducto);
+
+	        modeloTabla.setRowCount(0);
+
+	        for (Object[] fila : listaProductos) {
+	            modeloTabla.addRow(fila);
+	        }
+	    
+	}
+	
+	
 	//Metodo presentacion
 	public void presentacionProductos() {
 		
-		  // Configurar la ventana
+		 // Configurar la ventana
         setTitle("Panel Productos");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -82,13 +97,25 @@ public class panelProductos extends JFrame {
         // Etiqueta de Buscar Producto
         JLabel buscarProductoLabel = new JLabel("Buscar Producto");
         buscarProductoLabel.setForeground(new Color(255, 255, 255));
-        buscarProductoLabel.setBounds(177, 117, 121, 25);
+        buscarProductoLabel.setBounds(108, 116, 121, 25);
         panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
         JTextField buscarProductoField = new JTextField();
-        buscarProductoField.setBounds(177, 142, 293, 30);
+        buscarProductoField.setBounds(108, 142, 398, 30);
         panel.add(buscarProductoField);
+        
+        String[] opcionesBuscar = {"Id", "Nombre", "Precio"};
+        
+        JComboBox chcbxOpcionesBuscar = new JComboBox();
+        chcbxOpcionesBuscar.setBounds(554, 142, 121, 30);
+        chcbxOpcionesBuscar.addItem(opcionesBuscar[0]);
+        chcbxOpcionesBuscar.addItem(opcionesBuscar[1]);
+        chcbxOpcionesBuscar.addItem(opcionesBuscar[2]);
+        panel.add(chcbxOpcionesBuscar);
+        
+        int opcion = chcbxOpcionesBuscar.getSelectedIndex();
+		String opcionString = String.valueOf(opcion);
         
         //Creacion tabla
         modeloTabla = new DefaultTableModel(new Object[]{"ID", "Nombre", "Precio", "Descripcion"}, 0);
@@ -111,10 +138,6 @@ public class panelProductos extends JFrame {
 	    JButton btnVolver = new JButton("←");
 	    btnVolver.setBounds(10, 11, 50, 15);
 	    panel.add(btnVolver);
-	    
-	    JButton btnBuscar = new JButton("Buscar");
-	    btnBuscar.setBounds(480, 142, 89, 30);
-	    panel.add(btnBuscar);
 	    
 	    JButton btnAgregar = new JButton("Agregar"); 
 	    btnAgregar.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -233,6 +256,37 @@ public class panelProductos extends JFrame {
 	    		
 	    	}	
 	    });
+	    
+	    buscarProductoField.addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent e) {
+        		
+        		switch (opcionString) {
+        		
+				case "1": {
+					
+					System.out.println("id");
+					
+				}
+				
+				case "2": {
+					
+					String nombreProducto = buscarProductoField.getText();
+	        		System.out.println(nombreProducto);
+	        		mostrarProductosEspecificosTabla(nombreProducto);
+					
+				}
+				
+				case "3": {
+					
+					System.out.println("precio");
+					
+				}
+				
+        		}
+        		
+        		
+        	}
+        });
     
     
     // Agregar el panel a la ventana

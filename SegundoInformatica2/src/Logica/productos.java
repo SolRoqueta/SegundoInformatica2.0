@@ -33,8 +33,10 @@ public class productos {
 	private String ModificarProductoQuery = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, foto = ? WHERE id_producto = ?;";
 	private String EliminarProductoQuery = "DELETE FROM productos WHERE nombre = ? LIMIT 1;";
 	private String BuscarProductoQuery = "SELECT * FROM productos WHERE nombre = ?;";
-	private String BuscarProductoIdQuery = "SELECT * FROM productos WHERE id_producto= ?;";
 	private String BuscarProductosQuery = "SELECT * FROM productos;";
+	private String BuscarProductosNombreQuery = "SELECT * FROM productos WHERE nombre LIKE";
+	private String BuscarProductosIDQuery = "SELECT * FROM productos WHERE id_producto LIKE";
+	private String BuscarProductosPrecioQuery = "SELECT * FROM productos WHERE precio LIKE";
 	
 	// CONSTRUCTOR DE PRODUCTOS 
 	public productos(int ID, String NOMBRE, String DESCRIPCION, int PRECIO) {
@@ -320,117 +322,113 @@ public class productos {
 			return productList;
 	}
 	
+	public List<Object[]> BuscarProductos(String nombreProducto) {
+		
+		conexion cc = new conexion();
+	    Connection con = cc.conect();
+	    List<Object[]> productList = new ArrayList<>();
+		
+		String query = BuscarProductosNombreQuery + " '" + nombreProducto + "%' ;" ;
+		
+		try (Connection conn = con;
+			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+			
+				int id = resultSet.getInt("id_producto");
+				
+				String nombre = resultSet.getString("nombre");
+				
+				String descripcion = resultSet.getString("descripcion");
+				
+				int precio = resultSet.getInt("precio");
+				
+				productList.add(new Object[]{id, nombre, precio, descripcion});
+					    	
+			}
+			
+	    } catch (SQLException e) {
+		
+	//		e.printStackTrace();
+	    	System.out.println("ERROR en la busqueda de productos");
+		
+		}
+			return productList;
+	}
+	
+	public List<Object[]> BuscarProductosId(int id_producto) {
+		
+		conexion cc = new conexion();
+	    Connection con = cc.conect();
+	    List<Object[]> productList = new ArrayList<>();
+		
+		String query = BuscarProductosNombreQuery + " '" + id_producto + "%' ;" ;
+		
+		try (Connection conn = con;
+			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+			
+				int id = resultSet.getInt("id_producto");
+				
+				String nombre = resultSet.getString("nombre");
+				
+				String descripcion = resultSet.getString("descripcion");
+				
+				int precio = resultSet.getInt("precio");
+				
+				productList.add(new Object[]{id, nombre, precio, descripcion});
+					    	
+			}
+			
+	    } catch (SQLException e) {
+		
+	//		e.printStackTrace();
+	    	System.out.println("ERROR en la busqueda de productos");
+		
+		}
+			return productList;
+	}
+	
+	public List<Object[]> BuscarProductosPrecio(int precioProducto) {
+		
+		conexion cc = new conexion();
+	    Connection con = cc.conect();
+	    List<Object[]> productList = new ArrayList<>();
+		
+		String query = BuscarProductosNombreQuery + " '" + precioProducto + "%' ;" ;
+		
+		try (Connection conn = con;
+			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+			
+				int id = resultSet.getInt("id_producto");
+				
+				String nombre = resultSet.getString("nombre");
+				
+				String descripcion = resultSet.getString("descripcion");
+				
+				int precio = resultSet.getInt("precio");
+				
+				productList.add(new Object[]{id, nombre, precio, descripcion});
+					    	
+			}
+			
+	    } catch (SQLException e) {
+		
+	//		e.printStackTrace();
+	    	System.out.println("ERROR en la busqueda de productos");
+		
+		}
+			return productList;
+	}
+	
 }
 	
-	// MAIN PARA TESTEAR (TEMPORAL)
-//	public static void main(String[] args) throws IOException {
-//	
-//		productos p = new productos();
-//		Scanner sr = new Scanner(System.in);
-//		
-//		int OP;
-//		int inf = 1;
-//		
-//		while (inf == 1) {
-//				
-//				System.out.println("TEST DE PRUEBA DE FUNCIONES DE AGREGADO, MODIFICACION Y ELIMINACION");
-//				System.out.println(" ");
-//				System.out.println("1. AGREGAR PRODUCTO");
-//				System.out.println("2. MODIFICAR PRODUCTO");
-//				System.out.println("3. ELIMINAR PRODUCTO");
-//				System.out.println("4. MOSTRAR LOS PRODUCTOS");
-//				System.out.println("5. Salir");
-//				
-//				OP = sr.nextInt();
-//				
-//				sr.nextLine();
-//				
-//				switch (OP) {
-//				
-//				case 1:
-//					
-//					System.out.println("Ingrese el nombre del producto: ");
-//					
-//					p.setNombre(sr.nextLine());
-//					
-//					System.out.println("Ingrese la descripcion del producto: ");
-//					
-//					p.setDescripcion(sr.nextLine());
-//					
-//					System.out.println("Ingrese el precio para el producto: ");
-//					
-//					p.setPrecio(sr.nextInt());
-//					
-//					sr.nextLine();
-//					
-//					System.out.println("Ingrese la ruta de la foto: ");
-//					
-//	//				p.setFoto(sr.nextLine());
-//	//				
-//					p.AgregarProducto();
-//					
-//					break;
-//				
-//				case 2:
-//					
-//					p.BuscarProductos();
-//					
-//					System.out.println("Ingrese el nombre del producto a modificar: ");
-//					
-//					p = p.BuscarProducto(sr.nextLine());
-//					
-//					System.out.println("Ingrese el nuveo nombre del producto: ");
-//					
-//					p.setNombre(sr.nextLine());
-//					
-//					System.out.println("Ingrese la nueva descripcion del producto: ");
-//					
-//					p.setDescripcion(sr.nextLine());
-//					
-//					System.out.println("Ingrese el nuevo precio para el producto: ");
-//					
-//					p.setPrecio(sr.nextInt());
-//					
-//					sr.nextLine();
-//					
-//					System.out.println("Ingrese la nueva ruta de la foto: ");
-//					
-//	//				p.setFoto(sr.nextLine());
-//					
-//					p.ModificarProducto();
-//					
-//					break;
-//					
-//				case 3:
-//					
-//					p.BuscarProductos();
-//					
-//					System.out.println("Ingrese el nombre del producto a eliminar: ");
-//					
-//					p = p.BuscarProducto(sr.nextLine());
-//					
-//					p.EliminarProducto();
-//					
-//					break;
-//					
-//				case 4:
-//					
-//					p.BuscarProductos();
-//					
-//					break;
-//					
-//				case 5:
-//					
-//					inf = 0;
-//					
-//					break;
-//					
-//				}
-//				
-//		}
-//		
-//		sr.close();
-//			
-//		}
-//	
-//}
