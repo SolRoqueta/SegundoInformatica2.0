@@ -97,18 +97,18 @@ public class panelProductos extends JFrame {
         // Etiqueta de Buscar Producto
         JLabel buscarProductoLabel = new JLabel("Buscar Producto");
         buscarProductoLabel.setForeground(new Color(255, 255, 255));
-        buscarProductoLabel.setBounds(108, 116, 121, 25);
+        buscarProductoLabel.setBounds(97, 116, 121, 25);
         panel.add(buscarProductoLabel);
         
         // Campo de texto para buscar productos
         JTextField buscarProductoField = new JTextField();
-        buscarProductoField.setBounds(108, 142, 398, 30);
+        buscarProductoField.setBounds(97, 142, 309, 30);
         panel.add(buscarProductoField);
         
         String[] opcionesBuscar = {"Id", "Nombre", "Precio"};
         
         JComboBox chcbxOpcionesBuscar = new JComboBox();
-        chcbxOpcionesBuscar.setBounds(554, 142, 121, 30);
+        chcbxOpcionesBuscar.setBounds(438, 142, 121, 30);
         chcbxOpcionesBuscar.addItem(opcionesBuscar[0]);
         chcbxOpcionesBuscar.addItem(opcionesBuscar[1]);
         chcbxOpcionesBuscar.addItem(opcionesBuscar[2]);
@@ -116,6 +116,7 @@ public class panelProductos extends JFrame {
         
         int opcion = chcbxOpcionesBuscar.getSelectedIndex();
 		String opcionString = String.valueOf(opcion);
+
         
         //Creacion tabla
         modeloTabla = new DefaultTableModel(new Object[]{"ID", "Nombre", "Precio", "Descripcion"}, 0);
@@ -138,6 +139,10 @@ public class panelProductos extends JFrame {
 	    JButton btnVolver = new JButton("←");
 	    btnVolver.setBounds(10, 11, 50, 15);
 	    panel.add(btnVolver);
+	    
+	    JButton btnAplicarOpcion = new JButton("Aplicar");
+	    btnAplicarOpcion.setBounds(574, 142, 121, 30);
+	    panel.add(btnAplicarOpcion);
 	    
 	    JButton btnAgregar = new JButton("Agregar"); 
 	    btnAgregar.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -181,6 +186,16 @@ public class panelProductos extends JFrame {
 	    		menuPrincipal MenuPrincipal = new menuPrincipal();
 	    		MenuPrincipal.setVisible(true);
 	    		panelProductos.this.dispose();
+	    	}
+	    });
+	    
+	    btnAplicarOpcion.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		
+	    		
+	    		 
+	    		
+	    			
 	    	}
 	    });
     
@@ -259,38 +274,22 @@ public class panelProductos extends JFrame {
 	    
 	    buscarProductoField.addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent e) {
-        		
-        		switch (opcionString) {
-        		
-				case "1": {
-					
-					System.out.println("id");
-					
-				}
-				
-				case "2": {
 					
 					String nombreProducto = buscarProductoField.getText();
 	        		System.out.println(nombreProducto);
 	        		mostrarProductosEspecificosTabla(nombreProducto);
-					
-				}
-				
-				case "3": {
-					
-					System.out.println("precio");
-					
-				}
-				
-        		}
-        		
-        		
+
+        	
         	}
         });
+	    
+	   
     
     
     // Agregar el panel a la ventana
     getContentPane().add(panel);
+    
+  
 		
 	}
 }
