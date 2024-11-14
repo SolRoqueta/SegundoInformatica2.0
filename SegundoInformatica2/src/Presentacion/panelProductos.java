@@ -27,7 +27,6 @@ public class panelProductos extends JFrame {
 	private String nombre;
 	private int filaSeleccionada;
 	private int opcion;
-	private String opcionString = "-1";
 	
 	//Constructor
 	public panelProductos() {
@@ -109,6 +108,11 @@ public class panelProductos extends JFrame {
 	    lblProductos.setBackground(Color.GRAY);
 	    lblProductos.setBounds(293, 61, 198, 60);
 	    panel.add(lblProductos);
+	    
+	    JLabel lblFiltro = new JLabel("Filtro: Nombre");
+	    lblFiltro.setForeground(new Color(255, 255, 255));
+	    lblFiltro.setBounds(438, 121, 124, 14);
+	    panel.add(lblFiltro);
         
         // Etiqueta de Buscar Producto
         JLabel buscarProductoLabel = new JLabel("Buscar Producto");
@@ -204,8 +208,12 @@ public class panelProductos extends JFrame {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
 	    		  opcion = chcbxOpcionesBuscar.getSelectedIndex();
-	    		  opcionString = String.valueOf(opcion);
-	    		  System.out.println(opcionString);
+	    		  
+	    		  if (opcion == 0) {
+	    			  lblFiltro.setText("Filtro: Nombre");
+	    		  } else {
+	    			  lblFiltro.setText("Filtro: Precio");
+	    		  }
 	    			
 	    	}
 	    });
@@ -277,16 +285,24 @@ public class panelProductos extends JFrame {
 					e1.printStackTrace();
 				}
 	    		
-	    		producto.EliminarProducto();
-	    		modeloTabla.removeRow(filaSeleccionada);
+	    		 int option = JOptionPane.showConfirmDialog(panel, "¿Estás seguro de que quieres eliminar el producto " + nombre + "?", "Confirmación", JOptionPane.YES_NO_OPTION);
+	             
+	             // Comprobar la respuesta
+	             if (option == JOptionPane.YES_OPTION) {
+	            	producto.EliminarProducto();
+	 	    		modeloTabla.removeRow(filaSeleccionada);
+	 	    		JOptionPane.showMessageDialog(panel, "Producto: " + nombre + ", eliminado");
+	             } else {
+	            	 JOptionPane.showMessageDialog(panel, "Producto: " + nombre + ", No eliminado");
+	             }
+	             
+	    		
 	    		
 	    	}	
 	    });
 	    
 	    buscarProductoField.addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent e) {
-        		
-        		System.out.println(buscarProductoField.getText());
         		
         		if (buscarProductoField.getText().equals("")) {
         			mostrarProductosTabla();
@@ -311,7 +327,6 @@ public class panelProductos extends JFrame {
     
     // Agregar el panel a la ventana
     getContentPane().add(panel);
-    
   
 		
 	}

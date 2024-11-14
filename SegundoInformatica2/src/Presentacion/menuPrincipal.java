@@ -79,8 +79,7 @@ public class menuPrincipal extends JFrame {
         btnCerrarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuDiarios window
-            	
-            	JOptionPane.showMessageDialog(null, "Sesion cerrada con exito");
+
             	login Login = new login();
             	Login.setVisible(true);
             	menuPrincipal.this.dispose();

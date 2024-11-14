@@ -174,6 +174,9 @@ public class agregarProductos extends JFrame {
 						}
                       
                         JOptionPane.showMessageDialog(null, "Producto agregado con exito!");
+                        panelProductos ventanaProductos = new panelProductos();
+                    	ventanaProductos.setVisible(true);
+                    	agregarProductos.this.dispose();
                         
                     } else {
                         JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
@@ -182,9 +185,6 @@ public class agregarProductos extends JFrame {
                     
                 }
                 
-                panelProductos ventanaProductos = new panelProductos();
-            	ventanaProductos.setVisible(true);
-            	agregarProductos.this.dispose();
             }
         
             
