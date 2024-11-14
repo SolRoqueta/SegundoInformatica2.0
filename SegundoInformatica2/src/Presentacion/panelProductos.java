@@ -26,6 +26,8 @@ public class panelProductos extends JFrame {
 
 	private String nombre;
 	private int filaSeleccionada;
+	private int opcion;
+	private String opcionString = "-1";
 	
 	//Constructor
 	public panelProductos() {
@@ -47,17 +49,31 @@ public class panelProductos extends JFrame {
 	}
 	
 	// Se encarga de mostrar todos los productos en la tabla
-	public void mostrarProductosEspecificosTabla(String nombreProducto) {
+	public void mostrarProductosNombreTabla(String nombreProducto) {
 			 
-			List<Object[]> listaProductos = producto.BuscarProductos(nombreProducto);
+			List<Object[]> listaProductosNombre = producto.BuscarProductosNombre(nombreProducto);
 
 	        modeloTabla.setRowCount(0);
 
-	        for (Object[] fila : listaProductos) {
+	        for (Object[] fila : listaProductosNombre) {
 	            modeloTabla.addRow(fila);
 	        }
 	    
 	}
+	
+	public void mostrarProductosPrecioTabla(String precioProducto) {
+
+		List<Object[]> listaProductosPrecio = producto.BuscarProductosPrecio(precioProducto);
+
+        modeloTabla.setRowCount(0);
+        
+        for (Object[] fila : listaProductosPrecio) {
+            modeloTabla.addRow(fila);
+        }
+        
+       
+    
+}
 	
 	
 	//Metodo presentacion
@@ -105,21 +121,17 @@ public class panelProductos extends JFrame {
         buscarProductoField.setBounds(97, 142, 309, 30);
         panel.add(buscarProductoField);
         
-        String[] opcionesBuscar = {"Id", "Nombre", "Precio"};
+        String[] opcionesBuscar = {"Nombre", "Precio"};
         
         JComboBox chcbxOpcionesBuscar = new JComboBox();
         chcbxOpcionesBuscar.setBounds(438, 142, 121, 30);
         chcbxOpcionesBuscar.addItem(opcionesBuscar[0]);
         chcbxOpcionesBuscar.addItem(opcionesBuscar[1]);
-        chcbxOpcionesBuscar.addItem(opcionesBuscar[2]);
         panel.add(chcbxOpcionesBuscar);
-        
-        int opcion = chcbxOpcionesBuscar.getSelectedIndex();
-		String opcionString = String.valueOf(opcion);
 
         
         //Creacion tabla
-        modeloTabla = new DefaultTableModel(new Object[]{"ID", "Nombre", "Precio", "Descripcion"}, 0);
+        modeloTabla = new DefaultTableModel(new Object[]{"Nombre", "Precio", "Descripcion"}, 0);
         tablaProductos = new JTable(modeloTabla);
         tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaProductos.getTableHeader().setReorderingAllowed(false);
@@ -140,9 +152,9 @@ public class panelProductos extends JFrame {
 	    btnVolver.setBounds(10, 11, 50, 15);
 	    panel.add(btnVolver);
 	    
-	    JButton btnAplicarOpcion = new JButton("Aplicar");
-	    btnAplicarOpcion.setBounds(574, 142, 121, 30);
-	    panel.add(btnAplicarOpcion);
+	    JButton btnAplicarFiltro = new JButton("Aplicar");
+	    btnAplicarFiltro.setBounds(574, 142, 121, 30);
+	    panel.add(btnAplicarFiltro);
 	    
 	    JButton btnAgregar = new JButton("Agregar"); 
 	    btnAgregar.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -189,12 +201,13 @@ public class panelProductos extends JFrame {
 	    	}
 	    });
 	    
-	    btnAplicarOpcion.addActionListener(new ActionListener() {
+	    // Btn Aplicar Filtro
+	    btnAplicarFiltro.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
-	    		
-	    		 
-	    		
+	    		  opcion = chcbxOpcionesBuscar.getSelectedIndex();
+	    		  opcionString = String.valueOf(opcion);
+	    		  System.out.println(opcionString);
 	    			
 	    	}
 	    });
@@ -274,17 +287,26 @@ public class panelProductos extends JFrame {
 	    
 	    buscarProductoField.addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent e) {
-					
+        		
+				if (opcionString.equals("0")) {
 					String nombreProducto = buscarProductoField.getText();
-	        		System.out.println(nombreProducto);
-	        		mostrarProductosEspecificosTabla(nombreProducto);
-
-        	
+	        		mostrarProductosNombreTabla(nombreProducto);
+					
+				} else if (opcionString.equals("1")) {
+        			
+        			if (buscarProductoField.getText().equals("")) {
+            			mostrarProductosTabla();
+            		} else {
+            			String precioProducto = buscarProductoField.getText();
+            			mostrarProductosPrecioTabla(precioProducto);
+            		}
+	        		
+				}
+				
         	}
+    
         });
 	    
-	   
-    
     
     // Agregar el panel a la ventana
     getContentPane().add(panel);

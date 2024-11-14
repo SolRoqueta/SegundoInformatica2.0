@@ -33,10 +33,10 @@ public class productos {
 	private String ModificarProductoQuery = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, foto = ? WHERE id_producto = ?;";
 	private String EliminarProductoQuery = "DELETE FROM productos WHERE nombre = ? LIMIT 1;";
 	private String BuscarProductoQuery = "SELECT * FROM productos WHERE nombre = ?;";
-	private String BuscarProductosQuery = "SELECT * FROM productos;";
+	private String BuscarProductosQuery = "SELECT * FROM productos ORDER BY nombre ASC;";
 	private String BuscarProductosNombreQuery = "SELECT * FROM productos WHERE nombre LIKE";
-	private String BuscarProductosIDQuery = "SELECT * FROM productos WHERE id_producto LIKE";
 	private String BuscarProductosPrecioQuery = "SELECT * FROM productos WHERE precio LIKE";
+	private String OrdenarQuery = "ORDER BY nombre ASC, precio ASC;";
 	
 	// CONSTRUCTOR DE PRODUCTOS 
 	public productos(int ID, String NOMBRE, String DESCRIPCION, int PRECIO) {
@@ -300,16 +300,14 @@ public class productos {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
-			
-				int id = resultSet.getInt("id_producto");
 				
 				String nombre = resultSet.getString("nombre");
 				
-				String descripcion = resultSet.getString("descripcion");
-				
 				int precio = resultSet.getInt("precio");
 				
-				productList.add(new Object[]{id, nombre, precio, descripcion});
+				String descripcion = resultSet.getString("descripcion");
+				
+				productList.add(new Object[]{nombre, precio, descripcion});
 					    	
 			}
 			
@@ -322,13 +320,13 @@ public class productos {
 			return productList;
 	}
 	
-	public List<Object[]> BuscarProductos(String nombreProducto) {
+	public List<Object[]> BuscarProductosNombre(String nombreProducto) {
 		
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
 	    List<Object[]> productList = new ArrayList<>();
 		
-		String query = BuscarProductosNombreQuery + " '" + nombreProducto + "%' ;" ;
+		String query = BuscarProductosNombreQuery + " '" + nombreProducto + "%' " + OrdenarQuery;
 		
 		try (Connection conn = con;
 			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -336,16 +334,14 @@ public class productos {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
-			
-				int id = resultSet.getInt("id_producto");
 				
 				String nombre = resultSet.getString("nombre");
 				
-				String descripcion = resultSet.getString("descripcion");
-				
 				int precio = resultSet.getInt("precio");
 				
-				productList.add(new Object[]{id, nombre, precio, descripcion});
+				String descripcion = resultSet.getString("descripcion");
+				
+				productList.add(new Object[]{nombre, precio, descripcion});
 					    	
 			}
 			
@@ -358,13 +354,13 @@ public class productos {
 			return productList;
 	}
 	
-	public List<Object[]> BuscarProductosId(int id_producto) {
+	public List<Object[]> BuscarProductosPrecio(String precioProducto) {
 		
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
 	    List<Object[]> productList = new ArrayList<>();
 		
-		String query = BuscarProductosNombreQuery + " '" + id_producto + "%' ;" ;
+	   String query = BuscarProductosPrecioQuery + " '" + precioProducto + "%' " + "ORDER BY precio ASC";
 		
 		try (Connection conn = con;
 			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -372,52 +368,14 @@ public class productos {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
-			
-				int id = resultSet.getInt("id_producto");
 				
 				String nombre = resultSet.getString("nombre");
 				
-				String descripcion = resultSet.getString("descripcion");
-				
 				int precio = resultSet.getInt("precio");
-				
-				productList.add(new Object[]{id, nombre, precio, descripcion});
-					    	
-			}
-			
-	    } catch (SQLException e) {
-		
-	//		e.printStackTrace();
-	    	System.out.println("ERROR en la busqueda de productos");
-		
-		}
-			return productList;
-	}
-	
-	public List<Object[]> BuscarProductosPrecio(int precioProducto) {
-		
-		conexion cc = new conexion();
-	    Connection con = cc.conect();
-	    List<Object[]> productList = new ArrayList<>();
-		
-		String query = BuscarProductosNombreQuery + " '" + precioProducto + "%' ;" ;
-		
-		try (Connection conn = con;
-			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-			
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			while (resultSet.next()) {
-			
-				int id = resultSet.getInt("id_producto");
-				
-				String nombre = resultSet.getString("nombre");
 				
 				String descripcion = resultSet.getString("descripcion");
 				
-				int precio = resultSet.getInt("precio");
-				
-				productList.add(new Object[]{id, nombre, precio, descripcion});
+				productList.add(new Object[]{nombre, precio, descripcion});
 					    	
 			}
 			
