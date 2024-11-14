@@ -129,7 +129,6 @@ public class panelProductos extends JFrame {
         chcbxOpcionesBuscar.addItem(opcionesBuscar[1]);
         panel.add(chcbxOpcionesBuscar);
 
-        
         //Creacion tabla
         modeloTabla = new DefaultTableModel(new Object[]{"Nombre", "Precio", "Descripcion"}, 0);
         tablaProductos = new JTable(modeloTabla);
@@ -173,7 +172,6 @@ public class panelProductos extends JFrame {
 	    btnEliminar.setEnabled(false);
 	    panel.add(btnEliminar);
     
-	    
 	    // Mouse Listener
 	    
 	    tablaProductos.addMouseListener(new MouseAdapter() {
@@ -233,7 +231,7 @@ public class panelProductos extends JFrame {
 	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
 	  		    	
 	  		        // Obtenemos los valores de cada columna
-	  		    	nombre = tablaProductos.getValueAt(filaSeleccionada, 1).toString(); // Columna 1: Nombre
+	  		    	nombre = tablaProductos.getValueAt(filaSeleccionada, 0).toString(); // Columna 1: Nombre
 	  		    	
 	  		        try {
 	  		        	
@@ -265,7 +263,7 @@ public class panelProductos extends JFrame {
 	
 	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
 	  		    	
-	  		    	nombre = tablaProductos.getValueAt(filaSeleccionada, 1).toString(); // Columna 1: Nombre
+	  		    	nombre = tablaProductos.getValueAt(filaSeleccionada, 0).toString(); // Columna 1: Nombre
 	  		        
 	  		    } else {
 	  		        System.out.println("No hay ninguna fila seleccionada.");
@@ -288,22 +286,25 @@ public class panelProductos extends JFrame {
 	    buscarProductoField.addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent e) {
         		
-				if (opcionString.equals("0")) {
-					String nombreProducto = buscarProductoField.getText();
-	        		mostrarProductosNombreTabla(nombreProducto);
-					
-				} else if (opcionString.equals("1")) {
+        		System.out.println(buscarProductoField.getText());
+        		
+        		if (buscarProductoField.getText().equals("")) {
+        			mostrarProductosTabla();
+        		} else {
         			
-        			if (buscarProductoField.getText().equals("")) {
-            			mostrarProductosTabla();
-            		} else {
-            			String precioProducto = buscarProductoField.getText();
-            			mostrarProductosPrecioTabla(precioProducto);
-            		}
-	        		
-				}
-				
-        	}
+        			if (opcion == 0) {
+    					
+    					String nombreProducto = buscarProductoField.getText();
+    	        		mostrarProductosNombreTabla(nombreProducto);
+    					
+    				} else if (opcion == 1) {
+            			
+                			String precioProducto = buscarProductoField.getText();
+                			mostrarProductosPrecioTabla(precioProducto);
+                		}
+    	        		
+    				}
+        		}
     
         });
 	    

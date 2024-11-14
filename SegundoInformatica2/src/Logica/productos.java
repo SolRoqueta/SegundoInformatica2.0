@@ -36,7 +36,6 @@ public class productos {
 	private String BuscarProductosQuery = "SELECT * FROM productos ORDER BY nombre ASC;";
 	private String BuscarProductosNombreQuery = "SELECT * FROM productos WHERE nombre LIKE";
 	private String BuscarProductosPrecioQuery = "SELECT * FROM productos WHERE precio LIKE";
-	private String OrdenarQuery = "ORDER BY nombre ASC, precio ASC;";
 	
 	// CONSTRUCTOR DE PRODUCTOS 
 	public productos(int ID, String NOMBRE, String DESCRIPCION, int PRECIO) {
@@ -326,7 +325,7 @@ public class productos {
 	    Connection con = cc.conect();
 	    List<Object[]> productList = new ArrayList<>();
 		
-		String query = BuscarProductosNombreQuery + " '" + nombreProducto + "%' " + OrdenarQuery;
+		String query = BuscarProductosNombreQuery + " '" + nombreProducto + "%' " + "ORDER BY precio DESC";
 		
 		try (Connection conn = con;
 			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -360,7 +359,7 @@ public class productos {
 	    Connection con = cc.conect();
 	    List<Object[]> productList = new ArrayList<>();
 		
-	   String query = BuscarProductosPrecioQuery + " '" + precioProducto + "%' " + "ORDER BY precio ASC";
+	   String query = BuscarProductosPrecioQuery + " '" + precioProducto + "%' " + "ORDER BY precio DESC";
 		
 		try (Connection conn = con;
 			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
