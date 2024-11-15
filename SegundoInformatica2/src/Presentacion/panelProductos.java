@@ -110,12 +110,14 @@ public class panelProductos extends JFrame {
 	    panel.add(lblProductos);
 	    
 	    JLabel lblFiltro = new JLabel("Filtro: Nombre");
+	    lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	    lblFiltro.setForeground(new Color(255, 255, 255));
 	    lblFiltro.setBounds(438, 121, 124, 14);
 	    panel.add(lblFiltro);
         
         // Etiqueta de Buscar Producto
         JLabel buscarProductoLabel = new JLabel("Buscar Producto");
+        buscarProductoLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
         buscarProductoLabel.setForeground(new Color(255, 255, 255));
         buscarProductoLabel.setBounds(97, 116, 121, 25);
         panel.add(buscarProductoLabel);

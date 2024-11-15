@@ -36,26 +36,27 @@ public class agregarUsuarios extends JFrame {
         
         // Etiqueta de título
         JLabel titulo = new JLabel("AGREGAR", SwingConstants.CENTER);
-        titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
-        titulo.setBounds(99, 0, 111, 64);
+        titulo.setFont(new Font("Tahoma", Font.BOLD, 35));
+        titulo.setBounds(304, 21, 176, 59);
         titulo.setForeground(new Color(210, 210, 210));
         panel.add(titulo);
         
         JSeparator separator = new JSeparator();
         separator.setForeground(new Color(192, 192, 192));
-        separator.setBounds(105, 51, 100, 2);
+        separator.setBounds(317, 72, 150, 2);
         panel.add(separator);
         
         JLabel tituloUsuarios = new JLabel("USUARIOS", SwingConstants.CENTER);
         tituloUsuarios.setForeground(new Color(210, 210, 210));
-        tituloUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        tituloUsuarios.setBounds(99, 55, 111, 20);
+        tituloUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        tituloUsuarios.setBounds(304, 65, 176, 51);
         panel.add(tituloUsuarios);
         
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
+        nombreLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         nombreLabel.setForeground(new Color(230, 230, 230));
-        nombreLabel.setBounds(80, 97, 53, 25);
+        nombreLabel.setBounds(292, 164, 53, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
@@ -71,43 +72,47 @@ public class agregarUsuarios extends JFrame {
         		        		
         	}
         });
-        nombreField.setBounds(80, 123, 150, 25);
+        nombreField.setBounds(292, 200, 200, 30);
         panel.add(nombreField);
         
         JLabel contraLabel = new JLabel("Contraseña");
+        contraLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         contraLabel.setForeground(new Color(230, 230, 230));
-        contraLabel.setBounds(80, 152, 84, 25);
+        contraLabel.setBounds(291, 243, 84, 25);
         panel.add(contraLabel);
         
         JPasswordField contraField = new JPasswordField();
-        contraField.setBounds(80, 173, 150, 25);
+        contraField.setBounds(292, 279, 200, 30);
         panel.add(contraField);
         
         JLabel mailLabel = new JLabel("Mail");
+        mailLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         mailLabel.setForeground(new Color(230, 230, 230));
-        mailLabel.setBounds(80, 203, 100, 25);
+        mailLabel.setBounds(292, 323, 100, 25);
         panel.add(mailLabel);
         
         JTextField mailField = new JTextField();
-        mailField.setBounds(80, 225, 150, 25);
+        mailField.setBounds(292, 359, 200, 30);
         panel.add(mailField);
         
         JLabel tipoUsuarioLabel = new JLabel("Tipo Usuario");
+        tipoUsuarioLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         tipoUsuarioLabel.setForeground(new Color(230, 230, 230));
-        tipoUsuarioLabel.setBounds(80, 253, 100, 25);
+        tipoUsuarioLabel.setBounds(292, 411, 100, 25);
         panel.add(tipoUsuarioLabel);
         
         JComboBox<String> tipoUsuarioCbbx = new JComboBox<>(tipoUsu);
-        tipoUsuarioCbbx.setBounds(80, 279, 150, 25);
+        tipoUsuarioCbbx.setBounds(292, 445, 200, 30);
         panel.add(tipoUsuarioCbbx);
         
         // Botón Agregar Usuario
         JButton agregarUsuarioBtn = new JButton("Agregar Usuario");
-        agregarUsuarioBtn.setBounds(80, 338, 150, 30);
+        agregarUsuarioBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        agregarUsuarioBtn.setBounds(292, 540, 200, 50);
         panel.add(agregarUsuarioBtn);
         
         JButton volverBtn = new JButton("←");
-        volverBtn.setBounds(130, 383, 50, 15);
+        volverBtn.setBounds(10, 11, 50, 15);
         panel.add(volverBtn);
         
         // Acciones Botones
@@ -148,9 +153,11 @@ public class agregarUsuarios extends JFrame {
             }
         });
         
-        // Volver Atras
         volverBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	panelUsuarios ventanaPanelUsuarios = new panelUsuarios();
+            	ventanaPanelUsuarios.setVisible(true);
+            	agregarUsuarios.this.dispose();	
             }
         });
    

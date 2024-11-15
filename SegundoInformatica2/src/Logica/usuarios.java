@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class usuarios {
@@ -15,10 +17,17 @@ public class usuarios {
 	private String tipoUsuario; 
 	private String mail;
 	private Date fecha_ultimo_acceso;
+	private String query;
+	
 	private String AgregarUsuarioQuery = "INSERT INTO usuarios (nombre, contrasenia, mail, tipo_usuario, fecha_ultimo_acceso) VALUES (?, ?, ?, ?, ?);";
 	private String ModificarUsuarioQuery = "UPDATE usuarios SET nombre = ?, contrasenia = ?, mail = ?, tipo_usuario = ?, fecha_ultimo_acceso = ? WHERE id_usuario = ?;";
-	private String BuscarUsuarioQuery = "SELECT * FROM usuarios WHERE nombre = ?;";
 	private String EliminarUsuarioQuery = "DELETE FROM usuarios WHERE id_usuario = ? LIMIT 1;";
+	private String BuscarUsuarioQuery = "SELECT * FROM usuarios WHERE nombre = ?;";
+	private String BuscarUsuariosQuery = "SELECT * FROM usuarios ORDER BY nombre ASC;";
+	private String BuscarUsuariosNombreQuery = "SELECT * FROM usuarios WHERE nombre LIKE";
+	private String BuscarUsuariosMailQuery = "SELECT * FROM usuarios WHERE mail LIKE";
+	private String BuscarUsuariosTipoQuery = "SELECT * FROM usuarios WHERE tipo_usuario LIKE";
+	private String BuscarUsuariosFechaQuery = "SELECT * FROM usuarios WHERE fecha_ultimo_acceso LIKE";
 	
 	 // CONSTRUCTOR DE USUARIOS 
 	
@@ -228,14 +237,36 @@ public class usuarios {
 		
 	}
 	
-	public String[][] BuscarUsuarios() {
+	public List<Object[]> BuscarUsuarios(String atributoUsuario, int opcion) {
 		
 		conexion cc = new conexion();
 	    Connection con = cc.conect();
-	    String[][] datos = new String[100][3];
-	    int index = 0;
-		
-		String query = "SELECT * FROM usuarios;";
+	    List<Object[]> userList = new ArrayList<>();
+	    
+	    switch (opcion) {
+	    case 0:
+	        query = BuscarUsuariosNombreQuery + " '" + atributoUsuario + "%';";
+	        break;
+
+	    case 1:
+	        query = BuscarUsuariosMailQuery + " '" + atributoUsuario + "%';";
+	        break;
+
+	    case 2:
+	        query = BuscarUsuariosTipoQuery + " '" + atributoUsuario + "%';";
+	        break;
+
+	    case 3:
+	        query = BuscarUsuariosFechaQuery + " '" + atributoUsuario + "%';";
+	        break;
+
+	    case 4:
+	        query = BuscarUsuariosQuery;
+	        break;
+
+	    default:
+	        throw new IllegalArgumentException("Opción no válida: " + opcion);
+	    }
 		
 		try (Connection conn = con;
 			PreparedStatement preparedStatement = conn.prepareStatement(query)) {
@@ -243,165 +274,26 @@ public class usuarios {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
+				
+				String nombre = resultSet.getString("nombre");
+				
+				String mail = resultSet.getString("mail");
+				
+				String tipo = resultSet.getString("tipo_usuario");
+				
+				Date ultimoAcceso = resultSet.getDate("fecha_ultimo_acceso");
+				
+				userList.add(new Object[]{nombre, mail, tipo, ultimoAcceso});
+					    	
+			}
 			
-			int id = resultSet.getInt("idusuarios");
-			String tempId = String.valueOf(id);
-			
-			String nombre = resultSet.getString("nombre");
-			
-			String tipo = resultSet.getString("tipo_usuario");
-			
-			datos[index][0] = tempId;
-            datos[index][1] = nombre;
-            datos[index][2] = tipo;
-			
-			index++;
-			
-			System.out.println("ID: " + tempId + ", Nombre: " + nombre + ", Tipo usuario: " + tipo);
-			System.out.println(" ");
-    	
-	}
-    } catch (SQLException e) {
-	
-//		e.printStackTrace();
-    	System.out.println("ERROR en la busqueda de usuarios");
-	
-	}
+	    } catch (SQLException e) {
 		
-	return datos;
+	//		e.printStackTrace();
+	    	System.out.println("ERROR en la busqueda de Usuarios");
 		
-}
-	
-	public static void main(String[] args) {
-		
-		usuarios u = new usuarios();
-		clientes c = new clientes();
-		Scanner sr = new Scanner(System.in);
-		
-		String tempNombre;
-		
-		int OP;
-		int inf = 1;
-		
-		while (inf == 1) {
-				
-				System.out.println("TEST DE PRUEBA DE FUNCIONES DE AGREGADO, MODIFICACION Y ELIMINACION");
-				System.out.println(" ");
-				System.out.println("1. AGREGAR USUARIO");
-				System.out.println("2. MODIFICAR USUARIO");
-				System.out.println("3. ELIMINAR USUARIO");
-				System.out.println("4. MOSTRAR LOS USUARIOS");
-				System.out.println("5. Salir");
-				
-				OP = sr.nextInt();
-				
-				sr.nextLine();
-				
-				switch (OP) {
-				
-				case 1:
-					
-					System.out.println("Ingrese el nombre del usuario: ");
-					
-					tempNombre = sr.nextLine();
-					u.setNombre(tempNombre);
-
-					System.out.println("Ingrese la contraseña: ");
-					
-					u.setCont(sr.next());
-					
-					System.out.println("Ingrese el tipo de usuario: ");
-					
-					u.setTipoUsuario(sr.next());
-					
-					System.out.println("Ingrese el mail: ");
-					
-					u.setMail(sr.next());
-					
-					u.AgregarUsuario();
-					
-					u = u.BuscarUsuario(tempNombre);
-					
-					c.setFkUsuario(u.getId());
-					
-					sr.nextLine();
-					
-					System.out.println("Ingrese el nombre completo del cliente: ");
-					
-					c.setNombre_completo(sr.nextLine());
-					
-					System.out.println("Ingrese el saldo del cliente: ");
-					
-					c.setSaldo(sr.nextInt());
-					
-					System.out.println("Ingrese el numero de telefono: ");
-					
-					c.setNumero_telefono(sr.next());
-					
-					c.agregar();
-					
-					break;
-				
-				/*case 2:
-					
-					p.BuscarProductos();
-					
-					System.out.println("Ingrese el nombre del producto a modificar: ");
-					
-					p = p.BuscarProducto(sr.nextLine());
-					
-					System.out.println("Ingrese el nuveo nombre del producto: ");
-					
-					p.setNombre(sr.nextLine());
-					
-					System.out.println("Ingrese la nueva descripcion del producto: ");
-					
-					p.setDescripcion(sr.nextLine());
-					
-					System.out.println("Ingrese el nuevo precio para el producto: ");
-					
-					p.setPrecio(sr.nextInt());
-					
-					sr.nextLine();
-					
-					System.out.println("Ingrese la nueva ruta de la foto: ");
-					
-					p.setFoto(sr.nextLine());
-					
-					p.ModificarProducto();
-					
-					break;
-					
-				case 3:
-					
-					p.BuscarProductos();
-					
-					System.out.println("Ingrese el nombre del producto a eliminar: ");
-					
-					p = p.BuscarProducto(sr.nextLine());
-					
-					p.EliminarProducto();
-					
-					break;
-					
-				case 4:
-					
-					p.BuscarProductos();
-					
-					break;*/
-					
-				case 5:
-					
-					inf = 0;
-					
-					break;
-					
-				}
-				
 		}
-		
-		sr.close();
-			
-		}
+			return userList;
+	}
 	
 }

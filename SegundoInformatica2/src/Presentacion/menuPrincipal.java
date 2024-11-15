@@ -10,7 +10,7 @@ public class menuPrincipal extends JFrame {
     private int limiteVentana = 0;
     
     private panelProductos ventanaProductos;
-    private Usuarios ventanaUsuarios;
+    private panelUsuarios ventanaUsuarios;
     private Menus ventanaMenus;
     
     public menuPrincipal() {
@@ -37,12 +37,12 @@ public class menuPrincipal extends JFrame {
         btnUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Open the MenuUsuarios window
-                ventanaUsuarios = new Usuarios(menuPrincipal.this);
+                ventanaUsuarios = new panelUsuarios();
                 ventanaUsuarios.setVisible(true);
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
-        btnUsuarios.setBounds(317, 316, 150, 45);
+        btnUsuarios.setBounds(304, 302, 175, 50);
         getContentPane().add(btnUsuarios);      
 
         // Button for Menu Productos
@@ -56,7 +56,7 @@ public class menuPrincipal extends JFrame {
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
-        btnProductos.setBounds(317, 216, 150, 45);
+        btnProductos.setBounds(304, 202, 175, 50);
         getContentPane().add(btnProductos);
         
         // Button for Menu M Diarios
@@ -70,7 +70,7 @@ public class menuPrincipal extends JFrame {
                 menuPrincipal.this.dispose(); // Close the main window
             }
         });
-        btnMenus.setBounds(317, 416, 150, 45);
+        btnMenus.setBounds(304, 402, 175, 50);
         getContentPane().add(btnMenus);
         
         // Boton para cerrar sesion
@@ -85,7 +85,7 @@ public class menuPrincipal extends JFrame {
             	menuPrincipal.this.dispose();
             }
         });
-        btnCerrarSesion.setBounds(317, 516, 150, 45);
+        btnCerrarSesion.setBounds(304, 502, 175, 50);
         getContentPane().add(btnCerrarSesion);
 
         JSeparator separator = new JSeparator();

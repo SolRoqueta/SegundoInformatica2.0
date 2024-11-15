@@ -1,9 +1,8 @@
 package Presentacion;
 
-import Logica.productos;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import Logica.usuarios;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -11,169 +10,160 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class modificarUsuarios extends JFrame {
-	
-	public productos producto = new productos();
-	
-	// Declaracion de atributos de Productos
-	private String nombre;
-	private int precio;
-	private String descripcion;
-	private String foto;
-	private JTextField textField;
-	private JPasswordField passwordField;
+    
+    public usuarios usuario = new usuarios();
+    
+    // Declaración de atributos de Usuarios
+    private String nombre;
+    private String contra;
+    private String tipoUsuario;
+    private String mail;
+    
+    private String[] tipoUsu = {"Padre", "Profesor"};
     
     public modificarUsuarios() {
-    	
+        
         // Configurar la ventana
-        setTitle("Modificar Usuarios");
+        setTitle("Agregar Usuarios");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         
         // Crear el panel principal
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(43, 70, 77));
         panel.setLayout(null);
+        panel.setBackground(new Color(43, 70, 77));
         
         // Etiqueta de título
-        JLabel titulo = new JLabel("MODIFICAR ", SwingConstants.CENTER);
-        titulo.setFont(new Font("Tahoma", Font.BOLD, 22));
-        titulo.setBounds(92, 10, 150, 40);
-        titulo.setBackground(Color.GRAY);
+        JLabel titulo = new JLabel("MODIFICAR", SwingConstants.CENTER);
+        titulo.setFont(new Font("Tahoma", Font.BOLD, 35));
+        titulo.setBounds(280, 21, 223, 59);
         titulo.setForeground(new Color(210, 210, 210));
         panel.add(titulo);
         
-        // Etiqueta de Buscar Producto
-        JLabel buscarProductoLabel = new JLabel("Nombre Usuario");
-        buscarProductoLabel.setForeground(new Color(230, 230, 230));
-        buscarProductoLabel.setBounds(58, 93, 121, 25);
-        panel.add(buscarProductoLabel);
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(192, 192, 192));
+        separator.setBounds(317, 72, 150, 2);
+        panel.add(separator);
         
-        // Campo de texto para buscar usuarios
-        JTextField buscarUsuarioField = new JTextField();
-        buscarUsuarioField.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyTyped(KeyEvent e) {
-        		
-        		if (( buscarUsuarioField.getText().length() >= 30 )) {
-        			
-        			e.consume();
-        			
-        		}
-        		
-        	}
-        });
-        buscarUsuarioField.setBounds(58, 119, 120, 25);
-        panel.add(buscarUsuarioField);
+        JLabel tituloUsuarios = new JLabel("USUARIOS", SwingConstants.CENTER);
+        tituloUsuarios.setForeground(new Color(210, 210, 210));
+        tituloUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        tituloUsuarios.setBounds(304, 65, 176, 51);
+        panel.add(tituloUsuarios);
         
-        // Etiquetas y campos de texto 
+        // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
+        nombreLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         nombreLabel.setForeground(new Color(230, 230, 230));
-        nombreLabel.setBounds(92, 155, 100, 25);
+        nombreLabel.setBounds(292, 164, 53, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
+        nombreField.setBounds(292, 200, 200, 30);
+        panel.add(nombreField);
+        
+        JLabel contraLabel = new JLabel("Contraseña");
+        contraLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        contraLabel.setForeground(new Color(230, 230, 230));
+        contraLabel.setBounds(291, 243, 84, 25);
+        panel.add(contraLabel);
+        
+        JPasswordField contraField = new JPasswordField();
+        contraField.setBounds(292, 279, 200, 30);
+        panel.add(contraField);
+        
+        JLabel mailLabel = new JLabel("Mail");
+        mailLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        mailLabel.setForeground(new Color(230, 230, 230));
+        mailLabel.setBounds(292, 323, 100, 25);
+        panel.add(mailLabel);
+        
+        JTextField mailField = new JTextField();
+        mailField.setBounds(292, 359, 200, 30);
+        panel.add(mailField);
+        
+        JLabel tipoUsuarioLabel = new JLabel("Tipo Usuario");
+        tipoUsuarioLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        tipoUsuarioLabel.setForeground(new Color(230, 230, 230));
+        tipoUsuarioLabel.setBounds(292, 411, 100, 25);
+        panel.add(tipoUsuarioLabel);
+        
+        JComboBox<String> tipoUsuarioCbbx = new JComboBox<>(tipoUsu);
+        tipoUsuarioCbbx.setBounds(292, 445, 200, 30);
+        panel.add(tipoUsuarioCbbx);
+        
+        // Botón Agregar Usuario
+        JButton btnModificarUsuarios = new JButton("Modificar Usuarios");
+        btnModificarUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        btnModificarUsuarios.setBounds(292, 540, 200, 50);
+        panel.add(btnModificarUsuarios);
+        
+        JButton volverBtn = new JButton("←");
+        volverBtn.setBounds(10, 11, 50, 15);
+        panel.add(volverBtn);
+        
+        // Acciones Botones
+        
+        // Agregar Usuario
+        btnModificarUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+                // Gets de todos los atributos del usuario a crear
+                nombre = nombreField.getText();
+                contra = new String(contraField.getPassword());
+                tipoUsuario = tipoUsuarioCbbx.getSelectedItem().toString();
+                mail = mailField.getText();
+                
+                // Verifica si los atributos son nulos
+                if (nombre.equals("") || contra.equals("") || tipoUsuario.equals("") || mail.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
+                } else {
+                	
+                	String tempNombre = usuario.BuscarUsuario(nombre).getNombre();
+                    
+                    if (tempNombre == null) {
+                    	
+                    	usuario.setNombre(nombre);
+                    	usuario.setCont(contra);
+                    	usuario.setTipoUsuario(tipoUsuario);
+                    	usuario.setMail(mail);
+                    	usuario.AgregarUsuario();
+                    	
+                    	JOptionPane.showMessageDialog(null, "Usuario, " + nombre + " agregado con exito!");
+                    	
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
+                    } 
+                	
+                }
+                
+            }
+        });
+        
+        // Volver Atras
+        volverBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	panelUsuarios ventanaPanelUsuarios = new panelUsuarios();
+            	ventanaPanelUsuarios.setVisible(true);
+            	modificarUsuarios.this.dispose();	
+            }
+        });
+        
         nombreField.addKeyListener(new KeyAdapter() {
-        	@Override
         	public void keyTyped(KeyEvent e) {
         		
         		if (( nombreField.getText().length() >= 30 )) {
         			
         			e.consume();
-        			
-        		}
-        		
-        	}
-        });
-        nombreField.setBounds(92, 177, 150, 25);
-        panel.add(nombreField);
-        nombreField.setEditable(false);
-        
-        JLabel precioLabel = new JLabel("Contraseña");
-        precioLabel.setForeground(new Color(230, 230, 230));
-        precioLabel.setBounds(92, 208, 76, 25);
-        panel.add(precioLabel);
-        
-        JFormattedTextField newPrecioField = new JFormattedTextField();
-        newPrecioField.setEnabled(false);
-        
-        JLabel descripcionLabel = new JLabel("Mail");
-        descripcionLabel.setForeground(new Color(230, 230, 230));
-        descripcionLabel.setBounds(92, 262, 100, 25);
-        panel.add(descripcionLabel);
-        
-        // Botones
-        JButton btnBuscarProducto = new JButton("Buscar");
-        btnBuscarProducto.setBounds(199, 120, 78, 23);
-        panel.add(btnBuscarProducto);
-        
-        JButton btnModificarProducto = new JButton("Modificar Producto");
-        btnModificarProducto.setBounds(92, 382, 150, 30);
-        panel.add(btnModificarProducto);
-        btnModificarProducto.setEnabled(false);
-        
-       // ACCIONES
-        
-	    // Accion para Boton BuscarProducto
-        btnBuscarProducto.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        		
-        	}
-        });
-     
-	    // Accion para Boton ModificarProducto
-	    btnModificarProducto.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    		
-	    	}
-	    });
-    
-	    // Agregar el panel a la ventana
-	    getContentPane().add(panel);
-	    
-	    JLabel lblTipoUsuario = new JLabel("Tipo Usuario");
-	    lblTipoUsuario.setForeground(new Color(230, 230, 230));
-	    lblTipoUsuario.setBounds(92, 311, 100, 25);
-	    panel.add(lblTipoUsuario);
-	    
-	    textField = new JTextField();
-	    textField.setEditable(false);
-	    textField.setBounds(92, 282, 150, 25);
-	    panel.add(textField);
-	    
-	    JComboBox <String> comboBox = new JComboBox();
-	    comboBox.setBounds(92, 335, 150, 25);
-	    panel.add(comboBox);
-	    
-	    comboBox.addItem("Padre");
-	    comboBox.addItem("Profesor");
-	    
-	    passwordField = new JPasswordField();
-	    passwordField.setBounds(92, 229, 150, 25);
-	    panel.add(passwordField);
-	    
-	    JLabel lblUsuarios = new JLabel("USUARIOS", SwingConstants.CENTER);
-	    lblUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	    lblUsuarios.setForeground(new Color(210, 210, 210));
-	    lblUsuarios.setBackground(Color.GRAY);
-	    lblUsuarios.setBounds(92, 42, 150, 40);
-	    panel.add(lblUsuarios);
-	    
-	    JSeparator separator = new JSeparator();
-	    separator.setBackground(new Color(210, 210, 210));
-	    separator.setForeground(new Color(210, 210, 210));
-	    separator.setBounds(117, 48, 100, 2);
-	    panel.add(separator);
-	    
-	    JButton btnModificarProducto_1 = new JButton("←");
-	    btnModificarProducto_1.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    	}
-	    });
-	    btnModificarProducto_1.setBounds(142, 426, 50, 15);
-	    panel.add(btnModificarProducto_1);
-    
-    }
-  }
 
+        		}
+        		        		
+        	}
+        });
+   
+        
+        // Agregar el panel a la ventana
+        getContentPane().add(panel);
+    }
+}

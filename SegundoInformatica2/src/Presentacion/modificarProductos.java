@@ -53,51 +53,54 @@ public class modificarProductos extends JFrame {
         
         JLabel tituloModificar = new JLabel("MODIFICAR", SwingConstants.CENTER);
         tituloModificar.setForeground(new Color(210, 210, 210));
-        tituloModificar.setFont(new Font("Tahoma", Font.BOLD, 22));
+        tituloModificar.setFont(new Font("Tahoma", Font.BOLD, 35));
         tituloModificar.setBackground(Color.GRAY);
-        tituloModificar.setBounds(123, 0, 125, 59);
+        tituloModificar.setBounds(271, 20, 241, 59);
         panel.add(tituloModificar);
         
         JSeparator separator = new JSeparator();
         separator.setForeground(new Color(210, 210, 210));
         separator.setBackground(Color.LIGHT_GRAY);
-        separator.setBounds(136, 45, 100, 2);
+        separator.setBounds(317, 72, 150, 2);
         panel.add(separator);
 
         // Etiqueta de título
         JLabel tituloProductos = new JLabel("PRODUCTOS", SwingConstants.CENTER);
-        tituloProductos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        tituloProductos.setBounds(132, 33, 108, 51);
+        tituloProductos.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        tituloProductos.setBounds(304, 65, 176, 51);
         tituloProductos.setBackground(Color.GRAY);
         tituloProductos.setForeground(new Color(210, 210, 210));
         panel.add(tituloProductos);
         
         // Etiquetas y campos de texto
         JLabel nombreLabel = new JLabel("Nombre");
+        nombreLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         nombreLabel.setForeground(new Color(230, 230, 230));
-        nombreLabel.setBounds(24, 82, 53, 25);
+        nombreLabel.setBounds(111, 151, 53, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.setBounds(24, 105, 150, 25);
+        nombreField.setBounds(111, 187, 200, 30);
         panel.add(nombreField);
         
         JLabel precioLabel = new JLabel("Precio");
+        precioLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         precioLabel.setForeground(new Color(230, 230, 230));
-        precioLabel.setBounds(24, 132, 40, 25);
+        precioLabel.setBounds(111, 227, 40, 25);
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
-        precioField.setBounds(24, 153, 150, 25);
+        precioField.setBounds(111, 263, 200, 30);
         panel.add(precioField);
         
         JLabel descripcionLabel = new JLabel("Descripción");
+        descripcionLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         descripcionLabel.setForeground(new Color(230, 230, 230));
-        descripcionLabel.setBounds(24, 178, 100, 25);
+        descripcionLabel.setBounds(111, 305, 100, 25);
         panel.add(descripcionLabel);
         
         JTextArea descripcionArea = new JTextArea();
-        descripcionArea.setBounds(24, 203, 150, 75);
+        descripcionArea.setBounds(111, 341, 200, 120);
         descripcionArea.setLineWrap(true);
         descripcionArea.setWrapStyleWord(true);
         panel.add(descripcionArea);
@@ -105,7 +108,7 @@ public class modificarProductos extends JFrame {
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
         imagenLabel.setBackground(new Color(255, 255, 255));
-        imagenLabel.setBounds(215, 105, 118, 121);
+        imagenLabel.setBounds(422, 187, 250, 250);
         imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
         
@@ -131,22 +134,23 @@ public class modificarProductos extends JFrame {
         }
        
         // Botones
-        JButton subirImagenBtn = new JButton("Subir Imagen");
-        subirImagenBtn.setBounds(215, 239, 118, 25);
-        panel.add(subirImagenBtn);
+        JButton btnSubirImagen = new JButton("Subir Imagen");
+        btnSubirImagen.setBounds(467, 462, 160, 35);
+        panel.add(btnSubirImagen);
         
         JButton btnModificar = new JButton("Modificar Producto");
-        btnModificar.setBounds(111, 315, 150, 30);
+        btnModificar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        btnModificar.setBounds(292, 568, 200, 50);
         panel.add(btnModificar);
         
-        JButton volverBtn = new JButton("←");
-        volverBtn.setBounds(10, 11, 50, 15);
-        panel.add(volverBtn);
+        JButton btnVolver = new JButton("←");
+        btnVolver.setBounds(10, 11, 50, 15);
+        panel.add(btnVolver);
 
         // Acciones Listeners Botones
 
         // Subir Imagen
-        subirImagenBtn.addActionListener(new ActionListener() {
+        btnSubirImagen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Se crea un JfileChooser y se aplica un filtro para solo archivos
                 JFileChooser fc = new JFileChooser();
@@ -155,7 +159,7 @@ public class modificarProductos extends JFrame {
                 // Se crea un filtro de extension que solo permite archivos de imagen
                 FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
                 fc.setFileFilter(filtro);
-                fc.showOpenDialog(subirImagenBtn);
+                fc.showOpenDialog(btnSubirImagen);
                 
                 if (fc.getSelectedFile() == null) {
                     JOptionPane.showMessageDialog(null, "Error, foto no seleccionada");
@@ -214,7 +218,7 @@ public class modificarProductos extends JFrame {
         });
         
         // Boton volver
-        volverBtn.addActionListener(new ActionListener() {
+        btnVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
             	panelProductos ventanaProductos = new panelProductos();
