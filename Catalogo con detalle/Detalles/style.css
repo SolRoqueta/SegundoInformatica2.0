@@ -7,70 +7,135 @@
     scroll-behavior: auto !important;
 }
 
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+  
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Poppins", sans-serif;
 
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    height: 100vh;
+    overflow-y: scroll;
 
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4caf50;
+    padding: 20px;
+}
+  
+.navbar ul li a {
+    text-decoration: none;
+}
+  
+.navbar ul li a:hover {
+    text-decoration: underline;
+}
+
+.navbar {
+
+    --bs-navbar-padding-y: 1rem !important;
+    --bs-navbar-brand-padding-y: 0.0rem !important;
+
+}
+
+.navbar-brand {
+
+    --bs-navbar-brand-font-size: 1.55rem;
+
+}
+
+.nav-link {
+
+    font-size: 1.25rem !important;
+
+}
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+/* Contenedor principal */
 .container {
     display: flex;
+    justify-content: space-around;
+    padding: 50px;
     align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .product-image {
-    width: 300px;
-    margin-right: 20px;
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
 }
 
-.product-details {
+
+
+.order-button {
+    background-color: #4CAF50; 
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+.order-button:hover {
+    background-color: #043b04; /* Cambia el color al pasar el mouse */
+}
+
+.product-image {
+    transition: transform 0.3s ease; /* Efecto suave para el cambio en la imagen */
+}
+
+.product-image:hover {
+    transform: scale(1.1); /* Aumenta el tamaño de la imagen */
+}
+
+
+
+
+
+
+
+/* Información del producto */
+.product-info {
     max-width: 600px;
 }
 
-.product-title {
+.product-info h1 {
     font-size: 36px;
-    font-weight: bold;
+    color: #333;
 }
 
-.product-price {
-    font-size: 24px;
-    color: #d9534f;
-    margin: 10px 0;
-}
-
-.product-description {
+.product-info p {
     font-size: 16px;
-    margin: 10px 0 20px;
+    line-height: 1.6;
+    margin: 20px 0;
 }
 
-.button {
-    display: inline-block;
-    background-color: #ffcc00;
-    color: black;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 18px;
-    border: none;
-    cursor: pointer;
-}
 
-.more-info {
-    margin-top: 20px;
-}
-
-.more-info a {
-    display: block;
-    margin: 5px 0;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.more-info a:hover {
-    text-decoration: underline;
-}
