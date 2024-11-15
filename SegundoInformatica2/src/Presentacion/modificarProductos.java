@@ -193,15 +193,22 @@ public class modificarProductos extends JFrame {
                     	producto.setInputStream(fotoPath, null);
                     }
                     
-					producto.ModificarProducto();
-					
+                    int option = JOptionPane.showConfirmDialog(panel, "¿Estás seguro de que quieres modificar el producto?", "Confirmación", JOptionPane.YES_NO_OPTION);
+   	             
+	   	             // Comprobar la respuesta
+	   	             if (option == JOptionPane.YES_OPTION) {
+	   	            	producto.ModificarProducto();
+	   	 	    		JOptionPane.showMessageDialog(panel, "Producto modificado");
+		   	 	    	panelProductos ventanaProductos = new panelProductos();
+		            	ventanaProductos.setVisible(true);
+		        		modificarProductos.this.dispose(); 
+	   	             } else {
+	   	            	 JOptionPane.showMessageDialog(panel, "Producto no modificado");
+	   	             }
+						
 				} catch (IOException e1) {
 //					e1.printStackTrace();
-				}
-        		
-        		panelProductos ventanaProductos = new panelProductos();
-            	ventanaProductos.setVisible(true);
-        		modificarProductos.this.dispose();   
+				} 
   
         	}
         });

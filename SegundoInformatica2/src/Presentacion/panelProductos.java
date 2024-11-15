@@ -141,8 +141,8 @@ public class panelProductos extends JFrame {
         
         tablaProductos.setRowSelectionAllowed(true);  // Permite la selección de filas
         tablaProductos.setColumnSelectionAllowed(false); // Desactiva la selección de columnas
-        tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Selección de una sola fila a la vez (opcional)
-	    
+        tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Selección de una sola fila a la vez (opcional) 
+        
 	    JScrollPane scrollPane = new JScrollPane(tablaProductos);
 	    scrollPane.setBounds(39, 196, 705, 365);
 	    panel.add(scrollPane);
@@ -291,13 +291,11 @@ public class panelProductos extends JFrame {
 	             if (option == JOptionPane.YES_OPTION) {
 	            	producto.EliminarProducto();
 	 	    		modeloTabla.removeRow(filaSeleccionada);
-	 	    		JOptionPane.showMessageDialog(panel, "Producto: " + nombre + ", eliminado");
+	 	    		JOptionPane.showMessageDialog(panel, "Producto eliminado");
 	             } else {
-	            	 JOptionPane.showMessageDialog(panel, "Producto: " + nombre + ", No eliminado");
+	            	 JOptionPane.showMessageDialog(panel, "Producto no eliminado");
 	             }
 	             
-	    		
-	    		
 	    	}	
 	    });
 	    
