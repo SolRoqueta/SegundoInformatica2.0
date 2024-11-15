@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class modificarUsuarios extends JFrame {
@@ -21,9 +22,20 @@ public class modificarUsuarios extends JFrame {
     
     private String[] tipoUsu = {"Padre", "Profesor"};
     
-    public modificarUsuarios() {
-        
-        // Configurar la ventana
+    public modificarUsuarios(String nombre) {
+    	this.nombre = nombre;
+    	usuario = usuario.BuscarUsuario(this.nombre);
+    	
+    	this.contra = usuario.getCont();
+    	this.mail = usuario.getMail();
+    	
+    	presentacionModificar();
+    	
+    }
+    
+    public void presentacionModificar() {
+    	
+    	 // Configurar la ventana
         setTitle("Agregar Usuarios");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -105,38 +117,45 @@ public class modificarUsuarios extends JFrame {
         
         // Acciones Botones
         
+        // Setea los atributos del producto a los fields de la ventana
+        nombreField.setText(nombre);
+        mailField.setText(mail);
+        contraField.setText(contra);
+        
         // Agregar Usuario
         btnModificarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
-                // Gets de todos los atributos del usuario a crear
-                nombre = nombreField.getText();
-                contra = new String(contraField.getPassword());
-                tipoUsuario = tipoUsuarioCbbx.getSelectedItem().toString();
-                mail = mailField.getText();
+            	usuario = usuario.BuscarUsuario(nombre);
+
+    			nombre = nombreField.getText();
+    			mail = mailField.getText();
+    			char[] contraChars = contraField.getPassword();
+    	        contra = new String(contraChars);
+    	        Object tipoUsuarioObj = tipoUsuarioCbbx.getSelectedItem();
+    	        tipoUsuario = tipoUsuarioObj.toString();
+    	        int id = usuario.getId();
+    	        
+    	        System.out.println(id);
                 
-                // Verifica si los atributos son nulos
-                if (nombre.equals("") || contra.equals("") || tipoUsuario.equals("") || mail.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
-                } else {
-                	
-                	String tempNombre = usuario.BuscarUsuario(nombre).getNombre();
-                    
-                    if (tempNombre == null) {
-                    	
-                    	usuario.setNombre(nombre);
-                    	usuario.setCont(contra);
-                    	usuario.setTipoUsuario(tipoUsuario);
-                    	usuario.setMail(mail);
-                    	usuario.AgregarUsuario();
-                    	
-                    	JOptionPane.showMessageDialog(null, "Usuario, " + nombre + " agregado con exito!");
-                    	
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
-                    } 
-                	
-                }
+                usuario.setNombre(nombre);
+                usuario.setMail(mail);
+                usuario.setCont(contra);
+                usuario.setTipoUsuario(tipoUsuario);
+                usuario.setId(id);
+                
+                int option = JOptionPane.showConfirmDialog(panel, "¿Estás seguro de que quieres modificar el producto?", "Confirmación", JOptionPane.YES_NO_OPTION);
+	             
+   	             // Comprobar la respuesta
+   	             if (option == JOptionPane.YES_OPTION) {
+   	            	usuario.ModificarUsuario();
+   	 	    		JOptionPane.showMessageDialog(panel, "Producto modificado");
+	   	 	    	panelProductos ventanaProductos = new panelProductos();
+	            	ventanaProductos.setVisible(true);
+	        		modificarUsuarios.this.dispose(); 
+   	             } else {
+   	            	 JOptionPane.showMessageDialog(panel, "Producto no modificado");
+   	             }
                 
             }
         });
@@ -166,4 +185,6 @@ public class modificarUsuarios extends JFrame {
         // Agregar el panel a la ventana
         getContentPane().add(panel);
     }
+    
 }
+    

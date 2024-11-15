@@ -1,5 +1,6 @@
 package Presentacion;
 
+import Logica.productos;
 import Logica.usuarios;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,6 +11,9 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class panelUsuarios extends JFrame {
 	
@@ -19,6 +23,7 @@ public class panelUsuarios extends JFrame {
 	private String nombre;
 	private int filtroSeleccionado;
 	private String atributo;
+	private int filaSeleccionada;
 	
 	private DefaultTableModel modeloTabla;
 	private JTable tablaUsuarios;
@@ -142,6 +147,19 @@ public class panelUsuarios extends JFrame {
 	    panel.add(btnEliminar);
     
 	    
+	    tablaUsuarios.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            if (e.getClickCount() == 1) { 
+	                int selectedRow = tablaUsuarios.rowAtPoint(e.getPoint());
+	                if (selectedRow != -1) {
+	                    btnEliminar.setEnabled(true);
+	                    btnModificar.setEnabled(true);
+	                }
+	            }
+	        }
+	    });
+	    
 	    // Accion Listeners Botones
 	    
 	    // Volver Atras
@@ -195,9 +213,24 @@ public class panelUsuarios extends JFrame {
 	    
 	    btnModificar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		modificarUsuarios ventanaModificar = new modificarUsuarios();
-	    		ventanaModificar.setVisible(true);
-	    		panelUsuarios.this.dispose();
+	    		
+	    		filaSeleccionada = tablaUsuarios.getSelectedRow();
+	    		usuarios usuario = new usuarios();
+
+	    		
+	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
+	  		    	
+	  		        // Obtenemos los valores de cada columna
+	  		    	nombre = tablaUsuarios.getValueAt(filaSeleccionada, 0).toString(); // Columna 1: Nombre
+	  		        	
+						usuario = usuario.BuscarUsuario(nombre);
+					
+	  		        	modificarUsuarios ventanaModificar = new modificarUsuarios(nombre);
+	  		    		ventanaModificar.setVisible(true);
+	  		    		panelUsuarios.this.dispose();
+				
+	  		    }
+	    		
 	    	}
 	    });
 	    

@@ -16,11 +16,11 @@ public class usuarios {
 	private String contrasenha; //Declaro el String de contraseña
 	private String tipoUsuario; 
 	private String mail;
-	private Date fecha_ultimo_acceso;
+	private Date fecha;
 	private String query;
 	
 	private String AgregarUsuarioQuery = "INSERT INTO usuarios (nombre, contrasenia, mail, tipo_usuario, fecha_ultimo_acceso) VALUES (?, ?, ?, ?, ?);";
-	private String ModificarUsuarioQuery = "UPDATE usuarios SET nombre = ?, contrasenia = ?, mail = ?, tipo_usuario = ?, fecha_ultimo_acceso = ? WHERE id_usuario = ?;";
+	private String ModificarUsuarioQuery = "UPDATE usuarios SET nombre = ?, contrasenia = ?, mail = ?, tipo_usuario = ?, WHERE id_usuario = ?;";
 	private String EliminarUsuarioQuery = "DELETE FROM usuarios WHERE id_usuario = ? LIMIT 1;";
 	private String BuscarUsuarioQuery = "SELECT * FROM usuarios WHERE nombre = ?;";
 	private String BuscarUsuariosQuery = "SELECT * FROM usuarios ORDER BY nombre ASC;";
@@ -84,6 +84,14 @@ public class usuarios {
 		tipoUsuario = tipoUsu;
 	}
 	
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	
 	public void AgregarUsuario() {
 	       
 	     conexion cc = new conexion();
@@ -95,13 +103,13 @@ public class usuarios {
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
 				
-	    	 		fecha_ultimo_acceso = new Date(System.currentTimeMillis());
+	    	 		fecha = new Date(System.currentTimeMillis());
 	    	 		
 					statement.setString(1, this.getNombre());
 					statement.setString(2, this.getCont());
 					statement.setString(3, this.getMail());
 					statement.setString(4, this.getTipoUsuario());
-					statement.setDate(5, fecha_ultimo_acceso);
+					statement.setDate(5, this.getFecha());
 			
 					
 					int rowsInserted = statement.executeUpdate();
@@ -160,11 +168,10 @@ public class usuarios {
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
 				
-					statement.setString(1, this.getNombre());
-					statement.setString(2, this.getCont());
-					statement.setString(3, this.getMail());
-					statement.setString(4, this.getTipoUsuario());
-					statement.setInt(5, this.getId());
+					statement.setString(1, nombreUsuario);
+					statement.setString(2, contrasenha);
+					statement.setString(3, mail);
+					statement.setInt(4, idUsuarios);
 					
 					int rowsUpdated = statement.executeUpdate();
 					if (rowsUpdated > 0) {
@@ -177,7 +184,7 @@ public class usuarios {
 				
 			} catch (SQLException ex) {
 				
-//				ex.printStackTrace();
+				ex.printStackTrace();
 				System.out.println("No se a podido modificar el usuario");
 			
 			}
@@ -207,18 +214,13 @@ public class usuarios {
 					
 					do {
 						
-						int id = resultSet.getInt("id_usuario");
-						
 						String nombre = resultSet.getString("nombre");
+						String contra = resultSet.getString("contrasenia");
+						String mail = resultSet.getString("mail");
 						
-						String tipo = resultSet.getString("tipo_usuario");
-						
-						tempUsuario.setId(id);
 						tempUsuario.setNombre(nombre);
-						tempUsuario.setTipoUsuario(tipo);
-		
-						
-						System.out.println("ID: " + id + ", Nombre: " + nombre + ", tipo usuario" + tipo);
+						tempUsuario.setCont(contra);
+						tempUsuario.setMail(mail);
 						
 						return tempUsuario;
 						
