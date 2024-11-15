@@ -27,7 +27,7 @@ public class modificarMenus extends JFrame {
     public modificarMenus() {
     	
         // Configurar la ventana
-        setTitle("Agregar Productos");
+        setTitle("Modificar Menus");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

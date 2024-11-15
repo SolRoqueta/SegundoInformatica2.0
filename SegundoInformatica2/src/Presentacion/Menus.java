@@ -23,7 +23,7 @@ public class Menus extends JFrame {
     public Menus(menuPrincipal MenuPrincipal) {
     	
         // Configurar la ventana
-        setTitle("Eliminar Productos");
+        setTitle("Panel Menus");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

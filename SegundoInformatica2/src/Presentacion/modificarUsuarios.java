@@ -25,7 +25,7 @@ public class modificarUsuarios extends JFrame {
     public modificarUsuarios() {
     	
         // Configurar la ventana
-        setTitle("Modificar Productos");
+        setTitle("Modificar Usuarios");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

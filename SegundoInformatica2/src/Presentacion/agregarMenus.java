@@ -27,7 +27,7 @@ public class agregarMenus extends JFrame {
     public agregarMenus() {
     	
         // Configurar la ventana
-        setTitle("Agregar Menu Diario");
+        setTitle("Agregar Menu");
         setSize(800, 700);	
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);

@@ -23,7 +23,7 @@ public class Usuarios extends JFrame {
     public Usuarios(menuPrincipal MenuPrincipal) {
     	
         // Configurar la ventana
-        setTitle("Eliminar Productos");
+        setTitle("Panel Usuarios");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -98,6 +98,16 @@ public class Usuarios extends JFrame {
     lblProductos.setBackground(Color.GRAY);
     lblProductos.setBounds(293, 61, 198, 60);
     panel.add(lblProductos);
+    
+    //Btn Agregar Producto
+    btnAgregar.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {	
+    		
+			agregarUsuarios ventanaAgregar = new agregarUsuarios();
+			ventanaAgregar.setVisible(true);
+			Usuarios.this.dispose();	
+		}
+    });
     
     }
 }
