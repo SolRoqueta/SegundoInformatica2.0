@@ -105,6 +105,10 @@ public class modificarProductos extends JFrame {
         descripcionArea.setWrapStyleWord(true);
         panel.add(descripcionArea);
         
+        JScrollPane scrollPane = new JScrollPane(descripcionArea);
+	    scrollPane.setBounds(111, 341, 200, 120);
+	    panel.add(scrollPane);
+        
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
         imagenLabel.setBackground(new Color(255, 255, 255));
@@ -187,32 +191,40 @@ public class modificarProductos extends JFrame {
                     descripcion = descripcionArea.getText();
                     precio = (Integer) precioField.getValue();
                     
-                    producto.setNombre(nombre);
-                    producto.setPrecio(precio);
-                    producto.setDescripcion(descripcion);
-                    
                     if (fotoPath == null) {
                     	producto.setInputStream(null, producto.getInputStream());
                     } else {
                     	producto.setInputStream(fotoPath, null);
                     }
                     
-                    int option = JOptionPane.showConfirmDialog(panel, "¿Estás seguro de que quieres modificar el producto?", "Confirmación", JOptionPane.YES_NO_OPTION);
-   	             
-	   	             // Comprobar la respuesta
-	   	             if (option == JOptionPane.YES_OPTION) {
-	   	            	producto.ModificarProducto();
-	   	 	    		JOptionPane.showMessageDialog(panel, "Producto modificado");
-		   	 	    	panelProductos ventanaProductos = new panelProductos();
-		            	ventanaProductos.setVisible(true);
-		        		modificarProductos.this.dispose(); 
-	   	             } else {
-	   	            	 JOptionPane.showMessageDialog(panel, "Producto no modificado");
-	   	             }
-						
+                    // Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
+                    if (nombre.equals("") || precio == 0 || descripcion.equals("")) {
+                        JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
+                    } else {
+                    
+	                    producto.setNombre(nombre);
+	                    producto.setPrecio(precio);
+	                    producto.setDescripcion(descripcion);
+	                    
+	                    int option = JOptionPane.showConfirmDialog(panel, "¿Estás seguro de que quieres modificar el producto?", "Confirmación", JOptionPane.YES_NO_OPTION);
+	   	             
+		   	             // Comprobar la respuesta
+		   	             if (option == JOptionPane.YES_OPTION) {
+		   	            	producto.ModificarProducto();
+		   	 	    		JOptionPane.showMessageDialog(panel, "Producto modificado");
+			   	 	    	panelProductos ventanaProductos = new panelProductos();
+			            	ventanaProductos.setVisible(true);
+			        		modificarProductos.this.dispose(); 
+		   	             } else {
+		   	            	 JOptionPane.showMessageDialog(panel, "Producto no modificado");
+		   	             }
+	   	             
+                    }
+                    
 				} catch (IOException e1) {
 //					e1.printStackTrace();
 				} 
+				
   
         	}
         });

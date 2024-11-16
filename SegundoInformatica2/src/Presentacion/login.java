@@ -59,7 +59,6 @@ public class login extends JFrame {
         loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
         loginLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
         
-        
         // Campo de texto para la contraseña
         
         JPasswordField passwordField = new JPasswordField();
@@ -112,6 +111,7 @@ public class login extends JFrame {
 
         	}
         });
+        
         btnCambiarContra.setBounds(103, 333, 193, 23);
         btnCambiarContra.setContentAreaFilled(false);
         btnCambiarContra.setBorderPainted(false);
@@ -166,10 +166,10 @@ public class login extends JFrame {
         			ventanaPrincipal.setVisible(true);
         			login.this.dispose();
         			
-        		} else {
-        			
-        			JOptionPane.showMessageDialog(null, "Error al iniciar sesion");
-        			
+        		} else if (!nombre.equals("admin")) {
+        			JOptionPane.showMessageDialog(null, "Nombre de Usuario Incorrecto");
+        		} else if (!contra.equals("admin")) {
+        			JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
         		}
         		
         	}

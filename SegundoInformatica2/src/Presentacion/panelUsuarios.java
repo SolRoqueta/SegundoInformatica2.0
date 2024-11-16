@@ -98,7 +98,7 @@ public class panelUsuarios extends JFrame {
         
         String[] filtros = {"Nombre", "Mail", "Tipo", "Fecha"};
         
-        JComboBox chcbxOpcionesBuscar = new JComboBox();
+        JComboBox<String> chcbxOpcionesBuscar = new JComboBox<String>();
         chcbxOpcionesBuscar.setBounds(438, 142, 121, 30);
         chcbxOpcionesBuscar.addItem(filtros[0]);
         chcbxOpcionesBuscar.addItem(filtros[1]);
@@ -120,7 +120,7 @@ public class panelUsuarios extends JFrame {
 	    scrollPane.setBounds(39, 196, 705, 365);
 	    panel.add(scrollPane);
 	    
-	    mostrarUsuariosTabla("", 3);
+	    mostrarUsuariosTabla("", 4);
     
 	    //Botones
 	    JButton btnVolver = new JButton("←");
@@ -211,6 +211,7 @@ public class panelUsuarios extends JFrame {
 	    	}
 	    });
 	    
+	    // Modificar Usuario
 	    btnModificar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
@@ -234,6 +235,36 @@ public class panelUsuarios extends JFrame {
 	    	}
 	    });
 	    
+	    btnEliminar.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		
+	    		filaSeleccionada = tablaUsuarios.getSelectedRow();
+	
+	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
+	  		    	
+	  		    	nombre = tablaUsuarios.getValueAt(filaSeleccionada, 0).toString(); // Columna 1: Nombre
+	  		        
+	  		    } else {
+	  		        System.out.println("No hay ninguna fila seleccionada.");
+	  		    }
+	    			
+					usuario = usuario.BuscarUsuario(nombre);
+	    		
+	    		 int option = JOptionPane.showConfirmDialog(panel, "¿Estás seguro de que quieres eliminar el usuario " + nombre + "?", "Confirmación", JOptionPane.YES_NO_OPTION);
+	             
+	             // Comprobar la respuesta
+	             if (option == JOptionPane.YES_OPTION) {
+	            	usuario.EliminarUsuario();
+	 	    		modeloTabla.removeRow(filaSeleccionada);
+	 	    		JOptionPane.showMessageDialog(panel, "Usuario eliminado");
+	             } else {
+	            	 JOptionPane.showMessageDialog(panel, "Usuario no eliminado");
+	             }
+	             
+	    	}	
+	    });
+	    
+	    // Key Listener buscador
 	    buscarUsuarioField.addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent e) {
         		

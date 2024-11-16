@@ -2,6 +2,7 @@ package Presentacion;
 
 import Logica.usuarios;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -18,8 +19,22 @@ public class agregarUsuarios extends JFrame {
     private String contra;
     private String tipoUsuario;
     private String mail;
+    private boolean mostrandoCont = false;
+    
+    private ImageIcon iconMostrar = new ImageIcon("src/imagenes/eye.png"); // Ruta de la imagen
+    private ImageIcon iconEsconder = new ImageIcon("src/imagenes/hidden.png"); 
+    
+    private int newWidth = 30; // Nuevo ancho
+    private int newHeight = 30; // Nueva altura
     
     private String[] tipoUsu = {"Padre", "Profesor"};
+    
+    public ImageIcon escalarImagen(ImageIcon icono) {
+    	Image scaledImage = icono.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+		ImageIcon resizedIcon = new ImageIcon(scaledImage);
+    	
+		return resizedIcon;
+    }
     
     public agregarUsuarios() {
         
@@ -85,6 +100,11 @@ public class agregarUsuarios extends JFrame {
         contraField.setBounds(292, 279, 200, 30);
         panel.add(contraField);
         
+        JTextField contraTextField = new JTextField();
+        contraTextField.setBounds(292, 279, 200, 30);
+        panel.add(contraTextField);
+        contraTextField.setVisible(false); // Inicialmente oculto
+        
         JLabel mailLabel = new JLabel("Mail");
         mailLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         mailLabel.setForeground(new Color(230, 230, 230));
@@ -115,6 +135,15 @@ public class agregarUsuarios extends JFrame {
         volverBtn.setBounds(10, 11, 50, 15);
         panel.add(volverBtn);
         
+        ImageIcon iconScaled = escalarImagen(iconMostrar);
+        
+        JButton btnMostrarCont = new JButton(iconScaled);
+        btnMostrarCont.setBounds(509, 280, iconScaled.getIconWidth(), iconScaled.getIconHeight());
+        btnMostrarCont.setBorderPainted(false);
+        btnMostrarCont.setContentAreaFilled(false);
+        btnMostrarCont.setFocusPainted(false);
+        panel.add(btnMostrarCont);
+        
         // Acciones Botones
         
         // Agregar Usuario
@@ -123,7 +152,12 @@ public class agregarUsuarios extends JFrame {
                 
                 // Gets de todos los atributos del usuario a crear
                 nombre = nombreField.getText();
+                
+                if (mostrandoCont ==  false) {
                 contra = new String(contraField.getPassword());
+                } else {
+                contra = contraTextField.getText();
+                }
                 tipoUsuario = tipoUsuarioCbbx.getSelectedItem().toString();
                 mail = mailField.getText();
                 
@@ -143,9 +177,12 @@ public class agregarUsuarios extends JFrame {
                     	usuario.AgregarUsuario();
                     	
                     	JOptionPane.showMessageDialog(null, "Usuario, " + nombre + " agregado con exito!");
+                    	panelUsuarios ventanaPanelUsuarios = new panelUsuarios();
+                    	ventanaPanelUsuarios.setVisible(true);
+                    	agregarUsuarios.this.dispose();	
                     	
                     } else {
-                        JOptionPane.showMessageDialog(null, "Error, el producto ya existe");
+                        JOptionPane.showMessageDialog(null, "Error, el usuario ya existe");
                     } 
                 	
                 }
@@ -159,6 +196,76 @@ public class agregarUsuarios extends JFrame {
             	ventanaPanelUsuarios.setVisible(true);
             	agregarUsuarios.this.dispose();	
             }
+        });
+        
+        btnMostrarCont.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		   
+        		if (mostrandoCont == false) {
+        			contra = new String(contraField.getPassword());
+	        		contraField.setVisible(false);
+	        		contraTextField.setText(contra);
+	        		
+            		btnMostrarCont.setIcon(escalarImagen(iconEsconder));
+	        		
+	        		contraTextField.setVisible(true);
+	        		mostrandoCont = true;
+	        		
+        		} else {
+        			contra = contraTextField.getText();
+        			contraTextField.setVisible(false);
+        			contraField.setText(contra);
+        			
+        			btnMostrarCont.setIcon(escalarImagen(iconMostrar));
+            		
+        			contraField.setVisible(true);
+            		mostrandoCont = false;
+            	
+        		}
+        	}
+        });
+        
+        // Key listener Nombre (Se encarga de no permitir mas de 30 caracteres)
+        nombreField.addKeyListener(new KeyAdapter() {
+        	public void keyTyped(KeyEvent e) {   
+        		
+        		if (( nombreField.getText().length() >= 30 )) {
+        			e.consume();
+        		}    		        		
+        	}
+        });
+        
+        // Key listener Contra (Se encarga de no permitir mas de 30 caracteres)
+        contraField.addKeyListener(new KeyAdapter() {
+        	public void keyTyped(KeyEvent e) {   
+        		
+        		contra = new String(contraField.getPassword());
+        		
+        		if (( contra.length() >= 30 )) {
+        			e.consume();
+        		}    		        		
+        	}
+        });
+        
+        // Key listener ContraText (Se encarga de no permitir mas de 30 caracteres)
+        contraTextField.addKeyListener(new KeyAdapter() {
+        	public void keyTyped(KeyEvent e) {   
+        		
+        		if (( contraTextField.getText().length() >= 30 )) {
+        			e.consume();
+        		}    		        		
+        	}
+        });
+        
+        
+        // Key listener Mail (Se encarga de no permitir mas de 30 caracteres)
+        mailField.addKeyListener(new KeyAdapter() {
+        	public void keyTyped(KeyEvent e) {   
+        		
+        		if (( mailField.getText().length() >= 30 )) {
+        			e.consume();
+        		}    		        		
+        	}
         });
    
         

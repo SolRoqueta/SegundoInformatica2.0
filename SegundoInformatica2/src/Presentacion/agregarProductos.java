@@ -93,6 +93,10 @@ public class agregarProductos extends JFrame {
         descripcionArea.setWrapStyleWord(true);
         panel.add(descripcionArea);
         
+        JScrollPane scrollPane = new JScrollPane(descripcionArea);
+	    scrollPane.setBounds(111, 341, 200, 120);
+	    panel.add(scrollPane);
+        
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
         imagenLabel.setBackground(new Color(255, 255, 255));

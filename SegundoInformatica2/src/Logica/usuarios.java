@@ -20,7 +20,7 @@ public class usuarios {
 	private String query;
 	
 	private String AgregarUsuarioQuery = "INSERT INTO usuarios (nombre, contrasenia, mail, tipo_usuario, fecha_ultimo_acceso) VALUES (?, ?, ?, ?, ?);";
-	private String ModificarUsuarioQuery = "UPDATE usuarios SET nombre = ?, contrasenia = ?, mail = ?, tipo_usuario = ?, WHERE id_usuario = ?;";
+	private String ModificarUsuarioQuery = "UPDATE usuarios SET nombre = ?, contrasenia = ?, mail = ?, tipo_usuario = ? WHERE id_usuario = ?;";
 	private String EliminarUsuarioQuery = "DELETE FROM usuarios WHERE id_usuario = ? LIMIT 1;";
 	private String BuscarUsuarioQuery = "SELECT * FROM usuarios WHERE nombre = ?;";
 	private String BuscarUsuariosQuery = "SELECT * FROM usuarios ORDER BY nombre ASC;";
@@ -171,9 +171,11 @@ public class usuarios {
 					statement.setString(1, nombreUsuario);
 					statement.setString(2, contrasenha);
 					statement.setString(3, mail);
-					statement.setInt(4, idUsuarios);
+					statement.setString(4, tipoUsuario);
+					statement.setInt(5, idUsuarios);
 					
 					int rowsUpdated = statement.executeUpdate();
+					
 					if (rowsUpdated > 0) {
 						System.out.println("Actualizado con exito!");
 					} else if (rowsUpdated == 0) {
@@ -217,10 +219,14 @@ public class usuarios {
 						String nombre = resultSet.getString("nombre");
 						String contra = resultSet.getString("contrasenia");
 						String mail = resultSet.getString("mail");
+						String tipoUsuario = resultSet.getString("tipo_usuario");
+						int id = resultSet.getInt("id_usuario");
 						
 						tempUsuario.setNombre(nombre);
 						tempUsuario.setCont(contra);
 						tempUsuario.setMail(mail);
+						tempUsuario.setTipoUsuario(tipoUsuario);
+						tempUsuario.setId(id);
 						
 						return tempUsuario;
 						
