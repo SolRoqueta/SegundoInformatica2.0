@@ -146,7 +146,6 @@ public class panelUsuarios extends JFrame {
 	    btnEliminar.setBounds(550, 588, 145, 40);
 	    panel.add(btnEliminar);
     
-	    
 	    tablaUsuarios.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {

@@ -40,28 +40,23 @@ public class agregarMenus extends JFrame {
         // Labels de Titulos
         JLabel tituloAgregar = new JLabel("AGREGAR", SwingConstants.CENTER);
         tituloAgregar.setForeground(new Color(210, 210, 210));
-        tituloAgregar.setFont(new Font("Tahoma", Font.BOLD, 22));
+        tituloAgregar.setFont(new Font("Tahoma", Font.BOLD, 35));
         tituloAgregar.setBackground(Color.GRAY);
-        tituloAgregar.setBounds(146, 0, 125, 59);
+        tituloAgregar.setBounds(289, 16, 206, 59);
         panel.add(tituloAgregar);
         
         JLabel tituloMenus = new JLabel("MENUS", SwingConstants.CENTER);
         tituloMenus.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        tituloMenus.setBounds(154, 33, 108, 51);
+        tituloMenus.setBounds(338, 56, 108, 51);
         tituloMenus.setBackground(Color.GRAY);
         tituloMenus.setForeground(new Color(210, 210, 210));
         panel.add(tituloMenus);
         
-        JSeparator separator = new JSeparator();
-        separator.setForeground(new Color(210, 210, 210));
-        separator.setBackground(Color.LIGHT_GRAY);
-        separator.setBounds(158, 45, 100, 2);
-        panel.add(separator);
-        
         // Labels y Fields
         JLabel nombreLabel = new JLabel("Nombre");
+        nombreLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         nombreLabel.setForeground(new Color(230, 230, 230));
-        nombreLabel.setBounds(37, 82, 53, 25);
+        nombreLabel.setBounds(119, 152, 62, 25);
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
@@ -77,12 +72,13 @@ public class agregarMenus extends JFrame {
 //        		        		
         	}
         });
-        nombreField.setBounds(37, 105, 150, 25);
+        nombreField.setBounds(119, 181, 175, 25);
         panel.add(nombreField);
         
         JLabel precioLabel = new JLabel("Precio");
+        precioLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         precioLabel.setForeground(new Color(230, 230, 230));
-        precioLabel.setBounds(37, 132, 40, 25);
+        precioLabel.setBounds(118, 212, 40, 25);
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
@@ -97,12 +93,13 @@ public class agregarMenus extends JFrame {
             }
 
         });
-        precioField.setBounds(37, 153, 150, 25);
+        precioField.setBounds(119, 239, 175, 25);
         panel.add(precioField);
         
         JLabel stockLabel = new JLabel("Stock");
+        stockLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         stockLabel.setForeground(new Color(230, 230, 230));
-        stockLabel.setBounds(37, 181, 53, 25);
+        stockLabel.setBounds(119, 272, 33, 25);
         panel.add(stockLabel);
         
         JSpinner stockField = new JSpinner();
@@ -117,16 +114,17 @@ public class agregarMenus extends JFrame {
             }
 
         });
-        stockField.setBounds(37, 202, 150, 25);
+        stockField.setBounds(119, 300, 175, 25);
         panel.add(stockField);
         
         JLabel diaLabel = new JLabel("Dia");
+        diaLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         diaLabel.setForeground(new Color(230, 230, 230));
-        diaLabel.setBounds(37, 238, 125, 25);
+        diaLabel.setBounds(119, 335, 33, 25);
         panel.add(diaLabel);
         
-        JComboBox <String> comboBox = new JComboBox();
-        comboBox.setBounds(37, 261, 150, 25);
+        JComboBox <String> comboBox = new JComboBox<String>();
+        comboBox.setBounds(119, 359, 175, 25);
         panel.add(comboBox);
         
         comboBox.addItem("Lunes");
@@ -136,13 +134,14 @@ public class agregarMenus extends JFrame {
         comboBox.addItem("Viernes");
         
         JLabel descripcionLabel = new JLabel("Descripción");
+        descripcionLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
         descripcionLabel.setHorizontalAlignment(SwingConstants.LEFT);
         descripcionLabel.setForeground(new Color(230, 230, 230));
-        descripcionLabel.setBounds(37, 297, 100, 25);
+        descripcionLabel.setBounds(119, 394, 100, 25);
         panel.add(descripcionLabel);
         
         JTextArea descripcionArea = new JTextArea();
-        descripcionArea.setBounds(37, 322, 150, 75);
+        descripcionArea.setBounds(119, 426, 175, 75);
         descripcionArea.setLineWrap(true);
         descripcionArea.setWrapStyleWord(true);
         panel.add(descripcionArea);
@@ -150,17 +149,17 @@ public class agregarMenus extends JFrame {
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
         imagenLabel.setBackground(new Color(255, 255, 255));
-        imagenLabel.setBounds(224, 140, 155, 155);
+        imagenLabel.setBounds(413, 187, 250, 250);
         imagenLabel.setBorder(new LineBorder(new Color(128, 128, 128)));
         panel.add(imagenLabel);
         
         // Botones
         JButton subirImagenBtn = new JButton("Subir Imagen");
-        subirImagenBtn.setBounds(242, 315, 118, 25);
+        subirImagenBtn.setBounds(458, 463, 160, 35);
         panel.add(subirImagenBtn);
         
         JButton agregarMenuBtn = new JButton("Agregar Menu");
-        agregarMenuBtn.setBounds(133, 429, 150, 30);
+        agregarMenuBtn.setBounds(292, 574, 200, 50);
         panel.add(agregarMenuBtn);
         
         JButton volverBtn = new JButton("←");
@@ -210,10 +209,19 @@ public class agregarMenus extends JFrame {
       // Volver Atras
         volverBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		panelMenus ventanaMenus = new panelMenus();
+        		ventanaMenus.setVisible(true);
+        		agregarMenus.this.dispose();
         	}
         });
         
         // Agregar el panel a la ventana
         getContentPane().add(panel);
+        
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(210, 210, 210));
+        separator.setBackground(Color.LIGHT_GRAY);
+        separator.setBounds(342, 67, 100, 2);
+        panel.add(separator);
     }
 }

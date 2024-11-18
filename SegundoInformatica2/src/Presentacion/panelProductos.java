@@ -69,8 +69,6 @@ public class panelProductos extends JFrame {
         for (Object[] fila : listaProductosPrecio) {
             modeloTabla.addRow(fila);
         }
-        
-       
     
 }
 	

@@ -11,7 +11,7 @@ public class menuPrincipal extends JFrame {
     
     private panelProductos ventanaProductos;
     private panelUsuarios ventanaUsuarios;
-    private Menus ventanaMenus;
+    private panelMenus ventanaMenus;
     
     public menuPrincipal() {
     	
@@ -64,8 +64,7 @@ public class menuPrincipal extends JFrame {
         btnMenus.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnMenus.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Open the MenuDiarios window
-                ventanaMenus = new Menus(menuPrincipal.this); // Pass reference to menuPrincipal
+                ventanaMenus = new panelMenus();
                 ventanaMenus.setVisible(true);
                 menuPrincipal.this.dispose(); // Close the main window
             }
@@ -78,8 +77,6 @@ public class menuPrincipal extends JFrame {
         btnCerrarSesion.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnCerrarSesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Open the MenuDiarios window
-
             	login Login = new login();
             	Login.setVisible(true);
             	menuPrincipal.this.dispose();

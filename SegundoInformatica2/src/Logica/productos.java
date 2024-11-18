@@ -131,6 +131,7 @@ public class productos {
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
 	    	 		
+	    	 
 					statement.setString(1, nombre);
 					statement.setString(2, descripcion);
 					statement.setInt(3, precio);
@@ -251,15 +252,10 @@ public class productos {
 					do {
 		 	 			
 						int id = resultSet.getInt("id_producto");
-						
 						String nombre = resultSet.getString("nombre");
-						
 						String descripcion = resultSet.getString("descripcion");
-						
 						int precio = resultSet.getInt("precio");
-						
 						byte[] fotoComprimida = resultSet.getBytes("foto");
-						
 						InputStream is = compFoto.descomprimirBytesAInputStream(fotoComprimida);
 
 						tempProducto.setId(id);
