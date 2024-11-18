@@ -22,10 +22,12 @@ public class modificarProductos extends JFrame {
 	compresorFoto compFoto = new compresorFoto();
 
 	  private String nombre;
-	  private int precio;
 	  private String descripcion;
 	  private String fotoPath;
+	  
 	  private InputStream is;
+	  
+	  private int precio;
     
     public modificarProductos(String nombre) throws IOException {
     	this.nombre = nombre;
@@ -261,6 +263,7 @@ public class modificarProductos extends JFrame {
             }
 
         });
+        
         // Agregar el panel a la ventana
         getContentPane().add(panel);
     }

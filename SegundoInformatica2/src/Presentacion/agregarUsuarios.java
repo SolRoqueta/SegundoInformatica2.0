@@ -14,11 +14,11 @@ public class agregarUsuarios extends JFrame {
     
     public usuarios usuario = new usuarios();
     
-    // Declaración de atributos de Usuarios
     private String nombre;
     private String contra;
     private String tipoUsuario;
     private String mail;
+    
     private boolean mostrandoCont = false;
     
     private ImageIcon iconMostrar = new ImageIcon("src/imagenes/eye.png"); // Ruta de la imagen
@@ -37,6 +37,10 @@ public class agregarUsuarios extends JFrame {
     }
     
     public agregarUsuarios() {
+    	agregarPresentacion();
+    }
+    
+    public void agregarPresentacion() {
         
         // Configurar la ventana
         setTitle("Agregar Usuarios");
@@ -75,18 +79,6 @@ public class agregarUsuarios extends JFrame {
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyTyped(KeyEvent e) {
-        		
-        		if (( nombreField.getText().length() >= 30 )) {
-        			
-        			e.consume();
-
-        		}
-        		        		
-        	}
-        });
         nombreField.setBounds(292, 200, 200, 30);
         panel.add(nombreField);
         
@@ -125,15 +117,16 @@ public class agregarUsuarios extends JFrame {
         tipoUsuarioCbbx.setBounds(292, 445, 200, 30);
         panel.add(tipoUsuarioCbbx);
         
-        // Botón Agregar Usuario
-        JButton agregarUsuarioBtn = new JButton("Agregar Usuario");
-        agregarUsuarioBtn.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        agregarUsuarioBtn.setBounds(292, 540, 200, 50);
-        panel.add(agregarUsuarioBtn);
+        // Botónes
         
         JButton volverBtn = new JButton("←");
         volverBtn.setBounds(10, 11, 50, 15);
         panel.add(volverBtn);
+        
+        JButton btnAgregarUsuario = new JButton("Agregar Usuario");
+        btnAgregarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        btnAgregarUsuario.setBounds(292, 540, 200, 50);
+        panel.add(btnAgregarUsuario);
         
         ImageIcon iconScaled = escalarImagen(iconMostrar);
         
@@ -146,50 +139,7 @@ public class agregarUsuarios extends JFrame {
         
         // Acciones Botones
         
-        // Agregar Usuario
-        agregarUsuarioBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                
-                // Gets de todos los atributos del usuario a crear
-                nombre = nombreField.getText();
-                
-                if (mostrandoCont ==  false) {
-                contra = new String(contraField.getPassword());
-                } else {
-                contra = contraTextField.getText();
-                }
-                tipoUsuario = tipoUsuarioCbbx.getSelectedItem().toString();
-                mail = mailField.getText();
-                
-                // Verifica si los atributos son nulos
-                if (nombre.equals("") || contra.equals("") || tipoUsuario.equals("") || mail.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
-                } else {
-                	
-                	String tempNombre = usuario.BuscarUsuario(nombre).getNombre();
-                    
-                    if (tempNombre == null) {
-                    	
-                    	usuario.setNombre(nombre);
-                    	usuario.setCont(contra);
-                    	usuario.setTipoUsuario(tipoUsuario);
-                    	usuario.setMail(mail);
-                    	usuario.AgregarUsuario();
-                    	
-                    	JOptionPane.showMessageDialog(null, "Usuario, " + nombre + " agregado con exito!");
-                    	panelUsuarios ventanaPanelUsuarios = new panelUsuarios();
-                    	ventanaPanelUsuarios.setVisible(true);
-                    	agregarUsuarios.this.dispose();	
-                    	
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error, el usuario ya existe");
-                    } 
-                	
-                }
-                
-            }
-        });
-        
+        // Volver atras
         volverBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	panelUsuarios ventanaPanelUsuarios = new panelUsuarios();
@@ -224,6 +174,59 @@ public class agregarUsuarios extends JFrame {
         		}
         	}
         });
+        
+        // Agregar Usuario
+        btnAgregarUsuario.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+                // Gets de todos los atributos del usuario a crear
+                nombre = nombreField.getText();
+                
+                if (mostrandoCont ==  false) {
+                	
+                	contra = new String(contraField.getPassword());
+                
+                } else {
+                	
+                	contra = contraTextField.getText();
+                
+                }
+	                tipoUsuario = tipoUsuarioCbbx.getSelectedItem().toString();
+	                mail = mailField.getText();
+                
+	                // Verifica si los atributos son nulos
+	                if (nombre.equals("") || contra.equals("") || tipoUsuario.equals("") || mail.equals("")) {
+	                    JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
+	                    
+                } else {
+                	
+                	String tempNombre = usuario.BuscarUsuario(nombre).getNombre();
+                    
+                    if (tempNombre == null) {
+                    	
+                    	usuario.setNombre(nombre);
+                    	usuario.setCont(contra);
+                    	usuario.setTipoUsuario(tipoUsuario);
+                    	usuario.setMail(mail);
+                    	usuario.AgregarUsuario();
+                    	
+                    	JOptionPane.showMessageDialog(null, "Usuario, " + nombre + " agregado con exito!");
+                    	panelUsuarios ventanaPanelUsuarios = new panelUsuarios();
+                    	ventanaPanelUsuarios.setVisible(true);
+                    	agregarUsuarios.this.dispose();	
+                    	
+                    } else {
+                    	
+                        JOptionPane.showMessageDialog(null, "Error, el usuario ya existe");
+                        
+                    } 
+                	
+                }
+                
+            }
+        });
+        
+        // Key Listeners
         
         // Key listener Nombre (Se encarga de no permitir mas de 30 caracteres)
         nombreField.addKeyListener(new KeyAdapter() {
@@ -267,7 +270,6 @@ public class agregarUsuarios extends JFrame {
         		}    		        		
         	}
         });
-   
         
         // Agregar el panel a la ventana
         getContentPane().add(panel);

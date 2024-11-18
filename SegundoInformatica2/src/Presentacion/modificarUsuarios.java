@@ -14,11 +14,11 @@ public class modificarUsuarios extends JFrame {
     
     public usuarios usuario = new usuarios();
     
-    // Declaración de atributos de Usuarios
     private String nombre;
     private String contra;
     private String tipoUsuario;
     private String mail;
+    
     private boolean mostrandoCont = false;
     
     private String[] tipoUsu = {"Padre", "Profesor"};
@@ -150,9 +150,7 @@ public class modificarUsuarios extends JFrame {
         nombreField.setText(nombre);
         mailField.setText(mail);
         contraField.setText(contra);
-        System.out.println(tipoUsuario);
         tipoUsuarioCbbx.setSelectedItem(tipoUsuario);
-        
         
         // Modificar Usuario
         btnModificarUsuarios.addActionListener(new ActionListener() {

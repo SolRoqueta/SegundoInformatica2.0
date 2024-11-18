@@ -12,8 +12,12 @@ public class login extends JFrame {
 	private String nombre;
 	private String contra;
 	
-    public login() {
-        // Configuración básica de la ventana
+	public login() {
+		loginPresentacion();
+	}
+	
+    public void loginPresentacion() {
+       
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 700);
@@ -36,18 +40,6 @@ public class login extends JFrame {
                                                         
         // Campo de texto para el nombre
         JTextField nameField = new JTextField();
-        nameField.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyTyped(KeyEvent e) {
-        		
-        		if (( nameField.getText().length() >= 30 )) {
-        			
-        			e.consume();
-        			
-        		}
-        		
-        	}
-        });
         nameField.setBounds(125, 216, 150, 20);
         rightPanel.add(nameField);
         
@@ -60,27 +52,10 @@ public class login extends JFrame {
         loginLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
         
         // Campo de texto para la contraseña
-        
         JPasswordField passwordField = new JPasswordField();
         passwordField.setBounds(125, 288, 150, 20);
         rightPanel.add(passwordField);
-        
-        passwordField.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyTyped(KeyEvent evt) {
-        		
-        		String password = new String (passwordField.getPassword());
-        		
-        		if (( password.length() >= 30 )) {
-        			
-        			evt.consume();
-        			
-        		}
-        		
-        	}
-        });
-    
-        
+
         // Etiqueta "Contraseña"
         JLabel passwordLabel = new JLabel("Contraseña");
         passwordLabel.setForeground(new Color(240, 240, 240));
@@ -105,13 +80,9 @@ public class login extends JFrame {
         lblBienvenidoa.setBounds(135, 62, 130, 30);
         rightPanel.add(lblBienvenidoa);
         
-        JButton btnCambiarContra = new JButton("¿Olvidaste tu contraseña?");
-        btnCambiarContra.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-
-        	}
-        });
+        // Botones
         
+        JButton btnCambiarContra = new JButton("¿Olvidaste tu contraseña?");
         btnCambiarContra.setBounds(103, 333, 193, 23);
         btnCambiarContra.setContentAreaFilled(false);
         btnCambiarContra.setBorderPainted(false);
@@ -135,6 +106,12 @@ public class login extends JFrame {
         lblLaCantina.setBounds(109, 16, 182, 30);
         rightPanel_1_1.add(lblLaCantina);
         
+        JSeparator separator_1 = new JSeparator();
+        separator_1.setForeground(new Color(210, 210, 210));
+        separator_1.setBackground(new Color(210, 210, 210));
+        separator_1.setBounds(150, 49, 100, 2);
+        rightPanel_1_1.add(separator_1);
+        
         JLabel lblLaCantina_1 = new JLabel("DE DANIELA");
         lblLaCantina_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblLaCantina_1.setForeground(new Color(210, 210, 210));
@@ -142,12 +119,7 @@ public class login extends JFrame {
         lblLaCantina_1.setBounds(109, 50, 182, 30);
         rightPanel_1_1.add(lblLaCantina_1);
         
-        JSeparator separator_1 = new JSeparator();
-        separator_1.setForeground(new Color(210, 210, 210));
-        separator_1.setBackground(new Color(210, 210, 210));
-        separator_1.setBounds(150, 49, 100, 2);
-        rightPanel_1_1.add(separator_1);
-        
+        // Action Listeners
         
         loginButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -175,10 +147,44 @@ public class login extends JFrame {
         	}
         });
         
-        setVisible(true);
+        // Key Listeners
+        
+        nameField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {
+        		
+        		if (( nameField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+        			
+        		}
+        		
+        	}
+        });
+        
+        passwordField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent evt) {
+        		
+        		String password = new String (passwordField.getPassword());
+        		
+        		if (( password.length() >= 30 )) {
+        			
+        			evt.consume();
+        			
+        		}
+        		
+        	}
+        });  
+        
+        btnCambiarContra.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+
+        	}
+        });
                                                              
     }
-
+    
     public static void main(String[] args) {
         // Show the main window
         SwingUtilities.invokeLater(new Runnable() {

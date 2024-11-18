@@ -1,6 +1,8 @@
 package Presentacion;
 
 import Logica.menuDiario;
+import Logica.menus;
+import Logica.productos;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -10,19 +12,19 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class agregarMenus extends JFrame {
 	
-	public menuDiario menuDiario = new menuDiario();
+	public menus menu = new menus();
 	
-	// Declaracion de atributos de Productos
 	private String nombre;
+	private String descripcion;
+	private String dia;
+	private String foto;
+	
 	private int precio;
 	private int stock;
-	private String diaCorrespondiente;
-	private String descripcion;
-	private String caminoFoto;
-	private String foto;
     
     public agregarMenus() {
     	
@@ -45,6 +47,12 @@ public class agregarMenus extends JFrame {
         tituloAgregar.setBounds(289, 16, 206, 59);
         panel.add(tituloAgregar);
         
+        JSeparator separator = new JSeparator();
+        separator.setForeground(new Color(210, 210, 210));
+        separator.setBackground(Color.LIGHT_GRAY);
+        separator.setBounds(342, 67, 100, 2);
+        panel.add(separator);
+        
         JLabel tituloMenus = new JLabel("MENUS", SwingConstants.CENTER);
         tituloMenus.setFont(new Font("Tahoma", Font.PLAIN, 14));
         tituloMenus.setBounds(338, 56, 108, 51);
@@ -60,18 +68,6 @@ public class agregarMenus extends JFrame {
         panel.add(nombreLabel);
         
         JTextField nombreField = new JTextField();
-        nombreField.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyTyped(KeyEvent e) {
-//        		
-        		if (( nombreField.getText().length() >= 30 )) {
-        			
-        			e.consume();
-
-        		}
-//        		        		
-        	}
-        });
         nombreField.setBounds(119, 181, 175, 25);
         panel.add(nombreField);
         
@@ -82,17 +78,6 @@ public class agregarMenus extends JFrame {
         panel.add(precioLabel);
         
         JSpinner precioField = new JSpinner();
-        precioField.addChangeListener(e -> {
-        	
-            int valorActual = (int) precioField.getValue();
-            
-            if (valorActual < 0) {
-            	
-            	precioField.setValue(0);
-            	
-            }
-
-        });
         precioField.setBounds(119, 239, 175, 25);
         panel.add(precioField);
         
@@ -103,17 +88,6 @@ public class agregarMenus extends JFrame {
         panel.add(stockLabel);
         
         JSpinner stockField = new JSpinner();
-        stockField.addChangeListener(e -> {
-        	
-            int valorActual = (int) stockField.getValue();
-            
-            if (valorActual < 0) {
-            	
-            	stockField.setValue(0);
-            	
-            }
-
-        });
         stockField.setBounds(119, 300, 175, 25);
         panel.add(stockField);
         
@@ -123,15 +97,15 @@ public class agregarMenus extends JFrame {
         diaLabel.setBounds(119, 335, 33, 25);
         panel.add(diaLabel);
         
-        JComboBox <String> comboBox = new JComboBox<String>();
-        comboBox.setBounds(119, 359, 175, 25);
-        panel.add(comboBox);
+        JComboBox <String> diaCbbx = new JComboBox<String>();
+        diaCbbx.setBounds(119, 359, 175, 25);
+        panel.add(diaCbbx);
         
-        comboBox.addItem("Lunes");
-        comboBox.addItem("Martes");
-        comboBox.addItem("Miercoles");
-        comboBox.addItem("Jueves");
-        comboBox.addItem("Viernes");
+        diaCbbx.addItem("Lunes");
+        diaCbbx.addItem("Martes");
+        diaCbbx.addItem("Miercoles");
+        diaCbbx.addItem("Jueves");
+        diaCbbx.addItem("Viernes");
         
         JLabel descripcionLabel = new JLabel("Descripción");
         descripcionLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -154,6 +128,11 @@ public class agregarMenus extends JFrame {
         panel.add(imagenLabel);
         
         // Botones
+        
+        JButton volverBtn = new JButton("←");
+        volverBtn.setBounds(10, 11, 50, 15);
+        panel.add(volverBtn);
+     
         JButton subirImagenBtn = new JButton("Subir Imagen");
         subirImagenBtn.setBounds(458, 463, 160, 35);
         panel.add(subirImagenBtn);
@@ -162,11 +141,17 @@ public class agregarMenus extends JFrame {
         agregarMenuBtn.setBounds(292, 574, 200, 50);
         panel.add(agregarMenuBtn);
         
-        JButton volverBtn = new JButton("←");
-        volverBtn.setBounds(10, 11, 50, 15);
-        panel.add(volverBtn);
-      
+     
        // Acciones botones
+        
+        // Volver Atras
+        volverBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		panelMenus ventanaMenus = new panelMenus();
+        		ventanaMenus.setVisible(true);
+        		agregarMenus.this.dispose();
+        	}
+        });
         
         // Subir Imagen
         subirImagenBtn.addActionListener(new ActionListener() {
@@ -199,29 +184,99 @@ public class agregarMenus extends JFrame {
         agregarMenuBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		// Gets de todos los atributos del usuario a crear
-                nombre = nombreField.getText();
-                precio = Integer.parseInt(precioField.getValue().toString());
+        		  nombre = nombreField.getText();
+        		  precio = (Integer) precioField.getValue();
+        		  stock = (Integer) stockField.getValue();        		  
+                  descripcion = descripcionArea.getText();
+                  dia = diaCbbx.getSelectedItem().toString();
+                  
+                  // Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
+                  if (nombre.equals("") || precio == 0 || descripcion.equals("") || foto == null ) {
+                      JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
+                  } else {
+                      menus tempMenu = new menus();
+                      String tempNombre = null;
+                      
+  					try {
+  						//TEMPORAL, CAMBIAR A BUSCAR POR ID
+  						tempNombre = tempMenu.BuscarMenu(nombre).getNombre();
+  					} catch (IOException e1) {
+  						e1.printStackTrace();
+  					}
+                      
+                      if (tempNombre == null) {
+                          menu.setNombre(nombre);
+                          menu.setPrecio(precio);
+                          menu.setStock(stock);
+                          menu.setDescripcion(descripcion);
+                          menu.setDiaCorrespondiente(dia);
+                          
+                          try {
+  							menu.setInputStream(foto, null);
+  							System.out.println(menu.getInputStream());
+  							menu.AgregarMenu();
+  						} catch (IOException e1) {
+  							e1.printStackTrace();
+  						}
+                        
+                          JOptionPane.showMessageDialog(null, "Menu agregado con exito!");
+                          panelMenus ventanaMenus = new panelMenus();
+	                      ventanaMenus.setVisible(true);
+	                      agregarMenus.this.dispose();
+                          
+                      } else {
+                          JOptionPane.showMessageDialog(null, "Error, el menu ya existe");
+                      }    
+                      
+                      
+                  }
         		
         		}	
         });
         
-      // Volver Atras
-        volverBtn.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		panelMenus ventanaMenus = new panelMenus();
-        		ventanaMenus.setVisible(true);
-        		agregarMenus.this.dispose();
+        
+        // Key y Change listeners
+        
+        // No permite mas de 30 caracteres en el nombre
+        nombreField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyTyped(KeyEvent e) {     		
+        		if (( nombreField.getText().length() >= 30 )) {
+        			
+        			e.consume();
+
+        		}      		        		
         	}
         });
         
+        // No permite numeros negativos
+        precioField.addChangeListener(e -> {
+        	
+            int valorActual = (int) precioField.getValue();
+            
+            if (valorActual < 0) {
+            	
+            	precioField.setValue(0);
+            	
+            }
+
+        });
+        
+        // No permite numeros negativos
+		stockField.addChangeListener(e -> {
+		 	
+		     int valorActual = (int) stockField.getValue();
+		     
+		     if (valorActual < 0) {
+		     	
+		     	stockField.setValue(0);
+		     	
+		     }
+		
+		 });
+		
         // Agregar el panel a la ventana
         getContentPane().add(panel);
         
-        JSeparator separator = new JSeparator();
-        separator.setForeground(new Color(210, 210, 210));
-        separator.setBackground(Color.LIGHT_GRAY);
-        separator.setBounds(342, 67, 100, 2);
-        panel.add(separator);
     }
 }

@@ -123,10 +123,10 @@ public class productos {
 	     String query = AgregarProductoQuery;
 	     
 	     byte[] fotoBytes = convFoto.convertirInputStreamABytes(is); 
-	     System.out.println("Tamaño original del InputStream en bytes: " + fotoBytes.length);
+//	     System.out.println("Tamaño original del InputStream en bytes: " + fotoBytes.length);
 	     
 	     byte[] fotoComprimida = compFoto.comprimirBytes(fotoBytes);
-	     System.out.println("Tamaño comprimido del InputStream en bytes: " + fotoComprimida.length);
+//	     System.out.println("Tamaño comprimido del InputStream en bytes: " + fotoComprimida.length);
 	     
 	     try (Connection connection = con;
 				 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -138,14 +138,14 @@ public class productos {
 					statement.setBytes(4, fotoComprimida);
 
 					int rowsInserted = statement.executeUpdate();
-					if (rowsInserted > 0) {
-						System.out.println("Ingresado con exito!");
-					}
+					
+//					if (rowsInserted > 0) {
+//						System.out.println("Ingresado con exito!");
+//					}
 				
 			} catch (SQLException ex) {
 				
-//				ex.printStackTrace();
-				System.out.println("ERROR, al agregar producto");
+				ex.printStackTrace();
 			
 			}
 		
@@ -175,20 +175,19 @@ public class productos {
 
 					int rowsUpdated = statement.executeUpdate();
 					
-					if (rowsUpdated > 0) {
-						
-						System.out.println("Actualizado con exito!");
-						
-					} else if (rowsUpdated == 0) {
-						
-						System.out.println("No actualizado");
-						
-					}
+//					if (rowsUpdated > 0) {
+//						
+//						System.out.println("Actualizado con exito!");
+//						
+//					} else if (rowsUpdated == 0) {
+//						
+//						System.out.println("No actualizado");
+//						
+//					}
 				
 			} catch (SQLException ex) {
 				
 				ex.printStackTrace();
-				System.out.println("No se a podido modificar el producto");
 			
 			}
 		
@@ -210,18 +209,18 @@ public class productos {
 					statement.setString(1, nombre);
 					
 					int rowsUpdated = statement.executeUpdate();
-					if (rowsUpdated > 0) {
-						System.out.println("Eliminado con exito!");
-					} else if (rowsUpdated == 0) {
-						
-						System.out.println("No eliminado");
-						
-					}
+//					
+//					if (rowsUpdated > 0) {
+//						System.out.println("Eliminado con exito!");
+//					} else if (rowsUpdated == 0) {
+//						
+//						System.out.println("No eliminado");
+//						
+//					}
 				
 			} catch (SQLException ex) {
 				
 				ex.printStackTrace();
-				System.out.println("No se a podido eliminar el prdoucto.");
 			
 			}
 		
@@ -272,8 +271,7 @@ public class productos {
 				 
 			} catch (SQLException e) {
 			
-//				e.printStackTrace();
-				System.out.println("Producto no encontrado");
+				e.printStackTrace();
 			
 			}
 	    	
@@ -308,8 +306,7 @@ public class productos {
 			
 	    } catch (SQLException e) {
 		
-	//		e.printStackTrace();
-	    	System.out.println("ERROR en la busqueda de productos");
+			e.printStackTrace();
 		
 		}
 			return productList;
@@ -342,8 +339,7 @@ public class productos {
 			
 	    } catch (SQLException e) {
 		
-	//		e.printStackTrace();
-	    	System.out.println("ERROR en la busqueda de productos");
+			e.printStackTrace();
 		
 		}
 			return productList;

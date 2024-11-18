@@ -15,11 +15,11 @@ public class agregarProductos extends JFrame {
 
 	productos producto = new productos();
 	
-    // Declaracion de atributos de Productos
     private String nombre;
-    private int precio;
     private String descripcion;
     private String foto;
+    
+    private int precio;
     
     public agregarProductos() {
     	
@@ -120,6 +120,15 @@ public class agregarProductos extends JFrame {
 
         // Acciones Listeners Botones
 
+        // Volver atras
+        btnVolver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	panelProductos ventanaProductos = new panelProductos();
+            	ventanaProductos.setVisible(true);
+            	agregarProductos.this.dispose();
+            }
+        });
+        
         // Subir Imagen
         btnSubirImagen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -154,7 +163,7 @@ public class agregarProductos extends JFrame {
                 precio = (Integer) precioField.getValue();
                 
                 // Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
-                if (nombre.equals("") || precio == 0 || foto == null) {
+                if (nombre.equals("") || precio == 0 || descripcion.equals("") || foto == null) {
                     JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
                 } else {
                     productos tempProducto = new productos();
@@ -194,15 +203,6 @@ public class agregarProductos extends JFrame {
                 
             }
         
-        });
-
-        // Volver atras
-        btnVolver.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	panelProductos ventanaProductos = new panelProductos();
-            	ventanaProductos.setVisible(true);
-            	agregarProductos.this.dispose();
-            }
         });
         
        // Key y Change Listeners

@@ -21,8 +21,9 @@ public class panelUsuarios extends JFrame {
 	
 	// Declaracion de atributos de Productos
 	private String nombre;
-	private int filtroSeleccionado;
 	private String atributo;
+	
+	private int filtroSeleccionado;
 	private int filaSeleccionada;
 	
 	private DefaultTableModel modeloTabla;
@@ -146,6 +147,8 @@ public class panelUsuarios extends JFrame {
 	    btnEliminar.setBounds(550, 588, 145, 40);
 	    panel.add(btnEliminar);
     
+	    // Mouse y Key Listeners
+	    
 	    tablaUsuarios.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
@@ -159,6 +162,26 @@ public class panelUsuarios extends JFrame {
 	        }
 	    });
 	    
+	    // Key Listener buscador
+	    buscarUsuarioField.addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent e) {
+        		
+        		if (buscarUsuarioField.getText().equals("")) {
+        			mostrarUsuariosTabla("", 0);
+        		} else {
+        			
+        			if (filtroSeleccionado >= 0 && filtroSeleccionado <= 3) {
+        			    atributo = buscarUsuarioField.getText();
+        			    mostrarUsuariosTabla(atributo, filtroSeleccionado);
+        			} else {
+        			    throw new IllegalArgumentException("Filtro seleccionado no válido: " + filtroSeleccionado);
+        			}
+        			
+        		}
+        		
+        	}
+        });
+	    
 	    // Accion Listeners Botones
 	    
 	    // Volver Atras
@@ -170,10 +193,8 @@ public class panelUsuarios extends JFrame {
 	    	}
 	    });
 	    
-	    // Agregar Usuario
 	    btnAgregar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {	
-	    		
 				agregarUsuarios ventanaAgregar = new agregarUsuarios();
 				ventanaAgregar.setVisible(true);
 				panelUsuarios.this.dispose();	
@@ -210,7 +231,6 @@ public class panelUsuarios extends JFrame {
 	    	}
 	    });
 	    
-	    // Modificar Usuario
 	    btnModificar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
@@ -262,28 +282,6 @@ public class panelUsuarios extends JFrame {
 	             
 	    	}	
 	    });
-	    
-	    // Key Listener buscador
-	    buscarUsuarioField.addKeyListener(new KeyAdapter() {
-        	public void keyReleased(KeyEvent e) {
-        		
-        		if (buscarUsuarioField.getText().equals("")) {
-        			mostrarUsuariosTabla("", 0);
-        		} else {
-        			
-        			if (filtroSeleccionado >= 0 && filtroSeleccionado <= 3) {
-        			    atributo = buscarUsuarioField.getText();
-        			    mostrarUsuariosTabla(atributo, filtroSeleccionado);
-        			} else {
-        			    throw new IllegalArgumentException("Filtro seleccionado no válido: " + filtroSeleccionado);
-        			}
-        			
-        		}
-        		
-        	}
-        });
-	    
-	    
 	    
     
     // Agregar el panel a la ventana

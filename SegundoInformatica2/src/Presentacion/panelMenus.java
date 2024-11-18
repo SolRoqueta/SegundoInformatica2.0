@@ -2,21 +2,30 @@ package Presentacion;
 
 import Logica.menus;
 import Logica.productos;
+import Logica.usuarios;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class panelMenus extends JFrame {
 	
 	public menus menu = new menus();
-	// Declaracion de atributos de Productos
+
 	private String nombre;
+	private String atributo;
+	
+	private int filtroSeleccionado;
+	private int filaSeleccionada;
 	
 	private DefaultTableModel modeloTabla;
 	private JTable tablaMenus;
@@ -26,7 +35,7 @@ public class panelMenus extends JFrame {
 	}
 	
 	// Se encarga de mostrar todos los productos en la tabla
-	 	public void mostrarMenusTabla(String atributo, int opcion) {
+	 public void mostrarMenusTabla(String atributo, int opcion) {
 	 			  
 	 	        List<Object[]> infoMenus = menu.BuscarMenus(atributo, opcion);
 
@@ -72,15 +81,21 @@ public class panelMenus extends JFrame {
         lblMenu.setBounds(293, 61, 198, 60);
         panel.add(lblMenu);
         
+        JLabel lblFiltro = new JLabel("Filtro: Nombre");
+	    lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 12));
+	    lblFiltro.setForeground(new Color(255, 255, 255));
+	    lblFiltro.setBounds(438, 121, 124, 14);
+	    panel.add(lblFiltro);
+        
         // Etiqueta de Buscar Producto
         JLabel buscarMenuLabel = new JLabel("Buscar Menu");
         buscarMenuLabel.setForeground(new Color(255, 255, 255));
-        buscarMenuLabel.setBounds(177, 117, 121, 25);
+        buscarMenuLabel.setBounds(97, 116, 121, 25);
         panel.add(buscarMenuLabel);
         
         // Campo de texto para buscar productos
         JTextField buscarMenuField = new JTextField();
-        buscarMenuField.setBounds(177, 142, 293, 30);
+        buscarMenuField.setBounds(97, 142, 309, 30);
         panel.add(buscarMenuField);
     
         String[] filtros = {"Nombre", "Precio", "Stock", "Dia"};
@@ -94,7 +109,7 @@ public class panelMenus extends JFrame {
         panel.add(chcbxOpcionesBuscar);
         
         //Creacion tabla
-        modeloTabla = new DefaultTableModel(new Object[]{"Nombre", "Precio", "Descripcion", "Stock", "Dia"}, 0);
+        modeloTabla = new DefaultTableModel(new Object[]{"Nombre", "Precio", "Stock", "Descripcion", "Dia"}, 0);
         tablaMenus = new JTable(modeloTabla);
         tablaMenus.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaMenus.getTableHeader().setReorderingAllowed(false);
@@ -108,6 +123,8 @@ public class panelMenus extends JFrame {
 	    panel.add(scrollPane);
 	    
 	    mostrarMenusTabla("", 4);
+	    
+	    // Botones 
 	    
 	    JButton btnVolver = new JButton("←");
 	    btnVolver.setBounds(10, 11, 50, 15);
@@ -134,18 +151,17 @@ public class panelMenus extends JFrame {
 
 	    // Mouse y Change Listeners
 	    
-//	    tablaUsuarios.addMouseListener(new MouseAdapter() {
-//	        @Override
-//	        public void mouseClicked(MouseEvent e) {
-//	            if (e.getClickCount() == 1) { 
-//	                int selectedRow = tablaUsuarios.rowAtPoint(e.getPoint());
-//	                if (selectedRow != -1) {
-//	                    btnEliminar.setEnabled(true);
-//	                    btnModificar.setEnabled(true);
-//	                }
-//	            }
-//	        }
-//	    });
+	    tablaMenus.addMouseListener(new MouseAdapter() {
+	        public void mouseClicked(MouseEvent e) {
+	            if (e.getClickCount() == 1) { 
+	                int selectedRow = tablaMenus.rowAtPoint(e.getPoint());
+	                if (selectedRow != -1) {
+	                    btnEliminar.setEnabled(true);
+	                    btnModificar.setEnabled(true);
+	                }
+	            }
+	        }
+	    });
 	    
 	    // Accion Listener Botones
 	    
@@ -156,6 +172,35 @@ public class panelMenus extends JFrame {
 	    		ventanaPrincipal.setVisible(true);
 	    		panelMenus.this.dispose();
 	    		
+	    	}
+	    });
+	    
+	    btnAplicarFiltro.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		filtroSeleccionado = chcbxOpcionesBuscar.getSelectedIndex();
+	    		  
+	    		  switch (filtroSeleccionado) {
+	    		    case 0:
+	    		        lblFiltro.setText("Filtro: Nombre");
+	    		        break;
+
+	    		    case 1:
+	    		        lblFiltro.setText("Filtro: Precio");
+	    		        break;
+
+	    		    case 2:
+	    		        lblFiltro.setText("Filtro: Stock");
+	    		        break;
+
+	    		    case 3:
+	    		        lblFiltro.setText("Filtro: Dia");
+	    		        break;
+
+	    		    default:
+	    		        lblFiltro.setText("Filtro: Desconocido");
+	    		        break;
+	    		
+	    	}
 	    	}
 	    });
 	    
@@ -170,11 +215,87 @@ public class panelMenus extends JFrame {
 	    
 	    btnModificar.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		modificarMenus ventanaModificar = new modificarMenus();
-	    		ventanaModificar.setVisible(true);
-	    		panelMenus.this.dispose();
+	    		
+	    		filaSeleccionada = tablaMenus.getSelectedRow();
+	    		menus menu = new menus();
+
+	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
+	  		    	
+	  		        // Obtenemos los valores de cada columna
+	  		    	nombre = tablaMenus.getValueAt(filaSeleccionada, 0).toString(); // Columna 1: Nombre
+	  		        	
+						try {
+							menu = menu.BuscarMenu(nombre);
+							
+							modificarMenus ventanaModificar = new modificarMenus(nombre);
+				    		ventanaModificar.setVisible(true);
+				    		panelMenus.this.dispose();
+				    		
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+	    		
+	    	}
+	  		    
 	    	}
 	    });
+	    
+	    btnEliminar.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		
+	    		filaSeleccionada = tablaMenus.getSelectedRow();
+	
+	  		    if (filaSeleccionada != -1) { // -1 significa que no hay ninguna fila seleccionada
+	  		    	
+	  		    	nombre = tablaMenus.getValueAt(filaSeleccionada, 0).toString(); // Columna 1: Nombre
+	  		        
+	  		    } else {
+	  		        System.out.println("No hay ninguna fila seleccionada.");
+	  		    }
+	    		
+	    		try {
+	    			
+					menu = menu.BuscarMenu(nombre);
+					
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+	    		
+	    		 int option = JOptionPane.showConfirmDialog(panel, "¿Estás seguro de que quieres eliminar el menu " + nombre + "?", "Confirmación", JOptionPane.YES_NO_OPTION);
+	             
+	             // Comprobar la respuesta
+	             if (option == JOptionPane.YES_OPTION) {
+	            	menu.EliminarMenu();
+	 	    		modeloTabla.removeRow(filaSeleccionada);
+	 	    		JOptionPane.showMessageDialog(panel, "Menu eliminado");
+	             } else {
+	            	 JOptionPane.showMessageDialog(panel, "Menu no eliminado");
+	             }
+	    		
+	    		
+	    		
+	    	}
+	    });
+	    
+	    // Key Listener buscador
+	    buscarMenuField.addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent e) {
+        		
+        		if (buscarMenuField.getText().equals("")) {
+        			mostrarMenusTabla("", 0);
+        		} else {
+        			
+        			if (filtroSeleccionado >= 0 && filtroSeleccionado <= 3) {
+        			    atributo = buscarMenuField.getText();
+        			    mostrarMenusTabla(atributo, filtroSeleccionado);
+        			} else {
+        			    throw new IllegalArgumentException("Filtro seleccionado no válido: " + filtroSeleccionado);
+        			}
+        			
+        		}
+        		
+        	}
+        });
     
     // Agregar el panel a la ventana
     getContentPane().add(panel);

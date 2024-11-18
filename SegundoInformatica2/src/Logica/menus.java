@@ -27,7 +27,7 @@ import java.util.List;
 	private String query;
 	
 	private String AgregarMenuQuery = "INSERT INTO menus (nombre, precio, descripcion, foto, stock, diario, dia_correspondiente) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private String ModificarMenuQuery = "UPDATE menus SET nombre = ?, precio = ?, descripcion = ?, foto = ?, stock = ?, diario = ?, dia_correspondiente = ?, WHERE id_menu= ?;";
+	private String ModificarMenuQuery = "UPDATE menus SET nombre = ?, precio = ?, descripcion = ?, foto = ?, stock = ?, diario = ?, dia_correspondiente = ? WHERE id_menu = ?;";
 	private String EliminarMenuQuery = "DELETE FROM menus WHERE id_menu = ? LIMIT 1;";
 	private String BuscarMenuQuery = "SELECT * FROM menus WHERE nombre = ?;";
 	private String BuscarMenusQuery = "SELECT * FROM menus ORDER BY nombre ASC;";
@@ -141,10 +141,10 @@ import java.util.List;
 		     String query = AgregarMenuQuery;
 		     
 		     byte[] fotoBytes = convFoto.convertirInputStreamABytes(is); 
-		     System.out.println("Tamaño original del InputStream en bytes: " + fotoBytes.length);
+//		     System.out.println("Tamaño original del InputStream en bytes: " + fotoBytes.length);
 		     
 		     byte[] fotoComprimida = compFoto.comprimirBytes(fotoBytes);
-		     System.out.println("Tamaño comprimido del InputStream en bytes: " + fotoComprimida.length);
+//		     System.out.println("Tamaño comprimido del InputStream en bytes: " + fotoComprimida.length);
 		     
 		     try (Connection connection = con;
 					 PreparedStatement statement = connection.prepareStatement(query)) {
@@ -159,19 +159,18 @@ import java.util.List;
 
 						int rowsInserted = statement.executeUpdate();
 						if (rowsInserted > 0) {
-							System.out.println("Ingresado con exito!");
 						}
 					
 				} catch (SQLException ex) {
 					
-//					ex.printStackTrace();
-					System.out.println("ERROR, al agregar el menu");
+					ex.printStackTrace();
+
 				
 				}
 			
 		}
 		
-		public void ModificarProducto() throws IOException {
+		public void ModificarMenu() throws IOException {
 			
 			conexion cc = new conexion();
 		    Connection con = cc.conect();
@@ -196,26 +195,25 @@ import java.util.List;
 						
 						int rowsUpdated = statement.executeUpdate();
 						
-						if (rowsUpdated > 0) {
-							
-							System.out.println("Actualizado con exito!");
-							
-						} else if (rowsUpdated == 0) {
-							
-							System.out.println("No actualizado");
-							
-						}
+//						if (rowsUpdated > 0) {
+//							
+//							System.out.println("Actualizado con exito!");
+//							
+//						} else if (rowsUpdated == 0) {
+//							
+//							System.out.println("No actualizado");
+//							
+//						}
 					
 				} catch (SQLException ex) {
 					
 					ex.printStackTrace();
-					System.out.println("No se a podido modificar el menu");
 				
 				}
 			
 		}
 		
-		public void EliminarProducto() {
+		public void EliminarMenu() {
 			
 			conexion cc = new conexion();
 		    Connection con = cc.conect();
@@ -229,18 +227,18 @@ import java.util.List;
 		    	 		statement.setInt(1, idMenu);
 						
 						int rowsUpdated = statement.executeUpdate();
-						if (rowsUpdated > 0) {
-							System.out.println("Eliminado con exito!");
-						} else if (rowsUpdated == 0) {
-							
-							System.out.println("No eliminado");
-							
-						}
+						
+//						if (rowsUpdated > 0) {
+//							System.out.println("Eliminado con exito!");
+//						} else if (rowsUpdated == 0) {
+//							
+//							System.out.println("No eliminado");
+//							
+//						}
 					
 				} catch (SQLException ex) {
 					
 					ex.printStackTrace();
-					System.out.println("No se a podido eliminar el menu");
 				
 				}
 			
@@ -297,8 +295,7 @@ import java.util.List;
 					 
 				} catch (SQLException e) {
 				
-//					e.printStackTrace();
-					System.out.println("Usuario no encontrado");
+					e.printStackTrace();
 				
 				}
 			
@@ -354,14 +351,13 @@ import java.util.List;
 					
 					String dia = resultSet.getString("dia_correspondiente");
 					
-					menuList.add(new Object[]{nombre, precio, descripcion, stock, dia});
+					menuList.add(new Object[]{nombre, precio, stock, descripcion, dia});
 						    	
 				}
 				
 		    } catch (SQLException e) {
 			
-		//		e.printStackTrace();
-		    	System.out.println("ERROR en la busqueda de Menus");
+				e.printStackTrace();
 			
 			}
 				return menuList;

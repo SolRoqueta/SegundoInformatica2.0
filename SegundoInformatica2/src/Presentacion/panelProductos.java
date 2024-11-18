@@ -19,12 +19,14 @@ import java.awt.event.KeyEvent;
 public class panelProductos extends JFrame {
 	
 	public productos producto = new productos();
+	
 	convertidorFoto convFoto = new convertidorFoto();
 	
 	private DefaultTableModel modeloTabla;
 	private JTable tablaProductos;
 
 	private String nombre;
+	
 	private int filaSeleccionada;
 	private int opcion;
 	
@@ -127,7 +129,7 @@ public class panelProductos extends JFrame {
         
         String[] opcionesBuscar = {"Nombre", "Precio"};
         
-        JComboBox chcbxOpcionesBuscar = new JComboBox();
+        JComboBox<String> chcbxOpcionesBuscar = new JComboBox<String>();
         chcbxOpcionesBuscar.setBounds(438, 142, 121, 30);
         chcbxOpcionesBuscar.addItem(opcionesBuscar[0]);
         chcbxOpcionesBuscar.addItem(opcionesBuscar[1]);
