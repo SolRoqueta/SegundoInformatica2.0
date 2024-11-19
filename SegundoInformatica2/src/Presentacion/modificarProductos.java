@@ -259,7 +259,13 @@ public class modificarProductos extends JFrame {
             int valorActual = (int) precioField.getValue();
             
             if (valorActual < 0) {
+            	
             	precioField.setValue(0);
+            	
+            } else if (valorActual > 4001) {
+            	
+            	precioField.setValue(4000);
+            	
             }
 
         });

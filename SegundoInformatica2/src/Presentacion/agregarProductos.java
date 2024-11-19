@@ -224,6 +224,11 @@ public class agregarProductos extends JFrame {
             
             if (valorActual < 0) {
             	precioField.setValue(0);
+            	
+            } else if (valorActual > 4001) {
+            	
+            	precioField.setValue(4000);
+            	
             }
 
         });

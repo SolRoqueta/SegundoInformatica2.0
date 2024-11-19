@@ -126,6 +126,7 @@ public class modificarMenus extends JFrame {
         diaCbbx.addItem("Miercoles");
         diaCbbx.addItem("Jueves");
         diaCbbx.addItem("Viernes");
+        diaCbbx.addItem("Fijo");
         
         JLabel descripcionLabel = new JLabel("Descripción");
         descripcionLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -139,6 +140,10 @@ public class modificarMenus extends JFrame {
         descripcionArea.setLineWrap(true);
         descripcionArea.setWrapStyleWord(true);
         panel.add(descripcionArea);
+        
+        JScrollPane scrollPane = new JScrollPane(descripcionArea);
+	    scrollPane.setBounds(119, 426, 175, 75);
+	    panel.add(scrollPane);
         
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
@@ -218,7 +223,6 @@ public class modificarMenus extends JFrame {
         btnModificarMenu.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		
-        		
         		try {
 					menu = menu.BuscarMenu(nombre);
 				} catch (IOException e1) {
@@ -230,6 +234,12 @@ public class modificarMenus extends JFrame {
                 stock = (Integer) stockField.getValue();
                 descripcion = descripcionArea.getText();
                 dia = diaCbbx.getSelectedItem().toString();
+                
+                if (dia.equals("Fijo")) {
+              	  menu.setDiario(false);
+                } else {
+              	  menu.setDiario(true);
+                } 
                 
                 if (fotoPath == null) {
                 	
@@ -317,6 +327,10 @@ public class modificarMenus extends JFrame {
 	            	
 	            	precioField.setValue(0);
 	            	
+	            } else if (valorActual > 4000) {
+	            	
+	            	precioField.setValue(4000);
+	            	
 	            }
 	
 	        });
@@ -329,7 +343,11 @@ public class modificarMenus extends JFrame {
 	     	
 	     	stockField.setValue(0);
 	     	
-	     }
+	     } else if (valorActual > 101) {
+         	
+         	stockField.setValue(100);
+         	
+         }
 	
 	 });
         

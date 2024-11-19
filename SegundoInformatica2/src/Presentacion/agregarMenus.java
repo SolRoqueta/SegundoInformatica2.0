@@ -1,6 +1,5 @@
 package Presentacion;
 
-import Logica.menuDiario;
 import Logica.menus;
 import Logica.productos;
 
@@ -106,6 +105,7 @@ public class agregarMenus extends JFrame {
         diaCbbx.addItem("Miercoles");
         diaCbbx.addItem("Jueves");
         diaCbbx.addItem("Viernes");
+        diaCbbx.addItem("Fijo");
         
         JLabel descripcionLabel = new JLabel("Descripción");
         descripcionLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -119,6 +119,10 @@ public class agregarMenus extends JFrame {
         descripcionArea.setLineWrap(true);
         descripcionArea.setWrapStyleWord(true);
         panel.add(descripcionArea);
+        
+        JScrollPane scrollPane = new JScrollPane(descripcionArea);
+        scrollPane.setBounds(119, 426, 175, 75);
+	    panel.add(scrollPane);
         
         // Panel de imagen
         JLabel imagenLabel = new JLabel();
@@ -211,6 +215,12 @@ public class agregarMenus extends JFrame {
                           menu.setDescripcion(descripcion);
                           menu.setDiaCorrespondiente(dia);
                           
+                          if (dia.equals("Fijo")) {
+                        	  menu.setDiario(false);
+                          } else {
+                        	  menu.setDiario(true);
+                          }
+                          
                           try {
   							menu.setInputStream(foto, null);
   							System.out.println(menu.getInputStream());
@@ -258,6 +268,10 @@ public class agregarMenus extends JFrame {
             	
             	precioField.setValue(0);
             	
+            } else if (valorActual > 4001) {
+            	
+            	precioField.setValue(4000);
+            	
             }
 
         });
@@ -271,7 +285,11 @@ public class agregarMenus extends JFrame {
 		     	
 		     	stockField.setValue(0);
 		     	
-		     }
+		     } else if (valorActual > 101) {
+	            	
+	            	stockField.setValue(100);
+	            	
+	            }
 		
 		 });
 		

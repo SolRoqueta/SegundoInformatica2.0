@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 
 public class modificarUsuarios extends JFrame {
@@ -18,6 +20,7 @@ public class modificarUsuarios extends JFrame {
     private String contra;
     private String tipoUsuario;
     private String mail;
+    private String tempNombre;
     
     private boolean mostrandoCont = false;
     
@@ -157,44 +160,58 @@ public class modificarUsuarios extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 
             	usuario = usuario.BuscarUsuario(nombre);
-
     			nombre = nombreField.getText();
-    			mail = mailField.getText();
     			
     			if (mostrandoCont == false) {
     				char[] contraChars = contraField.getPassword();
         	        contra = new String(contraChars);
     			} else {
-    				 contra = contraTextField.getText();
+    				contra = contraTextField.getText();
     			}
-    	
-    	        Object tipoUsuarioObj = tipoUsuarioCbbx.getSelectedItem();
-    	        tipoUsuario = tipoUsuarioObj.toString();
-    	        int id = usuario.getId();
+    			
+    				tipoUsuario = tipoUsuarioCbbx.getSelectedItem().toString();
+	    	        int id = usuario.getId();
+	                String mail = mailField.getText();
     	        
     	        // Verifica si los atributos son nulos
                 if (nombre.equals("") || mail.equals("") || contra.equals("")) {
                     JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
                 } else {
                 
-                usuario.setNombre(nombre);
-                usuario.setMail(mail);
-                usuario.setCont(contra);
-                usuario.setTipoUsuario(tipoUsuario);
-                usuario.setId(id);
+                	// Patrón para validar el email
+		            Pattern pat = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+
+		            // El email a validar
+		            Matcher mather = pat.matcher(mail);
+
+		            if (mather.find() == true) {
+		                	
+		            	tempNombre = usuario.BuscarUsuario(nombre).getNombre();
+		                	
+		                usuario.setNombre(nombre);
+		                usuario.setMail(mail);
+		                usuario.setCont(contra);
+		                usuario.setTipoUsuario(tipoUsuario);
+		                usuario.setId(id);
                 
                 int option = JOptionPane.showConfirmDialog(panel, "¿Estás seguro de que quieres modificar el usuario?", "Confirmación", JOptionPane.YES_NO_OPTION);
 	             
    	             // Comprobar la respuesta
    	             if (option == JOptionPane.YES_OPTION) {
+   	            	 
    	            	usuario.ModificarUsuario();
    	 	    		JOptionPane.showMessageDialog(panel, "Usuario modificado");
 	   	 	    	panelUsuarios ventanaUsuarios = new panelUsuarios();
 	            	ventanaUsuarios.setVisible(true);
-	        		modificarUsuarios.this.dispose(); 
+	        		modificarUsuarios.this.dispose();
+   	            	 
    	             } else {
    	            	 JOptionPane.showMessageDialog(panel, "Usuario no modificado");
    	             }
+   	             
+		            } else {
+		             JOptionPane.showMessageDialog(null, "El email ingresado es inválido.");
+		            }
    	             
                 }
                 
@@ -287,4 +304,5 @@ public class modificarUsuarios extends JFrame {
     }
     
 }
+    
     

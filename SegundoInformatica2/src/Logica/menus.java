@@ -39,7 +39,6 @@ import java.util.List;
 //	  CONSTRUCTOR DE USUARIOS 
 	
 	public menus(String idMenu, String nombre, int precio, String descripcion, byte[] foto, int stock, boolean diario, String diaCorrespondiente ) {
-
 		
 	}
 	

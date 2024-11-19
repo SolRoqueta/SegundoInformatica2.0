@@ -28,96 +28,102 @@ public class login extends JFrame {
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(null);
         rightPanel.setBackground(new Color(43, 70, 77));
-        rightPanel.setBounds(390, 0, 400, 700);
+        rightPanel.setBounds(390, 0, 400, 661);
         getContentPane().add(rightPanel);
 
         // Etiqueta "Nombre"
         JLabel nameLabel = new JLabel("Nombre");
+        nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
         nameLabel.setForeground(new Color(240, 240, 240));
         nameLabel.setForeground(new Color(240, 240, 240));
-        nameLabel.setBounds(125, 193, 100, 20);
+        nameLabel.setBounds(100, 213, 100, 20);
         rightPanel.add(nameLabel);
                                                         
         // Campo de texto para el nombre
         JTextField nameField = new JTextField();
-        nameField.setBounds(125, 216, 150, 20);
+        nameField.setBounds(100, 244, 200, 30);
         rightPanel.add(nameField);
-        
-        // Etiqueta "Login"
-        JLabel loginLabel = new JLabel("LOGIN");
-        loginLabel.setForeground(new Color(210, 210, 210));
-        loginLabel.setBounds(158, 32, 83, 30);
-        rightPanel.add(loginLabel);
-        loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        loginLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
         
         // Campo de texto para la contraseña
         JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(125, 288, 150, 20);
+        passwordField.setBounds(100, 359, 200, 30);
         rightPanel.add(passwordField);
 
         // Etiqueta "Contraseña"
         JLabel passwordLabel = new JLabel("Contraseña");
+        passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
         passwordLabel.setForeground(new Color(240, 240, 240));
-        passwordLabel.setBounds(125, 262, 100, 20);
+        passwordLabel.setBounds(100, 328, 100, 20);
         rightPanel.add(passwordLabel);
         
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(150, 413, 100, 30);
+        loginButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        loginButton.setBounds(100, 548, 200, 40);
         rightPanel.add(loginButton);
         
         JSeparator separator = new JSeparator();
         separator.setBackground(new Color(210, 210, 210));
         separator.setForeground(new Color(210, 210, 210));
-        separator.setBounds(150, 62, 100, 2);
+        separator.setBounds(137, 76, 125, 2);
         rightPanel.add(separator);
         
+        // Etiqueta "Login"
+        JLabel loginLabel = new JLabel("LOGIN");
+        loginLabel.setBounds(127, 39, 146, 30);
+        rightPanel.add(loginLabel);
+        loginLabel.setForeground(new Color(210, 210, 210));
+        loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        loginLabel.setFont(new Font("Tahoma", Font.BOLD, 35));
+        
         JLabel lblBienvenidoa = new JLabel("BIENVENIDO/A");
+        lblBienvenidoa.setBounds(93, 79, 213, 30);
+        rightPanel.add(lblBienvenidoa);
         lblBienvenidoa.setBackground(new Color(210, 210, 210));
         lblBienvenidoa.setForeground(new Color(210, 210, 210));
         lblBienvenidoa.setHorizontalAlignment(SwingConstants.CENTER);
-        lblBienvenidoa.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblBienvenidoa.setBounds(135, 62, 130, 30);
-        rightPanel.add(lblBienvenidoa);
+        lblBienvenidoa.setFont(new Font("Tahoma", Font.PLAIN, 22));
         
-        // Botones
-        
-        JButton btnCambiarContra = new JButton("¿Olvidaste tu contraseña?");
-        btnCambiarContra.setBounds(103, 333, 193, 23);
-        btnCambiarContra.setContentAreaFilled(false);
-        btnCambiarContra.setBorderPainted(false);
-        btnCambiarContra.setForeground(Color.white);
-        rightPanel.add(btnCambiarContra);
+        JSeparator separator_1_1_1 = new JSeparator();
+        separator_1_1_1.setForeground(new Color(53, 88, 96));
+        separator_1_1_1.setBackground(new Color(53, 88, 96));
+        separator_1_1_1.setBounds(0, 139, 400, 2);
+        rightPanel.add(separator_1_1_1);
         
         JPanel rightPanel_1_1 = new JPanel();
         rightPanel_1_1.setLayout(null);
         rightPanel_1_1.setBackground(new Color(53, 88, 96));
-        rightPanel_1_1.setBounds(-5, 0, 400, 700);
+        rightPanel_1_1.setBounds(0, 0, 400, 661);
         getContentPane().add(rightPanel_1_1);
         
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setBounds(53, 110, 190, 190);
+        lblNewLabel.setBounds(138, 419, 190, 190);
         rightPanel_1_1.add(lblNewLabel);
         
         JLabel lblLaCantina = new JLabel("LA CANTINA");
         lblLaCantina.setHorizontalAlignment(SwingConstants.CENTER);
         lblLaCantina.setForeground(new Color(210, 210, 210));
-        lblLaCantina.setFont(new Font("Tahoma", Font.BOLD, 22));
-        lblLaCantina.setBounds(109, 16, 182, 30);
+        lblLaCantina.setFont(new Font("Tahoma", Font.BOLD, 35));
+        lblLaCantina.setBounds(79, 39, 249, 30);
         rightPanel_1_1.add(lblLaCantina);
         
         JSeparator separator_1 = new JSeparator();
         separator_1.setForeground(new Color(210, 210, 210));
         separator_1.setBackground(new Color(210, 210, 210));
-        separator_1.setBounds(150, 49, 100, 2);
+        separator_1.setBounds(100, 76, 200, 2);
         rightPanel_1_1.add(separator_1);
         
         JLabel lblLaCantina_1 = new JLabel("DE DANIELA");
         lblLaCantina_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblLaCantina_1.setForeground(new Color(210, 210, 210));
-        lblLaCantina_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblLaCantina_1.setBounds(109, 50, 182, 30);
+        lblLaCantina_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+        lblLaCantina_1.setBounds(110, 79, 182, 30);
         rightPanel_1_1.add(lblLaCantina_1);
+        
+        JSeparator separator_1_1 = new JSeparator();
+        separator_1_1.setForeground(new Color(43, 70, 77));
+        separator_1_1.setBackground(new Color(43, 70, 77));
+        separator_1_1.setBounds(0, 139, 400, 2);
+        rightPanel_1_1.add(separator_1_1);
         
         // Action Listeners
         
@@ -174,12 +180,6 @@ public class login extends JFrame {
         			
         		}
         		
-        	}
-        });  
-        
-        btnCambiarContra.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-
         	}
         });
                                                              

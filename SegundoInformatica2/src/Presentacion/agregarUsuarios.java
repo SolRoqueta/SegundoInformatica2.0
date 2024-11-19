@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 
 public class agregarUsuarios extends JFrame {
@@ -18,6 +20,7 @@ public class agregarUsuarios extends JFrame {
     private String contra;
     private String tipoUsuario;
     private String mail;
+    private String tempNombre;
     
     private boolean mostrandoCont = false;
     
@@ -183,46 +186,52 @@ public class agregarUsuarios extends JFrame {
                 nombre = nombreField.getText();
                 
                 if (mostrandoCont ==  false) {
-                	
                 	contra = new String(contraField.getPassword());
-                
                 } else {
-                	
                 	contra = contraTextField.getText();
-                
                 }
 	                tipoUsuario = tipoUsuarioCbbx.getSelectedItem().toString();
-	                mail = mailField.getText();
-                
-	                // Verifica si los atributos son nulos
-	                if (nombre.equals("") || contra.equals("") || tipoUsuario.equals("") || mail.equals("")) {
-	                    JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
-	                    
-                } else {
-                	
-                	String tempNombre = usuario.BuscarUsuario(nombre).getNombre();
-                    
-                    if (tempNombre == null) {
-                    	
-                    	usuario.setNombre(nombre);
-                    	usuario.setCont(contra);
-                    	usuario.setTipoUsuario(tipoUsuario);
-                    	usuario.setMail(mail);
-                    	usuario.AgregarUsuario();
-                    	
-                    	JOptionPane.showMessageDialog(null, "Usuario, " + nombre + " agregado con exito!");
-                    	panelUsuarios ventanaPanelUsuarios = new panelUsuarios();
-                    	ventanaPanelUsuarios.setVisible(true);
-                    	agregarUsuarios.this.dispose();	
-                    	
-                    } else {
-                    	
-                        JOptionPane.showMessageDialog(null, "Error, el usuario ya existe");
-                        
-                    } 
-                	
-                }
-                
+	                
+	                String mail = mailField.getText();
+	                          
+	                        // Verifica si los atributos son nulos
+	      	                if (nombre.equals("") || contra.equals("") || mail.equals("")) {
+	      	                    JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
+	      	                } else {
+	                      	
+	      	                	// Patrón para validar el email
+	      		                Pattern pat = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+
+	      		                // El email a validar
+	      		                Matcher mather = pat.matcher(mail);
+
+	      		                if (mather.find() == true) {
+	      		                	
+	      		                	tempNombre = usuario.BuscarUsuario(nombre).getNombre();
+		      	                	
+		      	                	if (tempNombre == null) {
+			                          	
+			                          	usuario.setNombre(nombre);
+			                          	usuario.setCont(contra);
+			                          	usuario.setTipoUsuario(tipoUsuario);
+			                          	usuario.setMail(mail);
+			                          	usuario.AgregarUsuario();
+			                          	
+			                          	JOptionPane.showMessageDialog(null, "Usuario, " + nombre + " agregado con exito!");
+			                          	panelUsuarios ventanaPanelUsuarios = new panelUsuarios();
+			                          	ventanaPanelUsuarios.setVisible(true);
+			                          	agregarUsuarios.this.dispose();	
+			                          	
+		      	                	} else {
+			                              JOptionPane.showMessageDialog(null, "Error, el usuario ya existe");  
+			                         } 
+	      		                	
+	      		                } else {
+	      		                	JOptionPane.showMessageDialog(null, "El email ingresado es inválido.");
+	      		                }
+	      		                          
+		                          
+	      	                }
             }
         });
         
