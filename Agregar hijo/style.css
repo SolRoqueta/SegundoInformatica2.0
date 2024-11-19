@@ -1,0 +1,27 @@
+table {
+    width: 100%; /* Hace que la tabla ocupe todo el ancho disponible */
+    margin-top: 30px; /* Aumenta el margen superior de la tabla */
+    font-size: 20px; /* Aumenta el tamaño de la fuente de la tabla */
+}
+
+.table-responsive {
+    max-width: 100%;
+    overflow-x: auto; /* Habilita el desplazamiento horizontal */
+    -webkit-overflow-scrolling: touch; /* Asegura una experiencia táctil suave */
+}
+
+table {
+    min-width: 800px; /* Esto puede ayudar a probar el desplazamiento cuando la tabla es más ancha que el contenedor */
+}
+
+
+
+
+
+table img {
+    width: 80px; 
+    height: 80px; 
+}
+
+
+
