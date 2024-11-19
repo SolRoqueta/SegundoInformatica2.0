@@ -195,9 +195,16 @@ public class agregarMenus extends JFrame {
                   dia = diaCbbx.getSelectedItem().toString();
                   
                   // Verifica si los atributos son nulos, si son nulos muestra un error, si no, crea el nuevo producto
-                  if (nombre.equals("") || precio == 0 || descripcion.equals("") || foto == null ) {
+                  if (nombre.equals("") || precio == 0 || descripcion.equals("")) {
                       JOptionPane.showMessageDialog(null, "Error, ingrese todos los campos");
                   } else {
+                	  if(foto == null){
+                  		ImageIcon imageIcon = new ImageIcon("src/imagenes/fotodefault.jpg");
+                          Image image = imageIcon.getImage().getScaledInstance(imagenLabel.getWidth(), imagenLabel.getHeight(), Image.SCALE_FAST);
+                          // Mostrar la imagen en imagenLabel
+                          imagenLabel.setIcon(new ImageIcon(image));
+                          foto = "src/imagenes/fotodefault.jpg";
+                  		}
                       menus tempMenu = new menus();
                       String tempNombre = null;
                       
