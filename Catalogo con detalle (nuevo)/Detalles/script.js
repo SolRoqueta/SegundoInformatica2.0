@@ -67,7 +67,39 @@ function processItem() {
     if (item_connection.readyState == 4 && item_connection.status == 200) {
 
         var data = JSON.parse(item_connection.responseText);
-        cad = `
+
+        if (tipo == "productos") {
+
+            cad = `
+
+                <main class="product-container mt-5">
+
+                    <div class="product">
+                    
+                        <div class="product-content">
+
+                            <img src="https://dummyimage.com/150x150/000/fff" alt="lechuga" class="product-image">
+                            
+                        </div>
+                        <div class="product-info">
+
+                            <h1>${data[0].nombre}</h1>
+                            <p class="precio">$${data[0].precio}</p>
+                            <p class="description">${data[0].descripcion}</p>
+                        
+                        </div>
+                    
+                    </div>
+
+                </main>
+
+            `;
+
+        }
+        
+        if (tipo == "menus") {
+
+            cad = `
 
                 <main class="product-container mt-5">
 
@@ -91,7 +123,9 @@ function processItem() {
 
                 </main>
 
-        `;
+            `;
+
+        }
 
         resultado.innerHTML = cad;
 

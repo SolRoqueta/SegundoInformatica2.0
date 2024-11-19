@@ -98,14 +98,6 @@ body {
 
 }
 
-.product-image {
-    transition: transform 0.3s ease; /* Efecto suave para el cambio en la imagen */
-}
-
-.product-image:hover {
-    transform: scale(1.1); /* Aumenta el tamaño de la imagen */
-}
-
 /* Información del producto */
 .product-info {
 
