@@ -137,7 +137,12 @@ public class panelProductos extends JFrame {
 
         //Creacion tabla
         modeloTabla = new DefaultTableModel(new Object[]{"Nombre", "Precio", "Descripcion"}, 0);
-        tablaProductos = new JTable(modeloTabla);
+        tablaProductos = new JTable(modeloTabla){
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+               return false;
+            }
+         };
+         tablaProductos.setRowSelectionAllowed(false);
         tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaProductos.getTableHeader().setReorderingAllowed(false);
         

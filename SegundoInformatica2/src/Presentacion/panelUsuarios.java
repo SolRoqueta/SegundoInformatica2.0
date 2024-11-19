@@ -109,7 +109,12 @@ public class panelUsuarios extends JFrame {
         
         //Creacion tabla
         modeloTabla = new DefaultTableModel(new Object[]{"Nombre", "Mail", "Tipo", "Ultimo Acceso"}, 0);
-        tablaUsuarios = new JTable(modeloTabla);
+        tablaUsuarios = new JTable(modeloTabla){
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                return false;
+             }
+          };
+          tablaUsuarios.setRowSelectionAllowed(false);
         tablaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaUsuarios.getTableHeader().setReorderingAllowed(false);
         

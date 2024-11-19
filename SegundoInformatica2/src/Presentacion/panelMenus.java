@@ -110,7 +110,12 @@ public class panelMenus extends JFrame {
         
         //Creacion tabla
         modeloTabla = new DefaultTableModel(new Object[]{"Nombre", "Precio", "Stock", "Descripcion", "Dia"}, 0);
-        tablaMenus = new JTable(modeloTabla);
+        tablaMenus = new JTable(modeloTabla){
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                return false;
+             }
+          };
+          tablaMenus.setRowSelectionAllowed(false);
         tablaMenus.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaMenus.getTableHeader().setReorderingAllowed(false);
         
