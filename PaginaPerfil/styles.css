@@ -1,0 +1,13 @@
+.edit-icon {
+    cursor: pointer;
+        color: #008a39;
+    }
+    .edit-icon:hover {
+        color: #97f89c;
+    }
+
+
+    .slash-fill{
+
+        color: #008a39;
+    }

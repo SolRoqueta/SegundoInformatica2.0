@@ -6,12 +6,33 @@
     padding: 0;
 }
 
+.otrolado{
+   
+    float: right; 
+    margin-top: 10%;
+    margin-right: 10%;
+    
+}
+
+.borrde{
+        width: 50%;
+        background: linear-gradient(to right, rgb(23, 83, 46), rgb(25, 58, 38));
+}
+body{
+    background: linear-gradient(to right, rgb(118, 124, 91), rgb(227, 247, 142));
+    width: 100%;
+    background-color: rgb(248, 255, 145)
+    
+}
+
+
 section {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    width: 100%;
+    width: 80%;
     min-height: 100vh;
+    
   
     /*background: url(../img/cantina\ saludable\ Web.jpg);*/
     background-position: center;
@@ -23,11 +44,11 @@ section {
     width: 400px;
     border: 2px solid black;
     border-radius: 20px;
-    height: 500px;
+    height: 460px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    background-color: #eeee99;
 }
 
 .contenedor h2 {
@@ -210,3 +231,5 @@ button{
     color: red;
 
 }
+
+
