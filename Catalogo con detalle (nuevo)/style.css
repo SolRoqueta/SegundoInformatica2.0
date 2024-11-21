@@ -101,7 +101,6 @@ body {
     flex-direction: row;
     gap: 20px;
     justify-content: center;
-    margin-top: 25px;
 
 }
 
@@ -231,5 +230,30 @@ body {
 .card-body {
 
     text-align: center; 
+
+}
+
+.title {
+
+    font-size: 90px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+    line-height: 70px;
+    margin-bottom: 0px;
+
+}
+
+.filters {
+
+    justify-self: center;
+
+}
+
+.content {
+
+    display: grid;
+    flex-direction: column;
+    gap: 20px;
 
 }
