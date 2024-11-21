@@ -135,6 +135,27 @@ function checkUsers() {
 
 }
 
+var connection_session;
+function saveUser() {
+
+    connection_session = new XMLHttpRequest();
+    connection_session.onreadystatechange = processUserSave;
+    connection_session.open('POST', 'session.php', true);
+    connection_session.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    connection_session.send(returnData());
+
+}
+
+function processUserSave() {
+
+    if (connection_session.readyState == 4 && connection_session.status == 200) {
+
+        console.log(connection_session.responseText);
+
+    }
+
+}
+
 function proccessUsers() {
 
     var error = document.getElementById('errors');
@@ -142,6 +163,8 @@ function proccessUsers() {
     if (conection.readyState == 4 && conection.status == 200) {
 
         if (conection.responseText == "pass") {
+
+            saveUser();
 
             window.location.href = "inicio.html";
 

@@ -6,6 +6,13 @@
     padding: 0;
 }
 
+body {
+
+    display: flex;
+    flex-direction: row;
+
+}
+
 section {
     display: flex;
     justify-content: center;
@@ -19,14 +26,16 @@ section {
 }
 
 .contenedor {
+
     position: relative;
     width: 400px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 20px;
     height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fbf8ef;
     
 }
 
@@ -171,12 +180,6 @@ input:not(:placeholder-shown) ~ label {
 
 }
 
-button{
-
-    color: #fff !important; 
-
-}
-
 .button p {
 
     color: inherit;
@@ -208,5 +211,42 @@ button{
 
     font-weight: bold;
     color: red;
+
+}
+
+.login-forum {
+
+    flex: 1;
+    background-color: #203f3b;
+
+}
+
+.foto {
+
+    flex: 1;
+    /* background-color: #f1ede2; */
+    background-image: radial-gradient(circle 65rem, #fbf8ef 20%, #e4c583 100%);
+
+}
+
+.foto img {
+
+    user-select: none;
+    width: 50vw;
+
+}
+
+.separator {
+    
+    width: 2.5px;
+    /* background-color: #a67c52; */
+    background-color: #000000;
+
+}
+
+.dropdown-btn, .button {
+
+    background-color: #203f3b !important;
+    color: white !important;
 
 }
