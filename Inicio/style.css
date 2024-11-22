@@ -1,29 +1,78 @@
-.custom-navbar {
-  background-color: #f0f4f2;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+.inicio-section {
+  background-image: radial-gradient(circle 290rem, #FBF8EF 20%, #E4C583 100%);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.navbar-brand {
+  font-family: "Raleway", sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  font-style: italic;
+  position: absolute;
+  left: 2rem;
+}
+
+.option {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  padding: 0;
+}
+
+
+.perfil {
+  position: absolute;
+  top: -1.5rem;
+  right: 0.2rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+
+}
+
+.cantina {
+  color: #8AA88D;
+}
+.daniela {
+  color: #203F3B;
 }
 
 .hero-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f0f4f2;
   padding: 20px;
-  /* border: red solid 2px; */
 }
 
 .logo-container {
-  display: flex;
-  max-width: 50vh;
-  max-height: auto;
-  justify-content: center;
-  border: blue 2px solid;
+  position: absolute;
+  width: 60vw; 
+  height: 70vh; 
+  overflow: hidden;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  /* border: blue solid 2px; */
+  top: 10rem;
+  left: -10rem;
+}
+
+.logo {
+  max-width: 400%;
+  overflow: clip;
+  width: 400rem;
 }
 
 .text-container {
+  position: relative;
+  left: 15rem;
+  top: 5rem;
   text-align: center;
-  color: #3b5a5d;
-  border: black 2px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
 
 .title {
@@ -34,32 +83,64 @@
 
 .title-cantina {
   /* border: red solid 2px; */
+  font-family: "Raleway", sans-serif;
   font-size: 130px;
+  font-weight:600;
   margin: 0;
+  color: #E4C583;
 }
 
 .title-daniela {
   margin: 0;
   /* border: blue solid 2px; */
+  font-family: "Raleway", sans-serif;
   font-size: 125px;
+  font-weight:600;
+  color: #203F3B;
 }
 
 .slogan {
   margin: 0;
   font-size: 35px;
   /* border: gray solid 2px; */
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+}
+
+.highlight {
+  font-style: italic; 
+  text-decoration: underline; 
+  font-weight: 550;
+}
+
+#facilidad {
+  color: #8AA1A8 ; 
+}
+
+#eficiente {
+  color: #8AA88D; 
 }
 
 .btn-login {
   margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #5b8c67;
+  background-color: #203F3B;
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  width: 250px;
+  height: 70px;
 }
 
 .btn-login:hover {
-  background-color: #4a7d5e;
+  background-color: #375e58;
+}
+
+.bottom-div {
+  position: relative;
+  top: 17rem;
+  width: 101vw;
+  height: 30rem;
+  background-color: #B2D1BF;
+  transform: rotate(-4deg); /* Rotate by 45 degrees */
 }
