@@ -36,8 +36,6 @@ h2.efecto-linea::after {
   right: -130px; /* Línea derecha */
 }
 
-
-
 .boton-iniciar-sesion {
   background-color: #198754;
   color: white;
@@ -51,7 +49,6 @@ h2.efecto-linea::after {
 .boton-iniciar-sesion:hover {
   background-color: #0d693e;
 }
-
 
 html {
   margin: 0;

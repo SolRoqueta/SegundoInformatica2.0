@@ -144,3 +144,79 @@
   background-color: #B2D1BF;
   transform: rotate(-4deg); /* Rotate by 45 degrees */
 }
+
+/* Seccion Menu Diario */
+
+.diary-menu-section {
+  height: 60vh;
+  background-color: #B2D1BF;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border: black solid 2px;
+}
+
+.carousel-track-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  overflow: hidden;
+  position: relative;
+  height: 500px;
+  width: 76.35%;
+  border: 2px white solid;
+}
+
+.carousel-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease-in-out;
+  border: yellow 2px solid;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 700px;
+  height: 450px;
+  /* padding: 40px; */
+  margin: 10px;
+  background-color: #f0f0f0;
+  color: black;
+  list-style: none;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  border: black solid 2px;
+}
+
+.carousel-control {
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.left {
+  margin-right: 20px;
+}
+
+.right {
+  margin-left: 20px;
+}
+
+.carousel-control:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
