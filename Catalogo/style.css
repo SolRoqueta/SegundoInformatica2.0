@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+}
+
+body {
+    background-image: radial-gradient(circle 290rem, #FBF8EF 20%, #E4C583 100%);
+}
+
+.custom-navbar {
+    transition: background-color 0.05s ease-in-out; /* Suaviza la transición del color */
+    background-color: transparent; /* Fondo transparente por defecto */
+}
+
+.navbar.scrolled {
+    background-color: #FBF8EF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    font-family: "Raleway", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    font-style: italic;
+    position: absolute;
+    left: 2rem;
+}
+
+.option {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+.perfil {
+    position: absolute;
+    top: -1.5rem;
+    right: 0.2rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+}
+
+.cantina {
+    color: #8AA88D;
+}
+
+.daniela {
+    color: #203F3B;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+
+/* Título */
+.title {
+  margin-top: 2rem;
+    position: relative;
+    font-size: 80px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 600;
+    color: #203F3B;
+}
+
+.title::before,
+.title::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 3px;
+    background-color: currentColor;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.title::before {
+    left: -130px;
+}
+
+.title::after {
+    right: -130px;
+}
+
+/* Botón de filtro */
+.dropdown-center {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-filter {
+    background-color: #203F3B;
+    color: white;
+}
+
+.btn-filter:hover {
+    background-color: #203F3B;
+    color: white;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.btn-filter:active,
+.btn-filter:enabled {
+    background-color: #203F3B;
+    color: white;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+/* Paginación */
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.page-item {
+    cursor: pointer;
+}
+
+/* Seccion Cartas Items */
+
+.card-grid {
+  /* border: 3px solid #203F3B; */
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 2rem;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+}
+
+
+.card:hover {
+  transform: translateY(-8px); 
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+
+.card-img-top {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.card-title {
+  text-align: center;
+}
