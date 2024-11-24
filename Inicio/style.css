@@ -27,16 +27,12 @@
 }
 
 .current-page {
-
   font-weight: 700;
   transition: 0.2s;
-
 }
 
 .option-box {
-
   margin-left: 100px;
-
 }
 
 .option {
@@ -46,12 +42,10 @@
 }
 
 .profile {
-
   top: -1.5rem;
   right: 0.2rem;
   font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
-
 }
 
 .cantina {
