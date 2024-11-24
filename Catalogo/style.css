@@ -3,6 +3,11 @@
 
 * {
     margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: inherit;
+    scroll-behavior: auto !important;
 }
 
 body {
@@ -28,10 +33,25 @@ body {
     left: 2rem;
 }
 
+.option-box {
+
+    margin-left: 100px;
+  
+}
+
 .option {
     font-family: "Montserrat", sans-serif;
     font-size: 1.5rem;
     padding: 0;
+}
+
+.profile {
+
+    top: -1.5rem;
+    right: 0.2rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+  
 }
 
 .perfil {
@@ -58,6 +78,12 @@ body {
     gap: 0.75rem;
 }
 
+.current-page {
+
+    font-weight: 700;
+    transition: 0.2s;
+
+}
 
 /* Título */
 .title {
@@ -116,8 +142,20 @@ body {
 
 /* Paginación */
 .buttons {
+
+    margin-top: 25px;
+    margin-bottom: 25px;
     display: flex;
     justify-content: center;
+    gap: 50px;
+
+}
+
+.pages {
+
+    display: flex;
+    flex-direction: row;
+
 }
 
 .pagination {
@@ -128,6 +166,47 @@ body {
 
 .page-item {
     cursor: pointer;
+}
+
+.page-link {
+
+    border-radius: 0px !important;
+
+}
+
+.active>.page-link, .page-link.active {
+
+    background-color: #63b166 !important;
+    border-color: #63b166 !important;
+
+}
+
+.paginationButton {
+
+    background-color: #388e3c;
+    color: white;
+
+}
+
+.paginationButton:hover {
+
+    background-color: #0d693e;
+    color: white;
+
+}
+
+.bordererL {
+
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+
+}
+
+.bordererR {
+
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+
 }
 
 /* Seccion Cartas Items */
@@ -162,4 +241,11 @@ body {
 
 .card-title {
   text-align: center;
+}
+
+footer {
+
+    height: 25vh;
+    background-color: #203F3B;
+
 }

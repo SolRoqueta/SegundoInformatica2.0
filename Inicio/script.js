@@ -8,9 +8,41 @@ function startEvents() {
 
   getProducts();
   getUser();
+  putFooter();
 
   var inicio = document.getElementById('inicio');
   inicio.classList.add("current-page");
+
+}
+
+function putFooter() {
+
+  const footerContainer = document.getElementById('footer-container');
+
+  // Usa fetch para cargar el archivo footer.html
+  fetch('footer.html')
+
+  .then(response => {
+
+      if (!response.ok) {
+
+          throw new Error('Error al cargar el footer');
+
+      }
+
+      return response.text();
+
+  })
+  .then(footer => {
+
+      footerContainer.innerHTML = footer;
+
+  })
+  .catch(error => {
+
+      console.error('Error:', error);
+
+  });
 
 }
 

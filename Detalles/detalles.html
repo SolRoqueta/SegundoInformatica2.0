@@ -28,73 +28,48 @@
             >
               <span class="navbar-toggler-icon"></span>
             </button>
-        
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-              <ul class="navbar-nav">
+
+            <div class="collapse navbar-collapse justify-content-center option-box" id="navbarNav">
+              <ul class="navbar-nav mx-auto">
                 <li class="nav-item option">
-                  <a class="nav-link" href="#">Inicio</a>
+                  <a class="nav-link" href="../Inicio/index.html" id="inicio">Inicio</a>
                 </li>
                 <li class="nav-item option">
-                  <a class="nav-link" href="#" id="catalogo">Catálogo</a>
+                  <a class="nav-link" href="../Catalogo/catalogo.html" id="catalogo">Catálogo</a>
                 </li>
                 <li class="nav-item option">
-                  <a class="nav-link" href="#">Contacto</a>
+                  <a class="nav-link" href="#footer" id="contacto">Contacto</a>
                 </li>
               </ul>
             </div>
-        
+      
             <ul class="navbar-nav ms-auto">
               <li class="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle perfil"
+                  class="nav-link dropdown-toggle profile"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
+                  data-bs-display="static"
                   aria-expanded="false"
+                  id="profile"
                 >
-                  Perfil
+                  Iniciar sesión
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <ul class="dropdown-menu dropdown-menu-end" style="margin-right: 15px;" id="profile-dropdown">
+                  
                 </ul>
               </li>
             </ul>
+            
           </div>
         </nav>
     </header>
 
 
-    <section class="item-details">
-      <div class="content">
-        
-        <div class="image-div">
-            <img src="../img/ejemplo.PNG" alt="" class="item-img">
-        </div>
+    <section class="item-details" id="resultado"></section>
 
-        <div class="item-info">
-          <h1 class="item-title">Titulo Producto</h1>
-          <h3 class="item-price">$240</h3>
-          <p class="item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quos fuga architecto, maiores expedita ab tempora maxime laudantium veritatis, ratione quia. Cumque ipsam libero voluptatum quisquam omnis reprehenderit perferendis deserunt?</p>
+    <div id="footer-container"></div>
 
-          <button type="button" class="btn btn-dark order-button">Reservar</button>
-        </div>
-      </div>
-    </section>
-    
-
-        
-
-
-
-    </section>
-
-
-
-
-
-    
-    
 </body>
 </html>
