@@ -166,7 +166,7 @@ function proccessUsers() {
 
             saveUser();
 
-            window.location.href = "inicio.html";
+            window.location.href = "../Inicio/index.html";
 
         } else {
 

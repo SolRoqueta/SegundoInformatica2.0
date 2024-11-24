@@ -26,15 +26,27 @@
   left: 2rem;
 }
 
+.current-page {
+
+  font-weight: 700;
+  transition: 0.2s;
+
+}
+
+.option-box {
+
+  margin-left: 100px;
+
+}
+
 .option {
   font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   padding: 0;
 }
 
+.profile {
 
-.perfil {
-  position: absolute;
   top: -1.5rem;
   right: 0.2rem;
   font-family: "Montserrat", sans-serif;
@@ -269,6 +281,7 @@
 .card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
   transform: translateY(-5px);
+  cursor: pointer;
 }
 
 .card-title {
@@ -277,6 +290,34 @@
 
 .card-text {
   padding-top: 10px;
+}
+
+.desc-producto {
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Limita a 3 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  /* Compatibilidad estándar para otros navegadores */
+  line-clamp: 1;
+  box-orient: vertical;
+
+}
+
+.name-producto {
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Limita a 3 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  /* Compatibilidad estándar para otros navegadores */
+  line-clamp: 1;
+  box-orient: vertical;
+
 }
 
 /* Footer */
