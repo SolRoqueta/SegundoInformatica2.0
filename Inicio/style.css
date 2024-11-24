@@ -7,6 +7,15 @@
   overflow: hidden;
 }
 
+.custom-navbar {
+  position: fixed;
+}
+
+.navbar-scroll {
+  background-color: #FBF8EF;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
 .navbar-brand {
   font-family: "Raleway", sans-serif;
   font-size: 25px;
@@ -148,75 +157,135 @@
 /* Seccion Menu Diario */
 
 .diary-menu-section {
-  height: 60vh;
+  height: 70vh;
   background-color: #B2D1BF;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+
 }
 
-.carousel-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  border: black solid 2px;
-}
-
-.carousel-track-container {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  overflow: hidden;
+.section-title {
+  color:#203F3B;
+  font-family: "Raleway", sans-serif;
+  font-weight:600;
+  display: inline-block;
   position: relative;
-  height: 500px;
-  width: 76.35%;
-  border: 2px white solid;
 }
 
-.carousel-track {
+.section-title::before, .section-title::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 3px;
+  background-color: currentColor;
+  top: 50%; /* Centra la línea verticalmente en el título */
+  transform: translateY(-50%);
+}
+
+.section-title::before {
+  left: -130px; /* Línea izquierda */
+}
+
+.section-title::after {
+  right: -130px; /* Línea derecha */
+}
+
+
+.container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  transition: transform 0.4s ease-in-out;
-  border: yellow 2px solid;
+  align-items: center;
+  
+}
+
+.card-wrapper {
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 60px 35px;
+  padding: 20px 10px;
+
+}
+
+.card-list {
+  height: 400px;  
   padding: 0;
   margin: 0;
 }
 
-.carousel-slide {
+.card-item {
+  max-width: 50%;
+  display: block;
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  list-style: none;
+  border: 2px solid transparent;
+  box-shadow: 0 10px 10px rgba(0, 0,  0, 0.05);
+}
+
+/* Seccion Menus Fijos */
+
+.normal-menu-section {
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: radial-gradient(circle 290rem, #FBF8EF 20%, #E4C583 100%);
+  justify-content: space-evenly;
+}
+
+/* Seccion Productos */
+
+.product-section {
+  background-color: #B2D1BF;  
+  height: 110vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 700px;
-  height: 450px;
-  /* padding: 40px; */
-  margin: 10px;
-  background-color: #f0f0f0;
-  color: black;
-  list-style: none;
-  text-align: center;
-  border-radius: 20px;
-  font-size: 1.2rem;
-  border: black solid 2px;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.carousel-control {
-  background-color: transparent;
-  color: black;
+.card-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 1.75rem; 
+  justify-content: center; 
+  align-items: center; 
+  width: 100%;  
+  padding-bottom: 1.5rem;
+}
+
+/* Cartas productos */
+.card {
   border: none;
-  padding: 10px;
-  font-size: 2rem;
-  cursor: pointer;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
 }
 
-.left {
-  margin-right: 20px;
+.card-title {
+  color:#203F3B ;
 }
 
-.right {
-  margin-left: 20px;
+.card-text {
+  padding-top: 10px;
 }
 
-.carousel-control:disabled {
-  opacity: 0.2;
-  cursor: not-allowed;
+/* Footer */
+
+footer {
+  height: 25vh;
+  background-color:#203F3B;
+  padding: 20px;
+  box-shadow: 0 -4px 6px rgba(43, 70, 77, 0.2), 0 -2px 4px rgba(43, 70, 77, 0.1);
 }
+
+
+

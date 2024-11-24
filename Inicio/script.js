@@ -64,31 +64,28 @@ function proccessProducts() {
 
 }
 
-// Variables del carrusel
-const track = document.querySelector(".carousel-track");
-const slides = Array.from(document.querySelectorAll(".carousel-slide"));
-const nextButton = document.getElementById("next");
-const prevButton = document.getElementById("prev");
-const slideWidth = (slides[0].offsetWidth); 
+new Swiper('.card-wrapper', {
+  spaceBetween:20,
 
-// Función para mover el carrusel a la derecha
-nextButton.addEventListener("click", () => {
-    track.style.transition = "none";
-    track.style.transform = `translateX(-${slideWidth}px)`;
-    setTimeout(() => {
-        track.style.transition = "transform 0.5s ease-in-out";
-        track.style.transform = "translateX(0)";
-    }, 0);
-});
-
-// // Función para mover el carrusel a la izquierda
-prevButton.addEventListener("click", () => {
-    track.insertBefore(track.lastElementChild, track.firstChild);
-    track.style.transition = "none";
-    track.style.transform = `translateX(${slideWidth}px)`;
-    setTimeout(() => {
-        track.style.transition = "transform 0.5s ease-in-out";
-        track.style.transform = "translateX(0)";
-    }, 0);
-});
-
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: true,
+    },
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  
+    breakpoints: {
+        0: {
+            slidesPerView: 1
+        },
+        768: {
+            slidesPerView: 2
+        },
+    }
+  });

@@ -4,21 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>La Cantina de Daniela</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css"/>
+    
   </head>
   <body>
    
     <section class="inicio-section">
       <header>
+
+        <!-- Barra de Navegacion -->
+
         <nav class="navbar navbar-expand-lg custom-navbar">
-            <!-- Cantina Daniela on the left -->
-            <a class="navbar-brand" href="#"><span class="cantina">Cantina</span> <span class="daniela">Daniela</span></a>
         
-            <!-- Hamburger menu for mobile view -->
+            <a class="navbar-brand" href="#"><span class="cantina">Cantina</span> <span class="daniela">Daniela</span></a>
+
             <button
               class="navbar-toggler"
               type="button"
@@ -30,8 +31,7 @@
             >
               <span class="navbar-toggler-icon"></span>
             </button>
-        
-            <!-- Navbar items -->
+
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item option">
@@ -45,8 +45,7 @@
                 </li>
               </ul>
             </div>
-        
-            <!-- Perfil dropdown on the right -->
+      
             <ul class="navbar-nav ms-auto">
               <li class="nav-item dropdown">
                 <a
@@ -69,6 +68,8 @@
         </nav>
       </header>
 
+      <!-- Seccion Hero (Principal) -->
+
       <section class="hero-section">
         <div class="logo-container">
           <img src="/img/Logo Cantina.svg" class="logo" />
@@ -87,24 +88,156 @@
       <div class="bottom-div"></div>
     </section>
 
+    <!-- Seccion Carousel Menu Diario -->
+
     <section class="diary-menu-section">
-      <!-- Se crea el carousel -->
-      <div class="carousel-container">
-        <button class="carousel-control left" id="prev">←</button>
-        <div class="carousel-track-container">
-          <ul class="carousel-track">
-            <li class="carousel-slide">Lunes</li>
-            <li class="carousel-slide">Martes</li>
-            <li class="carousel-slide">Miércoles</li>
-            <li class="carousel-slide">Jueves</li>
-            <li class="carousel-slide">Viernes</li>
+      <h1 class="section-title">Menus Diarios</h1>
+
+      <div class="container swiper">
+        <div class="card-wrapper">
+          <ul class="card-list swiper-wrapper">
+            <li class="card-item swiper-slide">Lunes</li>
+            <li class="card-item swiper-slide">Martes</li>
+            <li class="card-item swiper-slide">Miércoles</li>
+            <li class="card-item swiper-slide"> Jueves</li>
+            <li class="card-item swiper-slide">Viernes</li>
           </ul>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
         </div>
-        <button class="carousel-control right" id="next">→</button>
+
       </div>
 
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
       <script src="script.js"></script>
     </section>
+
+    <section class="normal-menu-section">
+      <h1 class="section-title">Menus Fijos</h1>
+
+      <div class="card-container">
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="product-section">
+      <h1 class="section-title">Productos</h1>
+
+      <div class="card-container">
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card-img-top" src="/img/ejemplo-comida.avif" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Milanesa Napolitana</h4>
+            <h5 class="card-title price">$240</h5>
+            <p class="card-text">Milanesa Napolitana con salsa de tomate, jamon y queso. Viene con fritas</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer></footer>
 
   </body>
 </html>
