@@ -89,3 +89,12 @@ new Swiper('.card-wrapper', {
         },
     }
   });
+
+  document.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 10) { // Si se scrollea más de 50px
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
