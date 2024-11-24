@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+}
+
+body {
+    background-image: radial-gradient(circle 290rem, #FBF8EF 20%, #E4C583 100%);
+}
+
+.custom-navbar {
+    transition: background-color 0.05s ease-in-out; /* Suaviza la transición del color */
+    background-color: transparent; /* Fondo transparente por defecto */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    font-family: "Raleway", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    font-style: italic;
+    position: absolute;
+    left: 2rem;
+}
+
+.option {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+.perfil {
+    position: absolute;
+    top: -1.5rem;
+    right: 0.2rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+}
+
+.cantina {
+    color: #8AA88D;
+}
+
+.daniela {
+    color: #203F3B;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80vh;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.item-img {
+    border-radius: 5px;
+    width: 375px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item-img:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+
+}
+
+.item-info {    
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.item-title {
+    font-size: 4.75rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+}
+
+.item-price {
+    font-size: 2rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+}
+
+.item-description {
+    font-size: 1.25rem;
+    max-width: 700px;
+}
+
+.order-button {
+    width: 50%;
+    height: 45px;
+    margin-top: 2rem;
+    background-color:#8AA88D;
+    border: none;
+    font-size: 1.25rem;
+}
+
+.order-button:hover {
+    background-color: #738575;
+}
+
