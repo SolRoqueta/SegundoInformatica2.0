@@ -16,28 +16,27 @@
 
     <section class="login-forum">
         <div class="login-container">
-            <div class="formulario">
+            <div class="form-div">
                 <form action="login.php" method="post" id="form">
 
-                    <h2>Iniciar Sesión</h2>
+                    <div class="login-info">
+                        <h2 class="title">Iniciar Sesión</h2>
 
-                    <div class="input-container">
-                        <input type="email" id="email" name="usuario" placeholder=" " required disabled>
-                        <label for="email">Usuario (mail)</label>
-                        <div id="error-mail" class="error-mail"></div>
-                    </div>
-                    
-                    <div class="input-container">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="password" name="password" placeholder=" " required disabled>
-                        <label for="password">Contraseña</label>
-                        <div id="error-password" class="error-password"></div>
-                    </div>
+                        <div class="input-div">
+                            
+                            <div class="input-container">
+                                <input type="email" id="email" name="usuario" placeholder="Usuario (Email)" required disabled>
+                            </div>
+                            
+                            <div class="input-container">
+                                <input type="password" id="password" name="password" placeholder="Contraseña " required disabled>
+                            </div>
 
-                    <div class="olvidar">
-                        
-                        <a href="RecuperarContraseña/recuperarContra.html"><p>Olvidé la contraseña</p></a>
-                        
+                            <div class="forget-div">
+                                <a href="RecuperarContraseña/recuperarContra.html"><p class="forgot-password">Olvidé la contraseña</p></a>
+                            </div>
+
+                        </div>
                     </div>
                     
                     <div class="errors" id="errors"></div>
@@ -45,7 +44,7 @@
                     <div class="buttons">
 
                         <div class="dropdown">
-                            <button id="dropBtn" class="dropdown-btn"><p>Selecciona uno para iniciar</p></button>
+                            <button id="dropBtn" class="dropdown-center"><p>Selecciona uno para iniciar</p></button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" id="padre">Padre</a></li>
                                 <li><a class="dropdown-item" id="profesor">Profesor</a></li>
@@ -53,7 +52,7 @@
                         </div>
                         <div>
 
-                            <input id="enviar" class="button" type="submit" value="Acceder" disabled>
+                            <input id="enviar" class="access-btn" type="submit" value="Acceder" disabled>
 
                         </div>
 
