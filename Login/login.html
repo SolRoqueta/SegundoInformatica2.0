@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="login.css">
     <script src="script.js"></script>
     <title>Login</title>
@@ -13,27 +11,23 @@
 <body>
 
     <section class="foto">
-
-        <img src="../img/LogoCantina.png" alt="Fotito Gamer">
-
-    </section>
-
-    <div class="separator"></div>
+        <img src="../img/LogoCantina.png">
+    </section>  
 
     <section class="login-forum">
-        <div class="contenedor">
+        <div class="login-container">
             <div class="formulario">
                 <form action="login.php" method="post" id="form">
+
                     <h2>Iniciar Sesión</h2>
 
-                    <div class="input-contenedor">
-                        <i class="fas fa-user"></i>
+                    <div class="input-container">
                         <input type="email" id="email" name="usuario" placeholder=" " required disabled>
                         <label for="email">Usuario (mail)</label>
                         <div id="error-mail" class="error-mail"></div>
                     </div>
                     
-                    <div class="input-contenedor">
+                    <div class="input-container">
                         <i class="fas fa-lock"></i>
                         <input type="password" id="password" name="password" placeholder=" " required disabled>
                         <label for="password">Contraseña</label>
