@@ -152,6 +152,13 @@
   background-color: #375e58;
 }
 
+.btn-primary {
+
+  --bs-btn-active-bg: #375e58 !important;
+  --bs-btn-active-border-color: #375e58 !important;
+
+}
+
 .bottom-div {
   position: relative;
   top: 17rem;

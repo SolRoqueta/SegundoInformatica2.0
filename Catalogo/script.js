@@ -300,8 +300,52 @@ function checkFirstPageAndLast() {
 function setFilter(filter_value) {
 
     currentFilter = filter_value;
+    setFilterText(filter_value);
     getItems(filter_value);
     actualPage = 1;
+
+}
+
+function setFilterText(filter_value) {
+
+    var title = '';
+
+    switch (filter_value) {
+
+        case 'all':
+
+            title = 'Todos';
+
+            break;
+
+        case 'products':
+
+            title = 'Productos';
+
+            break;
+
+        case 'daily-menus':
+
+            title = 'Menús Diarios';
+
+            break;
+
+        case 'fixed-menus':
+
+            title = 'Menús Fijos';
+    
+            break;
+
+        default:
+            
+            title = 'Todos';
+
+            break;
+
+    }
+
+    const filterText = document.getElementById('filter-tag');
+    filterText.innerHTML = title;
 
 }
 

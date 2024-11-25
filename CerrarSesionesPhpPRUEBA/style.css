@@ -1,0 +1,39 @@
+body {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+
+}
+
+.button {
+
+    padding: 10px;
+    font-size: 24px;
+    background-color: rgb(236, 59, 59);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s;
+
+}
+
+.button:hover {
+
+    background-color: rgb(238, 17, 17);
+    transform: scale(1.5);
+
+}
+
+.result {
+
+    color: limegreen;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+
+}

@@ -2,11 +2,15 @@ let userData;
 let userName;
 let userMail;
 
+let lastMenu = 0;
+
+let data;
+
 document.addEventListener('DOMContentLoaded', startEvents, false);
 
 function startEvents() {
 
-  getProducts();
+  getFixedMenus();
   getUser();
   putFooter();
 
@@ -127,13 +131,53 @@ function processFixedMenus() {
 
     if (conection_fixedMenus.readyState == 4 && conection_fixedMenus.status == 200) {
 
-      fixedMenus.innerHTML = conection_fixedMenus.responseText;
+      fixedMenus.innerHTML = "";
+
+      data = JSON.parse(conection_fixedMenus.responseText);
+
+      for (var i = 0; i < data.length; i++) {
+
+        var cad = `
+      
+          <div class='card' onclick="grabAndSendData(${i})">
+          <img class='card-img-top' src='${data[i].foto}' alt='Card image'>
+          <div class='card-body'>
+              <h4 class='card-title'>${data[i].nombre}</h4>
+              <h5 class='card-title price'>$${data[i].precio}</h5>
+              <p class='card-text'>${data[i].descripcion}</p>
+          </div>
+          </div>
+
+        `;
+
+        lastMenu++;
+        fixedMenus.innerHTML += cad;
+
+      }
+
+      getProducts();
 
     } else {
 
       fixedMenus.innerHTML = "cargando...";
 
     }
+
+}
+
+function grabAndSendData(id) {
+
+  if (data[id]) {
+
+    const datos = { tipo: data[id].tipo, id: data[id].id, tipoId: data[id].tipoId };
+    const datosJSON = encodeURIComponent(JSON.stringify(datos));
+    window.location.href = `../Detalles/detalles.html?datos=${datosJSON}`;
+
+  } else {
+
+      console.log("No hay datos para este ID");
+
+  }
 
 }
 
@@ -153,8 +197,37 @@ function processProducts() {
 
     if (conection_products.readyState == 4 && conection_products.status == 200) {
 
-      products.innerHTML = conection_products.responseText;
-      getFixedMenus();
+      products.innerHTML = "";
+
+      let data2 = JSON.parse(conection_products.responseText);
+
+      data = [...data, ...data2];
+
+      console.log(data);
+
+      for (var i = lastMenu; i < data.length; i++) {
+
+        var cad = `
+      
+          <div class='card card-producto' onclick="grabAndSendData(${i})">
+
+            <img src='${data[i].foto}'/>
+
+            <div class='info-producto'>
+
+              <h5 class='name-producto'>${data[i].nombre}</h5>
+              <h5 class='price-producto'>$${data[i].precio}</h5>
+              <p class='desc-producto'>${data[i].descripcion}</p> 
+
+            </div>
+
+          </div>
+
+        `;
+
+        products.innerHTML += cad;
+
+      }
 
     } else {
 

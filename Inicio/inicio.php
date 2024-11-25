@@ -1,5 +1,7 @@
 <?php
 
+    $data = [];
+
     function conexion($query) {
 
         $host = 'localhost';
@@ -42,6 +44,8 @@
 
     function fixedMenus() {
 
+        $data = [];
+
         $query = "SELECT * FROM menus WHERE diario = 0 AND foto IS NOT NULL LIMIT 6;";
 
         $output = conexion($query);
@@ -70,21 +74,19 @@
                 $tipoImagen = finfo_buffer($finfo, $fotoDescomprimida);
                 finfo_close($finfo);
 
-                $result = "
+                $cad = 'data:'.$tipoImagen.';base64,'.$foto.'';
 
-                    <div class='card'>
-                    <img class='card-img-top' src='data:".$tipoImagen.";base64,".$foto."' alt='Card image'>
-                    <div class='card-body'>
-                        <h4 class='card-title'>" . $fila['nombre'] . "</h4>
-                        <h5 class='card-title price'>" . $fila['precio'] . "</h5>
-                        <p class='card-text'>" . $fila['descripcion'] ."</p>
-                    </div>
-                    </div>
+                $data[] = [
 
-                ";
+                    'nombre' => $fila['nombre'],
+                    'precio' => $fila['precio'],
+                    'descripcion' => $fila['descripcion'],
+                    'foto' => $cad,
+                    'id' => $fila['id_menu'],
+                    'tipoId' => 'id_menu',
+                    'tipo' => 'menus'
 
-
-                echo $result;
+                ];
 
             }
         } else {
@@ -96,9 +98,13 @@
         // Cerrar la conexión
         mysqli_close($conn);
 
+        echo json_encode($data);
+
     }
 
     function loadProducts() {
+
+        $data = [];
 
         $query = "SELECT * FROM productos WHERE foto IS NOT NULL LIMIT 6;";
 
@@ -131,20 +137,19 @@
                 $foto = base64_encode($fotoDescomprimida);
                 $tipoImagen = 'image/jpeg';
 
-                $result = "
-                    
-                    <div class='card card-producto'>
-                    <img src='data:".$tipoImagen.";base64,".$foto."'/>
-                    <div class='info-producto'>
-                        <h5 class='name-producto'>" . $fila['nombre'] . "</h5>
-                        <h5 class='price-producto'>$" . $fila['precio'] . "</h5>
-                        <p class='desc-producto'>" . $fila['descripcion'] . "</p> 
-                    </div>
-                    </div>
-                ";
+                $cad = 'data:'.$tipoImagen.';base64,'.$foto.'';
 
+                $data[] = [
 
-                echo $result;
+                    'nombre' => $fila['nombre'],
+                    'precio' => $fila['precio'],
+                    'descripcion' => $fila['descripcion'],
+                    'foto' => $cad,
+                    'id' => $fila['id_producto'],
+                    'tipoId' => 'id_producto',
+                    'tipo' => 'productos'
+
+                ];
 
             }
         } else {
@@ -155,6 +160,8 @@
 
         // Cerrar la conexión
         mysqli_close($conn);
+
+        echo json_encode($data);
 
     }
 
