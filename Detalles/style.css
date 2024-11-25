@@ -120,3 +120,8 @@ body {
     background-color: #738575;
 }
 
+.dropdown-menu {
+
+    overflow: hidden;
+
+}

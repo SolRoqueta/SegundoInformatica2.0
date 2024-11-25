@@ -140,6 +140,12 @@ body {
     cursor: pointer;
 }
 
+.dropdown-menu {
+
+    overflow: hidden;
+
+}
+
 /* Paginación */
 .buttons {
 
@@ -148,6 +154,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 50px;
+    user-select: none;
 
 }
 
@@ -206,6 +213,12 @@ body {
 
     border-top-right-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
+
+}
+
+.disabled:hover {
+
+    cursor: not-allowed !important;
 
 }
 

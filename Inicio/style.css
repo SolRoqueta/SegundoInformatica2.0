@@ -48,6 +48,12 @@
   font-size: 1.5rem;
 }
 
+.dropdown-menu {
+
+  overflow: hidden;
+
+}
+
 .cantina {
   color: #8AA88D;
 }
