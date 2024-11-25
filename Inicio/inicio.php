@@ -89,10 +89,6 @@
                 ];
 
             }
-        } else {
-
-            echo "No se encontraron resultados.";
-
         }
 
         // Cerrar la conexión
@@ -118,11 +114,10 @@
 
                 $fotoDescomprimida = gzdecode($fila['foto']);
         
-                // Verificar si la descompresión fue exitosa
                 if ($fotoDescomprimida === false) {
 
                     echo "Error al descomprimir la imagen.";
-                    continue;  // Salta al siguiente registro si hay un error
+                    continue;
 
                 }
 
@@ -152,10 +147,6 @@
                 ];
 
             }
-        } else {
-
-            echo "No se encontraron resultados.";
-
         }
 
         // Cerrar la conexión

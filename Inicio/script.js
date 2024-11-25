@@ -140,7 +140,7 @@ function processFixedMenus() {
         var cad = `
       
           <div class='card' onclick="grabAndSendData(${i})">
-          <img class='card-img-top' src='${data[i].foto}' alt='Card image'>
+          <img class='card-img-top' src="${data[i].foto}" alt='Card image'>
           <div class='card-body'>
               <h4 class='card-title'>${data[i].nombre}</h4>
               <h5 class='card-title price'>$${data[i].precio}</h5>
@@ -211,7 +211,7 @@ function processProducts() {
       
           <div class='card card-producto' onclick="grabAndSendData(${i})">
 
-            <img src='${data[i].foto}'/>
+            <img src="${data[i].foto}"/>
 
             <div class='info-producto'>
 
@@ -264,11 +264,22 @@ new Swiper('.card-wrapper', {
   });
 
   document.addEventListener("scroll", function () {
+    
     const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 10) { // Si se scrollea más de 50px
+    const heroPage = document.getElementById('hero-page');
+
+    if (window.scrollY > 10) {
+
       navbar.classList.add("scrolled");
+      navbar.classList.add("fixed-top");
+      heroPage.classList.add("hero-section-plus");
+
     } else {
+
       navbar.classList.remove("scrolled");
+      navbar.classList.remove("fixed-top");
+      heroPage.classList.remove("hero-section-plus");
+
     }
   });
 
