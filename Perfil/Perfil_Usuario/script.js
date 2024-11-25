@@ -4,6 +4,8 @@ let userData;
 let userName;
 let userMail;
 
+var hasPass = false;
+
 document.addEventListener('DOMContentLoaded', ()=> {
 
     startEvents();
@@ -66,14 +68,14 @@ function sessionChooser(op) {
             break;
         case 2:
 
-            var new_userName = document.getElementById('name').value;
+            var new_userName = document.getElementById('nameI').value;
 
             return 'option=2&name='+new_userName;
 
             break;
         case 3:
 
-            var new_userMail = document.getElementById('email').value;
+            var new_userMail = document.getElementById('emailI').value;
 
             return 'option=3&mail='+new_userMail;
 
@@ -93,14 +95,30 @@ function processUser() {
 
         userData = JSON.parse(connection_user.responseText);
 
-        userName = userData[0].nombre;
-        userMail = userData[0].mail;
+        if (userName != userData[0].nombre) {
 
-        name.innerHTML = userName;
-        titleName.innerHTML = userName;
-        email.innerHTML = userMail;
+            userName = userData[0].nombre;
+            titleName.innerHTML = userName;
+            cancelName();
 
-        cancelName();
+        }
+
+        if (userMail != userData[0].mail) {
+
+            userMail = userData[0].mail;
+            cancelMail();
+
+        }
+
+
+
+        if (!hasPass) {
+
+            name.innerHTML = userName;
+            email.innerHTML = userMail;
+            hasPass = true;
+    
+        }
 
     }
 
@@ -118,7 +136,7 @@ function editName() {
             <h6>Nombre</h6>
             <div class="inputs-container">
             
-                <input type="text" class="input-field" id="name" value="${userName}">
+                <input type="text" class="input-field" id="nameI" value="${userName}">
 
                 <div>
 
@@ -158,17 +176,18 @@ function cancelName() {
 
 function saveName() {
 
-    var name = document.getElementById('name').value;
+    var name = document.getElementById('nameI').value;
 
     if (name.length >= 3 && !/\d/.test(name)) {
 
         setUser(1, name, null);
         getUser(2);
+        cancelName();
 
     } else {
 
         alert("Nombre no válido");
-        document.getElementById('name').value = userName;
+        document.getElementById('nameI').value = userName;
 
     }
 
@@ -187,7 +206,7 @@ function editMail() {
             <h6>Email</h6>
             <div class="inputs-container">
             
-                <input type="text" class="input-field" id="email" value="${userMail}">
+                <input type="text" class="input-field" id="emailI" value="${userMail}">
 
                 <div>
 
@@ -229,17 +248,17 @@ function cancelMail() {
 
 function saveMail() {
 
-    var mail = document.getElementById('email').value;
+    var mail = document.getElementById('emailI').value;
 
     if (!/\d/.test(mail) && /@/.test(mail)) {
 
         setUser(2, null, mail);
-        getUser(2);
+        getUser(3);
 
     } else {
 
         alert("Nombre no válido");
-        document.getElementById('email').value = userMail;
+        document.getElementById('emailI').value = userMail;
 
     }
 

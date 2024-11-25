@@ -1,5 +1,9 @@
 <?php
 
+    header('Content-Type: text/html; charset=utf-8');
+
+    $data = [];
+
     function conexion($query) {
 
         $host = 'localhost';
@@ -30,10 +34,9 @@
 
         case 1:
 
-            $currentName = $_REQUEST['currentName'];
-            $newName = $_REQUEST['name'];
+            $userMail = $_REQUEST['mail'];
 
-            $query = "SELECT * FROM usuarios WHERE nombre = '".$currentName."';";
+            $query = "SELECT * FROM usuarios WHERE mail = '".$userMail."';";
             $output = conexion($query);
             $resultado = $output[0];
             $conn = $output[1];
@@ -50,36 +53,48 @@
 
             } else {
     
-                echo "No se pudo obtener el ID.";
+                echo "No se encontraron resultados.";
     
             }
-    
+
             mysqli_close($conn);
 
-            $query = "UPDATE usuarios SET nombre = '".$newName."' WHERE id_usuario = ".$id.";";
+            $query = "SELECT * FROM alumnos WHERE fk_id_usuario = ".$id.";";
             $output = conexion($query);
             $resultado = $output[0];
             $conn = $output[1];
 
-            if ($resultado) {
+            if (mysqli_num_rows($resultado) > 0) {
                 
-                echo "Nombre modificado con exito!";
+                while ($fila = mysqli_fetch_assoc($resultado)) {
+    
+                    $data[] = [
+
+                        'nombreCompleto' => $fila['nombre_completo'],
+                        'grupo' => $fila['grupo']
+
+                    ];
+    
+                }
 
             } else {
     
-                echo "No se puedieron actualizar los datos.";
+                echo "No se encontraron resultados.";
     
             }
-    
+
             mysqli_close($conn);
 
-            break;
+            echo json_encode($data);
+
+        break;
         case 2:
 
-            $currentMail = $_REQUEST['currentMail'];
-            $newMail = $_REQUEST['mail'];
+            $userMail = $_REQUEST['mail'];
+            $completeName = $_REQUEST['completeName'];
+            $group = $_REQUEST['group'];
 
-            $query = "SELECT * FROM usuarios WHERE mail = '".$currentMail."';";
+            $query = "SELECT * FROM usuarios WHERE mail = '".$userMail."';";
             $output = conexion($query);
             $resultado = $output[0];
             $conn = $output[1];
@@ -96,30 +111,18 @@
 
             } else {
     
-                echo "No se pudo obtener el ID.";
+                echo "No se encontraron resultados.";
     
             }
-    
+
             mysqli_close($conn);
 
-            $query = "UPDATE usuarios SET mail = '".$newMail."' WHERE id_usuario = ".$id.";";
+            $query = "INSERT INTO alumnos (nombre_completo, fk_id_usuario, grupo) VALUES ('".$completeName."', ".$id.", '".$group."')";
             $output = conexion($query);
             $resultado = $output[0];
             $conn = $output[1];
 
-            if ($resultado) {
-                
-                echo "Nombre modificado con exito!";
-
-            } else {
-    
-                echo "No se puedieron actualizar los datos.";
-    
-            }
-    
-            mysqli_close($conn);
-
-            break;
+        break;
 
     }
 
