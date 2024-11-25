@@ -8,28 +8,51 @@ body {
 
 .sidenav {
   height: 100%; 
-  width: 200px; 
+  width: 220px; 
   position: fixed; 
-  z-index: 1; 
-  top: 0; 
-  left: 0;
   background-color: #203F3B; 
-  overflow-x: hidden; 
   padding-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-/* The navigation menu links */
-.sidenav a {
-  padding: 6px 8px 6px 16px;
+.sidebar-title {
+  font-size: 2rem;
+  margin: 5px 0px 25px 20px;
+  padding-bottom: 10px;
   text-decoration: none;
-  font-size: 25px;
   color:#FBF8EF;
   display: block;
+  box-shadow: 0 5px 5px rgba(0, 0,  0, 0.05);
+  cursor: auto;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
 }
 
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #f1f1f1;
+.sidebar-options {
+  margin: 15px 0px 10px 35px;
+  text-decoration: none;
+  color:#FBF8EF;
+  display: block;
+  font-family: "Montserrat", sans-serif;
+}
+
+.sidebar-options:hover {
+  opacity: 0.8;
+}
+
+#options {
+  font-size: 1.05rem;
+  font-weight: 600;  
+}
+
+#options::before {
+  content: "> ";
+}
+
+#back {
+  margin-top: auto;
+  margin-bottom: 30px;
 }
 
 /* Style page content */
@@ -80,7 +103,7 @@ body {
   height: 120px;
   width: 120px;
   border-radius: 35px;
-  top: 20%;
+  top: 19%;
   box-shadow: 0 10px 10px rgba(0, 0,  0, 0.05);
 }
 
@@ -88,6 +111,114 @@ body {
   color: #203F3B;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 10px;
+}
+
+.name-info, .email-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 6px rgba(0, 0,  0, 0.05);
+}
+
+.info-btn {
+  width: 80px;
+  height: 40px;
+  background-color: transparent;
+  border: gray solid 2px;
+  color: #203F3B;
+  font-weight: 600;
+}
+
+.info-btn:hover {
+  background-color: #203F3B ;
+  opacity: 0.7;
+}
+
+.save-btn {
+  width: 85px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: #E4C583 solid 2px;
+  color: #203F3B;
+  font-weight: 600;
+  --bs-btn-active-bg: #E4C583 !important;
+  --bs-btn-active-border-color: #E4C583 !important;
+  --bs-btn-active-color: #FBF8EF !important;
+}
+
+.save-btn:hover {
+  background-color: #E4C583 ;
+  border: #E4C583 solid 2px;
+  color: #FBF8EF;
+  opacity: 0.7;
+}
+
+.save-btn:active {
+  background-color: #E4C583 ;
+  border: #E4C583 solid 2px;
+  color: #FBF8EF;
+  opacity: 0.4;
+}
+
+.info-btn:hover {
+  background-color: #203F3B ;
+  opacity: 0.7;
+}
+
+.cancel-btn {
+  width: 90px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: #203F3B solid 2px;
+  color: #203F3B;
+  font-weight: 600;
+  --bs-btn-active-bg:  #203F3B  !important;
+  --bs-btn-active-border-color:  #203F3B  !important;
+  --bs-btn-active-color: #FBF8EF !important;
+}
+
+.cancel-btn:hover {
+  background-color:  #203F3B ;
+  border: #203F3B solid 2px;
+  color: #FBF8EF;
+  opacity: 0.7;
+}
+
+.cancel-btn:active {
+  background-color:  #203F3B  ;
+  border:  #203F3B solid 2px;
+  color: #FBF8EF;
+  opacity: 0.4;
+}
+
+.password-link:hover {
+  opacity: 0.6;
+}
+
+.password-link:active {
+  opacity: 0.4;
+}
+
+.input-field {
+  background-color: transparent;
+  border: #203F3B 2px solid;
+  border-radius: 7px;
+  padding: 0.2rem;
+  width: 400px;
+  font-size: 1rem;
+
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
