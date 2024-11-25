@@ -8,15 +8,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="style.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
   </head>
   <body>
 
     <section class="side-bar">
       <div class="sidenav">
         <a href="#" class="sidebar-title">Perfil</a>
-        <a href="#" class="sidebar-options" id="options">Opciones</a>
+        <a href="../Perfil_Usuario/perfil.html" class="sidebar-options" id="options">Opciones</a>
         <a href="#" class="sidebar-options" id="children">Hijos</a>
-        <a href="#" class="sidebar-options" id="back">Volver</a>
+        <a href="../../Inicio/index.html" class="sidebar-options" id="back">Volver</a>
       </div>
     </section>
 
@@ -28,34 +29,34 @@
           </div>
 
           <div class="dropdown-center">
-            <button class="btn btn-secondary dropdown-toggle add-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button id="plusDropDown" class="btn btn-secondary dropdown-toggle add-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               +
             </button>
 
             <div class="dropdown-menu add-dropdown">
 
-              <form>
+              <form action="hijos.php" method="post" id="form">
 
                 <div class="mb-3">
                   <label class="form-label">Nombre</label>
-                  <input type="text" class="form-control" placeholder="Ingrese el Nombre">
+                  <input type="text" class="form-control" id="name" placeholder="Ingrese el Nombre" required>
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Apellido</label>
-                  <input type="text" class="form-control" placeholder="Ingrese el Apellido">
+                  <input type="text" class="form-control" id="last_name" placeholder="Ingrese el Apellido" required>
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Grupo</label>
-                  <input type="text" class="form-control"  placeholder="Ingrese el Grupo">
+                  <input type="text" class="form-control" id="group" placeholder="Ingrese el Grupo" required>
                 </div>
 
                 <button type="submit" class="btn btn-dark add-child-btn">Agregar</button>
 
               </form>
 
-          </div>
+            </div>
 
           </div>
         </div>
@@ -70,26 +71,7 @@
                 <th scope="col">Grupo</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mateo</td>
-                <td>Zeballos</td>
-                <td>2do Informatica</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Ignacio</td>
-                <td>Rodriguez</td>
-                <td>2do Informatica</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Felipe</td>
-                <td>Gamarra</td>
-                <td>5to Humanistico</td>
-              </tr>
-            </tbody>
+            <tbody id="table"></tbody>
           </table>
         </div>
 

@@ -60,6 +60,18 @@
 
             $_SESSION['mail'] = $mail;
 
+            $name = $_SESSION['name'];
+            $mail = $_SESSION['mail'];
+        
+            $data[] = [
+        
+                'nombre' => $name,
+                'mail' => $mail
+            
+            ];
+
+            echo json_encode($data);
+
             break;
 
     }
