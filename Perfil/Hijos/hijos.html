@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hijos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+
+    <section class="side-bar">
+      <div class="sidenav">
+        <a href="#" class="sidebar-title">Perfil</a>
+        <a href="#" class="sidebar-options" id="options">Opciones</a>
+        <a href="#" class="sidebar-options" id="children">Hijos</a>
+        <a href="#" class="sidebar-options" id="back">Volver</a>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="content-div">
+        <div class="top-banner">
+          <div class="title-div">
+            <h1 class="title">Hijos</h1>
+          </div>
+
+          <div class="dropdown-center">
+            <button class="btn btn-secondary dropdown-toggle add-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              +
+            </button>
+
+            <div class="dropdown-menu add-dropdown">
+
+              <form>
+
+                <div class="mb-3">
+                  <label class="form-label">Nombre</label>
+                  <input type="text" class="form-control" placeholder="Ingrese el Nombre">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Apellido</label>
+                  <input type="text" class="form-control" placeholder="Ingrese el Apellido">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Grupo</label>
+                  <input type="text" class="form-control"  placeholder="Ingrese el Grupo">
+                </div>
+
+                <button type="submit" class="btn btn-dark add-child-btn">Agregar</button>
+
+              </form>
+
+          </div>
+
+          </div>
+        </div>
+
+        <div class="table-div">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Grupo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mateo</td>
+                <td>Zeballos</td>
+                <td>2do Informatica</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Ignacio</td>
+                <td>Rodriguez</td>
+                <td>2do Informatica</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Felipe</td>
+                <td>Gamarra</td>
+                <td>5to Humanistico</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+  </body>
+</html>
