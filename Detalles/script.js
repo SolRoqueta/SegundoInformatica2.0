@@ -173,7 +173,7 @@ function processItem() {
                 <div class="content">
         
                     <div class="image-div">
-                        <img src="../img/ejemplo.PNG" alt="" class="item-img">
+                        <img src="${data[0].foto}" alt="" class="item-img">
                     </div>
 
                     <div class="item-info">
@@ -196,7 +196,7 @@ function processItem() {
                 <div class="content">
         
                     <div class="image-div">
-                        <img src="../img/ejemplo.PNG" alt="" class="item-img">
+                        <img src="${data[0].foto}" alt="" class="item-img">
                     </div>
 
                     <div class="item-info">

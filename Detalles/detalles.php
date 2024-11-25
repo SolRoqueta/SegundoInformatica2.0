@@ -37,15 +37,34 @@
     $conn = $output[1];
 
     if (mysqli_num_rows($resultado) > 0) {
-
+        
         $fila = mysqli_fetch_assoc($resultado);
+
+        $fotoDescomprimida = gzdecode($fila['foto']);
+        
+        // Verificar si la descompresión fue exitosa
+        if ($fotoDescomprimida === false) {
+
+            echo "Error al descomprimir la imagen.";
+
+        }
+
+        // Codificar la foto en base64
+        $foto = base64_encode($fotoDescomprimida);
+
+        // Detectar el tipo MIME de la imagen
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $tipoImagen = finfo_buffer($finfo, $fotoDescomprimida);
+        finfo_close($finfo);
+
+        $cad = 'data:'.$tipoImagen.';base64,'.$foto.'';
 
         $data[] = [
 
             'nombre' => $fila['nombre'],
             'descripcion' => $fila['descripcion'],
-            'precio' => $fila['precio']
-            // 'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+            'precio' => $fila['precio'],
+            'foto' => $cad
 
         ];
 
