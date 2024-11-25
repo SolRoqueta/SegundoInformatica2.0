@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   height: 100vh;
@@ -118,12 +124,13 @@ body {
   flex-direction: column;
   gap: 2rem;
   padding: 10px;
+  width: 80%;
 }
 
 .name-info, .email-info {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
   gap: 15rem;
   padding: 0.5rem;
   border-radius: 8px;
@@ -146,7 +153,6 @@ body {
 
 .save-btn {
   width: 85px;
-  height: 60px;
   border-radius: 5px;
   background-color: transparent;
   border: #E4C583 solid 2px;
@@ -178,7 +184,6 @@ body {
 
 .cancel-btn {
   width: 90px;
-  height: 60px;
   border-radius: 5px;
   background-color: transparent;
   border: #203F3B solid 2px;
@@ -203,6 +208,26 @@ body {
   opacity: 0.4;
 }
 
+.name-div {
+
+  width: 100%;
+
+}
+
+.email-div {
+
+  width: 100%;
+
+}
+
+.inputs-container {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
 .password-link:hover {
   opacity: 0.6;
 }
@@ -216,8 +241,14 @@ body {
   border: #203F3B 2px solid;
   border-radius: 7px;
   padding: 0.2rem;
-  width: 400px;
+  width: 300px;
   font-size: 1rem;
+
+}
+
+p {
+
+  margin: 0 0 1rem 0;
 
 }
 
