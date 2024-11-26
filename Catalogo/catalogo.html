@@ -14,7 +14,7 @@
 
       <nav class="navbar navbar-expand-lg custom-navbar" id="heroPage">
       
-        <a class="navbar-brand" href="#"><span class="cantina">Cantina</span> <span class="daniela">Daniela</span></a>
+        <a class="navbar-brand" href="../Inicio/index.html"><span class="cantina">Cantina</span> <span class="daniela">Daniela</span></a>
 
         <button
               class="navbar-toggler"
@@ -64,24 +64,19 @@
     </nav>
 
         <div class="content">
-          <div>
-            <h1 class="title">Catálogo</h1>       
-            <div class="dropdown-center">
-              <button id="filter-tag" class="btn dropdown-toggle btn-filter" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Todos
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" onclick="setFilter('all')">Todos</a></li>
-                <li><a class="dropdown-item" href="#" onclick="setFilter('daily-menus')">Menús Diarios</a></li>
-                <li><a class="dropdown-item" href="#" onclick="setFilter('fixed-menus')">Menús Fijos</a></li>
-                <li><a class="dropdown-item" href="#" onclick="setFilter('products')">Productos</a></li>
-              </ul>
-            </div>
-
-          </div>
-               
+            <h1 class="title">Catálogo</h1>            
                   
-       
+          <div class="dropdown-center">
+            <button id="filter-tag" class="btn dropdown-toggle btn-filter" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Todos
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" onclick="setFilter('all')">Todos</a></li>
+              <li><a class="dropdown-item" href="#" onclick="setFilter('daily-menus')">Menús Diarios</a></li>
+              <li><a class="dropdown-item" href="#" onclick="setFilter('fixed-menus')">Menús Fijos</a></li>
+              <li><a class="dropdown-item" href="#" onclick="setFilter('products')">Productos</a></li>
+            </ul>
+          </div>
 
         <div class="card-grid" id="products"></div>
 

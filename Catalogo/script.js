@@ -96,8 +96,8 @@ function processUser() {
 
         dropdown.innerHTML = `
 
-          <li><a class="dropdown-item" href="#" onclick="alert('Lleva a la configuracion del usuario')">Perfil</a></li>
-          <li><a class="dropdown-item" href="#" onclick="alert('Lleva a los hijos del usuario dentro de la configuracion del mismo')">Hijos</a></li>
+          <li><a class="dropdown-item" href="../Perfil/Perfil_Usuario/perfil.html">Perfil</a></li>
+          <li><a class="dropdown-item" href="../Perfil/Hijos/hijos.html">Hijos</a></li>
           <li><hr class="dropdown-divider"></li> 
           <li><a class="dropdown-item" onclick="closeSession()" href="#">Cerrar sesión</a></li>
                   
@@ -107,11 +107,13 @@ function processUser() {
 
     } else {
 
-      dropdown.innerHTML = `
+      dropdown.classList.remove("dropdown-menu");
+      profile.addEventListener('click', (e)=> {
 
-          <li><a class="dropdown-item" href="../Login/login.html">Iniciar sesión</a></li>
-                  
-        `;
+        e.preventDefault();
+        window.location.href = "../Login/login.html";
+
+      }, true);
 
     }
 
