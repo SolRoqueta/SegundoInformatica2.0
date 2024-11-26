@@ -12,17 +12,17 @@ body {
 .custom-navbar {
     transition: background-color 0.05s ease-in-out; /* Suaviza la transición del color */
     background-color: transparent; /* Fondo transparente por defecto */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.navbar-brand {
+    display: flex;
+    padding: 1rem;
+  } 
+  
+  .navbar-brand {
     font-family: "Raleway", sans-serif;
     font-size: 25px;
     font-weight: 700;
     font-style: italic;
-    position: absolute;
-    left: 2rem;
 }
+  
 
 .option {
     font-family: "Montserrat", sans-serif;
