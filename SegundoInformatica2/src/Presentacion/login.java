@@ -89,15 +89,16 @@ public class login extends JFrame {
         separator_1_1_1.setBounds(0, 139, 400, 2);
         rightPanel.add(separator_1_1_1);
         
+        JLabel lblNewLabel = new JLabel("");
+        lblNewLabel.setBounds(-405, 182, 270, 346);
+        rightPanel.add(lblNewLabel);
+        lblNewLabel.setIcon(new ImageIcon(login.class.getResource("/imagenes/LogoCantina.png")));
+        
         JPanel rightPanel_1_1 = new JPanel();
         rightPanel_1_1.setLayout(null);
         rightPanel_1_1.setBackground(new Color(53, 88, 96));
         rightPanel_1_1.setBounds(0, 0, 400, 661);
         getContentPane().add(rightPanel_1_1);
-        
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setBounds(138, 419, 190, 190);
-        rightPanel_1_1.add(lblNewLabel);
         
         JLabel lblLaCantina = new JLabel("LA CANTINA");
         lblLaCantina.setHorizontalAlignment(SwingConstants.CENTER);
@@ -124,6 +125,18 @@ public class login extends JFrame {
         separator_1_1.setBackground(new Color(43, 70, 77));
         separator_1_1.setBounds(0, 139, 400, 2);
         rightPanel_1_1.add(separator_1_1);
+        
+        JLabel lblNewLabel_1 = new JLabel("");
+        lblNewLabel_1.setBackground(new Color(255, 255, 255));
+        lblNewLabel_1.setIcon(new ImageIcon(login.class.getResource("/imagenes/LogoCantina (5).png")));
+        lblNewLabel_1.setBounds(-15, 265, 383, 249);
+        rightPanel_1_1.add(lblNewLabel_1);
+        
+        JPanel rightPanel_1 = new JPanel();
+        rightPanel_1.setLayout(null);
+        rightPanel_1.setBackground(new Color(255, 255, 255));
+        rightPanel_1.setBounds(62, 276, 249, 236);
+        rightPanel_1_1.add(rightPanel_1);
         
         // Action Listeners
         
