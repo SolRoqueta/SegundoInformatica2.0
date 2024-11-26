@@ -28,7 +28,7 @@ function putFooter() {
     const footerContainer = document.getElementById('footer-container');
 
     // Usa fetch para cargar el archivo footer.html
-    fetch('footer.html')
+    fetch('../footer/footer.html')
 
     .then(response => {
 

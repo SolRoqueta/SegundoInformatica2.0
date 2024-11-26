@@ -26,6 +26,16 @@
   font-style: italic;
 }
 
+.dropdown-menu {
+
+  --bs-dropdown-bg: #203F3B !important;
+  --bs-dropdown-link-color: #fff !important;
+  --bs-dropdown-divider-bg: #fff !important;
+  --bs-dropdown-link-hover-bg: #375e58 !important;
+  --bs-dropdown-link-hover-color: #fff !important;
+
+}
+
 .current-page {
   font-weight: 700;
   transition: 0.2s;
@@ -312,12 +322,5 @@
   /* Compatibilidad estándar para otros navegadores */
   line-clamp: 1;
   box-orient: vertical;
-
-}
-
-footer {
-
-  height: 25vh;
-  background-color: #203F3B;
 
 }

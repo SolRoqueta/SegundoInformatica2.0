@@ -3,6 +3,12 @@ let id;
 let tipoId;
 var cad;
 
+let userData;
+let userName;
+let userMail;
+
+let data;
+
 document.addEventListener('DOMContentLoaded', function() {
 
     startEvents();
@@ -22,7 +28,7 @@ function putFooter() {
     const footerContainer = document.getElementById('footer-container');
 
     // Usa fetch para cargar el archivo footer.html
-    fetch('footer.html')
+    fetch('../footer/footer.html')
 
     .then(response => {
 
@@ -101,11 +107,13 @@ function processUser() {
 
     } else {
 
-      dropdown.innerHTML = `
+      dropdown.classList.remove("dropdown-menu");
+      profile.addEventListener('click', (e)=> {
 
-          <li><a class="dropdown-item" href="../Login/login.html">Iniciar sesión</a></li>
-                  
-        `;
+        e.preventDefault();
+        window.location.href = "../Login/login.html"
+
+      }, true);
 
     }
 
@@ -164,9 +172,11 @@ function processItem() {
 
     if (item_connection.readyState == 4 && item_connection.status == 200) {
 
-        var data = JSON.parse(item_connection.responseText);
+        data = JSON.parse(item_connection.responseText);
 
-        if (tipo == "productos") {
+        if (tipo == "productos" || userName == null) {
+
+            console.log("productos");
 
             cad = `
 
@@ -189,7 +199,9 @@ function processItem() {
 
         }
         
-        if (tipo == "menus") {
+        if (tipo == "menus" && userName != null) {
+
+            console.log("menus");
 
             cad = `
 
@@ -204,7 +216,7 @@ function processItem() {
                     <h3 class="item-price">$${data[0].precio}</h3>
                     <p class="item-description">${data[0].descripcion}</p>
 
-                    <button type="button" class="btn btn-dark order-button">Reservar</button>
+                    <button type="button" class="btn btn-dark order-button" onclick="grabAndSendData(${0})">Reservar</button>
                     </div>
 
                 </div>
@@ -215,6 +227,18 @@ function processItem() {
 
         resultado.innerHTML = cad;
 
+    }
+
+}
+
+function grabAndSendData(id) {
+
+    if (data[id]) {
+        const datos = { nombre: data[id].nombre, id: data[id].id, precio: data[id].precio, descripcion: data[id].descripcion};
+        const datosJSON = encodeURIComponent(JSON.stringify(datos));
+        window.location.href = `../ConfirmacionReserva/confirmacion.html?reserva=${datosJSON}`;
+    } else {
+        console.log("No hay datos para este ID");
     }
 
 }
