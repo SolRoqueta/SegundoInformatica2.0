@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', startEvents, false);
 
 function startEvents() {
 
-  getFixedMenus();
+  getDailyMenus();
   getUser();
   putFooter();
 
@@ -133,7 +133,7 @@ function processFixedMenus() {
 
   if (conection_fixedMenus.readyState == 4 && conection_fixedMenus.status == 200) {
 
-    // fixedMenus.innerHTML = "";
+    fixedMenus.innerHTML = "";
 
     data = JSON.parse(conection_fixedMenus.responseText);
 
@@ -161,7 +161,7 @@ function processFixedMenus() {
 
   } else {
 
-    // fixedMenus.innerHTML = "cargando...";
+    fixedMenus.innerHTML = "cargando...";
 
   }
 
@@ -306,3 +306,53 @@ window.addEventListener('scroll', () => {
   }
 
 });
+
+var connection_daily;
+function getDailyMenus() {
+
+  connection_daily = new XMLHttpRequest();
+  connection_daily.onreadystatechange = processDailyMenus;
+  connection_daily.open('GET', 'inicio.php?func=daylyMenus');
+  connection_daily.send();
+
+}
+
+function processDailyMenus() {
+
+  var daily_carousel = document.getElementById('daily-carousel');
+
+  if (connection_daily.readyState == 4 && connection_daily.status == 200) {
+
+    daily_carousel.innerHTML = "";
+
+    var data2 = JSON.parse(connection_daily.responseText);
+
+    for (var i = 0; i < data2.length; i++) {
+
+      var cad = `
+    
+        <li class="card-item swiper-slide">
+
+            <img src="${data2[i].foto}" alt="" class="slide-img">
+
+            <div class="slide-div-animation">
+              <div class="slide-text-div">
+                <p class="slide-day">${data2[i].diaCorrespondiente}</p>
+                      <p class="slide-menu-name">${data2[i].nombre}</p>
+                <p class="slide-menu-desc">${data2[i].descripcion}</p>
+              </div>
+            </div>
+
+        </li>
+    
+      `;
+
+      daily_carousel.innerHTML += cad;
+
+    }
+
+    getFixedMenus();
+
+  }
+
+}

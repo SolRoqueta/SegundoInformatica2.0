@@ -40,6 +40,69 @@
 
             break;
 
+        case "daylyMenus":
+
+            dailyMenus();
+
+            break;
+
+    }
+
+    function dailyMenus() {
+
+        $data = [];
+
+        $query = "SELECT * FROM menus WHERE diario = 1 AND foto IS NOT NULL LIMIT 5;";
+
+        $output = conexion($query);
+        $resultado = $output[0];
+        $conn = $output[1];
+
+        if (mysqli_num_rows($resultado) > 0) {
+           
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+
+                $fotoDescomprimida = gzdecode($fila['foto']);
+        
+                // Verificar si la descompresión fue exitosa
+                if ($fotoDescomprimida === false) {
+
+                    echo "Error al descomprimir la imagen.";
+                    continue;  // Salta al siguiente registro si hay un error
+
+                }
+
+                // Codificar la foto en base64
+                $foto = base64_encode($fotoDescomprimida);
+
+                // Detectar el tipo MIME de la imagen
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $tipoImagen = finfo_buffer($finfo, $fotoDescomprimida);
+                finfo_close($finfo);
+
+                $cad = 'data:'.$tipoImagen.';base64,'.$foto.'';
+
+                $data[] = [
+
+                    'nombre' => $fila['nombre'],
+                    'descripcion' => $fila['descripcion'],
+                    'foto' => $cad,
+                    'id' => $fila['id_menu'],
+                    'tipoId' => 'id_menu',
+                    'tipo' => 'menus',
+                    'diaCorrespondiente' => $fila['dia_correspondiente']
+
+                ];
+
+            }
+
+        }
+
+        // Cerrar la conexión
+        mysqli_close($conn);
+
+        echo json_encode($data);
+
     }
 
     function fixedMenus() {
