@@ -6,7 +6,7 @@
 
         $host = 'localhost';
         $user = 'root';
-        $password = 'root';
+        $password = 'Nacho1305@';
         $data_base = 'cantina_daniela';
 
         // Crear la conexión
