@@ -5,6 +5,7 @@ let userMail;
 let lastMenu = 0;
 
 let data;
+var data2;
 
 document.addEventListener('DOMContentLoaded', startEvents, false);
 
@@ -325,13 +326,13 @@ function processDailyMenus() {
 
     daily_carousel.innerHTML = "";
 
-    var data2 = JSON.parse(connection_daily.responseText);
+    data2 = JSON.parse(connection_daily.responseText);
 
     for (var i = 0; i < data2.length; i++) {
 
       var cad = `
     
-        <li class="card-item swiper-slide">
+        <li class="card-item swiper-slide" onclick="grabAndSendData2(${i})">
 
             <img src="${data2[i].foto}" alt="" class="slide-img">
 
@@ -352,6 +353,22 @@ function processDailyMenus() {
     }
 
     getFixedMenus();
+
+  }
+
+}
+
+function grabAndSendData2(id) {
+
+  if (data2[id]) {
+
+    const datos = { tipo: data2[id].tipo, id: data2[id].id, tipoId: data2[id].tipoId };
+    const datosJSON = encodeURIComponent(JSON.stringify(datos));
+    window.location.href = `../Detalles/detalles.html?datos=${datosJSON}`;
+
+  } else {
+
+    console.log("No hay datos para este ID");
 
   }
 
