@@ -94,14 +94,17 @@ function processUser() {
 
       if (userName != null) {
 
-        dropdown.innerHTML = `
+        // dropdown.innerHTML = `
 
-          <li><a class="dropdown-item" href="../Perfil/Perfil_Usuario/perfil.html">Perfil</a></li>
-          <li><a class="dropdown-item" href="../Perfil/Hijos/hijos.html">Hijos</a></li>
-          <li><hr class="dropdown-divider"></li> 
-          <li><a class="dropdown-item" onclick="closeSession()" href="#">Cerrar sesión</a></li>
+        //   <li><a class="dropdown-item" href="../Perfil/Perfil_Usuario/perfil.html">Perfil</a></li>
+        //   <li><a class="dropdown-item" href="../Perfil/Hijos/hijos.html">Hijos</a></li>
+        //   <li><hr class="dropdown-divider"></li> 
+        //   <li><a class="dropdown-item" onclick="closeSession()" href="#">Cerrar sesión</a></li>
                   
-        `;
+        // `;
+
+        dropdown.classList.remove("dropdown-menu");
+        profile.classList.remove("dropdown-toggle");
 
       }
 
