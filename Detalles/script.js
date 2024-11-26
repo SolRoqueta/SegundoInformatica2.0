@@ -7,6 +7,8 @@ let userData;
 let userName;
 let userMail;
 
+let data;
+
 document.addEventListener('DOMContentLoaded', function() {
 
     startEvents();
@@ -170,7 +172,7 @@ function processItem() {
 
     if (item_connection.readyState == 4 && item_connection.status == 200) {
 
-        var data = JSON.parse(item_connection.responseText);
+        data = JSON.parse(item_connection.responseText);
 
         if (tipo == "productos" || userName == null) {
 
@@ -214,7 +216,7 @@ function processItem() {
                     <h3 class="item-price">$${data[0].precio}</h3>
                     <p class="item-description">${data[0].descripcion}</p>
 
-                    <button type="button" class="btn btn-dark order-button">Reservar</button>
+                    <button type="button" class="btn btn-dark order-button" onclick="grabAndSendData(${0})">Reservar</button>
                     </div>
 
                 </div>
@@ -225,6 +227,18 @@ function processItem() {
 
         resultado.innerHTML = cad;
 
+    }
+
+}
+
+function grabAndSendData(id) {
+
+    if (data[id]) {
+        const datos = { nombre: data[id].nombre, id: data[id].id, precio: data[id].precio, descripcion: data[id].descripcion};
+        const datosJSON = encodeURIComponent(JSON.stringify(datos));
+        window.location.href = `../ConfirmacionReserva/confirmacion.html?reserva=${datosJSON}`;
+    } else {
+        console.log("No hay datos para este ID");
     }
 
 }

@@ -70,12 +70,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 71.8vh;
 }   
 
 .confirmation-box {
     display: flex;
-    margin-top: 10vh;   
     justify-content: center;
     min-width: 30%;
     max-width: 40%;
@@ -147,6 +146,7 @@ body {
 }
 
 .item-info {
+    flex: 1;
     max-width: 50%;
     border-right: #203F3B 2px solid;
 }
@@ -158,6 +158,7 @@ body {
 .total {
     width: 50%;
     display: flex;
+    flex: 1;
     justify-content: center;
     align-items: center;
 }
@@ -182,4 +183,21 @@ body {
     font-weight: 550;
 }
 
+.btn-success {
 
+    --bs-btn-bg: #8AA88D !important;
+    --bs-btn-border-color: #8AA88D !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #5a835e !important;
+    --bs-btn-hover-border-color: #5a835e !important;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #5a835e !important;
+    --bs-btn-active-border-color: #5a835e !important;
+
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+    color: white;
+    background-color: #b9d3bb;
+    border-color: #b9d3bb;
+}

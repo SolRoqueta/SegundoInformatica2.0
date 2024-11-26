@@ -85,12 +85,12 @@
 
                     <div class="place">
                       <h6>Ubicacion:</h6>
-                       <p>Av. Pérez Butler M.214 S.14 El Pinar, Ciudad de la Costa</p>                   
+                       <p>Av. Pérez Butler M.214 S.14 El Pinar, Ciudad de la Costa </p>                   
                     </div>
 
                     <div class="time">
                       <h6>Hora:</h6>
-                      <p>Av. Pérez Butler M.214 S.14 El Pinar, Ciudad de la Costa</p>    
+                      <p>Av. Pérez Butler M.214 S.14 El Pinar, Ciudad de la Costa </p>    
                     </div>
 
                 </div>
@@ -103,19 +103,19 @@
 
                     <div class="item-info">
                         <div class="item-name">
-                            <p>Milanesa</p>
+                            <p id="menu-name">Milanesa</p>
                         </div>
         
                         <div class="item-description">
-                            <p>Milanesa Napolitana con fritas de carne con huevo frito, jamon, queso y salsa de tomate lorem</p>
+                            <p id="menu-description">Milanesa Napolitana con fritas de carne con huevo frito, jamon, queso y salsa de tomate lorem</p>
                         </div>
                     </div>
     
                     <div class="total">
                       <div class="total-info">
-                        <li>Nombre Hijo: Ignacio Rodriguez </li>
+                        <li id="child-name">Nombre Hijo: </li>
                         <li>Cantidad: 1</li>
-                        <li>Total: $240</li>
+                        <li id="price"></li>
                       </div>
                        
                     </div>
@@ -128,14 +128,12 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Seleccionar Hijo
                     </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Pepe</a></li>
-                      <li><a class="dropdown-item" href="#">Pepito</a></li>
-                      <li><a class="dropdown-item" href="#">Pedrito</a></li>
+                    <ul class="dropdown-menu" id="childs-dropdown">
+            
                     </ul>
                   </div>
                   
-                  <button type="button" class="btn btn-success">Confirmar Reserva</button>
+                  <button type="button" class="btn btn-success disabled">Confirmar Reserva</button>
 
                 </div>
 
@@ -146,7 +144,7 @@
 
     </section>
 
-
+    <div id="footer-container"></div>
     
 </body>
 </html>
