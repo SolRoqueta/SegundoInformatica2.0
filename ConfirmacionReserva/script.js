@@ -192,6 +192,11 @@ function childSelector(op, precio) {
             return 'option=2&date='+encodeURIComponent(fechaFormateada)+'&total='+encodeURIComponent(precio);
 
         break;
+        case 3:
+
+            return 'option=3';
+
+        break;
 
     }
 
@@ -289,8 +294,8 @@ function enableOrderBtn() {
 
 function confirmOrder() {
 
-    
     getChilds2(2);
+    getChilds3();
 
 }
 
@@ -310,10 +315,18 @@ function processChilds2() {
 
     if (connection_childs2.readyState == 4 && connection_childs2.status == 200) {
 
-        alert(connection_childs2.responseText);
-
         result.innerHTML = "Reserva realizada con exito!";
 
     }
+
+}
+
+var connection_childs3;
+function getChilds3() {
+
+    connection_childs3 = new XMLHttpRequest();
+    connection_childs3.onreadystatechange = alert(connection_childs3.responseText);
+    connection_childs3.open('GET', 'confirmacion.php?'+childSelector(3, null), true);
+    connection_childs3.send();
 
 }
