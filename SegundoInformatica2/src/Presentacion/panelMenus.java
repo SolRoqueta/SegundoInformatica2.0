@@ -147,11 +147,13 @@ public class panelMenus extends JFrame {
 	    JButton btnModificar = new JButton("Modificar");
 	    btnModificar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	    btnModificar.setBounds(318, 588, 145, 40);
+	    btnModificar.setEnabled(false);
 	    panel.add(btnModificar);
 	    
 	    JButton btnEliminar = new JButton("Eliminar");
 	    btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	    btnEliminar.setBounds(550, 588, 145, 40);
+	    btnEliminar.setEnabled(false);
 	    panel.add(btnEliminar);
 
 	    // Mouse y Change Listeners
