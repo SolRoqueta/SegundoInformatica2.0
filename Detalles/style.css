@@ -69,11 +69,22 @@ body {
     gap: 2rem;
 }
 
-.item-img {
+.image-div {
+    width: 400px;
+    height: 400px;
+    padding: 0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px;
-    width: 425px;
-    height: 425px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.item-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;   
 }
 
 .item-info {    
@@ -84,12 +95,16 @@ body {
     gap: 0.2rem;
     max-width: 800px;
     font-family: "Montserrat", sans-serif;
+    word-wrap: break-word;
+    word-break: break-all;
+    hyphens: auto;
 }
 
 .item-title {
     font-size: 4.25rem;
     font-weight: 670;
     max-width: 90%;
+    border-bottom: #203F3B solid 2px;
 }
 
 .item-price {

@@ -188,7 +188,7 @@ function processItem() {
 
                     <div class="item-info">
                     <h1 class="item-title">${data[0].nombre}</h1>
-                    <p class="item-description">${data[0].descripcion}</p>
+                    <p class="item-description" lang="es">${data[0].descripcion}</p>
                     <h3 class="item-price">$${data[0].precio}</h3>
              
                     </div>
@@ -213,8 +213,8 @@ function processItem() {
 
                     <div class="item-info">
                     <h1 class="item-title">${data[0].nombre}</h1>
+                    <p class="item-description" lang="es">${data[0].descripcion}</p>
                     <h3 class="item-price">$${data[0].precio}</h3>
-                    <p class="item-description">${data[0].descripcion}</p>
 
                     <button type="button" class="btn btn-dark order-button" onclick="grabAndSendData(${0})">Reservar</button>
                     </div>
