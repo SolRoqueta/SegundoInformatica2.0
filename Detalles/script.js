@@ -3,6 +3,10 @@ let id;
 let tipoId;
 var cad;
 
+let userData;
+let userName;
+let userMail;
+
 document.addEventListener('DOMContentLoaded', function() {
 
     startEvents();
@@ -22,7 +26,7 @@ function putFooter() {
     const footerContainer = document.getElementById('footer-container');
 
     // Usa fetch para cargar el archivo footer.html
-    fetch('footer.html')
+    fetch('../footer/footer.html')
 
     .then(response => {
 
@@ -101,11 +105,13 @@ function processUser() {
 
     } else {
 
-      dropdown.innerHTML = `
+      dropdown.classList.remove("dropdown-menu");
+      profile.addEventListener('click', (e)=> {
 
-          <li><a class="dropdown-item" href="../Login/login.html">Iniciar sesión</a></li>
-                  
-        `;
+        e.preventDefault();
+        window.location.href = "../Login/login.html"
+
+      }, true);
 
     }
 
@@ -166,7 +172,9 @@ function processItem() {
 
         var data = JSON.parse(item_connection.responseText);
 
-        if (tipo == "productos") {
+        if (tipo == "productos" || userName == null) {
+
+            console.log("productos");
 
             cad = `
 
@@ -189,7 +197,9 @@ function processItem() {
 
         }
         
-        if (tipo == "menus") {
+        if (tipo == "menus" && userName != null) {
+
+            console.log("menus");
 
             cad = `
 

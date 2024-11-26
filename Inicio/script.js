@@ -24,7 +24,7 @@ function putFooter() {
   const footerContainer = document.getElementById('footer-container');
 
   // Usa fetch para cargar el archivo footer.html
-  fetch('footer.html')
+  fetch('../footer/footer.html')
 
   .then(response => {
 
@@ -103,11 +103,13 @@ function processUser() {
 
     } else {
 
-      dropdown.innerHTML = `
+      dropdown.classList.remove("dropdown-menu");
+      profile.addEventListener('click', (e)=> {
 
-          <li><a class="dropdown-item" href="../Login/login.html">Iniciar sesión</a></li>
-                  
-        `;
+        e.preventDefault();
+        window.location.href = "../Login/login.html";
+
+      }, true);
 
     }
 
