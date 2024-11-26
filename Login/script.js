@@ -14,28 +14,28 @@ function startEvents() {
     var errorEmail = document.getElementById('error-mail');
     var errorPassword = document.getElementById('error-password');
 
-    dropBtn.addEventListener('click', function(e) {
+    dropBtn.addEventListener('click', function (e) {
 
         e.preventDefault();
 
     }), true;
 
-    padre.addEventListener('click', function(e) {
+    padre.addEventListener('click', function (e) {
 
         e.preventDefault();
         userType = 'padre';
-        dropBtn.textContent = "Padre seleccionado";
+        dropBtn.textContent = "Padre";
         document.getElementById('email').disabled = false;
         document.getElementById('password').disabled = false;
         subBtn.disabled = false;
 
     });
 
-    profesor.addEventListener('click', function(e) {
+    profesor.addEventListener('click', function (e) {
 
         e.preventDefault();
         userType = 'profesor';
-        dropBtn.textContent = "Profesor seleccionado";
+        dropBtn.textContent = "Profesor";
         var inputEmail = document.getElementById('email').disabled = false;
         var inputPassword = document.getElementById('password').disabled = false;
         subBtn.disabled = false;
@@ -43,8 +43,8 @@ function startEvents() {
         var password = document.getElementById('password');
 
     });
-    
-    subBtn.addEventListener('mouseover', function() {
+
+    subBtn.addEventListener('mouseover', function () {
 
         if (subBtn.disabled == true) {
 
@@ -58,7 +58,7 @@ function startEvents() {
 
     });
 
-    inputEmail.addEventListener('mouseover', function() {
+    inputEmail.addEventListener('mouseover', function () {
 
         if (inputEmail.disabled == true) {
 
@@ -72,11 +72,11 @@ function startEvents() {
 
     });
 
-    inputEmail.addEventListener('change', function() {errorEmail.innerHTML = "";});
+    inputEmail.addEventListener('change', function () { errorEmail.innerHTML = ""; });
 
-    inputPassword.addEventListener('change', function() {errorPassword.innerHTML = "";});
+    inputPassword.addEventListener('change', function () { errorPassword.innerHTML = ""; });
 
-    inputPassword.addEventListener('mouseover', function() {
+    inputPassword.addEventListener('mouseover', function () {
 
         if (inputPassword.disabled == true) {
 
@@ -90,7 +90,7 @@ function startEvents() {
 
     });
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
 
         if (email.value == "") {
@@ -119,7 +119,7 @@ function returnData() {
     var cad = '';
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-    cad = 'email='+encodeURIComponent(email)+'&password='+encodeURIComponent(password)+'&userType='+encodeURIComponent(userType);
+    cad = 'email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password) + '&userType=' + encodeURIComponent(userType);
     return cad;
 
 }

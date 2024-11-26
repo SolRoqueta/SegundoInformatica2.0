@@ -20,39 +20,38 @@
                 <form action="login.php" method="post" id="form">
 
                     <div class="login-info">
-                        <h2 class="title">Iniciar Sesión</h2>
+                        <div class="title-div">
+                            <h2 class="title">Iniciar Sesión</h2>
+                        </div>
 
                         <div class="input-div">
                             
                             <div class="input-container">
-                                <input type="email" id="email" name="usuario" placeholder="Usuario (Email)" required disabled>
+                                <input type="email" id="email" name="usuario" placeholder="Usuario (Email)" required >
                             </div>
                             
                             <div class="input-container">
-                                <input type="password" id="password" name="password" placeholder="Contraseña " required disabled>
+                                <input type="password" id="password" name="password" placeholder="Contraseña " required>
                             </div>
 
-                            <div class="forget-div">
-                                <a href="RecuperarContraseña/recuperarContra.html"><p class="forgot-password">Olvidé la contraseña</p></a>
+                            <div class="dropdown">
+                                <button id="dropBtn" class="button"><p>Tipo de Usuario</p></button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" id="padre">Padre</a></li>
+                                    <li><a class="dropdown-item" id="profesor">Profesor</a></li>
+                                </ul>
                             </div>
 
                         </div>
-                    </div>
+                    </div>  
                     
                     <div class="errors" id="errors"></div>
 
                     <div class="buttons">
 
-                        <div class="dropdown">
-                            <button id="dropBtn" class="dropdown-center"><p>Selecciona uno para iniciar</p></button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" id="padre">Padre</a></li>
-                                <li><a class="dropdown-item" id="profesor">Profesor</a></li>
-                            </ul>
-                        </div>
                         <div>
-
-                            <input id="enviar" class="access-btn" type="submit" value="Acceder" disabled>
+                            
+                            <input id="enviar" class="button" type="submit" value="Acceder" disabled>
 
                         </div>
 

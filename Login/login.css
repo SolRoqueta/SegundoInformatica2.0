@@ -25,9 +25,9 @@ section {
 }
 
 .login-container {
-  width: 400px;
+  width: 60%;
+  height: 70%;
   border-radius: 10px;
-  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,24 +35,54 @@ section {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); 
 }
 
-.login-info {
+.form-div {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 200px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 3rem;
+}
+
+.login-info {
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  /* border: #203f3b solid 2px; */
+  padding: 10px;
 }
 
 .title {
-  font-size: 2.3rem;
+  font-size: 3.5rem;
   color: #203f3b;
   text-align: center;
   font-family: "Montserrat", sans-serif;
 }
 
+.input-div {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
 .input-container {
   position: relative;
   width: 300px;
-  border-bottom: 2px solid #000000;
+  /* border: #203f3b 2px solid; */
+  border-radius: 8px;
+  padding: 0 5px 0 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); 
 }
 
 .input-container input {
@@ -65,29 +95,28 @@ section {
   color: #000000;
 }
 
-.forget-div {
-  margin: 10px;
-  text-align: center;
-}
-
 .buttons {
   margin-top: 30px;
+  width: 70%;
+  font-size: 2rem;
 }
 
-.dropdown-center,
-.access-btn {
+.button {
   width: 100%;
-  height: 45px;
+  height: 50px;
   border-radius: 10px;
   border: none;
-  font-weight: lighter;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-  color: white !important;
+  color: #FBF8EF !important;
   background-color: #203f3b;
+}
 
-  
+.button:hover {
+  opacity: 0.9;
 }
 
 .dropdown-menu {
@@ -98,12 +127,14 @@ section {
   list-style: none;
   padding: 10px;
   margin-top: 0px;
-  width: 100%;
+  width: 400px;
+  font-family: "Montserrat", sans-serif;
 }
 
 .dropdown:hover .dropdown-menu {
   display: block;
-  width: 100px;
+  width: 200px;
+  margin-left: 50px;
 }
 
 .dropdown-item {
@@ -111,7 +142,7 @@ section {
   border-radius: 6px;
   text-decoration: none;
   color: rgb(202, 209, 202);
-  font-weight: bold;
+  font-weight: 500;
   display: block;
   transition: background-color 0.3s ease;
 }
