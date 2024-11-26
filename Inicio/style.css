@@ -149,6 +149,10 @@
   color: #8AA88D; 
 }
 
+.a-btn {
+  text-align: start;
+}
+
 .btn-login {
   margin-top: 20px;
   background-color: #203F3B;
@@ -232,12 +236,64 @@
   max-width: 50%;
   display: block;
   background: white;
-  padding: 18px;
   border-radius: 12px;
   text-decoration: none;
   list-style: none;
   border: 2px solid transparent;
   box-shadow: 0 10px 10px rgba(0, 0,  0, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.slide-img {
+  width: 100%;
+}
+
+.slide-div-animation {
+  bottom: 0;
+  height: 75%;
+  width: 100%;
+  position: absolute;
+  bottom: -20%;
+  background-color: rgba(32, 63, 59, 0.95); 
+  margin: 0;
+  text-align: center;
+  opacity: 0; 
+  transform: translateY(20px); 
+  transition: opacity 0.4s ease, transform 0.4s ease; 
+
+}
+
+.card-item:hover .slide-div-animation {
+  transform: translateY(0px); /* Reset movement */
+  opacity: 1;
+}
+
+.slide-text-div {
+  color: white;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: start;
+}
+
+.slide-day, .slide-menu-name, .slide-menu-desc {
+  margin: 0;
+  max-width: 85%;
+  font-family: "Montserrat", sans-serif;
+}
+
+.slide-day {
+  font-size: 1.5rem;
+}
+
+.slide-menu-name {
+  font-size: 1.75rem;
 }
 
 /* Seccion Menus Fijos */
