@@ -201,3 +201,17 @@ body {
     background-color: #b9d3bb;
     border-color: #b9d3bb;
 }
+
+#hour-and-date {
+
+    margin-bottom: 2.5rem;
+
+}
+
+.result {
+
+    text-align: center;
+    color: #507a54;
+    font-weight: bold;
+
+}

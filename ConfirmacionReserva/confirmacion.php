@@ -90,7 +90,45 @@
         break;
         case 2:
 
+            $userMail = $_SESSION['mail'];
 
+            $query = "SELECT * FROM usuarios WHERE mail = '" . $userMail . "';";
+            $output = conexion($query);
+            $resultado = $output[0];
+            $conn = $output[1];
+
+            $id = null;
+
+            if (mysqli_num_rows($resultado) > 0) {
+                
+                while ($fila = mysqli_fetch_assoc($resultado)) {
+    
+                    $id = $fila['id_usuario'];
+    
+                }
+
+            } else {
+    
+                echo "No se encontraron resultados.";
+    
+            }
+    
+            mysqli_close($conn);
+
+            $total = $_REQUEST['total'];
+            $date = $_REQUEST['date'];
+
+            echo "TOTAL: " . $total;
+ 
+            $query = "INSERT INTO pedidos (total, fecha, fk_id_usuario) VALUES (" . $total . ", '" . $date . "', " . $id .")";
+
+            $output = conexion($query);
+            $resultado = $output[0];
+            $conn = $output[1];
+    
+            mysqli_close($conn);
+
+            exit;
 
         break;
 

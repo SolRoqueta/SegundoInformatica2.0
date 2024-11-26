@@ -8,6 +8,10 @@ let userData;
 var userMail = "";
 var userName = "";
 
+let date;
+
+let hasEnabled = false;
+
 function setUserMail(value) {
     userMail = value;
 }
@@ -26,8 +30,29 @@ function startEvents() {
 
     getUser();
     getInfo();
+    getCurrentDateAndHour();
     getChilds(1);
     putFooter();
+
+}
+
+function getCurrentDateAndHour() {
+
+    const hour_and_date = document.getElementById('hour-and-date');
+    hour_and_date.innerHTML = "";
+
+    const fechaActual = new Date();
+
+    date = fechaActual.toLocaleDateString();
+
+    const horaSinSegundos = fechaActual.toLocaleTimeString('es-ES', { 
+
+        hour: '2-digit', 
+        minute: '2-digit' 
+
+    });
+
+    hour_and_date.innerHTML = date + " " + horaSinSegundos;
 
 }
 
@@ -42,11 +67,11 @@ function getUser() {
 }
 
 var connection_closeUser;
-function closeSession(value) {
+function closeSession() {
 
   connection_closeUser = new XMLHttpRequest();
   connection_closeUser.onreadystatechange = location.reload();
-  connection_closeUser.open('GET', 'session.php', true);
+  connection_closeUser.open('GET', 'session.phpoption=2', true);
   connection_closeUser.send();
 
 }
@@ -71,8 +96,8 @@ function processUser() {
 
         dropdown.innerHTML = `
 
-          <li><a class="dropdown-item" href="#" onclick="alert('Lleva a la configuracion del usuario')">Perfil</a></li>
-          <li><a class="dropdown-item" href="#" onclick="alert('Lleva a los hijos del usuario dentro de la configuracion del mismo')">Hijos</a></li>
+          <li><a class="dropdown-item" href="../Perfil/Perfil_Usuario/perfil.html">Perfil</a></li>
+          <li><a class="dropdown-item" href="../Perfil/Hijos/hijos.html">Hijos</a></li>
           <li><hr class="dropdown-divider"></li> 
           <li><a class="dropdown-item" onclick="closeSession()" href="#">Cerrar sesión</a></li>
                   
@@ -90,12 +115,18 @@ function processUser() {
 
 }
 
+function getUserName() {
+
+    return userName;
+
+}
+
 var connection_childs;
 function getChilds(value) {
 
     connection_childs = new XMLHttpRequest();
     connection_childs.onreadystatechange = processChilds;
-    connection_childs.open('GET', 'confirmacion.php?'+childSelector(value), true);
+    connection_childs.open('GET', 'confirmacion.php?'+childSelector(value, date, precio), true);
     connection_childs.send();
 
 }
@@ -139,7 +170,7 @@ function processChilds() {
 
 }
 
-function childSelector(op) {
+function childSelector(op, precio) {
 
     switch (op) {
 
@@ -150,7 +181,15 @@ function childSelector(op) {
         break
         case 2:
 
+            const fechaActual = new Date();
 
+            const anio = fechaActual.getFullYear();
+            const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Meses van de 0 a 11
+            const dia = String(fechaActual.getDate()).padStart(2, '0');
+            
+            const fechaFormateada = `${anio}-${mes}-${dia}`;
+
+            return 'option=2&date='+encodeURIComponent(fechaFormateada)+'&total='+encodeURIComponent(precio);
 
         break;
 
@@ -232,5 +271,49 @@ function selectChild(id) {
 
     childName = childsData[id].nombre;
     child_name.innerHTML = "Nombre Hijo: " + childName;
+
+    const child_dropdown_text = document.getElementById('child-dropdown-text');
+    child_dropdown_text.innerHTML = childName;
+
+    enableOrderBtn();
+
+}
+
+function enableOrderBtn() {
+
+    const acceptOrderBtn = document.getElementById('acceptOrderBtn');
+    acceptOrderBtn.classList.remove("disabled");
+    hasEnabled = true;
+
+}
+
+function confirmOrder() {
+
+    
+    getChilds2(2);
+
+}
+
+var connection_childs2;
+function getChilds2(value) {
+
+    connection_childs2 = new XMLHttpRequest();
+    connection_childs2.onreadystatechange = processChilds2;
+    connection_childs2.open('GET', 'confirmacion.php?'+childSelector(value, precio), true);
+    connection_childs2.send();
+
+}
+
+function processChilds2() {
+
+    const result = document.getElementById('result');
+
+    if (connection_childs2.readyState == 4 && connection_childs2.status == 200) {
+
+        alert(connection_childs2.responseText);
+
+        result.innerHTML = "Reserva realizada con exito!";
+
+    }
 
 }

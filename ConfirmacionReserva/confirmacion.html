@@ -90,7 +90,7 @@
 
                     <div class="time">
                       <h6>Hora:</h6>
-                      <p>Av. Pérez Butler M.214 S.14 El Pinar, Ciudad de la Costa </p>    
+                      <p id="hour-and-date">Av. Pérez Butler M.214 S.14 El Pinar, Ciudad de la Costa </p>    
                     </div>
 
                 </div>
@@ -125,7 +125,7 @@
                 <div class="buttons-div">
 
                   <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button id="child-dropdown-text" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Seleccionar Hijo
                     </button>
                     <ul class="dropdown-menu" id="childs-dropdown">
@@ -133,9 +133,11 @@
                     </ul>
                   </div>
                   
-                  <button type="button" class="btn btn-success disabled">Confirmar Reserva</button>
+                  <button id="acceptOrderBtn" type="button" class="btn btn-success disabled" onclick="confirmOrder()">Confirmar Reserva</button>
 
                 </div>
+
+                <div class="result" id="result"></div>
 
             </div>
             
