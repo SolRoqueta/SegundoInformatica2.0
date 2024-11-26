@@ -6,7 +6,7 @@
 
         $host = 'localhost';
         $user = 'root';
-        $password = 'Nacho1305@';
+        $password = 'root';
         $data_base = 'cantina_daniela';
 
         // Crear la conexión
@@ -62,7 +62,7 @@
 
     function fixedMenus() {
 
-        $query = "SELECT count(*) AS count FROM menus WHERE diario = 0;";
+        $query = "SELECT count(*) AS count FROM menus WHERE diario = 0 AND foto IS NOT NULL;";
         $output = conexion($query);
         $fixedMenuQuantity = mysqli_fetch_assoc($output[0])['count'];
         mysqli_close($output[1]);
@@ -76,7 +76,7 @@
         
         ];
 
-        $query = "SELECT * FROM menus WHERE diario = 0;";
+        $query = "SELECT * FROM menus WHERE diario = 0 AND foto IS NOT NULL;";
 
         // Ejecutar la consulta
         $resultado = conexion($query);
@@ -85,13 +85,33 @@
             // Mostrar los resultados
             while ($fila = mysqli_fetch_assoc($resultado[0])) {
 
+                $fotoDescomprimida = gzdecode($fila['foto']);
+        
+                // Verificar si la descompresión fue exitosa
+                if ($fotoDescomprimida === false) {
+
+                    echo "Error al descomprimir la imagen.";
+                    continue;  // Salta al siguiente registro si hay un error
+
+                }
+
+                // Codificar la foto en base64
+                $foto = base64_encode($fotoDescomprimida);
+
+                // Detectar el tipo MIME de la imagen
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $tipoImagen = finfo_buffer($finfo, $fotoDescomprimida);
+                finfo_close($finfo);
+
+                $cad = 'data:'.$tipoImagen.';base64,'.$foto.'';
+
                 $data[] = [
                     
                     'id' => $fila['id_menu'],
                     'tipoId' => "id_menu",
                     'tipo' => "menus",
                     'nombre' => $fila['nombre'],
-                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                    'foto' => $cad
                 
                 ];
 
@@ -110,7 +130,7 @@
 
     function dailyMenus() {
 
-        $query = "SELECT count(*) AS count FROM menus WHERE diario = 1;";
+        $query = "SELECT count(*) AS count FROM menus WHERE diario = 1 AND foto IS NOT NULL;";
         $output = conexion($query);
         $dailyMenuQuantity = mysqli_fetch_assoc($output[0])['count'];
         mysqli_close($output[1]);
@@ -124,7 +144,7 @@
         
         ];
 
-        $query = "SELECT * FROM menus WHERE diario = 1;";
+        $query = "SELECT * FROM menus WHERE diario = 1 AND foto IS NOT NULL;";
 
         // Ejecutar la consulta
         $resultado = conexion($query);
@@ -133,13 +153,33 @@
             // Mostrar los resultados
             while ($fila = mysqli_fetch_assoc($resultado[0])) {
 
+                $fotoDescomprimida = gzdecode($fila['foto']);
+        
+                // Verificar si la descompresión fue exitosa
+                if ($fotoDescomprimida === false) {
+
+                    echo "Error al descomprimir la imagen.";
+                    continue;  // Salta al siguiente registro si hay un error
+
+                }
+
+                // Codificar la foto en base64
+                $foto = base64_encode($fotoDescomprimida);
+
+                // Detectar el tipo MIME de la imagen
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $tipoImagen = finfo_buffer($finfo, $fotoDescomprimida);
+                finfo_close($finfo);
+
+                $cad = 'data:'.$tipoImagen.';base64,'.$foto.'';
+
                 $data[] = [
 
                     'id' => $fila['id_menu'],
                     'tipoId' => "id_menu",
                     'tipo' => "menus",
                     'nombre' => $fila['nombre'],
-                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                    'foto' => $cad
                 
                 ];
 
@@ -158,7 +198,7 @@
 
     function products() {
 
-        $query = "SELECT count(*) AS count FROM productos;";
+        $query = "SELECT count(*) AS count FROM productos WHERE foto IS NOT NULL;";
         $output = conexion($query);
         $productQuantity = mysqli_fetch_assoc($output[0])['count'];
         mysqli_close($output[1]);
@@ -172,7 +212,7 @@
         
         ];
 
-        $query = "SELECT * FROM productos";
+        $query = "SELECT * FROM productos WHERE foto IS NOT NULL";
 
         $resultado = conexion($query);
 
@@ -180,13 +220,33 @@
             // Mostrar los resultados
             while ($fila = mysqli_fetch_assoc($resultado[0])) {
 
+                $fotoDescomprimida = gzdecode($fila['foto']);
+        
+                // Verificar si la descompresión fue exitosa
+                if ($fotoDescomprimida === false) {
+
+                    echo "Error al descomprimir la imagen.";
+                    continue;  // Salta al siguiente registro si hay un error
+
+                }
+
+                // Codificar la foto en base64
+                $foto = base64_encode($fotoDescomprimida);
+
+                // Detectar el tipo MIME de la imagen
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $tipoImagen = finfo_buffer($finfo, $fotoDescomprimida);
+                finfo_close($finfo);
+
+                $cad = 'data:'.$tipoImagen.';base64,'.$foto.'';
+
                 $data[] = [
 
                     'id' => $fila['id_producto'],
                     'tipoId' => "id_producto",
                     'tipo' => "productos",
                     'nombre' => $fila['nombre'],
-                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                    'foto' => $cad
                 
                 ];
 
@@ -205,7 +265,7 @@
 
     function all() {
 
-        $query = "SELECT count(*) AS count FROM productos;";
+        $query = "SELECT count(*) AS count FROM productos WHERE foto IS NOT NULL;";
         $output = conexion($query);
         $productQuantity = mysqli_fetch_assoc($output[0])['count'];
         mysqli_close($output[1]);
@@ -224,7 +284,7 @@
         
         ];
 
-        $query = "SELECT * FROM productos;";
+        $query = "SELECT * FROM productos WHERE foto IS NOT NULL;";
 
         $resultado = conexion($query);
 
@@ -232,13 +292,33 @@
             // Mostrar los resultados
             while ($fila = mysqli_fetch_assoc($resultado[0])) {
 
+                $fotoDescomprimida = gzdecode($fila['foto']);
+        
+                // Verificar si la descompresión fue exitosa
+                if ($fotoDescomprimida === false) {
+
+                    echo "Error al descomprimir la imagen.";
+                    continue;  // Salta al siguiente registro si hay un error
+
+                }
+
+                // Codificar la foto en base64
+                $foto = base64_encode($fotoDescomprimida);
+
+                // Detectar el tipo MIME de la imagen
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $tipoImagen = finfo_buffer($finfo, $fotoDescomprimida);
+                finfo_close($finfo);
+
+                $cad = 'data:'.$tipoImagen.';base64,'.$foto.'';
+
                 $data[] = [
 
                     'id' => $fila['id_producto'],
                     'tipoId' => "id_producto",
                     'tipo' => "productos",
                     'nombre' => $fila['nombre'],
-                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                    'foto' => $cad
                 
                 ];
 
@@ -252,7 +332,7 @@
         // Cerrar la conexión
         mysqli_close($resultado[1]);
 
-        $query = "SELECT * FROM menus";
+        $query = "SELECT * FROM menus WHERE foto IS NOT NULL";
 
         // Ejecutar la consulta
         $resultado = conexion($query);
@@ -261,13 +341,33 @@
             // Mostrar los resultados
             while ($fila = mysqli_fetch_assoc($resultado[0])) {
 
+                $fotoDescomprimida = gzdecode($fila['foto']);
+        
+                // Verificar si la descompresión fue exitosa
+                if ($fotoDescomprimida === false) {
+
+                    echo "Error al descomprimir la imagen.";
+                    continue;  // Salta al siguiente registro si hay un error
+
+                }
+
+                // Codificar la foto en base64
+                $foto = base64_encode($fotoDescomprimida);
+
+                // Detectar el tipo MIME de la imagen
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                $tipoImagen = finfo_buffer($finfo, $fotoDescomprimida);
+                finfo_close($finfo);
+
+                $cad = 'data:'.$tipoImagen.';base64,'.$foto.'';
+
                 $data[] = [
 
                     'id' => $fila['id_menu'],
                     'tipoId' => "id_menu",
                     'tipo' => "menus",
                     'nombre' => $fila['nombre'],
-                    'foto' => 'data:image/jpeg;base64,' . base64_encode($fila['foto'])
+                    'foto' => $cad
                 
                 ];
 

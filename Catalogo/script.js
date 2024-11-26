@@ -190,7 +190,7 @@ function processItems() {
 
                     <div id="item-${i}" class='card' style='width: 18rem;' onclick="grabAndSendData(${i})">
 
-                        <img src='https://dummyimage.com/150x150/000/fff' class='card-img-top' alt='${data[i].nombre}'>
+                        <img src='${data[i].foto}' class='card-img-top' alt='${data[i].nombre}'>
 
                         <div class='card-body'>
 
