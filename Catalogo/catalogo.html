@@ -64,19 +64,24 @@
     </nav>
 
         <div class="content">
-            <h1 class="title">Catálogo</h1>            
-                  
-          <div class="dropdown-center">
-            <button id="filter-tag" class="btn dropdown-toggle btn-filter" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Todos
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#" onclick="setFilter('all')">Todos</a></li>
-              <li><a class="dropdown-item" href="#" onclick="setFilter('daily-menus')">Menús Diarios</a></li>
-              <li><a class="dropdown-item" href="#" onclick="setFilter('fixed-menus')">Menús Fijos</a></li>
-              <li><a class="dropdown-item" href="#" onclick="setFilter('products')">Productos</a></li>
-            </ul>
+          <div>
+            <h1 class="title">Catálogo</h1>       
+            <div class="dropdown-center">
+              <button id="filter-tag" class="btn dropdown-toggle btn-filter" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Todos
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="setFilter('all')">Todos</a></li>
+                <li><a class="dropdown-item" href="#" onclick="setFilter('daily-menus')">Menús Diarios</a></li>
+                <li><a class="dropdown-item" href="#" onclick="setFilter('fixed-menus')">Menús Fijos</a></li>
+                <li><a class="dropdown-item" href="#" onclick="setFilter('products')">Productos</a></li>
+              </ul>
+            </div>
+
           </div>
+               
+                  
+       
 
         <div class="card-grid" id="products"></div>
 

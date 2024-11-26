@@ -3,13 +3,15 @@
 
 .inicio-section {
   background-image: radial-gradient(circle 290rem, #FBF8EF 20%, #E4C583 100%);
-  height: 100vh;
+  height: 85vh;
   overflow: hidden;
 }
 
 .custom-navbar {
   transition: background-color 0.05s ease-in-out; /* Suaviza la transición del color */
   background-color: transparent; /* Fondo transparente por defecto */
+  display: flex;
+  padding: 1rem;
 } 
 
 .navbar.scrolled {
@@ -22,17 +24,11 @@
   font-size: 25px;
   font-weight: 700;
   font-style: italic;
-  position: absolute;
-  left: 2rem;
 }
 
 .current-page {
   font-weight: 700;
   transition: 0.2s;
-}
-
-.option-box {
-  margin-left: 100px;
 }
 
 .option {
@@ -82,7 +78,6 @@
   display: flex; 
   justify-content: center; 
   align-items: center; 
-  /* border: blue solid 2px; */
   top: 10rem;
   left: -10rem;
 }
@@ -104,13 +99,11 @@
 }
 
 .title {
-  /* border: 2px solid green; */
   display: flex;
   flex-direction: column;
 }
 
 .title-cantina {
-  /* border: red solid 2px; */
   font-family: "Raleway", sans-serif;
   font-size: 130px;
   font-weight:600;
@@ -120,7 +113,6 @@
 
 .title-daniela {
   margin: 0;
-  /* border: blue solid 2px; */
   font-family: "Raleway", sans-serif;
   font-size: 125px;
   font-weight:600;
@@ -130,14 +122,12 @@
 .slogan {
   margin: 0;
   font-size: 35px;
-  /* border: gray solid 2px; */
   font-family: "Raleway", sans-serif;
   font-weight: 400;
 }
 
 .highlight {
   font-style: italic; 
-  text-decoration: underline; 
   font-weight: 550;
 }
 
@@ -171,15 +161,6 @@
 
 }
 
-.bottom-div {
-  position: relative;
-  top: 17rem;
-  width: 101vw;
-  height: 30rem;
-  background-color: #B2D1BF;
-  transform: rotate(-4deg); /* Rotate by 45 degrees */
-}
-
 /* Seccion Menu Diario */
 
 .diary-menu-section {
@@ -189,7 +170,6 @@
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-
 }
 
 .section-title {
@@ -206,16 +186,16 @@
   width: 120px;
   height: 3px;
   background-color: currentColor;
-  top: 50%; /* Centra la línea verticalmente en el título */
+  top: 50%; 
   transform: translateY(-50%);
 }
 
 .section-title::before {
-  left: -130px; /* Línea izquierda */
+  left: -130px; 
 }
 
 .section-title::after {
-  right: -130px; /* Línea derecha */
+  right: -130px; 
 }
 
 
@@ -223,7 +203,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .card-wrapper {
@@ -231,7 +210,6 @@
   max-width: 1100px;
   margin: 0 60px 35px;
   padding: 20px 10px;
-
 }
 
 .card-list {
@@ -285,6 +263,10 @@
 }
 
 /* Cartas productos */
+.card-img-top {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
 .card {
   border: none;
   width: 300px;

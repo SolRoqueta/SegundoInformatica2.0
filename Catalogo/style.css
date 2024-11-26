@@ -17,7 +17,9 @@ body {
 .custom-navbar {
     transition: background-color 0.05s ease-in-out; /* Suaviza la transición del color */
     background-color: transparent; /* Fondo transparente por defecto */
-}
+    display: flex;
+    padding: 1rem;
+  } 
 
 .navbar.scrolled {
     background-color: #FBF8EF;
@@ -29,14 +31,6 @@ body {
     font-size: 25px;
     font-weight: 700;
     font-style: italic;
-    position: absolute;
-    left: 2rem;
-}
-
-.option-box {
-
-    margin-left: 100px;
-  
 }
 
 .option {
@@ -46,12 +40,10 @@ body {
 }
 
 .profile {
-
     top: -1.5rem;
     right: 0.2rem;
     font-family: "Montserrat", sans-serif;
     font-size: 1.5rem;
-  
 }
 
 .perfil {
@@ -78,11 +70,14 @@ body {
     gap: 0.75rem;
 }
 
-.current-page {
+.title-content {
+    display: flex;
+    border: #0d693e solid 2px;
+}   
 
+.current-page {
     font-weight: 700;
     transition: 0.2s;
-
 }
 
 /* Título */
@@ -116,6 +111,7 @@ body {
 
 /* Botón de filtro */
 .dropdown-center {
+    overflow: hidden;
     display: flex;
     justify-content: center;
 }
@@ -141,21 +137,17 @@ body {
 }
 
 .dropdown-menu {
-
     overflow: hidden;
-
 }
 
 /* Paginación */
 .buttons {
-
     margin-top: 25px;
     margin-bottom: 25px;
     display: flex;
     justify-content: center;
     gap: 50px;
     user-select: none;
-
 }
 
 .pages {
@@ -183,21 +175,21 @@ body {
 
 .active>.page-link, .page-link.active {
 
-    background-color: #63b166 !important;
-    border-color: #63b166 !important;
+    background-color: #203F3B !important;
+    border-color: #203F3B !important;
 
 }
 
 .paginationButton {
 
-    background-color: #388e3c;
+    background-color: #203F3B;
     color: white;
 
 }
 
 .paginationButton:hover {
 
-    background-color: #0d693e;
+    background-color: #203F3B;
     color: white;
 
 }

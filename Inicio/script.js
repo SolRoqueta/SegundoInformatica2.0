@@ -26,27 +26,27 @@ function putFooter() {
   // Usa fetch para cargar el archivo footer.html
   fetch('footer.html')
 
-  .then(response => {
+    .then(response => {
 
       if (!response.ok) {
 
-          throw new Error('Error al cargar el footer');
+        throw new Error('Error al cargar el footer');
 
       }
 
       return response.text();
 
-  })
-  .then(footer => {
+    })
+    .then(footer => {
 
       footerContainer.innerHTML = footer;
 
-  })
-  .catch(error => {
+    })
+    .catch(error => {
 
       console.error('Error:', error);
 
-  });
+    });
 
 }
 
@@ -80,7 +80,7 @@ function processUser() {
     if (connection_user.responseText != "") {
 
       userData = JSON.parse(connection_user.responseText);
-  
+
       console.log("Nombre del usuario: " + userData[0].nombre);
 
       userName = userData[0].nombre;
@@ -118,26 +118,26 @@ function processUser() {
 var conection_fixedMenus
 function getFixedMenus() {
 
-    conection_fixedMenus = new XMLHttpRequest();
-    conection_fixedMenus.onreadystatechange = processFixedMenus;
-    conection_fixedMenus.open('GET', 'inicio.php?func=fixedMenus', true);
-    conection_fixedMenus.send();
+  conection_fixedMenus = new XMLHttpRequest();
+  conection_fixedMenus.onreadystatechange = processFixedMenus;
+  conection_fixedMenus.open('GET', 'inicio.php?func=fixedMenus', true);
+  conection_fixedMenus.send();
 
 }
 
 function processFixedMenus() {
 
-    var fixedMenus = document.getElementById('fixedMenu');
+  var fixedMenus = document.getElementById('fixedMenu');
 
-    if (conection_fixedMenus.readyState == 4 && conection_fixedMenus.status == 200) {
+  if (conection_fixedMenus.readyState == 4 && conection_fixedMenus.status == 200) {
 
-      fixedMenus.innerHTML = "";
+    // fixedMenus.innerHTML = "";
 
-      data = JSON.parse(conection_fixedMenus.responseText);
+    data = JSON.parse(conection_fixedMenus.responseText);
 
-      for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
 
-        var cad = `
+      var cad = `
       
           <div class='card' onclick="grabAndSendData(${i})">
           <img class='card-img-top' src="${data[i].foto}" alt='Card image'>
@@ -150,18 +150,18 @@ function processFixedMenus() {
 
         `;
 
-        lastMenu++;
-        fixedMenus.innerHTML += cad;
-
-      }
-
-      getProducts();
-
-    } else {
-
-      fixedMenus.innerHTML = "cargando...";
+      lastMenu++;
+      fixedMenus.innerHTML += cad;
 
     }
+
+    getProducts();
+
+  } else {
+
+    // fixedMenus.innerHTML = "cargando...";
+
+  }
 
 }
 
@@ -175,7 +175,7 @@ function grabAndSendData(id) {
 
   } else {
 
-      console.log("No hay datos para este ID");
+    console.log("No hay datos para este ID");
 
   }
 
@@ -184,128 +184,123 @@ function grabAndSendData(id) {
 var conection_products
 function getProducts() {
 
-    conection_products = new XMLHttpRequest();
-    conection_products.onreadystatechange = processProducts;
-    conection_products.open('GET', 'inicio.php?func=products', true);
-    conection_products.send();
+  conection_products = new XMLHttpRequest();
+  conection_products.onreadystatechange = processProducts;
+  conection_products.open('GET', 'inicio.php?func=products', true);
+  conection_products.send();
 
 }
 
 function processProducts() {
 
-    var products = document.getElementById('products');
+  var products = document.getElementById('products');
 
-    if (conection_products.readyState == 4 && conection_products.status == 200) {
+  if (conection_products.readyState == 4 && conection_products.status == 200) {
 
-      products.innerHTML = "";
+    products.innerHTML = "";
 
-      let data2 = JSON.parse(conection_products.responseText);
+    let data2 = JSON.parse(conection_products.responseText);
 
-      data = [...data, ...data2];
+    data = [...data, ...data2];
 
-      console.log(data);
+    console.log(data);
 
-      for (var i = lastMenu; i < data.length; i++) {
+    for (var i = lastMenu; i < data.length; i++) {
 
-        var cad = `
+      var cad = `
       
-          <div class='card card-producto' onclick="grabAndSendData(${i})">
-
-            <img src="${data[i].foto}"/>
-
-            <div class='info-producto'>
-
-              <h5 class='name-producto'>${data[i].nombre}</h5>
-              <h5 class='price-producto'>$${data[i].precio}</h5>
-              <p class='desc-producto'>${data[i].descripcion}</p> 
-
-            </div>
-
+          <div class='card' onclick="grabAndSendData(${i})">
+          <img class='card-img-top' src="${data[i].foto}" alt='Card image'>
+          <div class='card-body'>
+              <h4 class='card-title'>${data[i].nombre}</h4>
+              <h5 class='card-title price'>$${data[i].precio}</h5>
+              <p class='card-text'>${data[i].descripcion}</p>
+          </div>
           </div>
 
         `;
 
-        products.innerHTML += cad;
-
-      }
-
-    } else {
-
-      products.innerHTML = "cargando...";
+      products.innerHTML += cad;
 
     }
+
+  } else {
+
+    products.innerHTML = "cargando...";
+
+  }
 
 }
 
 new Swiper('.card-wrapper', {
-  spaceBetween:20,
+  spaceBetween: 20,
 
-    // If we need pagination
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      dynamicBullets: true,
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+    dynamicBullets: true,
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  breakpoints: {
+    0: {
+      slidesPerView: 1
     },
-  
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+    768: {
+      slidesPerView: 2
     },
-  
-    breakpoints: {
-        0: {
-            slidesPerView: 1
-        },
-        768: {
-            slidesPerView: 2
-        },
-    }
-  });
+  }
+});
 
-  document.addEventListener("scroll", function () {
-    
-    const navbar = document.querySelector(".navbar");
-    const heroPage = document.getElementById('hero-page');
+document.addEventListener("scroll", function () {
 
-    if (window.scrollY > 10) {
+  const navbar = document.querySelector(".navbar");
+  const heroPage = document.getElementById('hero-page');
 
-      navbar.classList.add("scrolled");
-      navbar.classList.add("fixed-top");
-      heroPage.classList.add("hero-section-plus");
+  if (window.scrollY > 10) {
 
-    } else {
+    navbar.classList.add("scrolled");
+    navbar.classList.add("fixed-top");
+    heroPage.classList.add("hero-section-plus");
 
-      navbar.classList.remove("scrolled");
-      navbar.classList.remove("fixed-top");
-      heroPage.classList.remove("hero-section-plus");
+  } else {
 
-    }
-  });
+    navbar.classList.remove("scrolled");
+    navbar.classList.remove("fixed-top");
+    heroPage.classList.remove("hero-section-plus");
+
+  }
+});
 
 window.addEventListener('scroll', () => {
 
   var inicio = document.getElementById('inicio');
   var contacto = document.getElementById('contacto');
 
-    // Altura total de la página
-    const pageHeight = document.documentElement.scrollHeight;
-    // Altura visible de la ventana
-    const viewportHeight = window.innerHeight;
-    // Posición actual del desplazamiento
-    const scrollPosition = window.scrollY;
+  // Altura total de la página
+  const pageHeight = document.documentElement.scrollHeight;
+  // Altura visible de la ventana
+  const viewportHeight = window.innerHeight;
+  // Posición actual del desplazamiento
+  const scrollPosition = window.scrollY;
 
-    // Verificar si el usuario está al final
-    if (scrollPosition + viewportHeight >= pageHeight) {
-        
-      inicio.classList.remove('current-page');
-      contacto.classList.add('current-page');
+  // Verificar si el usuario está al final
+  if (scrollPosition + viewportHeight >= pageHeight) {
 
-    } else {
+    inicio.classList.remove('current-page');
+    contacto.classList.add('current-page');
 
-      inicio.classList.add('current-page');
-      contacto.classList.remove('current-page');
+  } else {
 
-    }
+    inicio.classList.add('current-page');
+    contacto.classList.remove('current-page');
+
+  }
 
 });

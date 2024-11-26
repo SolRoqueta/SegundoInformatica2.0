@@ -81,8 +81,7 @@ body {
 
 .top-banner {
   display: flex;
-  flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   background-color: #203F3B;
   width: 100%;
@@ -90,27 +89,45 @@ body {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border: none;
+  box-shadow: 0 7px 10px rgba(0, 0,  0, 0.1);
 }
 
 .title-div {
-  background-color:white;
-  width: 200px;
   height: 200px;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: end;
+  padding: 1.5rem;
+  gap: 32%;
   align-items: center;
-  top: 30%;
   position: relative;
   border-radius: 8px;
-  box-shadow: 0 10px 10px rgba(0, 0,  0, 0.05);
 }
 
 .title {
   position: relative;
   font-size: 4.75rem;
-  color: #203F3B;
+  color:#FBF8EF;
   font-weight: 600;
   font-family: "Raleway", sans-serif;
+}
+
+.title::before, .title::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 3px;
+  background-color: currentColor;
+  top: 50%; 
+  transform: translateY(-50%);
+}
+
+.title::before {
+  left: -140px; /* Línea izquierda */
+}
+
+.title::after {
+  right: -140px; /* Línea derecha */
 }
 
 .table-div {
@@ -119,12 +136,15 @@ body {
 }
 
 .add-btn {
+  width: 80px;
   position: relative;
-  left: 30rem;
-  bottom: 5rem;
   background-color: #FBF8EF;
   color: #203F3B;
   font-weight: 600;
+  font-size: 1.2rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
   box-shadow: 0 10px 10px (0, 0,  0, 0.06);
   border: none;
   --bs-btn-active-bg: #FBF8EF !important;
@@ -135,11 +155,6 @@ body {
 .add-btn:hover {
   background-color:#FBF8EF;
   color: #203F3B;
-  opacity: 0.8;
-}
-
-.add-btn:active {
-  opacity: 0.6;
 }
 
 .add-dropdown {
@@ -167,4 +182,8 @@ body {
   height: 35px;
   font-family: "Montserrat", sans-serif;
   position: relative;
+  padding: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

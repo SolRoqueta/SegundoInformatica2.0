@@ -209,23 +209,17 @@ body {
 }
 
 .name-div {
-
   width: 100%;
-
 }
 
 .email-div {
-
   width: 100%;
-
 }
 
 .inputs-container {
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 }
 
 .password-link:hover {
@@ -243,13 +237,21 @@ body {
   padding: 0.2rem;
   width: 300px;
   font-size: 1rem;
-
 }
 
 p {
-
   margin: 0 0 1rem 0;
+}
 
+.buttons-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-close-session {
+  background-color: #203F3B;  
+  font-size: 1.05rem;
+  border: none;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

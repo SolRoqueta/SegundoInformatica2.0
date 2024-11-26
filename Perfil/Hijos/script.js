@@ -4,7 +4,7 @@ let userName;
 let userMail;
 let userData;
 
-document.addEventListener('DOMContentLoaded', ()=> {
+document.addEventListener('DOMContentLoaded', () => {
 
     startEvents();
 
@@ -15,14 +15,14 @@ function startEvents() {
     getUser();
 
     document.querySelector('.dropdown-menu').addEventListener('click', function (e) {
-        
+
         e.stopPropagation();
 
     });
-    
+
     var form = document.getElementById('form');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
 
         e.preventDefault();
 
@@ -35,10 +35,10 @@ function startEvents() {
 var connection_user;
 function getUser() {
 
-  connection_user = new XMLHttpRequest();
-  connection_user.onreadystatechange = processUser;
-  connection_user.open('GET', 'session.php?option=1', true);
-  connection_user.send();
+    connection_user = new XMLHttpRequest();
+    connection_user.onreadystatechange = processUser;
+    connection_user.open('GET', 'session.php?option=1', true);
+    connection_user.send();
 
 }
 
@@ -65,7 +65,7 @@ function returnData() {
     let apellido = document.getElementById('last_name').value;
     apellido = apellido.replace(/\s+/g, "");
     let grupo = document.getElementById('group').value;
-    cad = `option=`+encodeURIComponent(2)+`&completeName=`+encodeURIComponent(nombre)+` `+encodeURIComponent(apellido)+`&group=`+encodeURIComponent(grupo)+`&mail=`+encodeURIComponent(userMail);
+    cad = `option=` + encodeURIComponent(2) + `&completeName=` + encodeURIComponent(nombre) + ` ` + encodeURIComponent(apellido) + `&group=` + encodeURIComponent(grupo) + `&mail=` + encodeURIComponent(userMail);
     return cad;
 
 }
@@ -99,7 +99,7 @@ function getChilds() {
 
     connection_getChilds = new XMLHttpRequest();
     connection_getChilds.onreadystatechange = processChilds;
-    connection_getChilds.open('GET', 'hijos.php?option=1&mail='+userMail, true);
+    connection_getChilds.open('GET', 'hijos.php?option=1&mail=' + userMail, true);
     connection_getChilds.send();
 
 }
@@ -126,7 +126,6 @@ function processChilds() {
             var cad = `
             
                 <tr>
-                    <th scope="row">${i+1}</th>
                     <td>${nombre}</td>
                     <td>${apellido}</td>
                     <td>${grupo}</td>
