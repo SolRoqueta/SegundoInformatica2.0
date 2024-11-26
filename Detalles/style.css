@@ -23,6 +23,15 @@ body {
     font-style: italic;
 }
   
+.dropdown-menu {
+
+    --bs-dropdown-bg: #203F3B !important;
+    --bs-dropdown-link-color: #fff !important;
+    --bs-dropdown-divider-bg: #fff !important;
+    --bs-dropdown-link-hover-bg: #375e58 !important;
+    --bs-dropdown-link-hover-color: #fff !important;
+  
+}
 
 .option {
     font-family: "Montserrat", sans-serif;

@@ -57,6 +57,16 @@ function getUser(op) {
 
 }
 
+var connection_closeUser;
+function closeSession() {
+
+  connection_closeUser = new XMLHttpRequest();
+  connection_closeUser.onreadystatechange = window.location.href = "../../Inicio/index.html";
+  connection_closeUser.open('GET', 'session.php?option=2', true);
+  connection_closeUser.send();
+
+}
+
 function sessionChooser(op) {
 
     switch (op) {
