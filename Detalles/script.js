@@ -9,7 +9,7 @@ let userMail;
 
 let data;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     startEvents();
 
@@ -30,71 +30,71 @@ function putFooter() {
     // Usa fetch para cargar el archivo footer.html
     fetch('../footer/footer.html')
 
-    .then(response => {
+        .then(response => {
 
-        if (!response.ok) {
+            if (!response.ok) {
 
-            throw new Error('Error al cargar el footer');
+                throw new Error('Error al cargar el footer');
 
-        }
+            }
 
-        return response.text();
+            return response.text();
 
-    })
-    .then(footer => {
+        })
+        .then(footer => {
 
-        footerContainer.innerHTML = footer;
+            footerContainer.innerHTML = footer;
 
-    })
-    .catch(error => {
+        })
+        .catch(error => {
 
-        console.error('Error:', error);
+            console.error('Error:', error);
 
-    });
+        });
 
 }
 
 var connection_user;
 function getUser() {
 
-  connection_user = new XMLHttpRequest();
-  connection_user.onreadystatechange = processUser;
-  connection_user.open('GET', 'session.php?option=1', true);
-  connection_user.send();
+    connection_user = new XMLHttpRequest();
+    connection_user.onreadystatechange = processUser;
+    connection_user.open('GET', 'session.php?option=1', true);
+    connection_user.send();
 
 }
 
 var connection_closeUser;
 function closeSession() {
 
-  connection_closeUser = new XMLHttpRequest();
-  connection_closeUser.onreadystatechange = location.reload();
-  connection_closeUser.open('GET', 'session.php?option=2', true);
-  connection_closeUser.send();
+    connection_closeUser = new XMLHttpRequest();
+    connection_closeUser.onreadystatechange = location.reload();
+    connection_closeUser.open('GET', 'session.php?option=2', true);
+    connection_closeUser.send();
 
 }
 
 function processUser() {
 
-  var profile = document.getElementById('profile');
-  var dropdown = document.getElementById('profile-dropdown');
+    var profile = document.getElementById('profile');
+    var dropdown = document.getElementById('profile-dropdown');
 
-  if (connection_user.readyState == 4 && connection_user.status == 200) {
+    if (connection_user.readyState == 4 && connection_user.status == 200) {
 
-    if (connection_user.responseText != "") {
+        if (connection_user.responseText != "") {
 
-      userData = JSON.parse(connection_user.responseText);
-  
-      console.log("Nombre del usuario: " + userData[0].nombre);
+            userData = JSON.parse(connection_user.responseText);
 
-      userName = userData[0].nombre;
-      userMail = userData[0].mail;
+            console.log("Nombre del usuario: " + userData[0].nombre);
 
-      profile.innerHTML = userName;
+            userName = userData[0].nombre;
+            userMail = userData[0].mail;
 
-      if (userName != "") {
+            profile.innerHTML = userName;
 
-        dropdown.innerHTML = `
+            if (userName != "") {
+
+                dropdown.innerHTML = `
 
           <li><a class="dropdown-item" href="#" onclick="alert('Lleva a la configuracion del usuario')">Perfil</a></li>
           <li><a class="dropdown-item" href="#" onclick="alert('Lleva a los hijos del usuario dentro de la configuracion del mismo')">Hijos</a></li>
@@ -103,21 +103,21 @@ function processUser() {
                   
         `;
 
-      }
+            }
 
-    } else {
+        } else {
 
-      dropdown.classList.remove("dropdown-menu");
-      profile.addEventListener('click', (e)=> {
+            dropdown.classList.remove("dropdown-menu");
+            profile.addEventListener('click', (e) => {
 
-        e.preventDefault();
-        window.location.href = "../Login/login.html"
+                e.preventDefault();
+                window.location.href = "../Login/login.html"
 
-      }, true);
+            }, true);
+
+        }
 
     }
-
-  }
 
 }
 
@@ -188,9 +188,9 @@ function processItem() {
 
                     <div class="item-info">
                     <h1 class="item-title">${data[0].nombre}</h1>
-                    <h3 class="item-price">$${data[0].precio}</h3>
                     <p class="item-description">${data[0].descripcion}</p>
-
+                    <h3 class="item-price">$${data[0].precio}</h3>
+             
                     </div>
 
                 </div>
@@ -198,7 +198,7 @@ function processItem() {
             `;
 
         }
-        
+
         if (tipo == "menus" && userName != null) {
 
             console.log("menus");
@@ -234,7 +234,7 @@ function processItem() {
 function grabAndSendData(id) {
 
     if (data[id]) {
-        const datos = { nombre: data[id].nombre, id: data[id].id, precio: data[id].precio, descripcion: data[id].descripcion};
+        const datos = { nombre: data[id].nombre, id: data[id].id, precio: data[id].precio, descripcion: data[id].descripcion };
         const datosJSON = encodeURIComponent(JSON.stringify(datos));
         window.location.href = `../ConfirmacionReserva/confirmacion.html?reserva=${datosJSON}`;
     } else {
