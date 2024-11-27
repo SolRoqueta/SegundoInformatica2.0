@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function startEvents() {
 
     getUser();
-    getInfo();
     putFooter();
 
 }
@@ -96,12 +95,12 @@ function processUser() {
 
                 dropdown.innerHTML = `
 
-          <li><a class="dropdown-item" href="../Perfil/Perfil_Usuario/perfil.html">Perfil</a></li>
-          <li><a class="dropdown-item" href="../Perfil/Hijos/hijos.html">Hijos</a></li>
-          <li><hr class="dropdown-divider"></li> 
-          <li><a class="dropdown-item" onclick="closeSession()" href="#">Cerrar sesión</a></li>
-                  
-        `;
+                    <li><a class="dropdown-item" href="../Perfil/Perfil_Usuario/perfil.html">Perfil</a></li>
+                    <li><a class="dropdown-item" href="../Perfil/Hijos/hijos.html">Hijos</a></li>
+                    <li><hr class="dropdown-divider"></li> 
+                    <li><a class="dropdown-item" onclick="closeSession()" href="#">Cerrar sesión</a></li>
+                            
+                `;
 
             }
 
@@ -115,7 +114,13 @@ function processUser() {
 
             }, true);
 
+            userName = null;
+            userMail = null;
+            userData = null;
+
         }
+
+        getInfo();
 
     }
 
@@ -152,6 +157,10 @@ function returnData() {
     cad = 'tipo=' + tipo + '&id=' + id + '&tipoId=' + tipoId;
     return cad;
 
+}
+
+function getUserName() {
+    return userName;
 }
 
 var item_connection;

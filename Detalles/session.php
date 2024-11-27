@@ -28,6 +28,9 @@
         
             } else {
         
+                $_SESSION['name'] = null;
+                $_SESSION['mail'] = null;
+
                 echo null;
         
             }
