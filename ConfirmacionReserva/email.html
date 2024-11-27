@@ -1,226 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-        
-        * {
-            margin: 0;
-        }
-        
-        body {
-            background-image: radial-gradient(circle 290rem, #FBF8EF 20%, #E4C583 100%);
-        }
-        
-        .cantina {
-            font-family: "Raleway", sans-serif;
-            font-size: 25px;
-            font-weight: 700;
-            font-style: italic;
-            color: #8AA88D;
-        }
-        
-        .daniela {
-            font-family: "Raleway", sans-serif;
-            font-size: 25px;
-            font-weight: 700;
-            font-style: italic;
-            color: #203F3B;
-        }
-        
-        .confirmation-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh
-        }   
-        
-        .confirmation-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 30%;
-            max-width: 40%;
-        }
-        
-        .info-div {
-            box-shadow: 0 10px 10px rgba(0, 0,  0, 0.5);
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 100%;
-           
-        }
-        
-        .header-info {
-            border-bottom: #203F3B 3px solid;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 10px;
-        }
-        
-        .title {
-            font-family: "Montserrat", sans-serif;
-            font-weight: 500;
-        }
-        
-        .placetime-div {
-            display: flex;
-            height: 17vh;
-            justify-content: center;    
-        }
-        
-        .place {
-            border-right:#203F3B solid 2px;
-            display: flex;
-            width: 50%;
-            justify-content: space-evenly;
-            align-items: start;
-            flex-direction: column;
-        }
-        
-        .place p {
-            max-width: 95%;
-        }
-        
-        .time {
-            /* border: black solid 2px; */
-            display: flex;
-            width: 50%;
-            justify-content: space-evenly;
-            align-items: start;
-            flex-direction: column;
-            padding-left: 1rem;
-        }
-        
-        .order {
-            border-top: #203F3B solid 2px;
-            border-bottom: #203F3B solid 2px;
-            text-align: center;
-            padding-top: 1rem;
-        }
-        
-        .item-details {
-            display: flex;
-        }
-        
-        .item-info {
-            flex: 1;
-            max-width: 50%;
-            border-right: #203F3B 2px solid;
-        }
-        
-        .item-info p {
-            padding: 0.2rem;
-        }
-        
-        .total {
-            width: 50%;
-            display: flex;
-            flex: 1;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .confirmation-details {
-            border: #203F3B solid 2px;
-        }
-        
-        .order {
-            font-size: 1.2rem;
-            font-family: "Montserrat", sans-serif;
-            font-weight: 550;
-        }
-        
-        #hour-and-date {
-        
-            margin-bottom: 2.5rem;
-        
-        }
-        
-        .result {
-        
-            text-align: center;
-            color: #507a54;
-            font-weight: bold;
-        
-        }
-        
-        </style>
-        
+    <title>Comprobante de Reserva</title>
 </head>
-<body>
-
-    <section class="confirmation-section">
-        <div class="confirmation-box">
-
-            <div class="info-div">
-
-                <div class="header-info">
-                    <div class="logo-div">
-                        <span class="cantina">Cantina</span>
-                        <span class="daniela">Daniela</span>
-                    </div>
-        
-                    <div class="title-div">
-                        <h1 class="title">Comprobante de Reserva</h1>
-                    </div>
-                </div>
-    
-                <div class="placetime-div">
-
-                    <div class="place">
-                      <h6>Ubicacion:</h6>
-                       <p>Av. Pérez Butler M.214 S.14 El Pinar, Ciudad de la Costa </p>                   
-                    </div>
-
-                    <div class="time">
-                      <h6>Hora:</h6>
-                      <p id="hour-and-date">Av. Pérez Butler M.214 S.14 El Pinar, Ciudad de la Costa </p>    
-                    </div>
-
-                </div>
-
-                <div class="order">
-                    <p>Orden</p>
-                </div>
-                
-                <div class="item-details">
-
-                    <div class="item-info">
-                        <div class="item-name">
-                            <p id="menu-name">Milanesa</p>
-                        </div>
-        
-                        <div class="item-description">
-                            <p id="menu-description">Milanesa Napolitana con fritas de carne con huevo frito, jamon, queso y salsa de tomate lorem</p>
-                        </div>
-                    </div>
-    
-                    <div class="total">
-                      <div class="total-info">
-                        <li id="child-name">Nombre Hijo: </li>
-                        <li>Cantidad: 1</li>
-                        <li id="price"></li>
-                      </div>
-                       
-                    </div>
-
-                </div>
-
-            </div>
-            
-        </div>
-
-
-    </section>
-    
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #FBF8EF;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #FBF8EF; padding: 20px;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background: #fff; border: 1px solid #E4C583; border-radius: 10px; padding: 20px;">
+                    <tr>
+                        <td align="center" style="padding: 10px 0; font-size: 24px; font-weight: bold; color: #203F3B;">
+                            <span style="color: #8AA88D; font-style: italic;">Cantina</span> Daniela
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="padding: 10px 0; font-size: 18px; font-weight: bold; color: #203F3B; border-bottom: 2px solid #203F3B;">
+                            Comprobante de Reserva
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 20px 0; font-size: 14px; color: #333;">
+                            <strong>Ubicación:</strong> Av. Pérez Butler, M.214, S.14, El Pinar, Ciudad de la Costa<br>
+                            <strong>Hora:</strong> 12:30 PM, 27 de Noviembre, 2024
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 20px 0; border-top: 2px solid #203F3B; border-bottom: 2px solid #203F3B; text-align: left;">
+                            <strong style="font-size: 16px; color: #203F3B;">Orden</strong><br>
+                            - Milanesa Napolitana con fritas de carne, huevo frito, jamón, queso, y salsa de tomate<br>
+                            <strong>Cantidad:</strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 20px 0; font-size: 14px; color: #333;">
+                            <strong>Nombre del hijo:</strong> Juan Pérez<br>
+                            <strong>Total:</strong>$240<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="padding: 10px 0; font-size: 14px; color: #507a54;">
+                            Gracias por tu reserva.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
