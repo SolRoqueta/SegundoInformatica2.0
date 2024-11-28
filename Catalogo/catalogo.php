@@ -284,7 +284,7 @@
         
         ];
 
-        $query = "SELECT * FROM productos WHERE foto IS NOT NULL;";
+        $query = "SELECT * FROM productos WHERE foto IS NOT NULL";
 
         $resultado = conexion($query);
 
@@ -323,9 +323,6 @@
                 ];
 
             }
-        } else {
-
-            echo "No se encontraron resultados.";
 
         }
 
@@ -372,9 +369,6 @@
                 ];
 
             }
-        } else {
-
-            echo "No se encontraron resultados.";
 
         }
 
