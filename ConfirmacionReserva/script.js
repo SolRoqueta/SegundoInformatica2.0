@@ -20,7 +20,7 @@ function setUserName(value) {
     userName = value;
 }
 
-document.addEventListener('DOMContentLoaded', ()=> {
+document.addEventListener('DOMContentLoaded', () => {
 
     startEvents();
 
@@ -45,10 +45,10 @@ function getCurrentDateAndHour() {
 
     date = fechaActual.toLocaleDateString();
 
-    const horaSinSegundos = fechaActual.toLocaleTimeString('es-ES', { 
+    const horaSinSegundos = fechaActual.toLocaleTimeString('es-ES', {
 
-        hour: '2-digit', 
-        minute: '2-digit' 
+        hour: '2-digit',
+        minute: '2-digit'
 
     });
 
@@ -59,62 +59,62 @@ function getCurrentDateAndHour() {
 var connection_user;
 function getUser() {
 
-  connection_user = new XMLHttpRequest();
-  connection_user.onreadystatechange = processUser;
-  connection_user.open('GET', 'session.php?option=1', true);
-  connection_user.send();
+    connection_user = new XMLHttpRequest();
+    connection_user.onreadystatechange = processUser;
+    connection_user.open('GET', 'session.php?option=1', true);
+    connection_user.send();
 
 }
 
 var connection_closeUser;
 function closeSession() {
 
-  connection_closeUser = new XMLHttpRequest();
-  connection_closeUser.onreadystatechange = location.reload();
-  connection_closeUser.open('GET', 'session.phpoption=2', true);
-  connection_closeUser.send();
+    connection_closeUser = new XMLHttpRequest();
+    connection_closeUser.onreadystatechange = location.reload();
+    connection_closeUser.open('GET', 'session.phpoption=2', true);
+    connection_closeUser.send();
 
 }
 
 function processUser() {
 
-  var profile = document.getElementById('profile');
-  var dropdown = document.getElementById('profile-dropdown');
+    var profile = document.getElementById('profile');
+    var dropdown = document.getElementById('profile-dropdown');
 
-  if (connection_user.readyState == 4 && connection_user.status == 200) {
+    if (connection_user.readyState == 4 && connection_user.status == 200) {
 
-    if (connection_user.responseText != "") {
+        if (connection_user.responseText != "") {
 
-      userData = JSON.parse(connection_user.responseText);
+            userData = JSON.parse(connection_user.responseText);
 
-      setUserName(userData[0].nombre);
-      setUserMail(userData[0].mail);
+            setUserName(userData[0].nombre);
+            setUserMail(userData[0].mail);
 
-      profile.innerHTML = userName;
+            profile.innerHTML = userName;
 
-      if (userName != null) {
+            if (userName != null) {
 
-        // dropdown.innerHTML = `
+                // dropdown.innerHTML = `
 
-        //   <li><a class="dropdown-item" href="../Perfil/Perfil_Usuario/perfil.html">Perfil</a></li>
-        //   <li><a class="dropdown-item" href="../Perfil/Hijos/hijos.html">Hijos</a></li>
-        //   <li><hr class="dropdown-divider"></li> 
-        //   <li><a class="dropdown-item" onclick="closeSession()" href="#">Cerrar sesión</a></li>
-                  
-        // `;
+                //   <li><a class="dropdown-item" href="../Perfil/Perfil_Usuario/perfil.html">Perfil</a></li>
+                //   <li><a class="dropdown-item" href="../Perfil/Hijos/hijos.html">Hijos</a></li>
+                //   <li><hr class="dropdown-divider"></li> 
+                //   <li><a class="dropdown-item" onclick="closeSession()" href="#">Cerrar sesión</a></li>
 
-        dropdown.classList.remove("dropdown-menu");
-        profile.classList.remove("dropdown-toggle");
+                // `;
 
-      }
+                dropdown.classList.remove("dropdown-menu");
+                profile.classList.remove("dropdown-toggle");
 
-    } else {
+            }
 
-        window.location.href = "../Login/login.html";
+        } else {
+
+            window.location.href = "../Login/login.html";
+
+        }
 
     }
-
-  }
 
 }
 
@@ -129,7 +129,7 @@ function getChilds(value) {
 
     connection_childs = new XMLHttpRequest();
     connection_childs.onreadystatechange = processChilds;
-    connection_childs.open('GET', 'confirmacion.php?'+childSelector(value, date, precio), true);
+    connection_childs.open('GET', 'confirmacion.php?' + childSelector(value, date, precio), true);
     connection_childs.send();
 
 }
@@ -152,9 +152,9 @@ function processChilds() {
                     <li><a class="dropdown-item" href="#" onclick="selectChild(${i})">${childsData[i].nombre}</a></li>
                 
                 `;
-    
+
                 childs_dropdown.innerHTML += cad;
-    
+
             }
 
         } else {
@@ -164,7 +164,7 @@ function processChilds() {
                 <li><a class="dropdown-item">No tienes hijos</a></li>
                 
             `;
-    
+
             childs_dropdown.innerHTML = cad;
 
         }
@@ -181,7 +181,7 @@ function childSelector(op, precio) {
 
             return 'option=1';
 
-        break
+            break
         case 2:
 
             const fechaActual = new Date();
@@ -189,17 +189,17 @@ function childSelector(op, precio) {
             const anio = fechaActual.getFullYear();
             const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Meses van de 0 a 11
             const dia = String(fechaActual.getDate()).padStart(2, '0');
-            
+
             const fechaFormateada = `${anio}-${mes}-${dia}`;
 
-            return 'option=2&date='+encodeURIComponent(fechaFormateada)+'&total='+encodeURIComponent(precio);
+            return 'option=2&date=' + encodeURIComponent(fechaFormateada) + '&total=' + encodeURIComponent(precio);
 
-        break;
+            break;
         case 3:
 
             return 'option=3';
 
-        break;
+            break;
 
     }
 
@@ -212,27 +212,27 @@ function putFooter() {
     // Usa fetch para cargar el archivo footer.html
     fetch('../footer/footer.html')
 
-    .then(response => {
+        .then(response => {
 
-        if (!response.ok) {
+            if (!response.ok) {
 
-            throw new Error('Error al cargar el footer');
+                throw new Error('Error al cargar el footer');
 
-        }
+            }
 
-        return response.text();
+            return response.text();
 
-    })
-    .then(footer => {
+        })
+        .then(footer => {
 
-        footerContainer.innerHTML = footer;
+            footerContainer.innerHTML = footer;
 
-    })
-    .catch(error => {
+        })
+        .catch(error => {
 
-        console.error('Error:', error);
+            console.error('Error:', error);
 
-    });
+        });
 
 }
 
@@ -262,7 +262,7 @@ function getInfo() {
 function setValues() {
 
     var price = document.getElementById('price');
-    price.innerHTML = "Total: $"+precio;
+    price.innerHTML = "Total: $" + precio;
 
     var menu_name = document.getElementById('menu-name');
     menu_name.innerHTML = nombre;
@@ -307,7 +307,7 @@ function getChilds2(value) {
 
     connection_childs2 = new XMLHttpRequest();
     connection_childs2.onreadystatechange = processChilds2;
-    connection_childs2.open('GET', 'confirmacion.php?'+childSelector(value, precio), true);
+    connection_childs2.open('GET', 'confirmacion.php?' + childSelector(value, precio), true);
     connection_childs2.send();
 
 }
@@ -328,8 +328,7 @@ var connection_childs3;
 function getChilds3() {
 
     connection_childs3 = new XMLHttpRequest();
-    connection_childs3.onreadystatechange = alert(connection_childs3.responseText);
-    connection_childs3.open('GET', 'confirmacion.php?'+childSelector(3, null), true);
+    connection_childs3.open('GET', 'confirmacion.php?' + childSelector(3, null), true);
     connection_childs3.send();
 
 }
