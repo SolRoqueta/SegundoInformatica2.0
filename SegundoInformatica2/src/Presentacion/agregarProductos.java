@@ -137,8 +137,7 @@ public class agregarProductos extends JFrame {
                 fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 
                 // Se crea un filtro de extension que solo permite archivos de imagen
-                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
-                fc.setFileFilter(filtro);
+                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif", "psd");                fc.setFileFilter(filtro);
                 fc.showOpenDialog(btnSubirImagen);
                 
                 if (fc.getSelectedFile() == null) {

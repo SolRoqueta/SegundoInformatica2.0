@@ -166,7 +166,7 @@ public class agregarMenus extends JFrame {
                 fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 
                 // Se crea un filtro de extension que solo permite archivos de imagen
-                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif");
+                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif", "psd");
                 fc.setFileFilter(filtro);
                 fc.showOpenDialog(subirImagenBtn);
                 
